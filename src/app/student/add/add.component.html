@@ -1,0 +1,171 @@
+<div class="container">
+  <h1>Add New Student</h1>
+  <div class="row">
+    <div class="col-md-6">
+        <div class="input-group">
+             <div class="col-sm-3">
+               <div class="form-group">
+                   <label for="email_address_2">Student Name</label>
+                 </div>
+               </div>
+              <div class="col-md-9">
+                  <div class="form-group">
+                     <div class="form-line">
+                         <input type="text" class="form-control"  name="text"  placeholder="Enter Student Name" required>
+                       </div>
+                  </div>
+             </div>
+        </div>
+        <div class="input-group">
+           <div class="col-sm-3">
+             <div class="form-group">
+               <label for="email_address_2">Father Name</label>
+             </div>
+           </div>
+         <div class="col-md-9">
+                  <div class="form-group">
+                     <div class="form-line">
+                         <input type="text" class="form-control"  name="text"  placeholder="Enter Father Name" required>
+                       </div>
+                  </div>
+             </div>
+        </div>
+        <div class="input-group">
+           <div class="col-sm-3">
+             <div class="form-group">
+               <label for="email_address_2">Mother Name</label>
+             </div>
+           </div>
+         <div class="col-md-9">
+                  <div class="form-group">
+                     <div class="form-line">
+                         <input type="text" class="form-control"  name="text"  placeholder="Enter Mother Name" required>
+                       </div>
+                  </div>
+             </div>
+        </div>
+        <div class="input-group">
+           <div class="col-sm-3">
+             <div class="form-group">
+               <label for="email_address_2">Date of Birth</label>
+             </div>
+           </div>
+         <div class="col-md-9">
+                  <div class="form-group">
+                     <div class="form-line">
+                         <input type="Date" class="form-control" name="Date of Birth"required>
+                       </div>
+                  </div>
+             </div>
+        </div>
+        <div class="input-group">
+           <div class="col-sm-3">
+             <div class="form-group">
+               <label for="email_address_2">Address</label>
+             </div>
+           </div>
+         <div class="col-md-9">
+                  <div class="form-group">
+                     <div class="form-line">
+                         <input type="text" class="form-control"  name="address" required>
+                       </div>
+                  </div>
+             </div>
+           </div>
+        <div class="input-group">
+           <div class="col-sm-3">
+             <div class="form-group">
+               <label for="email_address_2">Gender</label>
+             </div>
+           </div>
+         <div class="col-md-6">
+                  <div class="form-group">
+                     <div class="form-line">
+                         <select>
+                          <option>Male</option>
+                         <option>Female</option>
+                         <option>Others</option>
+                         </select>
+                       </div>
+                  </div>
+             </div>
+        </div>
+       <div class="input-group">
+           <div class="col-sm-3">
+             <div class="form-group">
+               <label for="email_address_2">Gaurdian Name</label>
+             </div>
+           </div>
+         <div class="col-md-9">
+                  <div class="form-group">
+                     <div class="form-line">
+                         <input type="text" class="form-control"  name="gaurdian name" placeholder="Gaurdian Name"required>
+                       </div>
+                  </div>
+             </div>
+        </div>
+        <div class="input-group">
+           <div class="col-sm-3">
+             <div class="form-group">
+               <label for="email_address_2">Contact number</label>
+             </div>
+           </div>
+         <div class="col-md-9">
+                  <div class="form-group">
+                     <div class="form-line">
+                         <input type="text" class="form-control"  name="password" placeholder="Enter Contact Number"required>
+                       </div>
+                  </div>
+             </div>
+        </div>
+        <div class="input-group">
+           <div class="col-sm-3">
+             <div class="form-group">
+               <label for="email_address_2">Email Address</label>
+             </div>
+           </div>
+         <div class="col-md-9">
+                  <div class="form-group">
+                     <div class="form-line">
+                         <input type="text" class="form-control"  name="password" placeholder="Email address"required>
+                       </div>
+                  </div>
+             </div>
+        </div>
+     
+     <div class="input-group">
+           <div class="col-sm-3">
+             <div class="form-group">
+               <label for="email_address_2">Parent Contact Number</label>
+             </div>
+           </div>
+         <div class="col-md-9">
+                  <div class="form-group">
+                     <div class="form-line">
+                         <input type="text" class="form-control"  name="password" placeholder="Enter Parent Contact Number"required>
+                       </div>
+                  </div>
+             </div>
+        </div>
+
+        <div class="input-group">
+           <div class="col-sm-3">
+             <div class="form-group">
+               <label for="email_address_2">Image</label>
+             </div>
+           </div>
+         <div class="col-md-9">
+                  <div class="form-group">
+                     <div class="form-line">
+                         <input type="File" class="form-control"  name="image" required>
+                       </div>
+                  </div>
+             </div>
+        </div>
+          <div class="input-group">
+            <button type="Submit" class="btn btn-success" [disabled]="!studentForm.form.valid">Save</button>
+          </div>
+      
+
+
+      
