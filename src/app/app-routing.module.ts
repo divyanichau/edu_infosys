@@ -49,10 +49,9 @@ const routes: Routes = [
 	   }, 
 
        {
-	  	path: 'class',
-	  	loadChildren: './class/manage classes.module#ClassModule'
-	   }, 
-
+       	path: 'accounting',
+       	loadChildren: './accounting/accounting.module#AccountingModule'
+       }
 
 	];
 

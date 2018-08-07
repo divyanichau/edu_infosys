@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SubjectComponent } from './subject.component';
 import { AddComponent } from './add/add.component';
-import { ListComponent} from './list/list.component';
 import { EditComponent} from './edit/edit.component';
 
 
@@ -20,13 +19,6 @@ const routes: Routes = [
     ]
   },
 
-   {
-    path: 'list',
-    component: SubjectComponent,
-    children: [
-      { path: '', component: ListComponent }
-    ]
-  },
 
 {
     path: 'edit',
