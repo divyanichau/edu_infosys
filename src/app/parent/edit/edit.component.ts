@@ -13,7 +13,7 @@ export class EditComponent implements OnInit {
   constructor(private http:HttpClient, private router: Router) { }
 
   ngOnInit() {
-  
+    
      this.getParents(this.route.snapshot.params['id']);
   }
 

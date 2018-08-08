@@ -6,6 +6,7 @@ import { DashboardComponent} from './Dashboard/dashboard.component';
 import { PaymentComponent} from './payment/payment.component';
 import { ExpenseComponent} from './expense/expense.component';
 
+
 @NgModule({
   imports: [
     CommonModule,
