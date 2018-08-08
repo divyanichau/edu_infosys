@@ -1,0 +1,239 @@
+<div class="container">
+  <h1><b>Create Student Payment</b></h1>
+</div>
+<body contenteditable="false">
+<button class="tablink" onclick="openPage('Add', this)" style="background-color: #a6ada6;">Create Single Invoice</button>
+<button class="tablink" onclick="openPage('List', this)" style="background-color: #a6ada6;">Create Mass Invoice</button>
+<div id="Add" class="tabcontent" style="display: none;">
+
+  <div class="row">
+    <div class="col-md-6">
+     <div class="body">
+    </div>
+        <div class="input-group">
+           <div class="col-sm-3">
+             <div class="form-group">
+               <label for="email_address_2"> Class</label>
+             </div>
+           </div>
+          <div class="col-lg-9 col-md-9 col-sm-4 col-xs-5 form-control-label">
+                  <div class="form-group">
+                     <div class="form-line">
+                          <select class="form-control">
+                          <option>One</option>
+                         <option>Two</option>
+                         </select>
+                       </div>
+                  </div>
+             </div>
+        </div>
+    
+       <div class="input-group">
+           <div class="col-sm-3">
+             <div class="form-group">
+               <label for="email_address_2"> Student</label>
+             </div>
+           </div>
+          <div class="col-lg-9 col-md-9 col-sm-4 col-xs-5 form-control-label">
+                  <div class="form-group">
+                     <div class="form-line">
+                          <select class="form-control">
+                          <option>Select Classes First</option>
+                          <option>One</option>
+                         <option>Two</option>
+                         </select>
+                       </div>
+                  </div>
+             </div>
+        </div>
+
+            <div class="input-group">
+           <div class="col-sm-3">
+             <div class="form-group">
+               <label for="email_address_2">Title</label>
+             </div>
+           </div>
+         <div class="col-md-9">
+                  <div class="form-group">
+                     <div class="form-line">
+                         <input type="number" class="form-control"  name="text"  placeholder="Title" required>
+                       </div>
+                  </div>
+             </div>
+        </div>
+
+       <div class="input-group">
+           <div class="col-sm-3">
+             <div class="form-group">
+               <label for="email_address_2">Description</label>
+             </div>
+           </div>
+         <div class="col-md-9">
+                  <div class="form-group">
+                     <div class="form-line">
+                         <input type="text" class="form-control"  name="text"  placeholder="description" required>
+                       </div>
+                  </div>
+             </div>
+        </div>
+
+       <div class="input-group">
+           <div class="col-sm-3">
+             <div class="form-group">
+               <label for="email_address_2">Date</label>
+             </div>
+           </div>
+         <div class="col-md-9">
+                  <div class="form-group">
+                     <div class="form-line">
+                         <input type="date" class="form-control"  name="text"  placeholder="" required>
+                       </div>
+                  </div>
+             </div>
+        </div>
+          <div class="input-group">
+            <button type="Submit" class="btn btn-success" [disabled]="!PaymentForm">Add Invoice</button>
+          </div>
+        </div>
+      </div>
+      </div>
+   
+      <div id="List" class="tabcontent" style="display: none;">
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="input-group">
+           <div class="col-sm-3">
+             <div class="form-group">
+               <label for="email_address_2"> Class</label>
+             </div>
+           </div>
+          <div class="col-lg-9 col-md-9 col-sm-4 col-xs-5 form-control-label">
+                  <div class="form-group">
+                     <div class="form-line">
+                          <select class="form-control">
+                          <option>One</option>
+                         <option>Two</option>
+                         </select>
+                       </div>
+                  </div>
+             </div>
+        </div>
+    
+        <div class="input-group">
+           <div class="col-sm-3">
+             <div class="form-group">
+               <label for="email_address_2">Title</label>
+             </div>
+           </div>
+         <div class="col-md-9">
+                  <div class="form-group">
+                     <div class="form-line">
+                         <input type="text" class="form-control"  name="title" placeholder="Title"required/>
+                       </div>
+                  </div>
+             </div>
+           </div>
+
+            <div class="input-group">
+           <div class="col-sm-3">
+             <div class="form-group">
+               <label for="email_address_2">Description</label>
+             </div>
+           </div>
+         <div class="col-md-9">
+                  <div class="form-group">
+                     <div class="form-line">
+                         <input type="number" class="form-control"  name="text"  placeholder="Description" required>
+                       </div>
+                  </div>
+             </div>
+        </div>
+
+       <div class="input-group">
+           <div class="col-sm-3">
+             <div class="form-group">
+               <label for="email_address_2">Total</label>
+             </div>
+           </div>
+         <div class="col-md-9">
+                  <div class="form-group">
+                     <div class="form-line">
+                         <input type="text" class="form-control"  name="text"  placeholder="Enter total amount" required>
+                       </div>
+                  </div>
+             </div>
+        </div>
+        
+       <div class="input-group">
+           <div class="col-sm-3">
+             <div class="form-group">
+               <label for="email_address_2">Payment</label>
+             </div>
+           </div>
+         <div class="col-md-9">
+                  <div class="form-group">
+                     <div class="form-line">
+                         <input type="text" class="form-control"  name="text"  placeholder="Enter payment amount" required>
+                       </div>
+                  </div>
+             </div>
+        </div>
+
+       <div class="input-group">
+           <div class="col-sm-3">
+             <div class="form-group">
+               <label for="email_address_2">Status</label>
+             </div>
+           </div>
+         <div class="col-lg-9 col-md-9 col-sm-4 col-xs-5 form-control-label">
+                  <div class="form-group">
+                     <div class="form-line">
+                          <select class="form-control">
+                          <option>Paid</option>
+                         <option>Due</option>
+                         </select>
+                       </div>
+                  </div>
+             </div>
+        </div>
+
+       <div class="input-group">
+           <div class="col-sm-3">
+             <div class="form-group">
+               <label for="email_address_2">Method</label>
+             </div>
+           </div>
+          <div class="col-lg-9 col-md-9 col-sm-4 col-xs-5 form-control-label">
+                  <div class="form-group">
+                     <div class="form-line">
+                         <select class="form-control">
+                          <option>Cash</option>
+                         <option>Cheque</option>
+                         </select>
+                       </div>
+                  </div>
+             </div>
+        </div>
+
+       <div class="input-group">
+           <div class="col-sm-3">
+             <div class="form-group">
+               <label for="email_address_2">Date</label>
+             </div>
+           </div>
+         <div class="col-md-9">
+                  <div class="form-group">
+                     <div class="form-line">
+                         <input type="date" class="form-control"  name="text"  placeholder="" required>
+                       </div>
+                  </div>
+             </div>
+        </div>
+          <div class="input-group">
+            <button type="Submit" class="btn btn-success" [disabled]="!PaymentForm">Add Mass Invoice</button>
+          </div>
+  
+      
+
+
