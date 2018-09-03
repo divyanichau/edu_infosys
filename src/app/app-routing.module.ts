@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { TopbarComponent } from './topbar/topbar.component';
@@ -11,11 +10,6 @@ const routes: Routes = [
 	 {
 	    path: "",
 	    component: DashboardComponent
-	  },
-
-	 {
-	    path: "login",
-	    component: LoginComponent
 	  },
 
 	  {
@@ -51,7 +45,12 @@ const routes: Routes = [
        {
        	path: 'accounting',
        	loadChildren: './accounting/accounting.module#AccountingModule'
-       }
+       },
+
+       {
+	  	path: 'library',
+	  	loadChildren: './library/library.module#LibraryModule'
+	   },
 
 	];
 

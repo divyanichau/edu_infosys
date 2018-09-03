@@ -1,0 +1,60 @@
+<div class="body">
+ <div class="content-wrapper">
+    <div class="content">
+      <div class="page-header">
+         <ol class="breadcrumb breadcrumb" style="background-color:#aabad8;">
+              <li><a href="#"><i class="material-icons">home</i> Home</a></li>
+              <li><a href="#"><i class="material-icons">class</i>Section </a></li>
+              <li class="active"> Add Section</li>
+           <ul class="breadcrumb-elements">                          
+            </ul>
+            <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a><a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+            </ol> 
+            <br>
+<div class="row">
+  <form (ngSubmit)="saveSection()" #sectionForm="ngForm">
+   <div class="col-sm-12">
+            <div class="panel panel-default">
+              <div class="panel-heading" style="background-color:#aabad8;">
+                <h4 class="panel-title">Add Section</h4>
+              </div>
+              <br> 
+
+  <div class="panel-body">
+    <div class="row clearfix">
+            <div class="col-sm-6">
+                  <label for="class">Class</label>
+                     <select class="form-control" [(ngModel)]= "section.class"  [ngModelOptions]="{standalone: true}">
+                       <option value="">Select Class</option>
+                       <option value="1">One</option>
+                       <option value="2"> Two</option>
+                       <option value="3"> Three</option>
+                       <option value="4">Four</option>
+                     </select>
+            </div>
+ 
+            <div class="col-sm-6">
+                  <label for="section_name">Section Name</label>
+                     <input type="text" class="form-control" [(ngModel)]="section.section_name"  [ngModelOptions]="{standalone: true}"name="zip_code"  size="84" maxlength="45" placeholder="Enter Section Name " required>
+            </div>
+        </div>
+        <br>
+
+        <div class="row clearfix">
+            <div class="col-sm-6">
+                  <label for="description">Description</label>
+                     <input type="text & number" class="form-control" [(ngModel)]="section.description" [ngModelOptions]="{standalone: true}" name="password"  size="84" maxlength="45" placeholder="" required>
+            </div>
+      </div>
+<br>
+<br>
+    <div class="form-group">
+            <button class="btn btn-block btn-lg waves-effect" style="background-color:#aabad8;" type="Submit"><b>Add Section</b></button>
+        </div>
+
+
+
+
+
+
+

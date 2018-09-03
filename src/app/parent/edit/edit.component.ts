@@ -11,19 +11,17 @@ export class EditComponent implements OnInit {
 	parents={};
 
   constructor(private http:HttpClient, private router: Router) { }
+  ngOnInit() 
+  {
 
-  ngOnInit() {
-    
      this.getParents(this.route.snapshot.params['id']);
   }
-
   getParents(id) {
     this.http.get('http://192.168.1.77:8001/parents/'+id).subscribe(data => {
       this.parents = data;
            
     });
   }
-
  updateParents() {
   	console.log('updating..', this.parents)
     this.http.put('http://192.168.1.77:8001/parents/'+this.parents.id+'/', this.parents)

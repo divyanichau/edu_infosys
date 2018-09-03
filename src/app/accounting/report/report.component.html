@@ -1,0 +1,105 @@
+ <div class="row">
+     <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="background-color:#aabad8;">
+               <h4 class="panel-title">Reports</h4>
+            </div>
+   <div class="panel-body">
+       <div class="form-group col-sm-3">
+         <div class="form-line">
+           <label for="reg_input" class="req">Reports for</label>
+              <select class="form-control" name="reportsfor" id="reportsfor">
+                 <option value="">Select Option</option>
+                 <option value="4">Condition wise</option>
+                 <option value="5">Student wise</option>
+                 </select>                       
+          </div> 
+       </div>
+          <div class="form-group col-sm-3" id="reportfor" style="display:none;">
+              <label for="reg_input" class="req">Report Type</label>
+                   <select class="form-control" name="reportsfor2" id="reportsfor2">
+                             <option value="">Select Option</option>
+                             <option value="1">Date wise</option>
+                             <option value="2">Batch wise</option>
+                   </select>                    
+        </div> 
+     <div class="form-group col-sm-3" id="course" style="display:none">
+         <label for="reg_input" class="req">Class</label>
+             <select class="form-control" name="Accounting[classid]" id="Accounting_classid">
+<option value="">Select Class</option>
+<option value="15">Class 1</option>
+<option value="16">Class 2</option>
+<option value="45">Class 3</option>
+<option value="47">Class 4</option>
+<option value="48">History</option>
+</select>
+<div class="school_val_error" id="Acccounting_classid_em_" style="display:none">
+  </div>                   
+ </div> 
+
+<div class="form-group col-sm-3" id="batch" style="display:none;">
+  <label for="reg_input" class="req">Batch</label>
+     <select class="form-control" name="Librarybooks[batchid]" id="Librarybooks_batchid">
+       <option value="">SelectBatch</option>
+     </select>
+     <div class="school_val_error" id="Accouting_batchid_em_" style="display:none">
+     </div>                   
+      </div>
+                       
+ <div class="form-group col-sm-3" id="condition" style="display:none">
+     <label for="reg_input" class="req">Conditions</label>
+        <select class="form-control" name="condition" id="condition">
+            <option value="">Select Option</option>
+            <option value="1">As New</option>
+            <option value="2">Fine</option>
+            <option value="3">Very Good</option>
+            <option value="4">Good</option>
+            <option value="5">Fair</option>
+            <option value="6">Poor</option>
+            <option value="7">Missing</option>
+            <option value="8">Lost</option>
+        </select>                        </div>
+                     
+<div class="form-group col-sm-3" id="studentautocomplete" style="display:none">
+    <label>Student</label>
+        <input class="form-control ui-autocomplete-input" id="student" type="text" value="" name="student" autocomplete="off">
+        <input id="hidden-fieldstudent" name="output" type="hidden" value="">
+</div> 
+         
+<div class="panel-footer1">
+   <div class="col-sm-12">
+      <div class="form-group" align="right">
+         <input type="button" onclick="printDiv('print')" value="Print Report" class="btn btn-danger">
+       </div>
+      <div class="form-group  pull-right">
+          <label>&nbsp;</label> </div>
+       <div class="form-group  pull-right" id="issuedbutton" style="display:none">
+          <label>&nbsp;</label>
+             <br><a href="javascript:issuedetails()" class="btn btn-info">Go</a>
+       </div>
+       <div class="form-group  pull-right" id="batchwisebutton" style="display:none">
+          <label>&nbsp;</label><br>
+             <a href="javascript:issuedetailsbatchwise()" class="btn btn-info">Go</a>
+       </div>
+   </div>
+</div>
+        </div>
+         </div>
+         </div>
+        </div>
+   <div class="row" id="print">
+       <div class="col-sm-12" id="reports" style="display:none">
+           <div class=" panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-responsive" id="details">
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      
+    </div>

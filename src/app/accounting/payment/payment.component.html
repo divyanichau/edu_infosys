@@ -1,121 +1,131 @@
+<div class="body">
+   <div class="content-wrapper">
+      <div class="content">
+        <div class="page-header">
+<ol class="breadcrumb breadcrumb" style="background-color:#aabad8;">
+              <li><a href="#"><i class="material-icons">home</i> Home</a></li>
+              <li><a href="#"><i class="material-icons">payment</i> Create Student Payment </a></li>
+              <li class="active"> Create Student Payment</li>
+      <ul class="breadcrumb-elements">                          
+        </ul>
+         <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a><a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+            </ol> 
+            <br>
+
 <div class="row">
-<div class="input-group">
-    <div class="container-fluid">
-            <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card" style="min-height:800px;">
-                        <div class="header">
+  <form (ngSubmit)="savePayment()" #paymentForm="ngForm">
+                <div class="col-sm-12">
+                   <div class="panel panel-default">
+                        <div class="panel-heading" style="background-color:#aabad8;">
                             <h2>
-                                <b>Create Student Payment</b>
+                                <b style="color: black;"> Create Student Payment</b>
                             </h2>
-                        </div>  
+                        </div>
 
-<button class="tablink" onclick="openPage('Add', this)" style="background-color: #a6ada6;">Create Single Invoice</button>
-<button class="tablink" onclick="openPage('List', this)" style="background-color: #a6ada6;">Create Mass Invoice</button>
-<div id="Add" class="tabcontent" style="display: none;">
-
-<div class="row">
-  <div class="input-group">
-    <div class="container-fluid">
+<button class="tablink" onclick="openPage('Add', this)" style="background-color: #c7d2c7;">Individual</button>
+<button class="tablink" onclick="openPage('List', this)" style="background-color: #c7d2c7;">Bulk</button>
+<button class="tablink" onclick="openPage('Edit', this)" style="background-color: #c7d2c7;"> Payment List</button>
+<div id="Add" class="tabcontent" >
+  
+      <div class="panel-body">
             <div class="row clearfix">
-                
-            <div class="body">
-                     <div class="input-group">
-                         <div class="col-sm-2">
-                            <div class="form-group">
-                                     <label for="name">Class</label>
-                            </div>
-                        </div>
-                        <div class="col-md-9">
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <select class="form-control">
-                                      <option>One</option>
-                                      <option>Two</option>
-                                      <option>Three</option>
-                                  </select>
-                              </div>
-                          </div>
-                      </div>
-                  </div> 
+              <div class="col-sm-12">
+                  <label for="class_name">Class Name</label>
+                    <select class="form-control"  [(ngModel)]="payment.class_name">
+                        <option>One</option>
+                       <option>Two</option>
+                      <option>Three</option>
+                    </select>
+                    </div>
+                    </div> 
+                    <br>
 
-          <div class="input-group">
-                         <div class="col-sm-2">
-                            <div class="form-group">
-                                     <label for="member_id">Student</label>
-                            </div>
-                        </div>
-                        <div class="col-md-9">
-                            <div class="form-group">
-                                <div class="form-line">
-                                     <select class="form-control">
-                                      <option>One</option>
-                                      <option>Two</option>
-                                      <option>Three</option>
+                  <div class="row clearfix">
+                         <div class="col-sm-12">
+                            <label for="section_name">Section Name</label>
+                                <select class="form-control">
+                                      <option>A</option>
+                                      <option>B</option>
+                                      <option>C</option>
+                                      <option>D</option>
+                                      <option>E</option>
+                                      <option>F</option>
                                   </select>
                                 </div>
                             </div>
-                         </div>
-                     </div>
-
+                   
                             
-                    <div class="input-group">
-                         <div class="col-sm-2">
-                            <div class="form-group">
-                                     <label for="member_id">Title</label>
+                    <div class="row clearfix">
+                         <div class="col-sm-12">
+                            <label for="student">Student</label>
                             </div>
                         </div>
-                        <div class="col-md-9">
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" class="form-control" name="email_address"   placeholder="" required >
+                        <br>
+      
+                      <div class="row clearfix">
+                        <div class="col-sm-12">
+                                    <input type="text" class="form-control"  [(ngModel)]="payment.student" name="student"   placeholder="Enter Student Name" required >
                                 </div>
                             </div>
-                         </div>
-                     </div>
+                         <br>
 
                        
-                        <div class="input-group">
-                             <div class="col-sm-2">
-                                <div class="form-group">
-                                     <label for="name">Description</label>
+                        <div class="row clearfix">
+                             <div class="col-sm-12">
+                                 <label for="payemnt_name">Payment Name</label>
                             </div>
                         </div>
-                        <div class="col-md-9">
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" class="form-control" name="password"   placeholder="Description" required >
+                        <br>
+                        <div class="row clearfix">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control"  [(ngModel)]="payment.payment_name" name="payment_name"   placeholder="Payment Name" required >
                                 </div>
                             </div>
-                         </div>
-                 </div>
-                       
-                     <div class="input-group">
-                         <div class="col-sm-2">
-                            <div class="form-group">
-                                     <label for="book_sn">Date</label>
+                    <br>
+
+                     <div class="row clearfix">
+                         <div class="col-sm-12">
+                             <label for=" start_date"> Start Date</label>
                             </div>
                         </div>
-                        <div class="col-md-9">
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="date" class="form-control" name=""   placeholder="" required >
+                        <div class="row claerfix">
+                           <div class="col-sm-12">
+                                <input type="date" class="form-control" [(ngModel)]="payment.start_date" name="date"   placeholder="" required >
                                 </div>
                             </div>
-                         </div>
-                    </div>    
-          <div class="form-group">
-            <button class="btn btn-block btn-lg bg-pink waves-effect" type="Submit">Add  Invoice</button>
+                        <br>
+
+               <div class="row clearfix">
+                         <div class="col-sm-12">
+                              <label for=" end_date"> End Date</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                                    <input type="date" class="form-control" [(ngModel)]="payment.end_date" name="date"   placeholder="" required >
+                                </div>
+                            </div>
+                      <br>
+
+                     <div class="row clearfix">
+                             <div class="col-sm-12">
+                                 <label for="total_amount">Total Amount</label>
+                            </div>
+                        </div>
+                        <br>
+                      <div class="rowclearfix">
+                        <div class="col-sm-12">
+                           <input type="text" class="form-control" [(ngModel)]="payment.total_amount"  name="total_amount" placeholder="Enter Total Amount" required >
+                                </div>
+                           </div>
+                    <br>
+
+                  <div class="form-group">
+            <button class="btn btn-block btn-lg waves-effect" style="background-color:#aabad8;" type="Submit"><b>Create</b></button>
         </div>
    </div>
   </div>
 </div>
-</div>
-</div>
-</div>
 
-    
-  
  <div id="List" class="tabcontent" style="display: none;">
   <div class="row">
 <div class="input-group">
@@ -126,15 +136,17 @@
                      <div class="input-group">
                          <div class="col-sm-2">
                             <div class="form-group">
-                                     <label for="name">Class</label>
+                                     <label for="class">Class Name</label>
                             </div>
                         </div>
                         <div class="col-md-9">
                             <div class="form-group">
                                 <div class="form-line">
                                     <select class="form-control">
-                                      <option>Cash</option>
-                                      <option>Cheque</option>
+                                      <option>One</option>
+                                      <option>Two</option>
+                                      <option>Three</option>
+                                      <option>Four</option>
                                   </select>
                               </div>
                           </div>
@@ -144,124 +156,194 @@
                     <div class="input-group">
                          <div class="col-sm-2">
                             <div class="form-group">
-                                     <label for="member_id">Title</label>
+                                     <label for="sectin_name">Section Name</label>
                             </div>
                         </div>
                         <div class="col-md-9">
                             <div class="form-group">
                                 <div class="form-line">
-                                    <input type="text" class="form-control" name="email_address"   placeholder="" required >
+                                <select class="form-control">
+                                      <option>A</option>
+                                      <option>B</option>
+                                      <option>C</option>
+                                      <option>D</option>
+                                      <option>E</option>
+                                      <option>F</option>
+                                  </select>
                                 </div>
                             </div>
                          </div>
                      </div>
 
-                   
-                          <div class="input-group">
-                             <div class="col-sm-2">
-                                <div class="form-group">
-                                     <label for="name">Description</label>
+                            
+                    <div class="input-group">
+                         <div class="col-sm-2">
+                            <div class="form-group">
+                                     <label for="student">Student</label>
                             </div>
                         </div>
                         <div class="col-md-9">
                             <div class="form-group">
                                 <div class="form-line">
-                                    <input type="text" class="form-control" name="password"   placeholder="Description" required >
+                                    <input type="text" class="form-control"  [(ngModel)]="payment.student" name="student"   placeholder="Enter Student Name" required >
+                                </div>
+                            </div>
+                         </div>
+                     </div>
+
+                       
+                        <div class="input-group">
+                             <div class="col-sm-2">
+                                <div class="form-group">
+                                     <label for="payemnt_name">Payment Name</label>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" class="form-control"  [(ngModel)]="payment.payment_name" name="payment_name"   placeholder="Payment Name" required >
                                 </div>
                             </div>
                          </div>
                  </div>
                        
-                        <div class="input-group">
-                           <div class="col-sm-2">
-                               <div class="form-group">
-                                     <label for="name">Total</label>
-                            </div>
-                        </div>
-                        <div class="col-md-9">
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" class="form-control" name="address"   placeholder="Enter Total amount" required >
-                                </div>
-                            </div>
-                         </div>
-                     </div>
-
-                    <div class="input-group">
+                     <div class="input-group">
                          <div class="col-sm-2">
                             <div class="form-group">
-                                     <label for="name">Payment</label>
+                                     <label for=" start_date"> Start Date</label>
                             </div>
                         </div>
                         <div class="col-md-9">
                             <div class="form-group">
                                 <div class="form-line">
-                                    <input type="text" class="form-control" name=""   placeholder="Enter Payment amount" required >
+                                    <input type="date" class="form-control" [(ngModel)]="payment.start_date" name="date"   placeholder="" required >
                                 </div>
                             </div>
                          </div>
-                     </div>
-                    
-                        <div class="input-group">
-                            <div class="col-sm-2">
+                    </div>  
+                   <div class="input-group">
+                         <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for=" end_date"> End Date</label>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="date" class="form-control" [(ngModel)]="payment.end_date" name="date"   placeholder="" required >
+                                </div>
+                            </div>
+                         </div>
+                    </div>  
+
+                     <div class="input-group">
+                             <div class="col-sm-2">
                                 <div class="form-group">
-                                     <label for="due_date">Status</label>
-                            </div>
-                        </div>
-                         <div class="col-md-9">
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <select class="form-control">
-                                      <option>Paid</option>
-                                      <option>Due</option>
-                                    </select>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-             
-
-                  <div class="input-group">
-                         <div class="col-sm-2">
-                            <div class="form-group">
-                                     <label for="name">Method</label>
+                                     <label for="total_amount">Total Amount</label>
                             </div>
                         </div>
                         <div class="col-md-9">
                             <div class="form-group">
                                 <div class="form-line">
-                                    <select class="form-control">
-                                      <option>Cash</option>
-                                      <option>Cheque</option>
-                                  </select>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-            
-                               
-                    <div class="input-group">
-                         <div class="col-sm-2">
-                            <div class="form-group">
-                                     <label for="book_sn">Date</label>
-                            </div>
-                        </div>
-                        <div class="col-md-9">
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="date" class="form-control" name=""   placeholder="" required >
+                                    <input type="text" class="form-control" [(ngModel)]="payment.total_amount"  name="total_amount"   placeholder="Enter Total Amount" required >
                                 </div>
-                            </div>
-                         </div>
-                     </div>
-                  
-          <div class="form-group">
-            <button class="btn btn-block btn-lg bg-pink waves-effect" type="Submit">Add Mass Invoice</button>
+                           </div>
+                        </div>
+                 </div>  
+
+                     <div class="form-group">
+            <button class="btn btn-block btn-lg waves-effect" style="background-color:#aabad8;" type="Submit"><b>Create Payment</b></button>
         </div>
-   </div>
   </div>
 </div>
 </div>
 </div>
 </div>
 </div>
+  
+<div id="Edit" class="tabcontent" style="display: none;">
+       <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                               Payment List
+                            </h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a href="javascript:void(0);" class=" waves-effect waves-block">Action</a></li>
+                                        <li><a href="javascript:void(0);" class=" waves-effect waves-block">Another action</a></li>
+                                        <li><a href="javascript:void(0);" class=" waves-effect waves-block">Something else here</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                                <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap"><div class="dt-buttons"><a class="dt-button buttons-copy buttons-html5" tabindex="0" aria-controls="DataTables_Table_1" href="#"><span>Copy</span></a><a class="dt-button buttons-csv buttons-html5" tabindex="0" aria-controls="DataTables_Table_1" href="#"><span>CSV</span></a><a class="dt-button buttons-excel buttons-html5" tabindex="0" aria-controls="DataTables_Table_1" href="#"><span>Excel</span></a><a class="dt-button buttons-pdf buttons-html5" tabindex="0" aria-controls="DataTables_Table_1" href="#"><span>PDF</span></a><a class="dt-button buttons-print" tabindex="0" aria-controls="DataTables_Table_1" href="#"><span>Print</span></a></div><div id="DataTables_Table_1_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="DataTables_Table_1"></label></div><table class="table table-bordered table-striped table-hover dataTable js-exportable" id="DataTables_Table_1" role="grid" aria-describedby="DataTables_Table_1_info">
+                                    <thead>
+                                        <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 169px;">ID</th>
+
+                                         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 200px;"> Student Name</th>
+
+                                         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 176px;">Roll</th>
+
+                                         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 200px;">Class</th>
+                                        
+
+                                         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 200px;">Section</th>
+
+                                         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 200px;">Pay Amount</th>
+
+                                         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 200px;">Pay By</th>
+
+                                         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 200px;">Pay Month-Year</th>
+
+                                         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 200px;">Status</th>
+
+                                        </tr>
+
+                                    </thead>
+                                    <tfoot>
+                                        <tr><th rowspan="1" colspan="1">ID</th>
+                                            <th rowspan="1" colspan="1">Student Name</th>
+                                            <th rowspan="1" colspan="1">Roll</th>
+                                            <th rowspan="1" colspan="1">Class</th>
+                                            <th rowspan="1" colspan="1">Section</th>
+                                            <th rowspan="1" colspan="1">Pay Amount</th>
+                                            <th rowspan="1" colspan="1">Pay By</th>
+                                            <th rowspan="1" colspan="1">Pay Month-Year</th>
+                                            <th rowspan="1" colspan="1">Status</th>
+                                            <th rowspan="1" colspan="1">Edit</th>
+
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                      
+                                    <tr *ngFor="let payment of payments">
+                                        <td>{{ payment.id }}</td>
+                                        <td>{{ payment.user.student_name }}</td>
+                                        <td>{{ payment.user.roll}}</td>
+                                        <td>{{ payment.user.class}}</td>
+                                        <td>{{ payment.user.section}}</td>
+                                    
+                                                  
+                                        <td><a href="/payment/edit/{{payment.id}}">Edit</a></td>
+                                      </tr>
+                                    
+                                </tbody>
+                                </table><div class="dataTables_info" id="DataTables_Table_1_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_1_paginate"><ul class="pagination"><li class="paginate_button previous disabled" id="DataTables_Table_1_previous"><a href="#" aria-controls="DataTables_Table_1" data-dt-idx="0" tabindex="0">Previous</a></li><li class="paginate_button active"><a href="#" aria-controls="DataTables_Table_1" data-dt-idx="1" tabindex="0">1</a></li><li class="paginate_button "><a href="#" aria-controls="DataTables_Table_1" data-dt-idx="2" tabindex="0">2</a></li><li class="paginate_button "><a href="#" aria-controls="DataTables_Table_1" data-dt-idx="3" tabindex="0">3</a></li><li class="paginate_button "><a href="#" aria-controls="DataTables_Table_1" data-dt-idx="4" tabindex="0">4</a></li><li class="paginate_button "><a href="#" aria-controls="DataTables_Table_1" data-dt-idx="5" tabindex="0">5</a></li><li class="paginate_button "><a href="#" aria-controls="DataTables_Table_1" data-dt-idx="6" tabindex="0">6</a></li><li class="paginate_button next" id="DataTables_Table_1_next"><a href="#" aria-controls="DataTables_Table_1" data-dt-idx="7" tabindex="0">Next</a></li></ul></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        
+  
+  
+

@@ -1,0 +1,204 @@
+<div class="content-wrapper">
+  <div class="content">
+    <div class="page-header">
+        <div class="card">
+        <div class="breadcrumb-line">
+        <ul class="breadcrumb">
+            <li><a href="#"><i class=""></i>Home</a></li>
+            <li><a href="#">Library</a></li>
+            <li><a class="active">Add Category</a></li>
+        </ul>
+        <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a><a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a></div>
+</div>
+<br>
+<div class="content">
+    <form id="librarybooks-form" action="/index.php/library/librarybooks/create" method="post">    <div class="col-sm-12">
+        <ul class="nav nav-tabs nav-tabs-highlight">
+            <button class="tablink" onclick="openPage('Add', this)" style="background-color:white;">Add Books</button>
+             <button class="tablink" onclick="openPage('List', this)" style="background-color:white;">Book List</button>
+        </ul>
+        <h6 class="content-group text-semibold"></h6>
+        <div class="tab-content">
+           <div id="Add" class="tabcontent" >
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">Add Books</h4>
+                            </div>
+     <div class="body">
+        <div class="input-group">
+            <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="purchase_date">Purchase Date</label>
+                 </div>
+            </div>
+         <div class="col-md-9">
+              <div class="form-group">
+                 <div class="form-line">
+                     <input type="date" class="form-control" name="purchase_date" placeholder="Issued Date" required>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="body">
+        <div class="input-group">
+            <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="book_no">Book ISBN No.</label>
+                 </div>
+            </div>
+         <div class="col-md-9">
+              <div class="form-group">
+                 <div class="form-line">
+                     <input type="number" class="form-control" name="book_no" placeholder="" required>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="body">
+        <div class="input-group">
+            <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="title">Title *</label>
+                 </div>
+            </div>
+         <div class="col-md-9">
+              <div class="form-group">
+                 <div class="form-line">
+                     <input type="text" class="form-control" name="title"  size="84" maxlength="45"placeholder="" required>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="body">
+        <div class="input-group">
+            <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="edition">Edition</label>
+                 </div>
+            </div>
+         <div class="col-md-9">
+              <div class="form-group">
+                 <div class="form-line">
+                     <input type="text" class="form-control" name="edition"  size="84" maxlength="45"placeholder="" required>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="body">
+        <div class="input-group">
+            <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="edition">Book Category</label>
+                 </div>
+            </div>
+         <div class="col-md-9">
+              <div class="form-group">
+                 <div class="form-line">
+                    <select class="form-control" name="Librarybooks[bookcategoryid]" id="Librarybooks_bookcategoryid">
+<option value="">Select Option</option>
+<option value="4">History</option>
+<option value="5">Literature</option>
+<option value="7">Nepali</option>
+<option value="9">Arabic 1</option>
+<option value="10">ssdsd</option>
+<option value="11">hindi</option>
+<option value="13">maths</option>
+<option value="20">Science</option>
+<option value="21">Geography</option>
+<option value="22">Science</option>
+<option value="23">Maths</option>
+</select>                                      
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="body">
+        <div class="input-group">
+            <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="publisher">Publisher</label>
+                 </div>
+            </div>
+         <div class="col-md-9">
+              <div class="form-group">
+                 <div class="form-line">
+                     <input type="text" class="form-control" name="publisher"  size="84" maxlength="45"placeholder="" required>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="body">
+        <div class="input-group">
+            <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="shelf_no">Shelf No</label>
+                 </div>
+            </div>
+         <div class="col-md-9">
+              <div class="form-group">
+                 <div class="form-line">
+                     <input type="number" class="form-control" name="shelf_no"  size="84" maxlength="45"placeholder="" required>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="body">
+        <div class="input-group">
+            <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="book_cost">Book Cost</label>
+                 </div>
+            </div>
+         <div class="col-md-9">
+              <div class="form-group">
+                 <div class="form-line">
+                     <input type="text" class="form-control" name="book_cost"  size="84" maxlength="45"placeholder="" required>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="body">
+        <div class="input-group">
+            <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="book_condition">Book Condition</label>
+              </div>
+          </div>
+           <div class="col-md-9">
+              <div class="form-group">
+                 <div class="form-line">
+        <select class="form-control" name="Librarybooks[condition]" id="Librarybooks_condition">
+             <option value="">Select Option</option>
+             <option value="1">As New</option>
+             <option value="2">Fine</option>
+             <option value="3">Very Good</option>
+             <option value="4">Good</option>
+             <option value="5">Fair</option>
+             <option value="6">Poor</option>
+             <option value="7">Missing</option>
+             <option value="8">Lost</option>
+       </select>     
+                </div>
+            </div>
+        </div>
+    </div>
+     <div class="row">
+       <div class="col-sm-5"><br>
+          <div class="form_sep">
+               <input class="btn btn-info" type="submit" name="yt0" value="Save">               
+           </div>
+       </div>
+    </div>
+</div>
+</div>
+
+
