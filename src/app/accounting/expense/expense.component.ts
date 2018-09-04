@@ -21,12 +21,12 @@ export class ExpenseComponent implements OnInit {
 updateExpense() {
   var expense = this.expense;
     console.log('updating..', this.expense)
-    this.http.put('http://192.168.1.77:8001/expense/'+this.expense '/' this.expense)
-      .subscribe(res => {
-          alert('updated')
-        }, (err) => {
-          console.log(err);
-        }
-      );
+    // this.http.put('http://192.168.1.77:8001/expense/'+this.expense '/'+ this.expense)
+    //   .subscribe(res => {
+    //       alert('updated')
+    //     }, (err) => {
+    //       console.log(err);
+    //     }
+    //   );
   }
 }

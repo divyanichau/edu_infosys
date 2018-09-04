@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class PaymentComponent implements OnInit {
    payment = {};
    
-  constructor(private http: HttpClient, private route: Router) { }
+  constructor(private http: HttpClient, private router: Router) { }
   ngOnInit() {
    
      }

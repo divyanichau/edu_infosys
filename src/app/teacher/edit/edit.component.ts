@@ -10,10 +10,10 @@ import { HttpClient } from '@angular/common/http';
 export class EditComponent implements OnInit {
    teacher={};
   
-  constructor(private http:HttpClient, private router: Router) { }
+  constructor(private http:HttpClient, private router: ActivatedRoute) { }
 
   ngOnInit() {
-    this.getTeacher(this.route.snapshot.params['id']);
+    this.getTeacher(this.router.snapshot.params['id']);
   }
 
 getTeacher(id) {
@@ -26,13 +26,13 @@ getTeacher(id) {
   
  updateStudent() {
     console.log('updating..', this.teacher)
-    this.http.put('http://192.168.1.77:8001/teacher/'+this.teacher.id+'/', this.teacher)
-      .subscribe(res => {
-          alert('updated')
-        }, (err) => {
-          console.log(err);
-        }
-      );
+    // this.http.put('http://192.168.1.77:8001/teacher/'+this.teacher.id+'/', this.teacher)
+    //   .subscribe(res => {
+    //       alert('updated')
+    //     }, (err) => {
+    //       console.log(err);
+    //     }
+    //   );
   }
 
 }

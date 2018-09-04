@@ -8,8 +8,11 @@ import { HttpClient } from '@angular/common/http';
 })
   
 export class SssComponent implements OnInit {
-  devices =  'Official Details  Personal Details Contact Details Father Details Mother Details.split(' ');
   selectedDevice = 'Personal Details';
+  default_detail_type = {1:false, 2:false, 3:false, 4:false, 5:false};
+  detail_type = this.default_detail_type;
+
+  student = {}
 
 
   onChange(newValue) {
@@ -18,7 +21,7 @@ export class SssComponent implements OnInit {
   }
 
   reset_details_value(){
-    this.detail_type = {1:false, 2:false, 3:false, 4:false, 5:false};
+    this.detail_type = this.default_detail_type;
   }
   constructor(private http: HttpClient, private router: Router) { }
   ngOnInit() {
@@ -33,7 +36,7 @@ export class SssComponent implements OnInit {
             //this.router.navigate(['/add-category', id]);
             
      }, (err) => {
-         console.log(newVal);
+         console.log(err);
      });
     }
 }

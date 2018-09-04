@@ -29,7 +29,7 @@
           <div class="row clearfix">
             <div class="col-sm-6">
                     <label for="academic_year">Batch</label>
-                      <select class="form-control" [(ngModel)]= "student.batch"  [ngModelOptions]="{standalone: true}">
+                      <select class="form-control" name="batch" [(ngModel)]= "student.batch"  #batch="ngModel">
                     <option value="">Select Batch</option>
                     <option value="1">2070</option>
                     <option value="4">2071</option>

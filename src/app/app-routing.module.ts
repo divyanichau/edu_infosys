@@ -22,10 +22,10 @@ const routes: Routes = [
 	  	loadChildren: './student/student.module#StudentModule'
 	  },
 
-      {
-	  	path: 'parent',
-	  	loadChildren: './parent/parent.module#ParentModule'
-	  },
+   //    {
+	  // 	path: 'parent',
+	  // 	loadChildren: './parent/parent.module#ParentModule'
+	  // },
 
       {
 	  	path: 'teacher',

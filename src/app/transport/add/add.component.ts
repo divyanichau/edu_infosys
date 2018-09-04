@@ -12,14 +12,14 @@ export class AddComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
-  	this.http.get('http://192.168.1.77/transport/',this.Transport).subscribe(res=> {
-  		let id=res['id']; 
-	    this.router.navigate(['/transport-add', id]);
-	},(err)=> {
-		console.log(err);
-  }
+  	// this.http.get('http://192.168.1.77/transport/',this.transport).subscribe(res=> {
+  	// 	let id=res['id']; 
+	  //   this.router.navigate(['/transport-add', id]);
+   //  	},(err)=> {
+   //  		console.log(err);
+   //    }
   
-      );
+   //    );
   }
 	
 }

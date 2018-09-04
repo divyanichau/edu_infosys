@@ -12,10 +12,10 @@ export class EditComponent implements OnInit {
 
    transport={};
   
-  constructor(private http:HttpClient, private router: Router) { }
+  constructor(private http:HttpClient, private router: ActivatedRoute) { }
 
   ngOnInit() {
-    this.getTransport(this.route.snapshot.params['id']);
+    this.getTransport(this.router.snapshot.params['id']);
   }
 
 getTransport(id) {
@@ -26,14 +26,14 @@ getTransport(id) {
   }
 
  updateTransport() {
-    console.log('updating..', this.transport)
-    this.http.put('http://192.168.1.77:8001/transport/'+this.transport.id+'/', this.transport)
-      .subscribe(res => {
-          alert('updated')
-        }, (err) => {
-          console.log(err);
-        }
-      );
+    // console.log('updating..', this.transport)
+    // this.http.put('http://192.168.1.77:8001/transport/'+this.transport.id+'/', this.transport)
+    //   .subscribe(res => {
+    //       alert('updated')
+    //     }, (err) => {
+    //       console.log(err);
+    //     }
+    //   );
   }
 
 }

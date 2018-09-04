@@ -10,10 +10,10 @@ export class EditComponent implements OnInit {
 	
 	student={};
 
-  constructor(private http:HttpClient, private router: Router) { }
+  constructor(private http:HttpClient, private router: ActivatedRoute) { }
 
   ngOnInit() {
-  	 this.getStudent(this.route.snapshot.params['id']);
+  	 this.getStudent(this.router.snapshot.params['id']);
   }
 
   getStudent(id) {
@@ -25,14 +25,14 @@ export class EditComponent implements OnInit {
 
   
  updateStudent() {
-  	console.log('updating..', this.student)
-    this.http.put('http://192.168.1.77/student/'+this.student.id+'/', this.student)
-      .subscribe(res => {
-          alert('updated')
-        }, (err) => {
-          console.log(err);
-        }
-      );
+  	// console.log('updating..', this.student)
+   //  this.http.put('http://192.168.1.77/student/'+this.student.id+'/', this.student)
+   //    .subscribe(res => {
+   //        alert('updated')
+   //      }, (err) => {
+   //        console.log(err);
+   //      }
+   //    );
   }
 
 }

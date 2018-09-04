@@ -10,10 +10,10 @@ export class EditComponent implements OnInit {
 	
 	subject={};
 
-  constructor(private http:HttpClient, private router: Router) { }
+  constructor(private http:HttpClient, private router: ActivatedRoute) { }
 
   ngOnInit() {
-  	 this.getSubject(this.route.snapshot.params['id']);
+  	 this.getSubject(this.router.snapshot.params['id']);
   }
 
   getSubject(id) {
@@ -25,14 +25,14 @@ export class EditComponent implements OnInit {
 
   
  updateSubject() {
-  	console.log('updating..', this.subject)
-    this.http.put('http://192.168.1.77:8001/subject/'+this.subject.id+'/', this.subject)
-      .subscribe(res => {
-          alert('updated')
-        }, (err) => {
-          console.log(err);
-        }
-      );
+  	// console.log('updating..', this.subject)
+   //  this.http.put('http://192.168.1.77:8001/subject/'+this.subject.id+'/', this.subject)
+   //    .subscribe(res => {
+   //        alert('updated')
+   //      }, (err) => {
+   //        console.log(err);
+   //      }
+   //    );
   }
 
 }

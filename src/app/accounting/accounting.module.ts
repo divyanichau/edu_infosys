@@ -1,6 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule }   from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { NgProgressModule } from 'ngx-progressbar';
+
+
+
+import { StudentService } from '../core/services/student.service';
+import { UtilsService } from '../shared/services/utils.service';
 
 
 import { AccountingRoutingModule } from './accounting-routing.module';
@@ -22,8 +29,11 @@ import { SectionComponent} from './section/section.component';
   imports: [
     CommonModule,
     FormsModule,
+    HttpModule,
+    NgProgressModule,
     AccountingRoutingModule
   ],
+  providers: [StudentService, UtilsService],
   declarations: [AccountingComponent, DashboardComponent, LoginComponent, PaymentComponent, ExpenseComponent, StudentComponent, ClassComponent, SectionComponent,  TeacherComponent, AddCategoryComponent, ReportComponent, SssComponent]
 })
 export class AccountingModule { }

@@ -10,11 +10,11 @@ export class EditComponent implements OnInit {
 	
 	parents={};
 
-  constructor(private http:HttpClient, private router: Router) { }
+  constructor(private http:HttpClient, private router: ActivatedRoute) { }
   ngOnInit() 
   {
 
-     this.getParents(this.route.snapshot.params['id']);
+     this.getParents(this.router.snapshot.params['id']);
   }
   getParents(id) {
     this.http.get('http://192.168.1.77:8001/parents/'+id).subscribe(data => {
@@ -23,14 +23,14 @@ export class EditComponent implements OnInit {
     });
   }
  updateParents() {
-  	console.log('updating..', this.parents)
-    this.http.put('http://192.168.1.77:8001/parents/'+this.parents.id+'/', this.parents)
-      .subscribe(res => {
-          alert('updated')
-        }, (err) => {
-          console.log(err);
-        }
-      );
+  	// console.log('updating..', this.parents)
+   //  this.http.put('http://192.168.1.77:8001/parents/'+this.parents.id+'/', this.parents)
+   //    .subscribe(res => {
+   //        alert('updated')
+   //      }, (err) => {
+   //        console.log(err);
+   //      }
+   //    );
   }
 
 }
