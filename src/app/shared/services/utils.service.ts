@@ -46,7 +46,7 @@ export class UtilsService {
     const tokenHeader = opts.withToken
       ? { 'Authorization': `Bearer ${this.token}` }
       : {};
-    const headers = Object.assign({}, defaultHeaders, tokenHeader, opts.customHeaders);
+    const headers = Object.assign({}, defaultHeaders, opts.customHeaders);
 
     return new Headers(headers);
   }

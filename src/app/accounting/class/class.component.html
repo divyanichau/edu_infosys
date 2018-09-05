@@ -12,7 +12,7 @@
             </ol> 
             <br>
   <div class="row">
-      <form (ngSubmit)="saveClass()" #classForm="ngForm">
+      <form (ngSubmit)="onSubmit()" #classForm="ngForm">
         <div class="col-sm-12">
             <div class="panel panel-default">
               <div class="panel-heading" style="background-color:#aabad8;">
@@ -24,18 +24,13 @@
     <div class="row clearfix">
             <div class="col-sm-6">
                   <label for="class">Class</label>
-                     <select class="form-control" [(ngModel)]= "class.class"  [ngModelOptions]="{standalone: true}">
-                       <option value="">Select Class</option>
-                       <option value="1">One</option>
-                       <option value="2"> Two</option>
-                       <option value="3"> Three</option>
-                       <option value="4">Four</option>
-                     </select>
+                     <input type= "text" class="form-control" [(ngModel)]= "obj.name"  [ngModelOptions]="{standalone: true}">
+                      
             </div>
  
             <div class="col-sm-6">
                   <label for="description">Description</label>
-                     <input type="text" class="form-control" [(ngModel)]="class.description"  [ngModelOptions]="{standalone: true}"name="zip_code"  size="84" maxlength="45" placeholder="Enter Description " required>
+                     <input type="text" class="form-control" [(ngModel)]="obj.description"  [ngModelOptions]="{standalone: true}"name="zip_code"  size="84" maxlength="45" placeholder="Enter Description " required>
             </div>
         </div>
         <br>
