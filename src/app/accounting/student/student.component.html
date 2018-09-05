@@ -46,25 +46,13 @@
           </div>
           <br>
           <div class="row clearfix">
-            <div class="col-sm-6">
-                  <label for="joining_date">Joining Date</label>
-                    <select  class="form-control" [(ngModel)]= "student.joining_date"  [ngModelOptions]="{standalone: true}">
-                      <option>2018-2019</option>
-                      <option>2020-2021</option>
-                      <option>2022-2023</option>
-                      <option>2024-2025</option>
-                      <option>2026-2027</option>
-                    </select>
-        </div>
+            
  
             <div class="col-sm-6">
                   <label for="title">Course*</label>
-                    <select  class="form-control" [(ngModel)]= "student.course" [ngModelOptions]="{standalone: true}">
-                      <option>Select Course</option>
-                      <option>PhP</option>
-                      <option>History</option>
-                      <option>Math</option>
-                      <option>Science</option>
+                    <select  class="form-control" [(ngModel)]= "student.course" name="course">
+                      <option value="1">Bsc.CSIT</option>
+                      <option value="2">BCA</option>
                     </select>
                 </div>
             </div>
@@ -76,23 +64,23 @@
           <div class="row clearfix">
             <div class="col-sm-6">
                   <label for="first-name">First Name</label>
-                     <input type="text" class="form-control" [(ngModel)]="student.first_name"  [ngModelOptions]="{standalone: true}" name="first-name"  size="84" maxlength="45"placeholder="Enter First Name" required>
+                     <input type="text" class="form-control" [(ngModel)]="student.user_detail.first_name"  [ngModelOptions]="{standalone: true}" name="first-name"  size="84" maxlength="45"placeholder="Enter First Name" required>
         </div>
 
             <div class="col-sm-6">
                   <label for="last_name">Last Name</label>
-                     <input type="text" class="form-control" [(ngModel)]="student.last_name" [ngModelOptions]="{standalone: true}" name="last_name"  size="84" maxlength="45"placeholder="Enter Last Name" required>
+                     <input type="text" class="form-control" [(ngModel)]="student.user_detail.last_name" [ngModelOptions]="{standalone: true}" name="last_name"  size="84" maxlength="45"placeholder="Enter Last Name" required>
                </div>
          </div>
     <br>
         <div class="row clearfix">
             <div class="col-sm-6">
                      <label for="date">Date of Birth</label>
-                       <input type="date" class="form-control" [(ngModel)]="student.dob" [ngModelOptions]="{standalone: true}" name="date"  size="84" maxlength="45"placeholder="" required>
+                       <input type="date" class="form-control" [(ngModel)]="student.user_detail.dob" [ngModelOptions]="{standalone: true}" name="date"  size="84" maxlength="45"placeholder="" required>
             </div>
             <div class="col-sm-6">
                   <label for="gender">Gender</label>
-                     <select  class="form-control" [(ngModel)]= "student.gender"  [ngModelOptions]="{standalone: true}">
+                     <select  class="form-control" [(ngModel)]= "student.user_detail.gender"  [ngModelOptions]="{standalone: true}">
                       <option value="1">Male</option>
                       <option value="2">Female</option>
                       <option value="3">Others</option>
@@ -104,7 +92,7 @@
          <div class="row clearfix">
             <div class="col-sm-6">
                   <label for="blood_grp">Blood Group</label>
-                     <select  class="form-control" [(ngModel)]= "student.blood_group"  [ngModelOptions]="{standalone: true}">
+                     <select  class="form-control" [(ngModel)]= "student.detail.blood_group"  [ngModelOptions]="{standalone: true}">
                         <option value="">Select Option</option>
                         <option value="1">A+</option>
                         <option value="2">A-</option>
@@ -118,7 +106,7 @@
              </div>
             <div class="col-sm-6">
                   <label for="birth_plc">Birth Place</label>
-                     <input type="text" class="form-control" [(ngModel)]="student.birth_place" name="birth_plc"  size="84" maxlength="45"placeholder="Enter Your Birth Place" required>
+                     <input type="text" class="form-control" [(ngModel)]="student.detail.birth_place" name="birth_plc"  size="84" maxlength="45"placeholder="Enter Your Birth Place" required>
             </div>
         </div>
      <br>
@@ -126,7 +114,7 @@
        <div class="row clearfix">
             <div class="col-sm-6">
                   <label for="nationality">Nationality</label>
-                     <select class="form-control"  [(ngModel)]= "student.nationality"  [ngModelOptions]="{standalone: true}">
+                     <select class="form-control"  [(ngModel)]= "student.detail.nationality"  [ngModelOptions]="{standalone: true}">
                         <option value="">Select Nationality</option>
                         <option value="Nepalese">Nepalese</option>
                         <option value="Bhutanese">Butanese</option>
@@ -147,7 +135,7 @@
 
             <div class="col-sm-6">
                   <label for="mother_tongue">Mother Tongue</label>
-                     <input type="text" class="form-control" [(ngModel)]="student.mother_tongue" [ngModelOptions]="{standalone: true}"name="mother_tongue"  size="84" maxlength="45" placeholder="Enter Mother Tongue" required>
+                     <input type="text" class="form-control" [(ngModel)]="student.detail.mother_tongue" [ngModelOptions]="{standalone: true}"name="mother_tongue"  size="84" maxlength="45" placeholder="Enter Mother Tongue" required>
              </div>
         </div>
         <br>
@@ -155,7 +143,7 @@
          <div class="row clearfix">
             <div class="col-sm-6">
                   <label for="religion">Religion</label>
-                  <select class="form-control" [(ngModel)]= "student.religion"  [ngModelOptions]="{standalone: true}">
+                  <select class="form-control" [(ngModel)]= "student.detail.religion"  [ngModelOptions]="{standalone: true}">
                         <option value="">Select Religion</option>
                         <option value="Hindu">Hindu</option>
                         <option value="Muslim">Muslim</option>
@@ -168,42 +156,12 @@
 
             <div class="col-sm-6">
                   <label for="citizenship_no">Citizenship No.</label>
-                     <input type="text" class="form-control" [(ngModel)]="student.citizenship_no" [ngModelOptions]="{standalone: true}"name="citizenship_no"  size="84" maxlength="45" placeholder="Enter Citizenship Number" required>
+                     <input type="text" class="form-control" [(ngModel)]="student.detail.citizenship_no" [ngModelOptions]="{standalone: true}"name="citizenship_no"  size="84" maxlength="45" placeholder="Enter Citizenship Number" required>
             </div>
         </div>
         <br>
 
-       <div class="row clearfix">
-            <div class="col-sm-6">
-                  <label for="permanent_address">Permanent Address</label>
-                     <input type="text" class="form-control" [(ngModel)]="student.std_permanent_address" [ngModelOptions]="{standalone: true}" name="permanent_address"  size="84" maxlength="45" placeholder="Enter Permanent Address " required>
-        </div>
-            <div class="col-sm-6">
-                  <label for="present_address">Temporary Address</label>
-                     <input type="text" class="form-control"[(ngModel)]="student.std_temporary_address"  [ngModelOptions]="{standalone: true}" name="present_address"  size="84" maxlength="45" placeholder="Enter Temporary Address " required>
-            </div>
-        </div>
-        <br>
-
-    <div class="row clearfix">
-            <div class="col-sm-6">
-                  <label for="city">City</label>
-                     <input type="text" class="form-control" [(ngModel)]="student.std_city" [ngModelOptions]="{standalone: true}" name="city"  size="84" maxlength="45" placeholder="Enter City " required>
-            </div>
- 
-            <div class="col-sm-6">
-                  <label for="zip_code">Zip Code</label>
-                     <input type="text" class="form-control" [(ngModel)]="student.std_zip_code"  [ngModelOptions]="{standalone: true}"name="zip_code"  size="84" maxlength="45" placeholder="Enter Zip Code " required>
-            </div>
-        </div>
-        <br>
-
-        <div class="row clearfix">
-            <div class="col-sm-6">
-                  <label for="password">Password</label>
-                     <input type="text & number" class="form-control" [(ngModel)]="student.password" [ngModelOptions]="{standalone: true}" name="password"  size="84" maxlength="45" placeholder="Enter Password" required>
-            </div>
-      </div>
+      
     </div>
   </div>
 
@@ -214,33 +172,16 @@
         <div class="row clearfix">
             <div class="col-sm-6">
                   <label for="district">District</label>
-                    <select class="form-control" [(ngModel)]= "student.contact.std_district"  [ngModelOptions]="{standalone: true}">
-                        <option value="">Select District</option>
-                        <option value="Dang">Dang</option>
-                         <option value="Pyuthan">Pyuthan</option>
-                        <option value="Rolpa">Rolpa</option>
-                         <option value="Salyan">Salyan</option>
-                        <option value="Dolpa">Dolpa</option>
-                        <option value="Jumla">Jumla</option>
-                        <option value="Kailali">Kailali</option>
-                        <option value="Dhanusa">Dhanusa </option>
-                        <option value="Kathmandu">Kathmandu </option>
-                        <option value="Gorkha">Gorkha </option>
-                        <option value="Eastern Rukum">Eastern Rukum</option>
-                        <option value="Banke">Banke</option>
-                        <option value="Dadeldhura">Dadeldhura</option>
-                        <option value="Africa">Africa</option>
-                        <option value="Asia">Asia</option>
-                        <option value="Europe">Europe</option>
-                        <option value="North America">North America</option>
-                        <option value="South America">South America</option>
-                        <option value="Oceania">Oceania</option>
+                    <select class="form-control" [(ngModel)]= "student.contact.district"  [ngModelOptions]="{standalone: true}">
+                        <option value="1">Dang</option>
+                         <option value="2">Pyuthan</option>
+                        
                     </select>  
         </div>
 
-            <div class="col-sm-6">
+        <div class="col-sm-6">
                 <label for="province">Province</label>
-                  <input type="text" class="form-control" [(ngModel)]="student.contact.province"  [ngModelOptions]="{standalone: true}"name="province"  placeholder="" required>
+                  <input type="text" class="form-control" [(ngModel)]="student.address_detail.province"  [ngModelOptions]="{standalone: true}"name="province"  placeholder="" required>
             </div>
         </div>
         <br>
@@ -248,12 +189,12 @@
       <div class="row clearfix">
             <div class="col-sm-6">
                 <label for="phn">Contact Number</label>
-                   <input type="number" class="form-control" [(ngModel)]="student.contact.contact"  [ngModelOptions]="{standalone: true}"name="phn"  placeholder="Enter Contact Number" required>
+                   <input type="number" class="form-control" [(ngModel)]="student.phone_detail.number"  [ngModelOptions]="{standalone: true}"name="phn"  placeholder="Enter Contact Number" required>
         </div>
 
             <div class="col-sm-6">
                 <label for="email_address">Email Address</label>
-                     <input type="text" class="form-control" [(ngModel)]="student.contact.email" [ngModelOptions]="{standalone: true}" name="email-address"  size="84" maxlength="45" placeholder="Enter Email Address" required>
+                     <input type="text" class="form-control" [(ngModel)]="student.user_detail.email" [ngModelOptions]="{standalone: true}" name="email-address"  size="84" maxlength="45" placeholder="Enter Email Address" required>
             </div>
         </div>
         <br>
