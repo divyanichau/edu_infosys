@@ -11,7 +11,7 @@ import { Student } from '../classes/student';
 
 @Injectable()
 export class StudentService {
-  private _studentUrl = `${new Config().api}/student/addstudent/`;
+  private _studentUrl = `${new Config().api}/admission/student/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
 
   constructor(
@@ -29,9 +29,10 @@ export class StudentService {
       .map((res: Response) => res.json().data)
       .do(
       data => this.afterRequest(data),
-      error => { console.log(error); }
+      error => { this.showError(error) }
       );
   }
+
 
   beforeRequest(): void {
     this._progress.start();
@@ -39,6 +40,12 @@ export class StudentService {
 
   afterRequest(data: Student): void {
     this._progress.done();
+    alert('student admitted !!')
+  }
+
+  showError(error): void {
+    console.log(error);
+    alert(error._body);
   }
 
 }
