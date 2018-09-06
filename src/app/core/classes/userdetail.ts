@@ -7,6 +7,6 @@ export class UserDetail {
   mother_tongue: string;
   religion: number;
   citizenship_no: string;
-  date_of_birth:date;
+  date_of_birth:string;
   birth_place: string
 }
