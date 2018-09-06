@@ -1,8 +1,8 @@
+
 import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 import { isArray } from 'lodash';
-
 import { SectionService } from '../../core/services/section.service';
 import { Section } from '../../core/classes/section';
 import { UtilsService } from '../../shared/services/utils.service';
@@ -18,7 +18,7 @@ declare var numeral: any;
 export class SectionComponent implements OnInit , OnDestroy{
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
-  obj : _class;
+  section : Section;
 
 
   constructor(
@@ -28,7 +28,7 @@ export class SectionComponent implements OnInit , OnDestroy{
     ) { }
   
   ngOnInit() {
-    this.initClass();
+    this.initSection();
   }
 
   ngOnDestroy() {
@@ -37,17 +37,17 @@ export class SectionComponent implements OnInit , OnDestroy{
 
   onSubmit() {
     this._utils.unsubscribeSub(this._sub);
-    console.log(this.obj)
-    this._sub = this.sectionService.add(this.obj)
+    console.log(this.section)
+    this._sub = this._sectionService.add(this.section)
       .subscribe(data => {
         console.log(data);
-        alert('Class added');
+        alert('Section added');
       });
   }
 
-  initClass() {
+  initSection() {
     this._utils.unsubscribeSub(this._typeSub);
-    this.obj = new _class();
+    this.section = new Section();
   }
 
  

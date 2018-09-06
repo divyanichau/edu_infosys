@@ -4,7 +4,7 @@ import { FormsModule }   from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgProgressModule } from 'ngx-progressbar';
 
-
+import { SectionService } from '../core/services/section.service';
 import { ClassService } from '../core/services/class.service';
 import { StudentService } from '../core/services/student.service';
 import { UtilsService } from '../shared/services/utils.service';
@@ -33,7 +33,7 @@ import { SectionComponent} from './section/section.component';
     NgProgressModule,
     AccountingRoutingModule
   ],
-  providers: [StudentService, ClassService, UtilsService],
+  providers: [StudentService, ClassService, SectionService, UtilsService],
   declarations: [AccountingComponent, DashboardComponent, LoginComponent, PaymentComponent, ExpenseComponent, StudentComponent, ClassComponent, SectionComponent,  TeacherComponent, AddCategoryComponent, ReportComponent, SssComponent]
 })
 export class AccountingModule { }
