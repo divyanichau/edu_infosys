@@ -1,5 +1,4 @@
 
-
 export class UserDetail {
   id: number;
   blood_group: string;

@@ -1,4 +1,4 @@
-
+                                                                                                  
 import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
@@ -19,7 +19,7 @@ export class SectionComponent implements OnInit , OnDestroy{
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
   section : Section;
-
+  obj : _class;
 
   constructor(
     private _sectionService: SectionService,
@@ -48,6 +48,7 @@ export class SectionComponent implements OnInit , OnDestroy{
   initSection() {
     this._utils.unsubscribeSub(this._typeSub);
     this.section = new Section();
+    this.obj = new _class();
   }
 
  

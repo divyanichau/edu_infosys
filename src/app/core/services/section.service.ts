@@ -13,6 +13,10 @@ import { Section } from '../classes/section';
 export class SectionService {
   private _sectionUrl = `${new Config().api}/section/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
+  section = [];
+  selectedClass = {};
+ 
+
 
   constructor(
     private _utils: UtilsService,
@@ -20,6 +24,13 @@ export class SectionService {
     private _router: Router,
     private _progress: NgProgress
   ) { }
+
+  getSection(){
+    this.http.get('http://192.168.1.77:8001/api/library/class/').subscribe(data => {     
+      console.log(this.section);
+
+       });
+ }
 
   add(section: Section): Observable<Section> {
     this.beforeRequest();
@@ -32,6 +43,11 @@ export class SectionService {
       error => { console.log(error); }
       );
   }
+
+  selectClass(val){
+   this.selectedClass = val
+ }
+
 
   beforeRequest(): void {
     this._progress.start();
