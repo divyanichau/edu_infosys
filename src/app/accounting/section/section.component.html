@@ -24,20 +24,15 @@
     <div class="row clearfix">
             <div class="col-sm-6">
                   <label for="class">Class</label>
-                     
-
-      <select class="form-control" (change)="selectClass($event.target.value)"      
-     [(ngModel)]="section.r_class" name="name">
-      <option [value]="{{.obj.id}}">{{obj.name}}</option>
-      </select>
+                  <select class="form-control"       
+                 [(ngModel)]="selected_class" name="name">
+                  <option *ngFor="let c of _classes" [ngValue]="c.id">{{c.name}}</option>
+                  </select>
             </div>
-
-
-
  
             <div class="col-sm-6">
                   <label for="section_name">Section Name</label>
-                     <input type="text" class="form-control" [(ngModel)]="section.name"  [ngModelOptions]="{standalone: true}"name="zip_code"  size="84" maxlength="45" placeholder="Enter Section Name " required>
+                     <input type="text" class="form-control" [(ngModel)]="section.name" name="name"  size="84" maxlength="45" placeholder="Enter Section Name " required>
             </div>
         </div>
         <br>
@@ -48,6 +43,11 @@
     <div class="form-group">
             <button class="btn btn-block btn-lg waves-effect" style="background-color:#aabad8;" type="Submit"><b>Add Section</b></button>
         </div>
+
+    </div>
+  </div>
+</div>
+</form>
 
 
 

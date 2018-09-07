@@ -26,7 +26,7 @@ export class SectionService {
   ) { }
 
   getSection(){
-    this.http.get('http://192.168.1.77:8001/api/library/class/').subscribe(data => {     
+    this._http.get('http://192.168.1.77:8001/api/library/class/').subscribe(data => {     
       console.log(this.section);
 
        });
@@ -34,7 +34,7 @@ export class SectionService {
 
   add(section: Section): Observable<Section> {
     this.beforeRequest();
-    const body = JSON.stringify(Section);
+    const body = JSON.stringify(section);
 
     return this._http.post(`${this._sectionUrl}`, body, this._utils.makeOptions(this._headers))
       .map((res: Response) => res.json().data)
