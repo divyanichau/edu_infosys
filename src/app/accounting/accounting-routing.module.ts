@@ -68,21 +68,22 @@ const routes: Routes = [
 	    path: "student",
 	    component:AccountingComponent,
 	    children: [
-	    	{path: '', component: StudentComponent}
+	    	{path: '', component: StudentComponent},
+	    	{path: 'list', component: ListComponent}
 	    
 	    ]
 	    
 	  },
   
-   {
-	    path: "list",
-	    component:AccountingComponent,
-	    children: [
-	    	{path: '', component: ListComponent}
+   // {
+	  //   path: "student/list",
+	  //   component:AccountingComponent,
+	  //   children: [
+	  //   	{path: '', component: ListComponent}
 	    
-	    ]
+	  //   ]
 	    
-	  },
+	  // },
   
 
 
