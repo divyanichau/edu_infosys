@@ -6,12 +6,14 @@ import { DashboardComponent } from './Dashboard/dashboard.component';
 import { PaymentComponent} from './payment/payment.component';
 import { ExpenseComponent} from'./expense/expense.component';
 import { StudentComponent} from './student/student.component';
+import { ListComponent} from './student/list/list.component';
 import { TeacherComponent} from './teacher/teacher.component';
 import { AddCategoryComponent} from './add-category/add-category.component';
 import { ReportComponent} from './report/report.component';
 import { SssComponent} from './sss/sss.component';
 import { ClassComponent} from './class/class.component';
 import {SectionComponent} from './section/section.component';
+
 
 
 const routes: Routes = [
@@ -62,16 +64,28 @@ const routes: Routes = [
 	    
 	  },
 	  
-
-      {
+	  {
 	    path: "student",
 	    component:AccountingComponent,
 	    children: [
-	    	{path: '', component: StudentComponent}
+	    	{path: '', component: StudentComponent},
+	    	{path: 'list', component: ListComponent}
 	    
 	    ]
 	    
 	  },
+  
+   // {
+	  //   path: "student/list",
+	  //   component:AccountingComponent,
+	  //   children: [
+	  //   	{path: '', component: ListComponent}
+	    
+	  //   ]
+	    
+	  // },
+  
+
 
 	   {
 	    path: "class",

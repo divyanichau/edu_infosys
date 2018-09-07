@@ -5,7 +5,6 @@ import { UserDetail } from './userdetail';
 import { Phone } from './phone';
 
 
-
 export class Student {
   id: string;
   user: User = new User();

@@ -209,7 +209,7 @@
       <div class="row clearfix">
             <div class="col-sm-6">
                 <label for="phn">Contact Number</label>
-                   <input type="number" class="form-control" [(ngModel)]="student.phone_detail.number"  [ngModelOptions]="{standalone: true}"name="phn"  placeholder="Enter Contact Number" required>
+                   <input type="number" class="form-control" [(ngModel)]="student.phone_detail.number"  [ngModelOptions]="{standalone: true}"name="phn"  placeholder="Enter Contact Number" maxlength="10" required>
         </div>
 
             <div class="col-sm-6">
@@ -233,7 +233,7 @@
         </div>
             <div class="col-sm-6">
                   <label for="mobile">Mobile</label>
-                     <input type="number" class="form-control" [(ngModel)]="student.father.mobile"  [ngModelOptions]="{standalone: true}" max-length="10" name="mobile"  placeholder="Enter Contact Number" required>
+                     <input type="number" class="form-control" [(ngModel)]="student.father.mobile"  [ngModelOptions]="{standalone: true}" maxlength="10" name="mobile"  placeholder="Enter Contact Number" required>
             </div>
         </div>
         <br>
@@ -266,7 +266,7 @@
 
             <div class="col-sm-6">
                 <label for="mobile">Mobile</label>
-                  <input type="number" class="form-control"  [(ngModel)]="student.mother.mobile"  [ngModelOptions]="{standalone: true}"name="mobile"  size="84" maxlength="45" placeholder="Enter Contact Number" required>
+                  <input type="number" class="form-control"  [(ngModel)]="student.mother.mobile"  [ngModelOptions]="{standalone: true}"name="mobile"  size="84" maxlength="10" placeholder="Enter Contact Number" required>
             </div>
         </div>
         <br>
