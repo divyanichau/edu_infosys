@@ -7,5 +7,10 @@ export class UserDetail {
   religion: number;
   citizenship_no: string;
   date_of_birth:string;
-  birth_place: string
+  birth_place: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  gender: number;
+  
 }

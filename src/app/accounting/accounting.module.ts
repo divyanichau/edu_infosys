@@ -7,6 +7,7 @@ import { NgProgressModule } from 'ngx-progressbar';
 import { SectionService } from '../core/services/section.service';
 import { ClassService } from '../core/services/class.service';
 import { StudentService } from '../core/services/student.service';
+import { TeacherService} from '../core/services/teacher.service';
 import { CourseService } from '../core/services/course.service';
 import { UtilsService } from '../shared/services/utils.service';
 
@@ -20,6 +21,7 @@ import { ExpenseComponent} from './expense/expense.component';
 import { StudentComponent} from './student/student.component';
 import { ListComponent} from './student/list/list.component';
 import { TeacherComponent} from './teacher/teacher.component';
+import { ListComponent  as TeacherList}  from './teacher/list/list.component';
 import { AddCategoryComponent} from './add-category/add-category.component';
 import { ReportComponent} from './report/report.component';
 import { SssComponent} from './sss/sss.component';
@@ -35,7 +37,7 @@ import { SectionComponent} from './section/section.component';
     NgProgressModule,
     AccountingRoutingModule
   ],
-  providers: [CourseService, StudentService, ClassService, SectionService, UtilsService],
-  declarations: [AccountingComponent, DashboardComponent, LoginComponent, PaymentComponent, ExpenseComponent, StudentComponent, ListComponent, ClassComponent, SectionComponent,  TeacherComponent, AddCategoryComponent, ReportComponent, SssComponent]
+  providers: [CourseService, StudentService, TeacherService, ClassService, SectionService, UtilsService],
+  declarations: [AccountingComponent, DashboardComponent, LoginComponent, PaymentComponent, ExpenseComponent, StudentComponent, ListComponent, ClassComponent, SectionComponent,  TeacherComponent,TeacherList, AddCategoryComponent, ReportComponent, SssComponent]
 })
 export class AccountingModule { }
