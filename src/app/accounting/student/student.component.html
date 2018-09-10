@@ -12,7 +12,7 @@
             </ol> 
             <br>
    <div class="row">
-     <form (ngSubmit)="onSubmit()" #studentForm="ngForm">
+     <form ngNativeValidate (ngSubmit)="onSubmit()" #studentForm="ngForm">
       <div class="col-sm-12">
           <div class="card">
                         <div class="header" style="background-color:#aabad8">
@@ -50,9 +50,12 @@
  
             <div class="col-sm-6">
                   <label for="title">Course*</label>
-                    <select  class="form-control" [(ngModel)]= "student.course" name="course">
+                    <!-- <select  class="form-control" [(ngModel)]= "student.course" name="course">
                       <option value="1">Bsc.CSIT</option>
                       <option value="2">BCA</option>
+                    </select> -->
+                    <select class="form-control" [(ngModel)]="student.course" name="course" required>
+                      <option *ngFor="let c of courses" [ngValue]="c.id">{{c.name}}</option>
                     </select>
                 </div>
             </div>

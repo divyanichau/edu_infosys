@@ -6,13 +6,12 @@ import 'rxjs/add/operator/map';
 import { NgProgress } from 'ngx-progressbar';
 import { UtilsService } from '../../shared/services/utils.service';
 import { Config } from '../../shared/classes/app';
-import { Student } from '../classes/student';
+import { Course } from '../classes/course';
 
 
 @Injectable()
-export class StudentService {
-  private _admissionUrl = `${new Config().api}/admission/student/`;
-  private _studentUrl = `${new Config().api}/student/`;
+export class CourseService {
+  private _courseUrl = `${new Config().api}/course/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
 
   constructor(
@@ -22,27 +21,15 @@ export class StudentService {
     private _progress: NgProgress
   ) { }
 
-  get(): Observable<Student[]> {
+  get(): Observable<Course[]> {
     //this.beforeRequest();
     const options = this._utils.makeOptions(this._headers);
 
-    return this._http.get(`${this._studentUrl}`, options)
+    return this._http.get(`${this._courseUrl}`, options)
       .map((res: Response) => res.json())
       .do(
-      data => this.afterGetRequest(),
+      data => this.afterRequestGet(),
       error => { console.log(error); }
-      );
-  }
-
-  add(student: Student): Observable<Student> {
-    this.beforeRequest();
-    const body = JSON.stringify(student);
-
-    return this._http.post(`${this._admissionUrl}`, body, this._utils.makeOptions(this._headers))
-      .map((res: Response) => res.json().data)
-      .do(
-      data => this.afterRequest(data),
-      error => { this.showError(error) }
       );
   }
 
@@ -51,18 +38,9 @@ export class StudentService {
     this._progress.start();
   }
 
-  afterRequest(data: Student): void {
-    this._progress.done();
-    alert('student admitted !!')
-  }
 
-  afterGetRequest(): void {
+  afterRequestGet(): void {
     this._progress.done();
-  }
-
-  showError(error): void {
-    console.log(error);
-    alert(error._body);
   }
 
 }
