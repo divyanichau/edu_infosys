@@ -21,6 +21,20 @@ export class StudentService {
     private _progress: NgProgress
   ) { }
 
+
+  get(): Observable<Student[]> {
+    //this.beforeRequest();
+    const options = this._utils.makeOptions(this._headers);
+
+    return this._http.get(`${this._studentUrl}`, options)
+      .map((res: Response) => res.json())
+      .do(
+      data => this.afterRequestGet(),
+      error => { console.log(error); }
+      );
+  }
+
+
   add(student: Student): Observable<Student> {
     this.beforeRequest();
     const body = JSON.stringify(student);
@@ -41,6 +55,11 @@ export class StudentService {
   afterRequest(data: Student): void {
     this._progress.done();
     alert('student admitted !!')
+  }
+
+
+  afterRequestGet(): void {
+    this._progress.done();
   }
 
   showError(error): void {

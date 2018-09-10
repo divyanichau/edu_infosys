@@ -25,13 +25,7 @@ export class SectionService {
     private _progress: NgProgress
   ) { }
 
-  getSection(){
-    this._http.get('http://192.168.1.77:8001/api/library/class/').subscribe(data => {     
-      console.log(this.section);
-
-       });
- }
-
+ 
   add(section: Section): Observable<Section> {
     this.beforeRequest();
     const body = JSON.stringify(section);

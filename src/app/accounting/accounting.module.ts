@@ -24,7 +24,7 @@ import { ReportComponent} from './report/report.component';
 import { SssComponent} from './sss/sss.component';
 import { ClassComponent} from './class/class.component';
 import { SectionComponent} from './section/section.component';
-
+import { AddStudentComponent} from './add-student/add-student.component'
 
 @NgModule({
   imports: [
@@ -35,6 +35,6 @@ import { SectionComponent} from './section/section.component';
     AccountingRoutingModule
   ],
   providers: [StudentService, ClassService, SectionService, UtilsService],
-  declarations: [AccountingComponent, DashboardComponent, LoginComponent, PaymentComponent, ExpenseComponent, StudentComponent, ListComponent, ClassComponent, SectionComponent,  TeacherComponent, AddCategoryComponent, ReportComponent, SssComponent]
+  declarations: [AccountingComponent, DashboardComponent, LoginComponent, PaymentComponent, ExpenseComponent, StudentComponent, ListComponent, ClassComponent, SectionComponent,  TeacherComponent, AddCategoryComponent, ReportComponent, SssComponent, AddStudentComponent]
 })
 export class AccountingModule { }

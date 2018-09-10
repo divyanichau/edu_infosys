@@ -12,8 +12,8 @@ import { AddCategoryComponent} from './add-category/add-category.component';
 import { ReportComponent} from './report/report.component';
 import { SssComponent} from './sss/sss.component';
 import { ClassComponent} from './class/class.component';
-import {SectionComponent} from './section/section.component';
-
+import { SectionComponent} from './section/section.component';
+import { AddStudentComponent} from './add-student/add-student.component'
 
 
 const routes: Routes = [
@@ -106,7 +106,16 @@ const routes: Routes = [
 	    ]
 	    
 	  },
-
+    
+     {
+	    path: "add-student",
+	    component:AccountingComponent,
+	    children: [
+	    	{path: '', component: AddStudentComponent}
+	    
+	    ]
+	    
+	  },
 
 	   {
 	    path: "teacher",
