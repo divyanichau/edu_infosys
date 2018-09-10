@@ -1,0 +1,114 @@
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            
+
+    <div class="header">
+        <div class="page-header">
+            <ol class="breadcrumb breadcrumb-bg-teal">
+                                <li><a href="javascript:void(0);"><i class="material-icons">home</i> Home</a></li>
+                                <li><a href="javascript:void(0);">Student</a></li>
+                                <li><a href="javascript:void(0);">Detail</a></li>
+            </ol>
+
+        </div>
+    </div>
+
+                            <!-- Exportable Table -->
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        Mr AB.
+                    </h2>
+
+                </div>
+                <div class="body">
+                    <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                        <li role="presentation" class="active"><a href="#personal" data-toggle="tab" aria-expanded="true">Personal</a></li>
+                        <li role="presentation" class=""><a href="#contact" data-toggle="tab" aria-expanded="false">Contacts</a></li>
+                        <li role="presentation" class=""><a href="#guardian" data-toggle="tab" aria-expanded="false">Guardian</a></li>
+                    </ul>
+
+
+                    <form>
+                        <div role="tabpanel" class="tab-pane fade in active" id="personal">
+                            <div class="body">
+                                <div class="header"><h2>Personal Details</h2></div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="reg_no">Registration Number</label>
+                                            <div class="form-line">
+                                                <input readonly type="text" class="form-control" [(ngModel)]="student.registration_no"  name="reg_no">
+                                            </div>
+                                         </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="admission_date">Date Joined</label>
+                                            <div class="form-line">
+                                                <input readonly type="text" class="form-control" [(ngModel)]="student.admission_date"  name="admission_date">
+                                            </div>
+                                         </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="course">Course</label>
+                                            <div class="form-line">
+                                                <input readonly type="text" class="form-control" [(ngModel)]="student.course"  name="course">
+                                            </div>
+                                         </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="batch">Batch</label>
+                                            <div class="form-line">
+                                                <input readonly type="text" class="form-control" [(ngModel)]="student.batch"  name="batch">
+                                            </div>
+                                         </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="first_name">Firstname</label>
+                                            <div class="form-line">
+                                                <input  type="text" class="form-control" [(ngModel)]="student.user.first_name"  name="first_name">
+                                            </div>
+                                         </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="last_name">Lastname</label>
+                                            <div class="form-line">
+                                                <input  type="text" class="form-control" [(ngModel)]="student.user.last_name"  name="last_name">
+                                            </div>
+                                         </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    
+
+           
+</div>
+           

@@ -22,6 +22,18 @@ export class StudentService {
     private _progress: NgProgress
   ) { }
 
+  find(id: string): Observable<Student> {
+    //this.beforeRequest();
+
+    return this._http.get(`${this._studentUrl}${id}/`, this._utils.makeOptions(this._headers))
+      .map((res: Response) => res.json())
+      .do(
+      data => this.afterGetRequest(),
+      error => { console.log(error); }
+      );
+  }
+
+
   get(): Observable<Student[]> {
     //this.beforeRequest();
     const options = this._utils.makeOptions(this._headers);

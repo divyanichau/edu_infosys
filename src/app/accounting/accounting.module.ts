@@ -4,6 +4,9 @@ import { FormsModule }   from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgProgressModule } from 'ngx-progressbar';
 
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+
+
 import { SectionService } from '../core/services/section.service';
 import { ClassService } from '../core/services/class.service';
 import { StudentService } from '../core/services/student.service';
@@ -33,6 +36,7 @@ import { SectionComponent} from './section/section.component';
     FormsModule,
     HttpModule,
     NgProgressModule,
+    NgxDatatableModule,
     AccountingRoutingModule
   ],
   providers: [CourseService, StudentService, ClassService, SectionService, UtilsService],
