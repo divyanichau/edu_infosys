@@ -87,13 +87,11 @@ const routes: Routes = [
 	  // },
   
 
-
-	   {
+ {
 	    path: "class",
 	    component:AccountingComponent,
 	    children: [
-	    	{path: '', component: ClassComponent}
-	    
+	    	{path: '', component: ClassComponent},
 	    ]
 	    
 	  },

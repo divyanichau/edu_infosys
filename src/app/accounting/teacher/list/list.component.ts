@@ -35,6 +35,7 @@ export class ListComponent implements OnInit , OnDestroy{
   }
 
   ngOnDestroy() {
+
     this._utils.unsubscribeSub(this._sub);
   }
 
@@ -44,18 +45,7 @@ export class ListComponent implements OnInit , OnDestroy{
     this._sub = this._teacherService.get().subscribe(
       data => {
         isArray(data) ? this.teachers = data : data;
-        // this.total_students = data.length;
-        // const table: any = $('.dataTable');
-  	// this.dataTable = table.DataTable({
-   //    select: true
-   //  });
-    
-
-        
-
       }
     );
   }
-
- 
 }

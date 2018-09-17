@@ -19,8 +19,8 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="body">
-                               <div class="row clearfix">
+        <div class="body">
+            <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
@@ -64,8 +64,7 @@
                                     <tbody>
                                         <tr *ngFor="let teacher of teachers">
                                             <td>{{ teacher.id }}</td>
-                                            <td>{{ teacher.user_detail.first_name }} {{ teacher.user_deatil.last_name }}</td>
-
+                                            <td>{{ teacher.user.first_name }} {{ teacher.user.last_name }}</td>
                                             <td>{{teacher.address_detail.address}} {{teacher.address_detail.city}} {{teacher.address_detail.district}}</td>
                                             <td>{{teacher.phone_detail.number}}</td>
                                             <td><a href="/teacher/edit/{{teacher.id}}">Edit</a></td>

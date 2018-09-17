@@ -55,7 +55,6 @@ export class TeacherComponent implements OnInit , OnDestroy{
       data => {
         isArray(data) ? this.courses = data : data;
         console.log(this.courses);
-
       }
     );
   }
@@ -65,5 +64,4 @@ export class TeacherComponent implements OnInit , OnDestroy{
     this.teacher = new Teacher();
   }
 
- 
 }
