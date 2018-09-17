@@ -5,4 +5,7 @@ export class Address {
   district: string;
   city: string;
   address: string;
+  permanent_address: string;
+  temporary_address: string;
+ 
 }

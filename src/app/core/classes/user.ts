@@ -7,5 +7,5 @@ export class User {
   last_name: string;
   email: string;
   gender: number;
-  type: number
+  type: number;
 }

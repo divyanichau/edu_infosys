@@ -8,6 +8,7 @@ import { ExpenseComponent} from'./expense/expense.component';
 import { StudentComponent} from './student/student.component';
 import { ListComponent} from './student/list/list.component';
 import { TeacherComponent} from './teacher/teacher.component';
+import { ListComponent as TeacherList}  from './teacher/list/list.component';
 import { AddCategoryComponent} from './add-category/add-category.component';
 import { ReportComponent} from './report/report.component';
 import { SssComponent} from './sss/sss.component';
@@ -86,13 +87,11 @@ const routes: Routes = [
 	  // },
   
 
-
-	   {
+ {
 	    path: "class",
 	    component:AccountingComponent,
 	    children: [
-	    	{path: '', component: ClassComponent}
-	    
+	    	{path: '', component: ClassComponent},
 	    ]
 	    
 	  },
@@ -107,12 +106,12 @@ const routes: Routes = [
 	    
 	  },
 
-
-	   {
+{
 	    path: "teacher",
 	    component:AccountingComponent,
 	    children: [
-	    	{path: '', component: TeacherComponent}
+	    	{path: '', component: TeacherComponent},
+	    	{path: 'list', component: TeacherList}
 	    
 	    ]
 	    
