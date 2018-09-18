@@ -3,5 +3,4 @@ export class Section{
 	name : string;
 	description : string; 
 	_class: number;
-	section_id : number;
 }

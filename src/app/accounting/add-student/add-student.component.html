@@ -23,36 +23,41 @@
   <div class="panel-body">
     <div class="row clearfix">
             <div class="col-sm-6">
-                  <label for="class">Student ID</label>
+                  <label for="student_id">Student ID</label>
                   <select class="form-control"       
-                 [(ngModel)]="selected_student" name="name">
-                  <option *ngFor="let c of _students" [ngValue]="c.id">{{c.name}}</option>
+                 [(ngModel)]="section_student.student_id" name="name">
+                  <option *ngFor="let c of _students" [ngValue]="c.id">{{c.user.first_name}}</option>
                   </select>
             </div>
+
  
             <div class="col-sm-6">
-                  <label for="section_name">Section ID</label>
-                     <input type="text" class="form-control" [(ngModel)]="section.section_id" name="name"  size="84" maxlength="45" placeholder="Enter Section Name " required>
+                  <label for="section_id">Section Name</label>
+                   <select class="form-control"       
+                 [(ngModel)]="section_student.section_id" name="name">
+                  <option *ngFor="let c of _sections" [ngValue]="c.id">{{c.name}}</option>
+                  </select>
             </div>
-
+          </div>
+<br>
+ <div class="row clearfix">
              <div class="col-sm-6">
-                  <label for="section_name">Roll No.</label>
-                     <input type="text" class="form-control" [(ngModel)]="section.roll_no" name="name"  size="84" maxlength="45" placeholder="Enter Section Name " required>
+                  <label for="roll_no">Roll No.</label>
+                     <input type="text" class="form-control" [(ngModel)]="section_student.roll_no" name="roll_no"  size="84" maxlength="45" placeholder="Enter Roll number " required>
             </div>
         </div>
-        <br>
+         
+<br>
+<br>
 
-        
-<br>
-<br>
     <div class="form-group">
             <button class="btn btn-block btn-lg waves-effect" style="background-color:#aabad8;" type="Submit"><b>Add Section</b></button>
         </div>
 
     </div>
   </div>
-</div>
-</form>
+
+
 
 
 

@@ -58,5 +58,9 @@ export class ClassService {
   afterRequestGet(): void {
     this._progress.done();
   }
+   showError(error): void {
+    console.log(error);
+    alert(error._body);
+  }
 
 }

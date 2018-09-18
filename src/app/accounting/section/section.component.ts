@@ -1,14 +1,12 @@
-                                                                                                  
+                                                                                                 
 import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 import { isArray } from 'lodash';
 import { SectionService } from '../../core/services/section.service';
 import { ClassService } from '../../core/services/class.service';
-
 import { Section } from '../../core/classes/section';
 import { _class } from '../../core/classes/class';
-
 import { UtilsService } from '../../shared/services/utils.service';
 
 
@@ -35,9 +33,7 @@ export class SectionComponent implements OnInit , OnDestroy{
   
   ngOnInit() {
     this.initSection();
-    this.loadClasses();
-    
-    
+    this.loadClasses();  
     //this.section.r_class = 1; //Change this to api returned class array first element
   }
 
