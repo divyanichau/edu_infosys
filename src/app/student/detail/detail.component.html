@@ -23,6 +23,29 @@
 
                 </div>
                 <div class="body">
+
+                   
+
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+      <h3>HOME</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+    <div id="menu1" class="tab-pane fade">
+      <h3>Menu 1</h3>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+    <div id="menu2" class="tab-pane fade">
+      <h3>Menu 2</h3>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+    </div>
+    <div id="menu3" class="tab-pane fade">
+      <h3>Menu 3</h3>
+      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+    </div>
+  </div>
+
+
                     <ul class="nav nav-tabs tab-nav-right" role="tablist">
                         <li role="presentation" class="active"><a href="#personal" data-toggle="tab" aria-expanded="true">Personal</a></li>
                         <li role="presentation" class=""><a href="#contact" data-toggle="tab" aria-expanded="false">Contacts</a></li>
@@ -31,6 +54,10 @@
 
 
                     <form>
+                        <div class="body">
+                        <div class="tab-content">
+                   
+                        
                         <div role="tabpanel" class="tab-pane fade in active" id="personal">
                             <div class="body">
                                 <div class="header"><h2>Personal Details</h2></div>
@@ -95,10 +122,102 @@
                                 </div>
 
 
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="date_of_birth">Date of Birth</label>
+                                            <div class="form-line">
+                                                <input  type="text" class="form-control" [(ngModel)]="student.user_detail.date_of_birth"  name="date_of_birth">
+                                            </div>
+                                         </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="gender">Gender</label>
+                                            <div class="form-line">
+                                                <select  class="form-control" [(ngModel)]= "student.user.gender" name="gender">
+                                                  <option value="1">Male</option>
+                                                  <option value="2">Female</option>
+                                                  <option value="3">Others</option>
+                                                </select>
+                                            </div>
+                                         </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="blood_group">Blood Group</label>
+                                            <div class="form-line">
+                                                <select  class="form-control" [(ngModel)]= "student.user_detail.blood_group"  [ngModelOptions]="{standalone: true}">
+                                                    <option value="1">A+</option>
+                                                    <option value="2">A-</option>
+                                                    <option value="3">B+</option>
+                                                    <option value="4">B-</option>
+                                                    <option value="5">O+</option>
+                                                    <option value="6">O-</option>
+                                                    <option value="7">AB+</option>
+                                                    <option value="8">AB-</option>
+                                                </select>   
+                                            </div>
+                                         </div>
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="row">
+                                    
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="mother_tongue">Mother Tongue</label>
+                                            <div class="form-line">
+                                                <input  type="text" class="form-control" [(ngModel)]="student.user_detail.mother_tongue"  name="mother_tongue">
+                                            </div>
+                                         </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="citizenship_no">Citizenship #</label>
+                                            <div class="form-line">
+                                                <input  type="text" class="form-control" [(ngModel)]="student.user_detail.citizenship_no"  name="citizenship_no">
+                                            </div>
+                                         </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="religion">Religion</label>
+                                            <div class="form-line">
+                                                <select class="form-control" [(ngModel)]= "student.user_detail.religion"  [ngModelOptions]="{standalone: true}">
+                                                    <option value="1">Hindu</option>
+                                                    <option value="2">Muslim</option>
+                                                   
+                                                  </select>
+                                            </div>
+                                         </div>
+                                    </div>
+                                   
+
+                                </div>
+
+
+                            </div>
+                        </div> <!-- end of personal -->
+
+
+                        <div role="tabpanel" class="tab-pane fade" id="contact">
+                            <div class="body">
+                                <input type="" name="">
                             </div>
                         </div>
 
-                    </form>
+                       
+                    
+                    </div> <!-- tab content -->
+                     <div class="" style="float: right;">
+                            <button class="btn btn-primary" type="submit">Save <i class="icon-arrow-right14 position-right"></i></button>
+                    </div>
+                    </div>  <!-- body -->
+                </form>
 
                 </div>
 
