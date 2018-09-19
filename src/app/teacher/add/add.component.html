@@ -1,144 +1,195 @@
-<div class="container">
-  <h1>Add New Teacher</h1>
-  <div class="row">
-    <div class="col-md-6">
-     
-        <div class="input-group">
-             <div class="col-sm-3">
-               <div class="form-group">
-                   <label for="email_address_2">Teacher Name</label>
-                 </div>
-               </div>
-              <div class="col-md-9">
-                  <div class="form-group">
-                     <div class="form-line">
-                         <input type="Password" class="form-control"  name="Password"  placeholder="Enter Teacher Name" required>
-                       </div>
-                  </div>
-             </div>
-        </div>
-        <div class="input-group">
-           <div class="col-sm-3">
-             <div class="form-group">
-               <label for="email_address_2">Father Name</label>
-             </div>
-           </div>
-         <div class="col-md-9">
-                  <div class="form-group">
-                     <div class="form-line">
-                         <input type="Password" class="form-control" name="Password"  placeholder="Enter Father Name" required>
-                       </div>
-                  </div>
-             </div>
-        </div>
-        <div class="input-group">
-           <div class="col-sm-3">
-             <div class="form-group">
-               <label for="email_address_2">Mother Name</label>
-             </div>
-           </div>
-         <div class="col-md-9">
-                  <div class="form-group">
-                     <div class="form-line">
-                         <input type="Password" class="form-control"  name="Password"  placeholder="Enter Mother Name" required>
-                       </div>
-                  </div>
-             </div>
-        </div>
+<div class="body">
+ <div class="content-wrapper">
+    <div class="content">
+      <div class="page-header">
+<ol class="breadcrumb breadcrumb" style="background-color:#aabad8">
+              <li><a href="javascript:void(0);"><i class="material-icons">home</i> Home</a></li>
+              <li><a href="javascript:void(0);"><i class="material-icons">person</i>Teacher </a></li>
+              <li class="active">Teacher Admission</li>
+      <ul class="breadcrumb-elements">                          
+        </ul>
+         <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a><a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+            </ol> 
+            <br>
+
+<div class="row">
+  <form ngNativeValidate (ngSubmit)="onSubmit()" #teacherForm="ngForm">
+      <div class="col-sm-12">
+          <div class="card">
+                        <div class="header" style="background-color:#aabad8">
+                            <h2>
+                                <b style="color: black;">Teacher Admission</b>
+                            </h2>
+                        </div>
     
- <div class="input-group">
-           <div class="col-sm-3">
-             <div class="form-group">
-               <label for="email_address_2">Date of Birth</label>
-             </div>
-           </div>
-         <div class="col-md-9">
-                  <div class="form-group">
-                     <div class="form-line">
-                         <input type="Date" class="form-control"  name="Date of Birth"required>
-                       </div>
-                  </div>
-             </div>
-        </div>
- 
- <div class="input-group">
-           <div class="col-sm-3">
-             <div class="form-group">
-               <label for="email_address_2">Qualification</label>
-             </div>
-           </div>
-         <div class="col-md-9">
-                  <div class="form-group">
-                     <div class="form-line">
-                         <input type="text" class="form-control"  name="name" placeholder="Enter Teacher Qualification"required>
-                       </div>
-                  </div>
-             </div>
+     <div class="panel-body">
+            <p><b>PERSONAL DETAILS:-</b></p><hr>
+        <div class="row clearfix">
+            <div class="col-sm-6">
+                  <label for="first_name">First Name</label>
+                     <input type="text" class="form-control" [(ngModel)]="teacher.user_detail.first_name"  [ngModelOptions]="{standalone: true}" name="first_name"  size="84" maxlength="45" placeholder="Enter First Name" required>
         </div>
 
-        <div class="input-group">
-           <div class="col-sm-3">
-             <div class="form-group">
-               <label for="email_address_2">Start Date</label>
-             </div>
-           </div>
-         <div class="col-md-9">
-                  <div class="form-group">
-                     <div class="form-line">
-                         <input type="Date" class="form-control"  name="name"required>
-                       </div>
-                  </div>
-             </div>
+            <div class="col-sm-6">
+                  <label for="last_name">Last Name</label>
+                     <input type="text" class="form-control" [(ngModel)]="teacher.user_detail.last_name" [ngModelOptions]="{standalone: true}" name="last_name"  size="84" maxlength="45"placeholder="Enter Last Name" required>
+            </div>
+        </div>
+   <br>
+   <div class="row clearfix">
+            <div class="col-sm-6">
+                     <label for="date">Date of Birth</label>
+                       <input type="date" class="form-control" [(ngModel)]="teacher.user_detail.date_of_birth" [ngModelOptions]="{standalone: true}" name="date"  size="84" maxlength="45"placeholder="" required>
+        </div>
+            <div class="col-sm-6">
+                  <label for="gender">Gender</label>
+                     <select  class="form-control" [(ngModel)]= "teacher.user_detail.gender"  [ngModelOptions]="{standalone: true}">
+                      <option value="1">Male</option>
+                      <option value="2">Female</option>
+                      <option value="3">Other</option>
+                    </select>
+            </div>
+        </div>
+        <br>
+
+    <div class="row clearfix">
+            <div class="col-sm-6">
+                  <label for="blood_grp">Blood Group</label>
+                     <select  class="form-control" [(ngModel)]= "teacher.user_detail.blood_group"  [ngModelOptions]="{standalone: true}">
+                        <option value="">Select Option</option>
+                        <option value="1">A+</option>
+                        <option value="2">A-</option>
+                        <option value="3">B+</option>
+                        <option value="4">B-</option>
+                        <option value="5">O+</option>
+                        <option value="6">O-</option>
+                        <option value="7">AB+</option>
+                        <option value="8">AB-</option>
+                    </select>     
         </div>
 
-        <div class="input-group">
-           <div class="col-sm-3">
-             <div class="form-group">
-               <label for="email_address_2">Contact number</label>
-             </div>
-           </div>
-         <div class="col-md-9">
-                  <div class="form-group">
-                     <div class="form-line">
-                         <input type="text" class="form-control"  name="password" placeholder="Enter Contact Number"required>
-                       </div>
-                  </div>
-             </div>
+            <div class="col-sm-6">
+                  <label for="birth_plc">Birth Place</label>
+                     <input type="text" class="form-control" [(ngModel)]="teacher.user_detail.birth_place" [ngModelOptions]="{standalone: true}"name="birth_plc"  size="84" maxlength="45" placeholder="Enter Your Birth Place" required>
+            </div>
         </div>
-        <div class="input-group">
-           <div class="col-sm-3">
-             <div class="form-group">
-               <label for="email_address_2">Address</label>
+     <br>
+
+    <div class="row clearfix">
+            <div class="col-sm-6">
+                  <label for="nationality">Nationality</label>
+                      <select class="form-control"  [(ngModel)]= "teacher.user_detail.nationality"  [ngModelOptions]="{standalone: true}">
+                        <option value="">Select Nationality</option>
+                        <option value="Nepalese">Nepalese</option>
+                        <option value="Bhutanese">Butanese</option>
+                        <option value="English">English</option>
+                        <option value="Indians">Indians</option>
+                        <option value="Americans">Americans</option>
+                        <option value="Austrians">Austrians</option>
+                        <option value="Chinese">Chinese</option>
+                        <option value="Swiss">Swiss</option>
+                        <option value="Japanese">Japanese</option>
+                        <option value="Tibetans">Tibetans</option>
+                        <option value="Aruba">Aruba</option>
+                        <option value="Australian">Australian</option>
+                        <option value="Azerbaijan">Azerbaijan</option>
+                        <option value="India">India</option>
+                    </select>   
+             </div>
+            <div class="col-sm-6">
+                  <label for="religion">Religion</label>
+                  <select class="form-control" [(ngModel)]= "teacher.user_detail.religion"  [ngModelOptions]="{standalone: true}">
+                        <option value="">Select Religion</option>
+                        <option value="Hindu">Hindu</option>
+                        <option value="Muslim">Muslim</option>
+                        <option value="Sikh">Sikh</option>
+                        <option value="Islam">Islam</option>
+                        <option value="Christianity">Christianity</option>
+                        <option value="Lingayat">Lingayat</option>
+                      </select>
              </div>
            </div>
-         <div class="col-md-9">
-                  <div class="form-group">
-                     <div class="form-line">
-                         <input type="text" class="form-control"  name="Address" placeholder="Enter permanent address"required>
-                       </div>
-                  </div>
-             </div>
+           <br>
+
+     <div class="row clearfix">
+            <div class="col-sm-6">
+                  <label for="permanent_address">Permanent Address</label>
+                     <input type="text" class="form-control" [(ngModel)]="teacher.address_detail.address" [ngModelOptions]="{standalone: true}" name="permanent_address"  size="84" maxlength="45" placeholder="Enter Permanent Address " required>
         </div>
 
-        <div class="input-group">
-           <div class="col-sm-3">
-             <div class="form-group">
-               <label for="email_address_2">Image</label>
-             </div>
-           </div>
-         <div class="col-md-9">
-                  <div class="form-group">
-                     <div class="form-line">
-                         <input type="File" class="form-control"  name="image" required>
-                       </div>
-                  </div>
-             </div>
+            <div class="col-sm-6">
+                  <label for="present_address">Temporary Address</label>
+                     <input type="text" class="form-control"[(ngModel)]="teacher.address_detail.temporary_address"  [ngModelOptions]="{standalone: true}" name="present_address"  size="84" maxlength="45" placeholder="Enter Temporary Address " required>
+            </div>
+        </div>
+        <br>
+
+    <div class="row clearfix">
+            <div class="col-sm-6">
+                  <label for="city">City</label>
+                     <input type="text" class="form-control" [(ngModel)]="teacher.address_detail.city" [ngModelOptions]="{standalone: true}" name="city"  size="84" maxlength="45" placeholder="Enter City " required>
+            </div>
+            <div class="col-sm-6">
+                  <label for="qualification">Qualification</label>
+                     <input type="text" class="form-control"[(ngModel)]="teacher.qualification"  [ngModelOptions]="{standalone: true}" name="qualification"  size="84" maxlength="45" placeholder="Enter Qualification " required>
+            </div>
+        </div>
+        <br>
+
+    <div class="col-sm-12">
+      <div class="panel-body">
+        <div class="row">
+            <p><b>CONTACT DETAILS:-</b></p><hr>
+        <div class="row clearfix">
+            <div class="col-sm-6">
+                  <label for="district">District</label>
+                    <select class="form-control" [(ngModel)]= "teacher.address_detail.district"  [ngModelOptions]="{standalone: true}">
+                        <option> Select District</option>
+                        <option value="1">Dang</option>
+                        <option value="2">Pyuthan</option>
+                        <option value="3">Kathmandu</option>
+                        <option value="4">Dhankuta</option>
+                        <option value="5">Jhapa</option>
+                        <option value="6">Kaski</option>
+                        <option valu="7">Gorkha</option>
+                        <option value="8">Salyan</option>
+                        <option value="9">Dhangadhi</option>
+                        <option value="10">Sindhuli</option>
+                        <option value="11">Siraha</option>
+                        <option value="12">Solukhumbu</option>
+                        
+                    </select>  
         </div>
 
-        <div class="input-group">
-          <button type="submit" class="btn btn-success" [disabled]="!teacherForm.form.valid">Add Teacher</button>
+            <div class="col-sm-6">
+                  <label for="province">Province</label>
+                     <input type="text" class="form-control" [(ngModel)]="teacher.address_detail.province"  [ngModelOptions]="{standalone: true}"name="province"  size="84" maxlength="45" placeholder="Enter Province " required>
+            </div>
         </div>
-      
-    </div>
-  </div>
-</div>
+        <br>
+
+    <div class="row clearfix">
+            <div class="col-sm-6">
+                  <label for="phn">Contact Number</label>
+                   <input type="number" class="form-control" [(ngModel)]="teacher.phone_detail.number"  [ngModelOptions]="{standalone: true}"name="phn"  placeholder="Enter Contact Number" required>
+        </div>
+
+            <div class="col-sm-6">
+                  <label for="email_address">Email Address</label>
+                     <input type="text" class="form-control" [(ngModel)]="teacher.user_detail.email" [ngModelOptions]="{standalone: true}" name="email-address"  size="84" maxlength="45" placeholder="Enter Email Address" required>
+            </div>
+        </div>
+     </div>
+  </div>  
+<br>
+          <div class="form-group">
+            <button class="btn btn-block btn-lg waves-effect" style="background-color:#aabad8" type="Submit"><b>Add Teacher</b></button>
+       </div>
+     </div>
+     </div>
+   </div>
+   
+
+
+
+

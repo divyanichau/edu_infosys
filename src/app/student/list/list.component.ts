@@ -1,5 +1,3 @@
-
-
 import { Component, OnInit, OnDestroy, Output, EventEmitter, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
@@ -45,6 +43,7 @@ export class ListComponent implements OnInit , OnDestroy{
   }
 
   ngOnDestroy() {
+    
     this._utils.unsubscribeSub(this._sub);
   }
 

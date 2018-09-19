@@ -8,6 +8,7 @@ import { ExpenseComponent} from'./expense/expense.component';
 import { StudentComponent} from './student/student.component';
 import { ListComponent} from './student/list/list.component';
 import { TeacherComponent} from './teacher/teacher.component';
+import { DetailComponent as TeacherDetail} from './teacher/detail/detail.component';
 import { ListComponent as TeacherList}  from './teacher/list/list.component';
 import { AddCategoryComponent} from './add-category/add-category.component';
 import { ReportComponent} from './report/report.component';
@@ -111,8 +112,9 @@ const routes: Routes = [
 	    component:AccountingComponent,
 	    children: [
 	    	{path: '', component: TeacherComponent},
-	    	{path: 'list', component: TeacherList}
-	    
+	    	{path: 'list', component: TeacherList},
+	        {path: 'detail/:id',component: TeacherDetail}
+
 	    ]
 	    
 	  },

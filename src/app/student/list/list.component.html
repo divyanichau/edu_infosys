@@ -1,9 +1,7 @@
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            
-
     <div class="header">
         <div class="page-header">
-            <ol class="breadcrumb breadcrumb-bg-teal">
+            <ol class="breadcrumb breadcrumb" style="background-color:#aabad8">
                                 <li><a href="javascript:void(0);"><i class="material-icons">home</i> Home</a></li>
                                 <li><a href="javascript:void(0);">Student</a></li>
                                 <li><a href="javascript:void(0);">List</a></li>
@@ -15,7 +13,7 @@
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
-                <div class="header">
+                <div class="header" style="background-color:#aabad8">
                     <h2>
                         Admitted Students
                     </h2>
@@ -75,62 +73,15 @@
                                     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                                         <a class="glyphicon glyphicon-eye-open" title="" href="/student/detail/{{value}}"><img src="" alt=""></a>
                                         <a class="glyphicon glyphicon-remove" title="" href=""><img src="" alt=""></a>
-                                       <!--  <button md-icon-button (click)="blockAgents(value)" [disabled]="row['status']==='BLOCKED'">
-                                            <i class="fa fa-ban"></i>
-                                        </button>
-                                        <button md-icon-button (click)="approveAgent(value)" [disabled]="row['status']==='APPROVED'">
-                                            <i class="fa fa-check"></i>
-                                        </button> -->
+                                      
                                     </ng-template>
                                 </ngx-datatable-column>
-
-
-                                
-
-                              </ngx-datatable>
-                            </div>
-
-                    <!--     <table class="table table-bordered table-striped table-hover" [mfData]="students" #mf="mfDataTable" [mfRowsOnPage]="5" mfSortBy="admission_date" mfSortOrder="desc">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Address</th>
-                                    <th>Phone</th>
-                                    <th>Edit</th>
-                                </tr>
-                            </thead>
-                            <tfoot>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Address</th>
-                                    <th>Phone</th>
-                                    <th>Edit</th>
-                                </tr>
-                                 <tr>
-                                    <td colspan="4">
-                                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-                                    </td>
-                                </tr>
-                            </tfoot>
-                            <tbody>
-                                <tr *ngFor="let student of mf.data">
-                                    <td>{{ student.id }}</td>
-                                    <td>{{ student.user.first_name }} {{ student.user.last_name }}</td>
-
-                                    <td>{{student.address_detail.address}} {{student.address_detail.city}} {{student.address_detail.district}}</td>
-                                    <td>{{student.phone.number}}</td>
-                                    <td><a href="/student/edit/{{student.id}}">Edit</a></td>
-                                </tr>
-                            </tbody>
-                        </table> -->
+                            </ngx-datatable>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
-    </div>
-           
+    </div>     
 </div>
            

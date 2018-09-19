@@ -24,6 +24,7 @@ import { ExpenseComponent} from './expense/expense.component';
 import { StudentComponent} from './student/student.component';
 import { ListComponent} from './student/list/list.component';
 import { TeacherComponent} from './teacher/teacher.component';
+import { DetailComponent as TeacherDetail} from './teacher/detail/detail.component';
 import { ListComponent  as TeacherList}  from './teacher/list/list.component';
 import { AddCategoryComponent} from './add-category/add-category.component';
 import { ReportComponent} from './report/report.component';
@@ -42,6 +43,6 @@ import { SectionComponent} from './section/section.component';
     AccountingRoutingModule
   ],
   providers: [CourseService, StudentService, TeacherService, ClassService, SectionService, UtilsService],
-  declarations: [AccountingComponent, DashboardComponent, LoginComponent, PaymentComponent, ExpenseComponent, StudentComponent, ListComponent, ClassComponent, SectionComponent,  TeacherComponent,TeacherList, AddCategoryComponent, ReportComponent, SssComponent]
+  declarations: [AccountingComponent, DashboardComponent, LoginComponent, PaymentComponent, ExpenseComponent, StudentComponent, ListComponent, ClassComponent, SectionComponent,  TeacherComponent,TeacherList, TeacherDetail, AddCategoryComponent, ReportComponent, SssComponent]
 })
 export class AccountingModule { }

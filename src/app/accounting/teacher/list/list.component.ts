@@ -1,8 +1,10 @@
-import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 import { isArray } from 'lodash';
 
+
+import {DatatableComponent}  from '@swimlane/ngx-datatable';
 
 import { TeacherService } from '../../../core/services/teacher.service';
 import { Teacher } from '../../../core/classes/teacher';
@@ -21,13 +23,18 @@ export class ListComponent implements OnInit , OnDestroy{
   private _typeSub: Subscription = undefined;
   teachers : Teacher[];
   total_teachers : number;
-  dataTable: any;
+ 
+  @ViewChild(DatatableComponent) table: DatatableComponent;
 
   constructor(
     private _teacherService: TeacherService,
     private _utils: UtilsService,
     private router: Router
-    ) { }
+    ) { 
+      
+      }
+    rows =[];
+    temp =[];
   
   ngOnInit() {
 
@@ -45,7 +52,25 @@ export class ListComponent implements OnInit , OnDestroy{
     this._sub = this._teacherService.get().subscribe(
       data => {
         isArray(data) ? this.teachers = data : data;
+        this.rows = this.teachers;
+        this.temp = [...this.teachers];
       }
     );
   }
+
+   updateFilter(event) {
+    const val = event.target.value.toLowerCase();
+
+    // filter our data
+    const temp = this.temp.filter(function(d) {
+      return d.user.first_name.toLowerCase().indexOf(val) !== -1 || !val;
+    });
+
+    // update the rows
+    this.rows = temp;
+    // Whenever the filter changes, always go back to the first page
+    this.table.offset = 0;
+  }
+
+ 
 }
