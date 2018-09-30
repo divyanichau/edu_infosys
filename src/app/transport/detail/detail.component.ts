@@ -3,9 +3,8 @@ import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { isArray, isObject } from 'lodash';
 
-
-import { TeacherService } from '../../core/services/teacher.service';
-import { Teacher } from '../../core/classes/teacher';
+import { TransportService } from '../../core/services/transport.service';
+import { Transport } from '../../core/classes/transport';
 import { UtilsService } from '../../shared/services/utils.service';
 
 
@@ -19,16 +18,16 @@ declare var numeral: any;
 export class DetailComponent implements OnInit , OnDestroy{
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
-  teacher : Teacher = new Teacher();
+  transport : Transport = new Transport();
 
   constructor(
     private _routes: ActivatedRoute,
-    private _teacherService: TeacherService,
+    private _transportService: TransportService,
     private _utils: UtilsService
     ) {}
 
   ngOnInit() {
-    this.initTeacher();
+    this.initTransport();
   }
 
   ngOnDestroy() {
@@ -36,15 +35,15 @@ export class DetailComponent implements OnInit , OnDestroy{
   }
 
 
-  async initTeacher() {
+  async initTransport() {
     this._utils.unsubscribeSub(this._sub);
     this._sub = await this._routes.paramMap
       .switchMap((params: ParamMap) => {
-        return this._teacherService.find(params.get('id'));
+        return this._transportService.find(params.get('id'));
       })
       .subscribe(data => {
         if (isObject(data)) {
-          this.teacher = data;
+          this.transport = data;
         }
       });
   }
@@ -54,5 +53,3 @@ export class DetailComponent implements OnInit , OnDestroy{
 
  
 }
-
-

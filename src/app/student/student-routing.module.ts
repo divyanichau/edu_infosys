@@ -5,7 +5,7 @@ import { StudentComponent } from './student.component';
 import { AddComponent } from './add/add.component';
 import { ListComponent} from './list/list.component';
 import { DetailComponent} from './detail/detail.component';
-
+import {UpdateComponent} from './update/update.component';
 
 const routes: Routes = [
   {
@@ -23,18 +23,16 @@ const routes: Routes = [
     component: ListComponent,
   },
 
+
   {
     path: 'detail/:id',
     component: DetailComponent,
   },
 
- // {
- //    path: 'edit',
- //    component: StudentComponent,
- //    children: [
- //      { path: '', component: EditComponent }
- //    ]
- //  }
+  {
+    path: 'update/:id',
+    component: UpdateComponent,
+  },
   
 ];
 

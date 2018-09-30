@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { TransportComponent } from './transport.component';
 import { AddComponent } from './add/add.component';
-import { EditComponent} from './edit/edit.component';
-
+import { ListComponent} from './list/list.component';
+import { DetailComponent} from './detail/detail.component';
 
 const routes: Routes = [
   {
@@ -11,21 +12,22 @@ const routes: Routes = [
     component: TransportComponent
     
   },
+
   {
     path: 'add',
-    component: TransportComponent,
-    children: [
-      { path: '', component: AddComponent }
-    ]
+    component: AddComponent,
   },
 
-{
-    path: 'edit',
-    component: TransportComponent,
-    children: [
-      { path: '', component: EditComponent }
-    ]
-  }
+  {
+    path: 'list'
+    component: ListComponent,
+  },
+
+
+  {
+    path: 'detail/:id',
+    component: DetailComponent,
+  },
   
 ];
 

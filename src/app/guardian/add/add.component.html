@@ -1,0 +1,72 @@
+<div class="body">
+ <div class="content-wrapper">
+    <div class="content">
+      <div class="page-header">
+        <ol class="breadcrumb breadcrumb" style="background-color:#aabad8">
+                                <li><a href="javascript:void(0);"><i class="material-icons">home</i> Home</a></li>
+                                <li><a href="javascript:void(0);">Guardian</a></li>
+                                <li><a href="javascript:void(0);">Admission</a></li>
+            </ol>
+
+   <div class="row">
+     <form ngNativeValidate (ngSubmit)="onSubmit()" #guardianForm="ngForm">
+      <div class="col-sm-12">
+          <div class="card">
+                        <div class="header" style="background-color:#aabad8">
+                            <h2>
+                                <b style="color: black;">Guardian Admission</b>
+                            </h2>
+                        </div>
+                        <br>
+     <div class="panel-body">
+          <div class="row clearfix">
+            <div class="col-sm-6">
+                  <label for="first-name">First Name</label>
+                     <input type="text" class="form-control" [(ngModel)]="guardian.user.first_name"  [ngModelOptions]="{standalone: true}" name="first-name"  size="84" maxlength="45" placeholder="Enter First Name" required>
+        </div>
+
+            <div class="col-sm-6">
+                  <label for="last_name">Last Name</label>
+                     <input type="text" class="form-control" [(ngModel)]="guardian.user.last_name" [ngModelOptions]="{standalone: true}" name="last_name"  size="84" maxlength="45" placeholder="Enter Last Name" required>
+               </div>
+         </div>
+    <br>
+        <div class="row clearfix">
+            <div class="col-sm-6">
+                  <label for="gender">Gender</label>
+                     <select  class="form-control" [(ngModel)]= "guardian.user.gender"  [ngModelOptions]="{standalone: true}">
+                      <option value="1">Male</option>
+                      <option value="2">Female</option>
+                      <option value="3">Others</option>
+                    </select>
+            </div>     
+            <div class="col-sm-6">
+                <label for="email_address">Email Address</label>
+                     <input type="text" class="form-control" [(ngModel)]="guardian.user.email" [ngModelOptions]="{standalone: true}" name="email-address"  size="84" maxlength="45" placeholder="Enter Email Address" required>
+            </div>
+            <br>
+            <br>
+        <div class="col-sm-6">
+          <label for="guardian_type">Guardian Type</label>
+                      <select  class="form-control" [(ngModel)]= "guardian.guardian_type"  [ngModelOptions]="{standalone: true}">
+                      <option value="1">Father</option>
+                      <option value="2">Mother</option>
+                      <option value="3">Brother</option>
+                      <option value="4">Sister</option>
+                      <option value="5">Uncle</option>
+                      <option value="6">Aunty</option>
+                      <option value="7">Sister-in-law</option> 
+                    </select>
+                  </div>
+                </div>
+                <br>
+                <br>
+
+          <div class="form-group">
+            <button class="btn btn-block btn-lg waves-effect" style="background-color:#aabad8" type="Submit"><b>Add Guardian</b></button>
+       </div>
+   
+
+
+
+

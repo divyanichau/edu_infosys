@@ -32,15 +32,20 @@ const routes: Routes = [
 	  	loadChildren: './teacher/teacher.module#TeacherModule'
 	   },
 
+	   {
+	  	path: 'guardian',
+	  	loadChildren: './guardian/guardian.module#GuardianModule'
+	   },
+
        {
 	  	path: 'subject',
 	  	loadChildren: './subject/subject.module#SubjectModule'
 	   }, 
 
-	    {
-	  	path: 'transport',
-	  	loadChildren: './transport/transport.module#TransportModule'
-	   }, 
+	    // {
+	  //	path: 'transport',
+	  	//loadChildren: './transport/transport.module#TransportModule'
+	 //  }, 
 
        {
        	path: 'accounting',

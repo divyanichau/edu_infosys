@@ -6,13 +6,13 @@ import 'rxjs/add/operator/map';
 import { NgProgress } from 'ngx-progressbar';
 import { UtilsService } from '../../shared/services/utils.service';
 import { Config } from '../../shared/classes/app';
-import { Teacher } from '../classes/teacher';
+import { Transport } from '../classes/transport';
 
 
 @Injectable()
-export class TeacherService {
-  private _admissionUrl = `${new Config().api}/teacher/`;
-  private _teacherUrl = `${new Config().api}/teacher/`;
+export class TransportService {
+  private _admissionUrl = `${new Config().api}/transport/`;
+  private _transportUrl = `${new Config().api}/transport/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
 
   constructor(
@@ -22,23 +22,10 @@ export class TeacherService {
     private _progress: NgProgress
   ) { }
 
-find(id: string): Observable<Teacher> {
-     //this.beforeRequest();
-
-   return this._http.get(`${this._teacherUrl}${id}/`, this._utils.makeOptions(this._headers))
-     .map((res: Response)=> res.json())
-     .do(
-     data => this.afterGetRequest(),
-     error => { console.log(error); }
-      );
-   } 
-
-
- get(): Observable<Teacher[]> {
+  find(id: string): Observable<Transport> {
     //this.beforeRequest();
-    const options = this._utils.makeOptions(this._headers);
 
-    return this._http.get(`${this._teacherUrl}`, options)
+    return this._http.get(`${this._transportUrl}${id}/`, this._utils.makeOptions(this._headers))
       .map((res: Response) => res.json())
       .do(
       data => this.afterGetRequest(),
@@ -46,11 +33,24 @@ find(id: string): Observable<Teacher> {
       );
   }
 
-  add(teacher: Teacher): Observable<Teacher> {
-    this.beforeRequest();
-    const body = JSON.stringify(teacher);
 
-    return this._http.post(`${this._teacherUrl}`, body, this._utils.makeOptions(this._headers))
+  get(): Observable<Transport[]> {
+    //this.beforeRequest();
+    const options = this._utils.makeOptions(this._headers);
+
+    return this._http.get(`${this._transportUrl}`, options)
+      .map((res: Response) => res.json())
+      .do(
+      data => this.afterGetRequest(),
+      error => { console.log(error); }
+      );
+  }
+
+  add(transport: Transport): Observable<Transport> {
+    this.beforeRequest();
+    const body = JSON.stringify(transport);
+
+    return this._http.post(`${this._transportUrl}`, body, this._utils.makeOptions(this._headers))
       .map((res: Response) => res.json().data)
       .do(
       data => this.afterRequest(data),
@@ -63,9 +63,9 @@ find(id: string): Observable<Teacher> {
     this._progress.start();
   }
 
-  afterRequest(data: Teacher): void {
+  afterRequest(data: Transport): void {
     this._progress.done();
-    alert('teacher admitted !!')
+    alert('vehicle add !!')
   }
 
   afterGetRequest(): void {

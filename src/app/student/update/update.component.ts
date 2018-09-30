@@ -3,32 +3,31 @@ import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { isArray, isObject } from 'lodash';
 
-
-import { TeacherService } from '../../core/services/teacher.service';
-import { Teacher } from '../../core/classes/teacher';
+import { StudentService } from '../../core/services/student.service';
+import { Student } from '../../core/classes/student';
 import { UtilsService } from '../../shared/services/utils.service';
 
 
 declare var numeral: any;
 @Component({
   selector: 'app-list',
-  templateUrl: './detail.component.html',
+  templateUrl: './update.component.html',
   styleUrls: []
 })
   
-export class DetailComponent implements OnInit , OnDestroy{
+export class UpdateComponent implements OnInit , OnDestroy{
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
-  teacher : Teacher = new Teacher();
+  student : Student = new Student();
 
   constructor(
     private _routes: ActivatedRoute,
-    private _teacherService: TeacherService,
+    private _studentService: StudentService,
     private _utils: UtilsService
     ) {}
 
   ngOnInit() {
-    this.initTeacher();
+    this.initStudent();
   }
 
   ngOnDestroy() {
@@ -36,15 +35,15 @@ export class DetailComponent implements OnInit , OnDestroy{
   }
 
 
-  async initTeacher() {
+  async initStudent() {
     this._utils.unsubscribeSub(this._sub);
     this._sub = await this._routes.paramMap
       .switchMap((params: ParamMap) => {
-        return this._teacherService.find(params.get('id'));
+        return this._studentService.find(params.get('id'));
       })
       .subscribe(data => {
         if (isObject(data)) {
-          this.teacher = data;
+          this.student = data;
         }
       });
   }
@@ -54,5 +53,3 @@ export class DetailComponent implements OnInit , OnDestroy{
 
  
 }
-
-

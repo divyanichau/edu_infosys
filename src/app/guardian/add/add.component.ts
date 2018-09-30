@@ -4,15 +4,15 @@ import { Router } from '@angular/router';
 import { isArray } from 'lodash';
 
 import { CourseService } from '../../core/services/course.service';
-import { TransportService } from '../../core/services/transport.service';
-import { Transport } from '../../core/classes/transport';
+import { GuardianService } from '../../core/services/guardian.service';
+import { Guardian } from '../../core/classes/guardian';
 import { Course } from '../../core/classes/course';
 import { UtilsService } from '../../shared/services/utils.service';
 
 
 declare var numeral: any;
 @Component({
-  selector: 'app-transport',
+  selector: 'app-guardian',
   templateUrl: './add.component.html',
   styleUrls: []
 })
@@ -20,19 +20,19 @@ declare var numeral: any;
 export class AddComponent implements OnInit , OnDestroy{
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
-  transport : Transport;
+  guardian : Guardian;
   courses: Course[];
 
 
   constructor(
-    private _transportService: TransportService,
+    private _guardianService: GuardianService,
     private _courseService: CourseService,
     private _utils: UtilsService,
     private router: Router
     ) { }
   
   ngOnInit() {
-    this.initTransport();
+    this.initGuardian();
     this.loadCourses();
   }
 
@@ -42,10 +42,10 @@ export class AddComponent implements OnInit , OnDestroy{
 
   onSubmit() {
     this._utils.unsubscribeSub(this._sub);
-    this._sub = this._transportService.add(this.transport)
+    this._sub = this._guardianService.add(this.guardian)
       .subscribe(data => {
         console.log(data);
-        alert('vehicle added');
+        alert('guardian added');
       });
   }
 
@@ -60,9 +60,9 @@ export class AddComponent implements OnInit , OnDestroy{
     );
   }
 
-  initTransport() {
+  initGuardian() {
     this._utils.unsubscribeSub(this._typeSub);
-    this.transport = new Transport();
+    this.guardian = new Guardian();
   }
 
  

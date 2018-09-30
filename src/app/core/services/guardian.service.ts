@@ -6,13 +6,13 @@ import 'rxjs/add/operator/map';
 import { NgProgress } from 'ngx-progressbar';
 import { UtilsService } from '../../shared/services/utils.service';
 import { Config } from '../../shared/classes/app';
-import { Teacher } from '../classes/teacher';
+import { Guardian } from '../classes/guardian';
 
 
 @Injectable()
-export class TeacherService {
-  private _admissionUrl = `${new Config().api}/teacher/`;
-  private _teacherUrl = `${new Config().api}/teacher/`;
+export class GuardianService {
+  private _admissionUrl = `${new Config().api}/guardian/`;
+  private _guardianUrl = `${new Config().api}/guardian/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
 
   constructor(
@@ -22,10 +22,10 @@ export class TeacherService {
     private _progress: NgProgress
   ) { }
 
-find(id: string): Observable<Teacher> {
+find(id: string): Observable<Guardian> {
      //this.beforeRequest();
 
-   return this._http.get(`${this._teacherUrl}${id}/`, this._utils.makeOptions(this._headers))
+   return this._http.get(`${this._guardianUrl}${id}/`, this._utils.makeOptions(this._headers))
      .map((res: Response)=> res.json())
      .do(
      data => this.afterGetRequest(),
@@ -34,11 +34,11 @@ find(id: string): Observable<Teacher> {
    } 
 
 
- get(): Observable<Teacher[]> {
+ get(): Observable<Guardian[]> {
     //this.beforeRequest();
     const options = this._utils.makeOptions(this._headers);
 
-    return this._http.get(`${this._teacherUrl}`, options)
+    return this._http.get(`${this._guardianUrl}`, options)
       .map((res: Response) => res.json())
       .do(
       data => this.afterGetRequest(),
@@ -46,11 +46,11 @@ find(id: string): Observable<Teacher> {
       );
   }
 
-  add(teacher: Teacher): Observable<Teacher> {
+  add(guardian: Guardian): Observable<Guardian> {
     this.beforeRequest();
-    const body = JSON.stringify(teacher);
+    const body = JSON.stringify(guardian);
 
-    return this._http.post(`${this._teacherUrl}`, body, this._utils.makeOptions(this._headers))
+    return this._http.post(`${this._guardianUrl}`, body, this._utils.makeOptions(this._headers))
       .map((res: Response) => res.json().data)
       .do(
       data => this.afterRequest(data),
@@ -63,9 +63,9 @@ find(id: string): Observable<Teacher> {
     this._progress.start();
   }
 
-  afterRequest(data: Teacher): void {
+  afterRequest(data: Guardian): void {
     this._progress.done();
-    alert('teacher admitted !!')
+    alert('guardian admitted !!')
   }
 
   afterGetRequest(): void {
