@@ -6,8 +6,8 @@ import { isArray } from 'lodash';
 import {DatatableComponent}  from '@swimlane/ngx-datatable';
 
 
-import { TransportService } from '../../core/services/transport.service';
-import { Transport } from '../../core/classes/transport';
+import { GuardianService } from '../../core/services/guardian.service';
+import { Guardian } from '../../core/classes/guardian';
 import { UtilsService } from '../../shared/services/utils.service';
 
 
@@ -21,13 +21,13 @@ declare var numeral: any;
 export class ListComponent implements OnInit , OnDestroy{
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
-  transports : Transport[];
-  total_transports : number;
+  guardians : Guardian[];
+  total_guardians : number;
 
   @ViewChild(DatatableComponent) table: DatatableComponent;
 
   constructor(
-    private transportService: TransportService,
+    private _guardianService: GuardianService,
     private _utils: UtilsService,
     private router: Router
     ) {
@@ -39,7 +39,7 @@ export class ListComponent implements OnInit , OnDestroy{
 
   ngOnInit() {
 
-    this.initTransport();
+    this.initGuardian();
   }
 
   ngOnDestroy() {
@@ -48,19 +48,17 @@ export class ListComponent implements OnInit , OnDestroy{
   }
 
 
-  initTransport() {
+  initGuardian() {
    this._utils.unsubscribeSub(this._sub);
-    this._sub = this._transportService.get().subscribe(
+    this._sub = this._guardianService.get().subscribe(
       data => {
-        isArray(data) ? this.transports = data : data;
-        this.rows = this.transports;
-        this.temp = [...this.transports];
+        isArray(data) ? this.guardians = data : data;
+        this.rows = this.guardians;
+        this.temp = [...this.guardians];
 
       }
     );
   }
-
-
 
 
   updateFilter(event) {

@@ -3,9 +3,9 @@
     <div class="content">
       <div class="page-header">
         <ol class="breadcrumb breadcrumb" style="background-color:#aabad8">
-                                <li><a href="javascript:void(0);"><i class="material-icons">home</i> Home</a></li>
-                                <li><a href="javascript:void(0);">Guardian</a></li>
-                                <li><a href="javascript:void(0);">Admission</a></li>
+                       <li><a href="javascript:void(0);"><i class="material-icons">home</i> Home</a></li>
+                       <li><a href="javascript:void(0);">Guardian</a></li>
+                       <li><a href="javascript:void(0);">Admission</a></li>
             </ol>
 
    <div class="row">
@@ -44,8 +44,10 @@
                 <label for="email_address">Email Address</label>
                      <input type="text" class="form-control" [(ngModel)]="guardian.user.email" [ngModelOptions]="{standalone: true}" name="email-address"  size="84" maxlength="45" placeholder="Enter Email Address" required>
             </div>
+          </div>
             <br>
-            <br>
+
+ <div class="row clearfix">
         <div class="col-sm-6">
           <label for="guardian_type">Guardian Type</label>
                       <select  class="form-control" [(ngModel)]= "guardian.guardian_type"  [ngModelOptions]="{standalone: true}">

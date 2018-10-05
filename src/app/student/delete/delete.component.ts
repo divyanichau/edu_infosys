@@ -11,11 +11,11 @@ import { UtilsService } from '../../shared/services/utils.service';
 declare var numeral: any;
 @Component({
   selector: 'app-list',
-  templateUrl: './update.component.html',
+  templateUrl: './delete.component.html',
   styleUrls: []
 })
   
-export class UpdateComponent implements OnInit , OnDestroy{
+export class DeleteComponent implements OnInit , OnDestroy{
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
   student : Student = new Student();

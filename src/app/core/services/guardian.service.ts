@@ -49,7 +49,7 @@ find(id: string): Observable<Guardian> {
   add(guardian: Guardian): Observable<Guardian> {
     this.beforeRequest();
     const body = JSON.stringify(guardian);
-
+    
     return this._http.post(`${this._guardianUrl}`, body, this._utils.makeOptions(this._headers))
       .map((res: Response) => res.json().data)
       .do(

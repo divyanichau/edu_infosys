@@ -3,7 +3,7 @@
         <div class="page-header">
             <ol class="breadcrumb breadcrumb" style="background-color:#aabad8">
                                 <li><a href="javascript:void(0);"><i class="material-icons">home</i> Home</a></li>
-                                <li><a href="javascript:void(0);">Transport</a></li>
+                                <li><a href="javascript:void(0);">Guardian</a></li>
                                 <li><a href="javascript:void(0);">List</a></li>
             </ol>
         </div>
@@ -15,7 +15,7 @@
             <div class="card">
                 <div class="header" style="background-color:#aabad8">
                     <h2>
-                        Add Vehicles
+                        Admitted Guardians
                     </h2>
                     <ul class="header-dropdown m-r--5">
                         <li class="dropdown">
@@ -54,29 +54,24 @@
                                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                                 </ngx-datatable-column>
 
-                                <ngx-datatable-column name="Vehicle No." prop="user.first_name">
+                                <ngx-datatable-column name="Name" prop="user.first_name">
                                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                                 </ngx-datatable-column>
 
-                                <ngx-datatable-column name="No.Of Seats" prop="address_detail.address">
+                                <ngx-datatable-column name="Email" prop="user.email">
                                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                                 </ngx-datatable-column>
 
-                                <ngx-datatable-column name="Max Allowed" prop="phone.number">
+                                <ngx-datatable-column name="Gender" prop="user.gender">
                                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                                 </ngx-datatable-column>
-
-                                <ngx-datatable-column name="Contact Person" prop="phone.number">
-                                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                                </ngx-datatable-column>
-
 
                                 <ngx-datatable-column name="Actions" sortable="false" prop="id">
                                     <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                                         Manage
                                     </ng-template>
                                     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                                        <a class="glyphicon glyphicon-eye-open" title="" href="/transport/detail/{{value}}"><img src="" alt=""></a>
+                                        <a class="glyphicon glyphicon-eye-open" title="" href="/guardian/detail/{{value}}"><img src="" alt=""></a>
                                         <a class="glyphicon glyphicon-remove" title="" href=""><img src="" alt=""></a>
                                       
                                     </ng-template>

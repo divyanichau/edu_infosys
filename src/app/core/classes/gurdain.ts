@@ -3,5 +3,5 @@ export class Gurdain{
 	name: string;
 	mobile: number;
 	citizenship_num: string;
-	jon: string;
+	job: string;
 }

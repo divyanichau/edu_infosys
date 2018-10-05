@@ -15,7 +15,7 @@ import { UtilsService } from '../shared/services/utils.service';
 import { GuardianRoutingModule } from './guardian-routing.module';
 import { GuardianComponent } from './guardian.component';
 import { AddComponent} from './add/add.component';
-//import { ListComponent} from './list/list.component';
+import { ListComponent} from './list/list.component';
 //import { DetailComponent} from './detail/detail.component';
 
 @NgModule({
@@ -29,6 +29,6 @@ import { AddComponent} from './add/add.component';
     GuardianRoutingModule
   ],
   providers: [CourseService, GuardianService, ClassService, SectionService, UtilsService],
-  declarations: [GuardianComponent, AddComponent]
+  declarations: [GuardianComponent, AddComponent, ListComponent]
 })
 export class GuardianModule { }
