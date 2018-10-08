@@ -1,51 +1,42 @@
-
- <div class="content-wrapper">
+<div class="content-wrapper">
     <div class="content">
       <div class="page-header">
          <ol class="breadcrumb breadcrumb" style="background-color:#aabad8;">
               <li><a href="#"><i class="material-icons">home</i> Home</a></li>
-              <li><a href="#"><i class="material-icons">class</i>Section </a></li>
-              <li class="active"> Add Section</li>
+              <li><a href="#"><i class="material-icons">class</i>Subject</a></li>
+              <li class="active"> Course </li>
            <ul class="breadcrumb-elements">                          
             </ul>
             <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a><a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
             </ol> 
             <br>
 
-  <form (ngSubmit)="onSubmit()" #sectionForm="ngForm">
+  <form (ngSubmit)="onSubmit()" #courseForm="ngForm">
    <div class="row">
         <div class="col-sm-6">
             <div class="panel panel-default">
               <div class="panel-body">
               <div class="panel-heading" style="background-color:#aabad8;">
-                <h4 class="panel-title">Add Student</h4>
+                <h4 class="panel-title">Add Course</h4>
               </div>
               <br> 
 
   <div class="panel-body">
     <div class="row clearfix">
-            <div class="col-sm-6">
-                  <label for="student_id">Student ID</label>
-                  <select class="form-control"       
-                 [(ngModel)]="section_student" name="id">
-                  <option *ngFor="let c of _students" [ngValue]="c.id">{{c.user.first_name}}</option>
-                  </select>
-            </div>
-
- 
-            <div class="col-sm-6">
-                  <label for="section_id">Section Name</label>
-                   <select class="form-control"       
-                 [(ngModel)]="section_student.section_id" name="name">
-                  <option *ngFor="let c of _sections" [ngValue]="c.id">{{c.name}}</option>
-                  </select>
-            </div>
-          </div>
-<br>
- <div class="row clearfix">
              <div class="col-sm-6">
-                  <label for="roll_no">Roll No.</label>
-                     <input type="text" class="form-control" [(ngModel)]="section_student.roll_no" name="roll_no"  size="84" maxlength="45" placeholder="Enter Roll number " required>
+                  <label for="roll_no">Course Name</label>
+                     <input type="text" class="form-control" [(ngModel)]="obj_course.name" name="name"  size="84" maxlength="45" placeholder="Enter Course Name " required>
+            </div>
+             <div class="col-sm-6">
+                  <label for="roll_no">Department</label>
+                     <input type="text" class="form-control" [(ngModel)]="obj_course.department" name="department"  size="84" maxlength="45" placeholder="Enter Department " required>
+            </div>
+        </div>
+<br>
+      <div class="row clearfix">
+             <div class="col-sm-6">
+                  <label for="roll_no">Description</label>
+                     <input type="text" class="form-control" [(ngModel)]="obj_course.description" name="description"  size="84" maxlength="45" placeholder=" Description " required>
             </div>
         </div>
          
@@ -71,10 +62,14 @@
         <div class="panel-heading">                  
             <div class="grid-view" id="item-grid">
 
-    <input type='text'style='padding:8px;margin:15px auto;width:30%;' placeholder='search with name' (keyup)='updateFilter($event)'/>
+    <input 
+    type='text'
+    style='padding:8px;margin:15px auto;width:30%;' 
+    placeholder='search with name' 
+    (keyup)='updateFilter($event)'/>
                               <ngx-datatable
                                 class="material"
-                                [rows]="_section_students"
+                                [rows]="course"
                                 [sortType]="'multi'"
                                 [columnMode]="'force'"
                                 [headerHeight]="50"
@@ -86,23 +81,25 @@
                                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                                 </ngx-datatable-column>
 
-                                 <ngx-datatable-column name="Student Name" prop="student_first_name">
+                                 <ngx-datatable-column name="Course Name" prop="name">
                                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                                 </ngx-datatable-column>
 
-                                <ngx-datatable-column name="Section Name" prop="section_name">
+                              <ngx-datatable-column name="Department" prop="department">
                                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                                 </ngx-datatable-column>
                                 
-                                <ngx-datatable-column name="Roll-no" prop="roll_no">
-                                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                                </ngx-datatable-column>
+                               <ngx-datatable-column name="Actions" sortable="false" prop="id">
+                                    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                                        Manage
+                                    </ng-template>
                                     
-                                   <ng-template let-row="_section_students" let-value="value" ngx-datatable-cell-template>
+                                   <ng-template let-row="course" let-value="value" ngx-datatable-cell-template>
                                         <a class="glyphicon glyphicon-eye-open" title="" href="/student/detail/{{value}}"><img src="" alt=""></a>
                                         <a class="glyphicon glyphicon-remove" title="" href=""><img src="" alt=""></a>
                                       
-                                    </ng-template>                                                              
+                                    </ng-template>
+                                    </ngx-datatable-column>                                                              
                             </ngx-datatable>
                         </div>
                     </div>
@@ -112,9 +109,6 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
-
 
 
        

@@ -6,13 +6,10 @@ import 'rxjs/add/operator/map';
 import { NgProgress } from 'ngx-progressbar';
 import { UtilsService } from '../../shared/services/utils.service';
 import { Config } from '../../shared/classes/app';
-import { Student } from '../classes/student';
-
+import { Course } from '../classes/course';
 
 @Injectable()
-export class StudentService {
-  private _studentUrl = `${new Config().api}/admission/student/`;
-  private _studentGetUrl = `${new Config().api}/student/`;
+export class CourseService {
   private _courseUrl = `${new Config().api}/course/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
 
@@ -24,11 +21,20 @@ export class StudentService {
   ) { }
 
 
-  get(): Observable<Student[]> {
+   find(id: string): Observable<Course> {
+    //this.beforeRequest();
+    return this._http.get(`${this._courseUrl}${id}/`, this._utils.makeOptions(this._headers))
+      .map((res: Response) => res.json())
+      .do(
+      data => this.afterGetRequest(),
+      error => { console.log(error); }
+      );
+  }
+
+  get(): Observable<Course[]> {
     //this.beforeRequest();
     const options = this._utils.makeOptions(this._headers);
-
-    return this._http.get(`${this._studentGetUrl}`, options)
+    return this._http.get(`${this._courseUrl}`, options)
       .map((res: Response) => res.json())
       .do(
       data => this.afterRequestGet(),
@@ -36,34 +42,32 @@ export class StudentService {
       );
   }
 
-  add(student: Student): Observable<Student> {
-    this.beforeRequest();
-    const body = JSON.stringify(student);
 
-    return this._http.post(`${this._studentGetUrl}`, body, this._utils.makeOptions(this._headers))
+  add(course): Observable<Course> {
+    this.beforeRequest();
+    const body = JSON.stringify(course);
+
+    return this._http.post(`${this._courseUrl}`, body, this._utils.makeOptions(this._headers))
       .map((res: Response) => res.json().data)
       .do(
       data => this.afterRequest(data),
-      error => { this.showError(error) }
+      error => { console.log(error); }
       );
   }
-
 
   beforeRequest(): void {
     this._progress.start();
   }
 
-  afterRequest(data: Student): void {
+  afterRequest(data: Course): void {
     this._progress.done();
-    alert('student admitted !!')
+    alert('course added')
   }
-
 
   afterRequestGet(): void {
     this._progress.done();
   }
-
-  showError(error): void {
+   showError(error): void {
     console.log(error);
     alert(error._body);
   }

@@ -9,7 +9,7 @@ import { Config } from './shared/classes/app';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegisterComponent } from './register/register.component';
+//import { RegisterComponent } from './register/register.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { TopbarComponent } from './topbar/topbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -23,7 +23,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent,
+    //RegisterComponent,
     SidebarComponent,
     TopbarComponent,
     DashboardComponent

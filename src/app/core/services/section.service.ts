@@ -24,6 +24,8 @@ export class SectionService {
     private _progress: NgProgress
   ) { }
 
+
+
   get(): Observable<Section[]> {
     //this.beforeRequest();
     const options = this._utils.makeOptions(this._headers);
@@ -36,6 +38,31 @@ export class SectionService {
       );
   }
 
+  getStudent(): Observable<Section[]> {
+    //this.beforeRequest();
+    const options = this._utils.makeOptions(this._headers);
+
+    return this._http.get(`${this._sectionStudentUrl}`, options)
+      .map((res: Response) => res.json())
+      .do(
+      data => this.afterRequestGet(),
+      error => { console.log(error); }
+      );
+  }
+
+  addStudent(section_student): Observable<Student> {
+    this.beforeRequest();
+    const body = JSON.stringify(section_student);
+
+    return this._http.post(`${this._sectionStudentUrl}`, body, this._utils.makeOptions(this._headers))
+      .map((res: Response) => res.json().data)
+      .do(
+      data => this.afterRequest(data),
+      error => { console.log(error); }
+      );
+  }
+
+  
   add(section: Section): Observable<Section> {
     this.beforeRequest();
     const body = JSON.stringify(section);
@@ -48,24 +75,10 @@ export class SectionService {
       );
   }
 
-  addStudent(section_student): Observable<Section> {
-    this.beforeRequest();
-    const body = JSON.stringify(section_student);
-
-    return this._http.post(`${this._sectionStudentUrl}`, body, this._utils.makeOptions(this._headers))
-      .map((res: Response) => res.json())
-      .do(
-      data => this.afterRequest(data),
-      error => { console.log(error); }
-      );
-  }
 
   selectClass(val){
    this.selectedClass = val
  }
-
-
-
 
   beforeRequest(): void {
     this._progress.start();

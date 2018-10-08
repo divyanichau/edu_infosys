@@ -1,0 +1,57 @@
+<div class="content-wrapper">
+    <div class="content">
+      <div class="page-header">
+         <ol class="breadcrumb breadcrumb" style="background-color:#aabad8;">
+              <li><a href="#"><i class="material-icons">home</i> Home</a></li>
+              <li><a href="#"><i class="material-icons">class</i>Subject</a></li>
+              <li class="active"> Add Subject</li>
+           <ul class="breadcrumb-elements">                          
+            </ul>
+            <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a><a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+            </ol> 
+            <br>
+
+  <form (ngSubmit)="onSubmit()" #sectionForm="ngForm">
+   <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+              <div class="panel-body">
+              <div class="panel-heading" style="background-color:#aabad8;">
+                <h4 class="panel-title">Add Subject</h4>
+              </div>
+              <br> 
+
+ <div class="panel-body">
+    <div class="row clearfix">
+            <div class="col-sm-6">
+                  <label for="student_id">Student ID</label>
+                   <select class="form-control"       
+                 [(ngModel)]="selected_student" name="id">
+                  <option *ngFor="let c of _students" [ngValue]="c.id">{{c.user.first_name}}</option>
+                  </select>
+            </div>
+          </div>
+ 
+           
+<br>
+ 
+<br>
+<br>
+
+    <div class="form-group">
+            <button class="btn btn-info" style="background-color:#aabad8;" type="Submit"><b>Save</b></button>
+        </div>
+
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
