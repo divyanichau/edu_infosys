@@ -10,14 +10,15 @@ export class EditComponent implements OnInit {
 	
 	parents={};
 
-  constructor(private http:HttpClient, private router: ActivatedRoute) { }
+  constructor(private http:HttpClient, private router: ActivatedRoute) {}
   ngOnInit() 
   {
-
-     this.getParents(this.router.snapshot.params['id']);
+      this.getParents(this.router.snapshot.params['id']);
   }
   getParents(id) {
-    this.http.get('http://192.168.1.77:8001/parents/'+id).subscribe(data => {
+    this.http.get('http://192.168.1.77:8001/parents/'+id).subscribe(data => 
+    {
+     
       this.parents = data;
            
     });

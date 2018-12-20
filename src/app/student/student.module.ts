@@ -17,7 +17,8 @@ import { StudentComponent } from './student.component';
 import { AddComponent} from './add/add.component';
 import { ListComponent} from './list/list.component';
 import { DetailComponent} from './detail/detail.component';
-import { DeleteComponent} from './delete/delete.component';
+
+
 
 @NgModule({
   imports: [
@@ -30,6 +31,6 @@ import { DeleteComponent} from './delete/delete.component';
     StudentRoutingModule
   ],
   providers: [CourseService, StudentService, ClassService, SectionService, UtilsService],
-  declarations: [StudentComponent, AddComponent, DeleteComponent, ListComponent, DetailComponent]
+  declarations: [StudentComponent, AddComponent, ListComponent, DetailComponent]
 })
 export class StudentModule { }

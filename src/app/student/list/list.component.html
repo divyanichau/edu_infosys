@@ -33,7 +33,7 @@
                 <div class="body">
                     <div class="table-responsive">
                         <div>
-                             <input
+                            <input
                                 type='text'
                                 style='padding:8px;margin:15px auto;width:30%;'
                                 placeholder='search with name'
@@ -72,8 +72,7 @@
                                     </ng-template>
                                     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                                         <a class="glyphicon glyphicon-eye-open" title="" href="/student/detail/{{value}}"><img src="" alt=""></a>
-                                        <a class="glyphicon glyphicon-remove" title="" href=""><img src="" alt=""></a>
-                                      
+                                        <a class="glyphicon glyphicon-remove" title="" href="/student/delete/{{value}}"><img src="" alt=""></a>
                                     </ng-template>
                                 </ngx-datatable-column>
                             </ngx-datatable>

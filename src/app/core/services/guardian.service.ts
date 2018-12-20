@@ -11,8 +11,8 @@ import { Guardian } from '../classes/guardian';
 
 @Injectable()
 export class GuardianService {
-  private _admissionUrl = `${new Config().api}/guardian/`;
-  private _guardianUrl = `${new Config().api}/guardian/`;
+  private _admissionUrl = `${new Config().api}/guardian/guardain/`;
+  private _guardianUrl = `${new Config().api}/guardian/guardian/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
 
   constructor(
@@ -22,7 +22,7 @@ export class GuardianService {
     private _progress: NgProgress
   ) { }
 
-find(id: string): Observable<Guardian> {
+   find(id: string): Observable<Guardian> {
      //this.beforeRequest();
 
    return this._http.get(`${this._guardianUrl}${id}/`, this._utils.makeOptions(this._headers))

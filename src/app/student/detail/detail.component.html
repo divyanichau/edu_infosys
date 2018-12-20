@@ -164,7 +164,7 @@
         </div>
             <div class="col-sm-6">
                   <label for="citizen_no">Citizen No.</label>
-                     <input type="text" class="form-control"  [(ngModel)]="student.father.citizenship_no"  [ngModelOptions]="{standalone: true}"name="citizen_no"  size="84" maxlength="45" placeholder="Enter Citizen Number" required>
+                     <input type="text" class="form-control"  [(ngModel)]="student.father.citizenship"  [ngModelOptions]="{standalone: true}"name="citizen_no"  size="84" maxlength="45" placeholder="Enter Citizen Number" required>
             </div>
         </div>
         <br>
@@ -178,7 +178,7 @@
 
             <div class="col-sm-6">
                 <label for="mobile">Mobile</label>
-                  <input type="number" class="form-control"  [(ngModel)]="student.mother.mobile"  [ngModelOptions]="{standalone: true}"name="mobile"  size="84" maxlength="10" placeholder="Enter Contact Number" required>
+                  <input type="number" class="form-control"  [(ngModel)]="student.mother.mobile"  [ngModelOptions]="{standalone: true}"name="mobile"  size="84" maxlength="10" placeholder="Enter Contact number" required>
             </div>
         </div>
         <br>
@@ -186,17 +186,17 @@
        <div class="row clearfix">
             <div class="col-sm-6">
                   <label for="job">Job</label>
-                     <input type="text" class="form-control" [(ngModel)]="student.mother.job" [ngModelOptions]="{standalone: true}" name="job"  size="84" maxlength="45" placeholder="Enter Occupation" required>
+                     <input type="text" class="form-control" [(ngModel)]="student.mother.job" [ngModelOptions]="{standalone:true}" name="job"  size="84" maxlength="45" placeholder="Enter Occupation" required>
             </div>
 
             <div class="col-sm-6">
                   <label for="citizen_no">Citizen No.</label>
-                     <input type="text" class="form-control" [(ngModel)]="student.mother.citizenship_no"  [ngModelOptions]="{standalone: true}" name="citizen_no"  size="84" maxlength="45" placeholder="Enter Citizen Number" required>
+                     <input type="text" class="form-control" [(ngModel)]="student.mother.citizenship"  [ngModelOptions]="{standalone: true}" name="citizen_no"  size="84" maxlength="45" placeholder="Enter Citizen Number" required>
             </div>
         </div>
         <br>
       <div class="text-right">
-        <button class="btn btn-primary" type="submit"> Save<i class="icon-arrow-right14 position-right"></i></button>
+        <button class="btn btn-primary" type="submit"> Save <i class="icon-arrow-right14 position-right"></i></button>
       </div>
   </div>
 </div>
