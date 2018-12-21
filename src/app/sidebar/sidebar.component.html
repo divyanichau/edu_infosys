@@ -1,41 +1,41 @@
 <!-- #Top Bar -->
-    <section>
-        <!-- Left Sidebar -->
-        <aside id="leftsidebar" class="sidebar" height="900px">
-            <!-- User Info -->
-            <div class="user-info">
-                <div class="image">
-                    <img src="assets/images/user.png" width="48" height="48" alt="User" />
-                </div>
-                <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</div>
-                    <div class="email">BTech School</div>
-                    <div class="btn-group user-helper-dropdown">
-                        <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
-                        <ul class="dropdown-menu pull-right">
-                            <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">input</i>Sign Out</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- #User Info -->
-            <!-- Menu -->
-            <div class="menu">
-                <ul class="list" style="height: 900px;" >
-                    <li class="header">MAIN NAVIGATION</li>
-                    <li class="active">
-                        <a routerLink="/">
-                            <i class="material-icons">home</i>
-                            <span>Home</span>
-                        </a>
-                    </li>
-                   <!--  <li>
+<section>
+  <!-- Left Sidebar -->
+  <aside id="leftsidebar" class="sidebar" height="900px">
+    <!-- User Info -->
+    <div class="user-info">
+      <div class="image">
+        <img src="assets/images/user.png" width="48" height="48" alt="User" />
+      </div>
+      <div class="info-container">
+        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</div>
+        <div class="email">BTech School</div>
+        <div class="btn-group user-helper-dropdown">
+          <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+          <ul class="dropdown-menu pull-right">
+            <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
+            <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
+            <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="javascript:void(0);"><i class="material-icons">input</i>Sign Out</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- #User Info -->
+    <!-- Menu -->
+    <div class="menu">
+      <ul class="list" style="height: 900px;">
+        <li class="header">MAIN NAVIGATION</li>
+        <li class="active">
+          <a routerLink="/">
+            <i class="material-icons">home</i>
+            <span>Home</span>
+          </a>
+        </li>
+        <!--  <li>
                         <a routerLink="/student" class="menu-toggle">
                             <i class="material-icons">person_pin</i>
                             <span>Student</span>
@@ -70,180 +70,173 @@
                     </li>
  -->
 
-                    <li>
-                        <a class="menu-toggle">
-                            <i class="material-icons">person_pin</i>
-                            <span>Student</span>
-                        </a>
-                         <ul class="ml-menu">
-                             <li>
-                                <a routerLink="/student/add">
-                                    <span>Add</span>
-                                </a> 
-                            </li>
-                            <li>
-                                <a routerLink="/student/list">
-                                    <span>List</span>
-                                </a> 
-                            </li>
-                        </ul>
-                    </li>
+        <li>
+          <a class="menu-toggle">
+            <i class="material-icons">person_pin</i>
+            <span>Student</span>
+          </a>
+          <ul class="ml-menu">
+            <li>
+              <a routerLink="/student/add">
+                <i class="material-icons">perm_identity</i>
+                <span>Add Student</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/student/list">
+                <i class="material-icons">reorder</i>
+                <span>Manage Student</span>
+              </a>
+            </li>
 
-                    <li>
-                        <a class="menu-toggle">
-                            <i class="material-icons">person_pin</i>
-                            <span>Teacher</span>
-                        </a>
-                         <ul class="ml-menu">
-                             <li>
-                                <a routerLink="/teacher/add">
-                                    <span>Add</span>
-                                </a> 
-                            </li>
-                            <li>
-                                <a routerLink="/teacher/list">
-                                    <span>List</span>
-                                </a> 
-                            </li>
-                            
-                        </ul>
-                    </li>
+            <li>
+              <a routerLink="/student/view">
+                <i class="material-icons">visibility</i>
+                <span>View Student</span>
+              </a>
+            </li>
 
-                     <li>
-                        <a class="menu-toggle">
-                            <i class="material-icons">person_pin</i>
-                            <span>Guardian</span>
-                        </a>
-                         <ul class="ml-menu">
-                             <li>
-                                <a routerLink="/guardian/add">
-                                    <span>Add</span>
-                                </a> 
-                            </li>
-                            <li>
-                                <a routerLink="/guardian/list">
-                                    <span>List</span>
-                                </a>
-                            </li>
-                             </ul>
-                    </li>
+          </ul>
+        </li>
 
-                  
+        <li>
+          <a class="menu-toggle">
+            <i class="material-icons">person_pin</i>
+            <span>Teacher</span>
+          </a>
+          <ul class="ml-menu">
+            <li>
+              <a routerLink="/teacher/add">
+                <span>Add</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/teacher/list">
+                <span>List</span>
+              </a>
+            </li>
 
-                     <li>
-                        <a class="menu-toggle">
-                            <i class="material-icons">person_pin</i>
-                            <span>Accounting</span>
-                        </a>
-                         <ul class="ml-menu">
+          </ul>
+        </li>
 
-                             <li>
-                                <a routerLink="/accounting/Dashboard">
-                                    <span>Dashboard</span>
-                                </a> 
-                            </li>
-
-                           <li>
-                               <a routerLink="/accounting/login">
-                                    <span>Login</span>
-                                </a>
-                           </li>
-                            <li>
-                                <a routerLink="/accounting/payment">
-                                    <span> Create Student Payment</span>
-                                </a> 
-                            </li>
-
-                            <li>
-                                <a routerLink="/accounting/expense">
-                                    <span>Expense</span>
-                                </a>
-                            </li>
-
-                           <li>
-                              <a  class="menu-toggle">
-                                <i class="material-icons">person_pin</i>
-                                 <span>Student</span>
-                              </a>
-                         <ul class="ml-menu">
-
-                            <li>
-                                <a routerLink="/accounting/student">
-                                   <span> Student Admission</span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a routerLink="/accounting/student/list">
-                                    <span> Student List</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
-                        <li>
-                            <a routerLink="/accounting/class">
-                                <span> Class</span>
-                            </a>
-                        </li>
-
-                            <li>
-                                <a routerLink="/accounting/section">
-                                    <span>Section</span>
-                                </a>
-                            </li>
-
-                         <li>
-                              <a  class="menu-toggle">
-                                <i class="material-icons">person_pin</i>
-                                 <span>Teacher</span>
-                              </a>
-                         <ul class="ml-menu">
-
-                            <li>
-                                <a routerLink="/accounting/teacher">
-                                   <span> Add</span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a routerLink="/accounting/teacher/list">
-                                    <span>  List</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                            <li>
-                                <a routerLink="/accounting/add-category/">
-                                    <span> Add Category</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a routerLink="/accounting/report/">
-                                    <span>Report</span>
-                                </a>
-                            </li>
-                             <li>
-                                <a routerLink="/accounting/sss/">
-                                    <span>sss</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-            
-
-                
+        <li>
+          <a class="menu-toggle">
+            <i class="material-icons">person_pin</i>
+            <span>Guardian</span>
+          </a>
+          <ul class="ml-menu">
+            <li>
+              <a routerLink="/guardian/add">
+                <span>Add</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/guardian/list">
+                <span>List</span>
+              </a>
+            </li>
+          </ul>
+        </li>
 
 
 
+        <li>
+          <a class="menu-toggle">
+            <i class="material-icons">person_pin</i>
+            <span>Accounting</span>
+          </a>
+          <ul class="ml-menu">
 
+            <li>
+              <a routerLink="/accounting/Dashboard">
+                <span>Dashboard</span>
+              </a>
+            </li>
 
+            <li>
+              <a routerLink="/accounting/login">
+                <span>Login</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/accounting/payment">
+                <span> Create Student Payment</span>
+              </a>
+            </li>
 
+            <li>
+              <a routerLink="/accounting/expense">
+                <span>Expense</span>
+              </a>
+            </li>
 
+            <li>
+              <a class="menu-toggle">
+                <i class="material-icons">person_pin</i>
+                <span>Student</span>
+              </a>
+              <ul class="ml-menu">
 
+                <li>
+                  <a routerLink="/accounting/student">
+                    <span> Student Admission</span>
+                  </a>
+                </li>
 
-                    
-           
-           
+                <li>
+                  <a routerLink="/accounting/student/list">
+                    <span> Student List</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
 
-       
+            <li>
+              <a routerLink="/accounting/class">
+                <span> Class</span>
+              </a>
+            </li>
+
+            <li>
+              <a routerLink="/accounting/section">
+                <span>Section</span>
+              </a>
+            </li>
+
+            <li>
+              <a class="menu-toggle">
+                <i class="material-icons">person_pin</i>
+                <span>Teacher</span>
+              </a>
+              <ul class="ml-menu">
+
+                <li>
+                  <a routerLink="/accounting/teacher">
+                    <span> Add</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a routerLink="/accounting/teacher/list">
+                    <span> List</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a routerLink="/accounting/add-category/">
+                <span> Add Category</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/accounting/report/">
+                <span>Report</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/accounting/sss/">
+                <span>sss</span>
+              </a>
+            </li>
+          </ul>
+        </li>
