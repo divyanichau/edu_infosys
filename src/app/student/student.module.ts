@@ -17,7 +17,7 @@ import { StudentComponent } from './student.component';
 import { AddComponent} from './add/add.component';
 import { ListComponent} from './list/list.component';
 import { DetailComponent} from './detail/detail.component';
-
+import { IdcardComponent} from './idcard/idcard.component';
 
 
 @NgModule({
@@ -31,6 +31,6 @@ import { DetailComponent} from './detail/detail.component';
     StudentRoutingModule
   ],
   providers: [CourseService, StudentService, ClassService, SectionService, UtilsService],
-  declarations: [StudentComponent, AddComponent, ListComponent, DetailComponent]
+  declarations: [StudentComponent, AddComponent, ListComponent, DetailComponent, IdcardComponent]
 })
 export class StudentModule { }
