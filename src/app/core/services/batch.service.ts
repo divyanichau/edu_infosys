@@ -6,17 +6,13 @@ import 'rxjs/add/operator/map';
 import { NgProgress } from 'ngx-progressbar';
 import { UtilsService } from '../../shared/services/utils.service';
 import { Config } from '../../shared/classes/app';
-import { Section } from '../classes/section';
+import { Batch } from '../classes/batch';
 
 
 @Injectable()
-export class SectionService {
-  private _sectionUrl = `${new Config().api}/section/`;
+export class BatchService {
+  private _batchUrl = `${new Config().api}/batch/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
-  section = [];
-  selectedClass = {};
- 
-
 
   constructor(
     private _utils: UtilsService,
@@ -25,18 +21,24 @@ export class SectionService {
     private _progress: NgProgress
   ) { }
 
-  getSection(){
-    this._http.get('http://192.168.1.77:8001/api/library/class/').subscribe(data => {     
-      console.log(this.section);
+  get(): Observable<Batch[]> {
+    //this.beforeRequest();
+    const options = this._utils.makeOptions(this._headers);
 
-       });
- }
+    return this._http.get(`${this._batchUrl}`, options)
+      .map((res: Response) => res.json())
+      .do(
+      data => this.afterRequestGet(),
+      error => { console.log(error); }
+      );
+  }
 
-  add(section: Section): Observable<Section> {
+
+  add(Class: _class): Observable<_class> {
     this.beforeRequest();
-    const body = JSON.stringify(section);
+    const body = JSON.stringify(Class);
 
-    return this._http.post(`${this._sectionUrl}`, body, this._utils.makeOptions(this._headers))
+    return this._http.post(`${this._batchUrl}`, body, this._utils.makeOptions(this._headers))
       .map((res: Response) => res.json().data)
       .do(
       data => this.afterRequest(data),
@@ -44,19 +46,16 @@ export class SectionService {
       );
   }
 
-
-  
-
-  selectClass(val){
-   this.selectedClass = val
- }
-
-
   beforeRequest(): void {
     this._progress.start();
   }
 
-  afterRequest(data: Section): void {
+  afterRequest(data: Batch): void {
+    console.log(data)
+    this._progress.done();
+  }
+
+  afterRequestGet(): void {
     this._progress.done();
   }
 

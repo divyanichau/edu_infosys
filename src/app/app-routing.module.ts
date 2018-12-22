@@ -37,6 +37,11 @@ const routes: Routes = [
 	  	loadChildren: './guardian/guardian.module#GuardianModule'
 	   },
 
+	   {
+	  	path: 'class',
+	  	loadChildren: './class/class.module#ClassModule'
+	   },
+
        {
 	  	path: 'subject',
 	  	loadChildren: './subject/subject.module#SubjectModule'

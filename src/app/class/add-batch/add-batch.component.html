@@ -1,0 +1,119 @@
+<div class="body">
+ <div class="content-wrapper">
+    <div class="content">
+      <div class="page-header">
+         <ol class="breadcrumb breadcrumb" style="background-color:#aabad8;">
+              <li><a href="#"><i class="material-icons">home</i> Home</a></li>
+              <li><a href="#"><i class="material-icons">class</i>Class </a></li>
+              <li class="active"> Add Class</li>
+           <ul class="breadcrumb-elements">                          
+            </ul>
+            <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a><a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+            </ol> 
+            </div>
+          </div>
+          
+  <div class="row">
+      <form (ngSubmit)="onSubmit()" #classForm="ngForm">
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+              <div class="panel-heading" style="background-color:#aabad8;">
+                <h4 class="panel-title">Add Class</h4>
+              </div>
+              <br> 
+
+  <div class="panel-body">
+    <div class="row clearfix">
+            <div class="col-sm-6">
+                  <label for="class">Batch</label>
+                     <input type= "text" class="form-control" [(ngModel)]= "obj.name"  [ngModelOptions]="{standalone: true}">
+                      
+            </div>
+ 
+            <div class="col-sm-6">
+                  <label for="description">Description</label>
+                     <input type="text" class="form-control" [(ngModel)]="obj.description"  [ngModelOptions]="{standalone: true}"name="zip_code"  size="84" maxlength="45" placeholder="Enter Description " required>
+            </div>
+        </div>
+        <br>
+       
+  
+    <div class="form-group">
+            <button class="btn btn-block btn-lg waves-effect" style="background-color:#aabad8;" type="Submit"><b>Add Class</b></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<div class="content-wrapper">           
+    <div class="content">
+ <div class="form-group">
+    <div class="row">
+    <div class="col-sm-6">               
+        <div class="table-responsive">
+       <div class="panel panel-default">
+        <div class="panel-heading">                  
+            <div class="grid-view" id="item-grid">
+
+    <input 
+    type='text'
+    style='padding:8px;margin:15px auto;width:30%;' 
+    placeholder='search with name' 
+    (keyup)='updateFilter($event)'/>
+                              <ngx-datatable
+                                class="material"
+                                [rows]="class"
+                                [sortType]="'multi'"
+                                [columnMode]="'force'"
+                                [headerHeight]="50"
+                                [footerHeight]="50"
+                                [rowHeight]="'auto'"
+                                [limit]="10"
+                                >
+                                <ngx-datatable-column name="ID" prop="id">
+                                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                                </ngx-datatable-column>
+
+                                 <ngx-datatable-column name="Class" prop="name">
+                                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value"ngx-datatable-cell-template>{{value}}</ng-template>
+                                </ngx-datatable-column>
+
+                              <ngx-datatable-column name="Description" prop="description">
+                                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                                </ngx-datatable-column>
+                                
+                               <ngx-datatable-column name="Actions" sortable="false" prop="id">
+                                    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                                        Manage
+                                    </ng-template>
+                                    
+                                   <ng-template let-row="class" let-value="value" ngx-datatable-cell-template>
+                                        <a class="glyphicon glyphicon-eye-open" title="" href="/class/add-class/{{value}}"><img src="" alt=""></a>
+                                        <a class="glyphicon glyphicon-remove" title="" href=""><img src="" alt=""></a>
+                                      
+                                    </ng-template>
+                                    </ngx-datatable-column>                                                              
+                            </ngx-datatable>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
