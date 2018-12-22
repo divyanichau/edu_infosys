@@ -19,8 +19,8 @@ declare var numeral: any;
 export class AddBatchComponent implements OnInit , OnDestroy{
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
-  obj : _class;
-   classes = [];
+  batch : Batch;
+  classes = [];
 
   @ViewChild(DatatableComponent) table: DatatableComponent;
   constructor(
@@ -39,30 +39,30 @@ export class AddBatchComponent implements OnInit , OnDestroy{
   }
 
   onSubmit() {
-    this._utils.unsubscribeSub(this._sub);
-    console.log(this.obj)
-    this._sub = this._classService.add(this.obj)
-      .subscribe(data => {
-        console.log(data);
-        alert('Class added');
-      });
+    // this._utils.unsubscribeSub(this._sub);
+    // console.log(this.obj)
+    // this._sub = this._classService.add(this.obj)
+    //   .subscribe(data => {
+    //     console.log(data);
+    //     alert('Class added');
+    //   });
   }
 
 
    loadClasses() {
-    this._utils.unsubscribeSub(this._sub);
-    this._sub = this._classService.get().subscribe(
-      data => {
-        isArray(data) ? this.classes = data : data;
-        console.log(this.classes)
+    // this._utils.unsubscribeSub(this._sub);
+    // this._sub = this._classService.get().subscribe(
+    //   data => {
+    //     isArray(data) ? this.classes = data : data;
+    //     console.log(this.classes)
 
-      }
-    );
+    //   }
+    // );
   }
 
   initClass() {
     this._utils.unsubscribeSub(this._typeSub);
-    this.obj = new _class();
+    this.batch = new Batch();
   }
 
  

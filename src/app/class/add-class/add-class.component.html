@@ -2,7 +2,7 @@
  <div class="content-wrapper">
     <div class="content">
       <div class="page-header">
-         <ol class="breadcrumb breadcrumb" style="background-color:#aabad8;">
+         <ol class="breadcrumb breadcrumb" >
               <li><a href="#"><i class="material-icons">home</i> Home</a></li>
               <li><a href="#"><i class="material-icons">class</i>Class </a></li>
               <li class="active"> Add Class</li>
@@ -17,36 +17,38 @@
       <form (ngSubmit)="onSubmit()" #classForm="ngForm">
         <div class="col-sm-6">
             <div class="panel panel-default">
-              <div class="panel-heading" style="background-color:#aabad8;">
+              <div class="panel-heading" >
                 <h4 class="panel-title">Add Class</h4>
               </div>
               <br> 
 
-  <div class="panel-body">
-    <div class="row clearfix">
-            <div class="col-sm-6">
-                  <label for="class">Class</label>
-                     <input type= "text" class="form-control" [(ngModel)]= "obj.name"  [ngModelOptions]="{standalone: true}">
-                      
-            </div>
- 
-            <div class="col-sm-6">
-                  <label for="description">Description</label>
-                     <input type="text" class="form-control" [(ngModel)]="obj.description"  [ngModelOptions]="{standalone: true}"name="zip_code"  size="84" maxlength="45" placeholder="Enter Description " required>
-            </div>
-        </div>
-        <br>
+        <div class="panel-body">
+          <div class="row clearfix">
+                  <div class="col-sm-6">
+                        <label for="class">Class</label>
+                           <input type= "text" class="form-control" [(ngModel)]= "obj.name"  [ngModelOptions]="{standalone: true}">
+                            
+                  </div>
        
-  
-    <div class="form-group">
-            <button class="btn btn-block btn-lg waves-effect" style="background-color:#aabad8;" type="Submit"><b>Add Class</b></button>
+                  <div class="col-sm-6">
+                        <label for="description">Description</label>
+                           <input type="text" class="form-control" [(ngModel)]="obj.description"  [ngModelOptions]="{standalone: true}"name="zip_code"  size="84" maxlength="45" placeholder="Enter Description " required>
+                  </div>
+              </div>
+              <br>
+             
+        
+          <div class="form-group">
+                  <button class="btn btn-primary btn-lg"  type="Submit"><b>Add Class</b></button>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
 
 
+      </form>
 
+      
 <div class="content-wrapper">           
     <div class="content">
  <div class="form-group">

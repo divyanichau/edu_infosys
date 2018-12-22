@@ -34,17 +34,17 @@ export class BatchService {
   }
 
 
-  add(Class: _class): Observable<_class> {
-    this.beforeRequest();
-    const body = JSON.stringify(Class);
+  // add(Class: _class): Observable<_class> {
+  //   this.beforeRequest();
+  //   const body = JSON.stringify(Class);
 
-    return this._http.post(`${this._batchUrl}`, body, this._utils.makeOptions(this._headers))
-      .map((res: Response) => res.json().data)
-      .do(
-      data => this.afterRequest(data),
-      error => { console.log(error); }
-      );
-  }
+  //   return this._http.post(`${this._batchUrl}`, body, this._utils.makeOptions(this._headers))
+  //     .map((res: Response) => res.json().data)
+  //     .do(
+  //     data => this.afterRequest(data),
+  //     error => { console.log(error); }
+  //     );
+  // }
 
   beforeRequest(): void {
     this._progress.start();

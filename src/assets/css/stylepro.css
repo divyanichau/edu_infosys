@@ -1,0 +1,19 @@
+.body {
+
+ background-color:#e4e4e4;
+  }
+
+
+
+.panel {
+    margin-bottom: 20px;
+    border-color: #ddd;
+    color: #333;
+}
+
+.media-left, .media>.pull-left {
+    padding-right: 20px;
+}
+.media-left, .media-right, .media-body {
+    position: relative;
+}
