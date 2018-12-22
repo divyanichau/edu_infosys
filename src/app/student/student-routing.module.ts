@@ -4,7 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { StudentComponent } from './student.component';
 import { AddComponent } from './add/add.component';
 import { ListComponent} from './list/list.component';
-import { DetailComponent} from './detail/detail.component';
+import { ViewDetailComponent } from './view-detail/view-detail.component';
+
 import { IdcardComponent} from './idcard/idcard.component';
 
 const routes: Routes = [
@@ -23,10 +24,9 @@ const routes: Routes = [
     component: ListComponent,
   },
 
-
   {
     path: 'detail/:id',
-    component: DetailComponent,
+    component: ViewDetailComponent,
   },
 
   {
