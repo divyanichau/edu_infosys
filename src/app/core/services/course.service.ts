@@ -33,6 +33,19 @@ export class CourseService {
       );
   }
 
+  add(course: Course): Observable<Course> {
+    this.beforeRequest();
+    const body = JSON.stringify(course);
+
+    return this._http.post(`${this._courseUrl}`, body, this._utils.makeOptions(this._headers))
+      .map((res: Response) => res.json().data)
+      .do(
+      data => this.afterRequest(data),
+      error => { this.showError(error) }
+      );
+  }
+
+
 
   beforeRequest(): void {
     this._progress.start();
@@ -41,6 +54,15 @@ export class CourseService {
 
   afterRequestGet(): void {
     this._progress.done();
+  }
+
+  afterRequest(course: Course): void {
+    this._progress.done();
+  }
+
+  showError(error): void {
+    console.log(error);
+    alert(error._body);
   }
 
 }

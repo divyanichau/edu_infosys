@@ -50,9 +50,9 @@ export class BatchService {
 
 
 
-  selectClass(val){
-   this.selectedClass = val
- }
+ //  selectClass(val){
+ //   this.selectedClass = val
+ // }
 
 
   beforeRequest(): void {

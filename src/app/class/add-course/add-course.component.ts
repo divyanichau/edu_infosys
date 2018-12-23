@@ -21,7 +21,7 @@ export class AddCourseComponent implements OnInit , OnDestroy{
   private _typeSub: Subscription = undefined;
   obj : Course[];
   course = [];
-  obj_course = {};
+  obj_course : Course;
   selected_course: number;
 
 @ViewChild(DatatableComponent) table: DatatableComponent;
@@ -80,7 +80,7 @@ export class AddCourseComponent implements OnInit , OnDestroy{
 
   initCourse() {
     this._utils.unsubscribeSub(this._typeSub);
-    //this.course = new Course();
+    this.obj_course = new Course();
     //this.obj_course = {};
   }
 
