@@ -11,7 +11,7 @@ import { Batch } from '../classes/batch';
 
 @Injectable()
 export class BatchService {
-  private _batchUrl = `${new Config().api}/batch/`;
+  private _courseUrl = `${new Config().api}/course/batch/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
 
   constructor(
@@ -25,7 +25,7 @@ export class BatchService {
     //this.beforeRequest();
     const options = this._utils.makeOptions(this._headers);
 
-    return this._http.get(`${this._batchUrl}`, options)
+    return this._http.get(`${this._courseUrl}`, options)
       .map((res: Response) => res.json())
       .do(
       data => this.afterRequestGet(),
@@ -34,26 +34,10 @@ export class BatchService {
   }
 
 
-  // add(Class: _class): Observable<_class> {
-  //   this.beforeRequest();
-  //   const body = JSON.stringify(Class);
-
-  //   return this._http.post(`${this._batchUrl}`, body, this._utils.makeOptions(this._headers))
-  //     .map((res: Response) => res.json().data)
-  //     .do(
-  //     data => this.afterRequest(data),
-  //     error => { console.log(error); }
-  //     );
-  // }
-
   beforeRequest(): void {
     this._progress.start();
   }
 
-  afterRequest(data: Batch): void {
-    console.log(data)
-    this._progress.done();
-  }
 
   afterRequestGet(): void {
     this._progress.done();

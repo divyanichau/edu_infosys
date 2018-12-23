@@ -22,6 +22,15 @@ export class IdcardComponent implements OnInit , OnDestroy{
   private _typeSub: Subscription = undefined;
   student : Student;
   courses: Course[];
+  generate_id = false;
+
+  onChange(newValue){
+  this.reset_detail_value();
+}
+
+  reset_detail_value(){
+  this.generate_id = false;
+}
 
 
   constructor(
@@ -34,6 +43,7 @@ export class IdcardComponent implements OnInit , OnDestroy{
   ngOnInit() {
     this.initStudent();
     this.loadCourses();
+    this.reset_detail_value();
   }
 
   ngOnDestroy() {

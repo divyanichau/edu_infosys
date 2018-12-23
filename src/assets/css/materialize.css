@@ -34,7 +34,7 @@
 [type="radio"] + label:after {
   content: '';
   position: absolute;
-  left: 0;
+  left: 5;
   top: 0;
   margin: 4px;
   width: 16px;
@@ -131,8 +131,8 @@
    ========================================================================== */
 /* CUSTOM CSS CHECKBOXES */
 form p {
-  margin-bottom: 10px;
-  text-align: left;
+  margin-bottom: 5px;
+
 }
 
 form p:last-child {
