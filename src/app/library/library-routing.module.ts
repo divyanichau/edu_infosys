@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LibraryComponent } from './library.component';
 import { AddBookComponent } from './add-book/add-book.component';
+import { AddCategoryComponent} from './add-category/add-category.component';
+import { IssueBookComponent} from './issue-book/issue-book.component';
 
 const routes: Routes = [
 
@@ -13,13 +15,18 @@ const routes: Routes = [
       
 	 {
 	    path: "add-book",
-	    component:LibraryComponent,
-	    children: [
-	    	{path: '', component: AddBookComponent}
-	    
-	    ]
-	    
-	  }
+	    component:AddBookComponent,	    
+	  },
+
+	   {
+	    path: "add-category",
+	    component:AddCategoryComponent,	   	    
+	  },
+
+	   {
+	    path: "issue-book",
+	    component:IssueBookComponent,	    
+	  },
 	 
 	];
 

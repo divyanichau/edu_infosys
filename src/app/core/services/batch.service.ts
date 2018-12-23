@@ -11,7 +11,7 @@ import { Batch } from '../classes/batch';
 
 @Injectable()
 export class BatchService {
-  private _batchUrl = `${new Config().api}/batch/`;
+  private _batchUrl = `${new Config().api}/course/batch/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
 
   constructor(
@@ -21,7 +21,7 @@ export class BatchService {
     private _progress: NgProgress
   ) { }
 
-  get(): Observable<Batch[]> {
+  get(): Observable<Batch> {
     //this.beforeRequest();
     const options = this._utils.makeOptions(this._headers);
 
@@ -33,29 +33,31 @@ export class BatchService {
       );
   }
 
+  add(batch: Batch): Observable<Batch> {
+    this.beforeRequest();
+    const body = JSON.stringify(batch);
 
-  // add(Class: _class): Observable<_class> {
-  //   this.beforeRequest();
-  //   const body = JSON.stringify(Class);
+    return this._http.post(`${this._batchUrl}`, body, this._utils.makeOptions(this._headers))
+      .map((res: Response) => res.json().data)
+      .do(
+      data => this.afterRequest(data),
+      error => { console.log(error); }
+      );
+  }
 
-  //   return this._http.post(`${this._batchUrl}`, body, this._utils.makeOptions(this._headers))
-  //     .map((res: Response) => res.json().data)
-  //     .do(
-  //     data => this.afterRequest(data),
-  //     error => { console.log(error); }
-  //     );
-  // }
+
+  
+
+  selectClass(val){
+   this.selectedClass = val
+ }
+
 
   beforeRequest(): void {
     this._progress.start();
   }
 
   afterRequest(data: Batch): void {
-    console.log(data)
-    this._progress.done();
-  }
-
-  afterRequestGet(): void {
     this._progress.done();
   }
 
