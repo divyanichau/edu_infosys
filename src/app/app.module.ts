@@ -11,6 +11,11 @@ import { RegisterComponent } from './register/register.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { TopbarComponent } from './topbar/topbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AcademicComponent } from './academic/academic.component';
+import { CertificateComponent } from './academic/certificate/certificate.component';
+import { TimetableComponent } from './academic/timetable/timetable.component';
+import { AddComponent } from './academic/timetable/add/add.component';
+
 
 
 
@@ -20,7 +25,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     RegisterComponent,
     SidebarComponent,
     TopbarComponent,
-    DashboardComponent
+    DashboardComponent,
+    AcademicComponent,
+    CertificateComponent,
+    TimetableComponent,
+    AddComponent,
+    
    
   
    
