@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, Output, EventEmitter, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Router } from '@angular/router';
 import { isArray, isObject } from 'lodash';
 
 import { StudentService } from '../../core/services/student.service';
@@ -23,7 +24,8 @@ export class DetailComponent implements OnInit , OnDestroy{
   constructor(
     private _routes: ActivatedRoute,
     private _studentService: StudentService,
-    private _utils: UtilsService
+    private _utils: UtilsService,
+    private router: Router
     ) {}
 
   ngOnInit() {
@@ -35,15 +37,27 @@ export class DetailComponent implements OnInit , OnDestroy{
   }
 
 
-  async initStudent() {
+  initStudent() {
+
+    // this._utils.unsubscribeSub(this._sub);
+    // this._sub = this._studentService.find(this.router.snapshot.paramMap.get('id')).subscribe(
+    //   data => {
+    //     isArray(data) ? this.student = data : data;
+       
+
+    //   }
+    // );
+
+
     this._utils.unsubscribeSub(this._sub);
-    this._sub = await this._routes.paramMap
+    this._sub =  this._routes.paramMap
       .switchMap((params: ParamMap) => {
         return this._studentService.find(params.get('id'));
       })
       .subscribe(data => {
         if (isObject(data)) {
           this.student = data;
+          console.log(this.student);
         }
       });
   }

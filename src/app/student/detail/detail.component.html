@@ -1,46 +1,270 @@
-<div class="container">
-  <ul class="nav nav-tabs">
-    <li class="active">
-      <a data-toggle="tab" href="#profile">Profile</a>
-    </li>
-    <li>
-      <a data-toggle="tab" href="#detail">Details</a>
-    </li>
-
-  </ul>
-  <div class="tab-content">
-    <div>
-      <div id="profile" class="tab-pane fade in active">
-        <div class="col-md-6">
-          <h1>Student Detail Section</h1>
-          <ul class="nav nav-tabs">
-            <li class="active">
-              <a data-toggle="tab" href="#personal">personal Detail</a>
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+        <div class="header">
+          <h2>
+            Name of The Student
+          </h2>
+          <ul class="header-dropdown m-r--5">
+            <li class="dropdown">
+              <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                aria-expanded="false">
+                <i class="material-icons">more_vert</i>
+              </a>
+              <ul class="dropdown-menu pull-right">
+                <li><a href="javascript:void(0);">Action</a></li>
+                <li><a href="javascript:void(0);">Another action</a></li>
+                <li><a href="javascript:void(0);">Something else here</a></li>
+              </ul>
             </li>
-            <li><a data-toggle="tab" href="#contact">Contact Detail</a></li>
           </ul>
+        </div>
+        <div class="body">
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="profile" class="active">
+              <a href="#profile_with_icon_title" data-toggle="tab">
+                <i class="material-icons">person_pin</i> Profile
+              </a>
+            </li>
+            <li role="detail">
+              <a href="#detail_with_icon_title" data-toggle="tab">
+                <i class="material-icons">menu</i> Details
+              </a>
+            </li>
+  
+  
+          </ul>
+  
+          <!-- Tab panes -->
           <div class="tab-content">
-            <div id="personal" class="tab-pane fade">
-              <h3>Personal detail is under Construction</h3>
+            <div role="tabpanel" class="tab-pane fade in active" id="profile_with_icon_title">
+              <div class="row clearfix">
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                  <div class="card">
+                    <div class="panel-body">
+                      <ul class="nav nav-tabs" role="tablist">
+                        <li role="personal" class="active">
+                          <a href="#personal_with_icon_title" data-toggle="tab">
+                            <i class="material-icons">more_horiz</i> Personal
+                          </a>
+                        </li>
+                        <li role="contact">
+                          <a href="#contact_with_icon_title" data-toggle="tab">
+                            <i class="material-icons">call</i> Contact
+                          </a>
+                        </li>
+                        <li role="guardian">
+                          <a href="#guardian_with_icon_title" data-toggle="tab">
+                            <i class="material-icons">person</i> Guardian
+                          </a>
+                        </li>
+                        <li role="parents">
+                          <a href="#parents_with_icon_title" data-toggle="tab">
+                            <i class="material-icons">people</i> Parents
+                          </a>
+                        </li>
+                      </ul>
+                      <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active" id="personal_with_icon_title">
+                          <div class="row clearfix">
+  
+                            <div class="col-md-6">
+                              <p>
+                                <b>First Name</b>
+                              </p>
+                              <div class="input-group input-group-sm">
+                                <div class="form-line">
+                                  <input type="text" class="form-control" [(ngModel)]="student.user.first_name">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <p>
+                                <b>Last Name</b>
+                              </p>
+                              <div class="input-group input-group-sm">
+                                <div class="form-line">
+                                  <input type="text" class="form-control" [(ngModel)]="student.user.last_name">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3 ">
+                              <p>
+                                <b>Gender</b>
+                              </p>
+                              <select class="form-control show-tick" [(ngModel)]="student.user.gender">
+                                <option>Male</option>
+                                <option>Female</option>
+                              </select>
+  
+                            </div>
+                            <div class="col-md-6 col-md-offset-3">
+                              <p>
+                                <b>Email</b>
+                              </p>
+                              <div class="input-group input-group-sm">
+                                <div class="form-line">
+                                  <input type="email" class="form-control" [(ngModel)]="student.user.email">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <p>
+                                <b>Blood Group</b>
+                              </p>
+                              <div class="input-group input-group-lg">
+                                <div class="form-line">
+                                  <input type="text" class="form-control"  [(ngModel)]="student.user_detail.blood_group">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <p>
+                                <b>Nationality</b>
+                              </p>
+                              <div class="input-group input-group-sm">
+                                <div class="form-line">
+                                  <input type="text" class="form-control" [(ngModel)]="student.user_detail.nationality">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <p>
+                                <b>Mother Tongue</b>
+                              </p>
+                              <div class="input-group input-group-sm">
+                                <div class="form-line">
+                                  <input type="text" class="form-control" [(ngModel)]="student.user_detail.mother_tongue">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <p>
+                                <b>Religion</b>
+                              </p>
+                              <div class="input-group input-group-sm">
+                                <div class="form-line">
+                                  <input type="text" class="form-control" [(ngModel)]="student.user_detail.religion">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <p>
+                                <b>CitizenShip Number</b>
+                              </p>
+                              <div class="input-group input-group-sm">
+                                <div class="form-line">
+                                  <input type="text" class="form-control" [(ngModel)]="student.user_detail.citizenship_no">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <div role="tabpanel" class="tab-pane fade" id="contact_with_icon_title">
+                          <div class="row-clearfix">
+                              <div class="col-md-6">
+                                  <p>
+                                    <b>Province</b>
+                                  </p>
+                                  <div class="input-group input-group-lg">
+                                    <div class="form-line">
+                                      <input type="text" class="form-control"  [(ngModel)]="student.address_detail.province">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                      <b>District</b>
+                                    </p>
+                                    <div class="input-group input-group-lg">
+                                      <div class="form-line">
+                                        <input type="text" class="form-control"  [(ngModel)]="student.address_detail.district">
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <p>
+                                        <b>City</b>
+                                      </p>
+                                      <div class="input-group input-group-lg">
+                                        <div class="form-line">
+                                          <input type="text" class="form-control"  [(ngModel)]="student.address_detail.city">
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>
+                                          <b>Address</b>
+                                        </p>
+                                        <div class="input-group input-group-lg">
+                                          <div class="form-line">
+                                            <input type="text" class="form-control"  [(ngModel)]="student.address_detail.address">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-md-6">
+                                          <p>
+                                            <b>Phone</b>
+                                          </p>
+                                          <div class="input-group input-group-lg">
+                                            <div class="form-line">
+                                              <input type="text" class="form-control"  [(ngModel)]="student.phone.number">
+                                            </div>
+                                          </div>
+                                        </div>
+                          </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="guardian_with_icon_title">
+                          <b>Guardian Content</b>
+                          <p>
+                            Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri
+                            ut
+                            tation electram moderatius.
+                            Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent aliquid
+                            pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere gubergren
+                            sadipscing mel.
+                          </p>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="parents_with_icon_title">
+                          <b>Parents Content</b>
+                          <p>
+                            Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri
+                            ut
+                            tation electram moderatius.
+                            Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent aliquid
+                            pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere gubergren
+                            sadipscing mel.
+                          </p>
+                        </div>
+  
+                      </div>
+  
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                  <div class="card">
+                    <h1>profile Pic Section</h1>
+                  </div>
+                </div>
+              </div>
+           <button class="btn btn-primary">Update</button>
+           
             </div>
-            <div id="contat" class="tab-pane fade">
-              <h3>Contact detail is under Construction</h3>
+            <div role="tabpanel" class="tab-pane fade" id="detail_with_icon_title">
+              <b>Detail Content</b>
+              <p>
+                Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri ut tation
+                electram moderatius.
+                Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent aliquid
+                pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere gubergren
+                sadipscing mel.
+              </p>
             </div>
           </div>
-
         </div>
-        <div class="col-md-3">
-          <h1>Student Image Profile Section</h1>
-        </div>
-        <!-- <h3>Profile</h3>
-          <p>Student Profile Is Under Construction</p> -->
-      </div>
-      <div id="detail" class="tab-pane fade">
-        <h3>Details</h3>
-        <p>Student Detail is Under Construction</p>
       </div>
     </div>
-
   </div>
-
-</div>
