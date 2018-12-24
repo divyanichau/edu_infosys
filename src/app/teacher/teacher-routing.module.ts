@@ -5,7 +5,7 @@ import { TeacherComponent } from './teacher.component';
 import { AddComponent } from './add/add.component';
 import { ListComponent} from './list/list.component';
 import { DetailComponent} from './detail/detail.component';
-
+import { IdcardComponent} from './idcard/idcard.component';
 
 const routes: Routes = [
   {
@@ -26,6 +26,11 @@ const routes: Routes = [
 {
     path: 'detail/:id',
     component: DetailComponent,
+  },
+
+  {
+    path: 'idcard',
+    component: IdcardComponent,
   },
   
 ];

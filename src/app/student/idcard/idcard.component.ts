@@ -22,14 +22,14 @@ export class IdcardComponent implements OnInit , OnDestroy{
   private _typeSub: Subscription = undefined;
   student : Student;
   courses: Course[];
-  generate_id = false;
+  student_id = false;
 
   onChange(newValue){
   this.reset_detail_value();
 }
 
   reset_detail_value(){
-  this.generate_id = false;
+  this.student_id = false;
 }
 
 
@@ -73,6 +73,10 @@ export class IdcardComponent implements OnInit , OnDestroy{
   initStudent() {
     this._utils.unsubscribeSub(this._typeSub);
     this.student = new Student();
+  }
+
+  generate_card(){
+    this.student_id = true;
   }
 
  

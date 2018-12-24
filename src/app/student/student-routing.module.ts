@@ -9,6 +9,7 @@ import { ViewDetailComponent } from './view-detail/view-detail.component';
 import { IdcardComponent} from './idcard/idcard.component';
 
 const routes: Routes = [
+
   {
     path: '',
     component: StudentComponent
