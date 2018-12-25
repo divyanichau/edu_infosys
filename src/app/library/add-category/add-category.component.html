@@ -1,0 +1,118 @@
+<div class="content-wrapper">
+    <div class="content">
+      <div class="page-header">
+         <ol class="breadcrumb breadcrumb" style="background-color:#aabad8;">
+              <li><a href="#"><i class="material-icons">home</i> Home</a></li>
+              <li><a href="#"><i class="material-icons">class</i>Add Category</a></li>
+              <li class="active"> Add Category </li>
+           <ul class="breadcrumb-elements">                          
+            </ul>
+            <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a><a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+            </ol> 
+            <br>
+
+  <form (ngSubmit)="onSubmit()" #libraryForm="ngForm">
+    
+   <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+              <div class="panel-body">
+              <div class="panel-heading" style="background-color:#aabad8;">
+                <h4 class="panel-title">Add Book Category</h4>
+              </div>
+              <br> 
+
+  <div class="panel-body">
+   
+                  <label for="name">Category Name</label>
+                <input type="text" class="form-control" [(ngModel)]="obj_category.name" name="name"  size="84" maxlength="45" placeholder="Enter Category Name " required>
+            
+            <br>
+     
+         
+                  <label for="section_code">Section code</label>
+                     <input type="text" class="form-control" [(ngModel)]="obj_category.section_code" name="section_code"  size="84" maxlength="45" placeholder="Enter Section Code " required>
+            
+<br>
+<br>
+<div class="row">
+    <div class="form-group">
+            <button class="btn btn-info" style="background-color:#aabad8;" type="Submit"><b>Save</b></button>
+        </div>
+
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="content-wrapper">           
+    <div class="content">
+ <div class="form-group">
+    <div class="row">
+    <div class="col-sm-6">               
+        <div class="table-responsive">
+       <div class="panel panel-default">
+        <div class="panel-heading">                  
+            <div class="grid-view" id="item-grid">
+
+    <input 
+    type='text'
+    style='padding:8px;margin:15px auto;width:30%;' 
+    placeholder='search with name' 
+    (keyup)='updateFilter($event)'/>
+                              <ngx-datatable
+                                class="material"
+                                [rows]="library"
+                                [sortType]="'multi'"
+                                [columnMode]="'force'"
+                                [headerHeight]="50"
+                                [footerHeight]="50"
+                                [rowHeight]="'auto'"
+                                [limit]="10"
+                                >
+                              <ngx-datatable-column name="ID" prop="id">
+                                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                                </ngx-datatable-column>
+
+                              <ngx-datatable-column name="Book Category" prop="name">
+                                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value"ngx-datatable-cell-template>{{value}}</ng-template>
+                                </ngx-datatable-column>
+
+                              <ngx-datatable-column name="Section Code" prop="section_code">
+                                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                                </ngx-datatable-column>
+                                
+                               <ngx-datatable-column name="Actions" sortable="false" prop="id">
+                                    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                                        Manage
+                                    </ng-template>
+                                    
+                             <ng-template let-row="library" let-value="value" ngx-datatable-cell-template>
+                                      
+                            <a class="glyphicon glyphicon-eye-open" title="" href="/accounting/library/add-category/{{value}}"><img src="" alt=""></a>
+                                        <a class="glyphicon glyphicon-remove" title="" href=""><img src="" alt=""></a>
+                                      
+                                    </ng-template>
+                                    </ngx-datatable-column>                                                              
+                            </ngx-datatable>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+       
+   
+
+
+
+
+
+
+
+
