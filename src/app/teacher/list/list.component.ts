@@ -55,6 +55,7 @@ export class ListComponent implements OnInit , OnDestroy{
         this.rows = this.teachers;
         this.temp = [...this.teachers];
       }
+      
     );
   }
 

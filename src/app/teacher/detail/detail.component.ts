@@ -36,17 +36,29 @@ export class DetailComponent implements OnInit , OnDestroy{
   }
 
 
-  async initTeacher() {
+   initTeacher() {
     this._utils.unsubscribeSub(this._sub);
-    this._sub = await this._routes.paramMap
+    this._sub =  this._routes.paramMap
       .switchMap((params: ParamMap) => {
         return this._teacherService.find(params.get('id'));
       })
       .subscribe(data => {
         if (isObject(data)) {
           this.teacher = data;
+          console.log(this.teacher);
         }
       });
+    // this._utils.unsubscribeSub(this._sub);
+    // this._sub =  this._routes.paramMap
+    //   .switchMap((params: ParamMap) => {
+    //     return this._teacherService.find(params.get('id'));
+    //   })
+    //   .subscribe(data => {
+    //     if (isObject(data)) {
+    //       this.teacher = data;
+    //       console.log(this.teacher);
+    //     }
+    //   });
   }
 
 

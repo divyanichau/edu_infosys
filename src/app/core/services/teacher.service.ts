@@ -22,16 +22,28 @@ export class TeacherService {
     private _progress: NgProgress
   ) { }
 
-find(id: string): Observable<Teacher> {
-     //this.beforeRequest();
+  find(id: string): Observable<Teacher> {
+    //this.beforeRequest();
 
-   return this._http.get(`${this._teacherUrl}${id}/`, this._utils.makeOptions(this._headers))
-     .map((res: Response)=> res.json())
-     .do(
-     data => this.afterGetRequest(),
-     error => { console.log(error); }
+    return this._http.get(`${this._teacherUrl}${id}/`, this._utils.makeOptions(this._headers))
+      .map((res: Response) => res.json())
+      .do(
+      data => this.afterGetRequest(),
+      error => { console.log(error); }
       );
-   } 
+  }
+
+
+// find(id: string): Observable<Teacher> {
+//      //this.beforeRequest();
+
+//    return this._http.get(`${this._teacherUrl}${id}/`, this._utils.makeOptions(this._headers))
+//      .map((res: Response)=> res.json())
+//      .do(
+//      data => this.afterGetRequest(),
+//      error => { console.log(error); }
+//       );
+//    } 
 
 
  get(): Observable<Teacher[]> {
@@ -70,6 +82,7 @@ find(id: string): Observable<Teacher> {
 
   afterGetRequest(): void {
     this._progress.done();
+  
   }
 
   showError(error): void {

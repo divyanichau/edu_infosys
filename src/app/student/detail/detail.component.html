@@ -73,7 +73,7 @@
                               <p>
                                 <b>First Name</b>
                               </p>
-                              <div class="input-group input-group-sm">
+                              <div class="input-group input-group-lg">
                                 <div class="form-line">
                                   <input type="text" class="form-control" [(ngModel)]="student.user.first_name">
                                 </div>
@@ -83,7 +83,7 @@
                               <p>
                                 <b>Last Name</b>
                               </p>
-                              <div class="input-group input-group-sm">
+                              <div class="input-group input-group-lg">
                                 <div class="form-line">
                                   <input type="text" class="form-control" [(ngModel)]="student.user.last_name">
                                 </div>
@@ -93,9 +93,10 @@
                               <p>
                                 <b>Gender</b>
                               </p>
-                              <select class="form-control show-tick" [(ngModel)]="student.user.gender">
-                                <option>Male</option>
-                                <option>Female</option>
+                              <select class="form-control show-tick" name="gender" [(ngModel)]="student.user.gender" >
+                                <option value="1">Male</option>
+                                <option value="2">Female</option>
+                                <option value="3">Others</option>
                               </select>
   
                             </div>
@@ -103,7 +104,7 @@
                               <p>
                                 <b>Email</b>
                               </p>
-                              <div class="input-group input-group-sm">
+                              <div class="input-group input-group-lg">
                                 <div class="form-line">
                                   <input type="email" class="form-control" [(ngModel)]="student.user.email">
                                 </div>
@@ -114,7 +115,7 @@
                                 <b>Blood Group</b>
                               </p>
                               <div class="input-group input-group-lg">
-                                <div class="form-line">
+                                <div class="form-line"> 
                                   <input type="text" class="form-control"  [(ngModel)]="student.user_detail.blood_group">
                                 </div>
                               </div>
@@ -123,7 +124,7 @@
                               <p>
                                 <b>Nationality</b>
                               </p>
-                              <div class="input-group input-group-sm">
+                              <div class="input-group input-group-lg">
                                 <div class="form-line">
                                   <input type="text" class="form-control" [(ngModel)]="student.user_detail.nationality">
                                 </div>
@@ -133,7 +134,7 @@
                               <p>
                                 <b>Mother Tongue</b>
                               </p>
-                              <div class="input-group input-group-sm">
+                              <div class="input-group input-group-lg">
                                 <div class="form-line">
                                   <input type="text" class="form-control" [(ngModel)]="student.user_detail.mother_tongue">
                                 </div>
@@ -143,7 +144,7 @@
                               <p>
                                 <b>Religion</b>
                               </p>
-                              <div class="input-group input-group-sm">
+                              <div class="input-group input-group-lg">
                                 <div class="form-line">
                                   <input type="text" class="form-control" [(ngModel)]="student.user_detail.religion">
                                 </div>
@@ -153,7 +154,7 @@
                               <p>
                                 <b>CitizenShip Number</b>
                               </p>
-                              <div class="input-group input-group-sm">
+                              <div class="input-group input-group-lg">
                                 <div class="form-line">
                                   <input type="text" class="form-control" [(ngModel)]="student.user_detail.citizenship_no">
                                 </div>
