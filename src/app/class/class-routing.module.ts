@@ -5,6 +5,8 @@ import { ClassComponent } from './class.component';
 import { AddClassComponent } from './add-class/add-class.component';
 import { AddSectionComponent} from './add-section/add-section.component';
 import { AddBatchComponent} from './add-batch/add-batch.component';
+import { AddCourseComponent} from './add-course/add-course.component';
+
 
 const routes: Routes = [
   {
@@ -24,6 +26,10 @@ const routes: Routes = [
  {
     path: 'add-batch',
     component: AddBatchComponent,
+  },
+   {
+    path: 'add-course',
+    component: AddCourseComponent,
   }
   
 ];

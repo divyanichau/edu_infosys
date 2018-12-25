@@ -47,20 +47,15 @@ const routes: Routes = [
 	  	loadChildren: './subject/subject.module#SubjectModule'
 	   }, 
 
-	    // {
-	  //	path: 'transport',
-	  	//loadChildren: './transport/transport.module#TransportModule'
-	 //  }, 
+       // {
+       // 	path: 'accounting',
+       // 	loadChildren: './accounting/accounting.module#AccountingModule'
+       // },
 
-       {
-       	path: 'accounting',
-       	loadChildren: './accounting/accounting.module#AccountingModule'
-       },
-
-       {
-	  	path: 'library',
-	  	loadChildren: './library/library.module#LibraryModule'
-	   },
+    //    {
+	  	// path: 'library',
+	  	// loadChildren: './library/library.module#LibraryModule'
+	   // },
 
 	];
 
