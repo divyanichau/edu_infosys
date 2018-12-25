@@ -10,6 +10,7 @@ import { IdcardComponent} from './idcard/idcard.component';
 import { DetailComponent } from './detail/detail.component';
 
 const routes: Routes = [
+
   {
     path: '',
     component: StudentComponent

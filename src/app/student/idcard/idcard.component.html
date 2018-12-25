@@ -43,22 +43,19 @@
                       <option value="horizontal">Horizontal ID Card</option>
                       <option value="vertical">Vertical ID Card</option>
                     </select>                               
-            </div>
-            
-
-              
+            </div>    
                 
          <div class="form-group col-sm-2">
-                <label> &nbsp; &nbsp;</label>
-                  <p> &nbsp;&nbsp;
-                    <a href="javascript:viewstudent()" class="btn btn-info">Generate ID Card</a>
-                 </p> 
+              <label   name="student_id"> &nbsp; &nbsp;  </label>
+                <p> &nbsp;&nbsp;
+                  <a (click)="generate_card()" class="btn btn-info">Generate ID Card</a>
+                </p> 
          </div>
-        </div>
-     </div>
-   </div>
+      </div>
+    </div>
+  </div>
 
-      <div class="col-sm-12">
+      <div class="col-sm-12"   *ngIf="student_id">
         <div class="row" id="student_idcard" >
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -75,12 +72,12 @@
                        <div class="box1"> 
                          <div class="tie1">
                            <h1>Demo School</h1>
-                            <img src="/banner/01062018114152.png" alt="">
+                            <img src="/../assets/images/01062018114152.png" alt="">
                           </div>
 
                             <h1 class="id"><b>STUDENT ID CARD</b></h1>
-                            <img src="/banner/01062018035833.jpg" alt="">
-                            <p class="rname" style="margin-left: 48px !important;">   NAME:Anna Maria Bobby&nbsp;&nbsp;</p>
+                            <img src="/../assets/images/user.jpg" alt="">
+                            <p class="rname" style="margin-left: 48px !important;">   NAME:John Bobby&nbsp;&nbsp;</p>
                             <p class="postitle">  COURSE:STD I 16th Batch&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                             <p class="postitle">  DOB:2010-07-07</p><br>
                             </div>
