@@ -85,18 +85,18 @@ reset_detail_value(){
       });
   }
 
-loadCourse() {
+ loadCourse() {
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._courseService.get().subscribe(
       data => {
         isArray(data) ? this._course = data : data;
         console.log(this._course)
         this.selected_course = this._course[0].id;
-        //this.section_course = this._course[0];
-            
+        //console.log(this.section)
       }
     );
   }
+
 
     updateFilter(event) {
     const val = event.target.value.toLowerCase();

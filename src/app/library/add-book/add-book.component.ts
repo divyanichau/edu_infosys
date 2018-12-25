@@ -20,7 +20,7 @@ export class AddBookComponent implements OnInit , OnDestroy{
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
 
-  selected_lib : number;
+  selected_lib = 0;
   category : BookCategory[];
   add_book = {};
   book : AddBook;
