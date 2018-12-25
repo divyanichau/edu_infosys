@@ -21,9 +21,11 @@ export class AddBatchComponent implements OnInit , OnDestroy{
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
 
-  batch : Batch;
+  batch : Batch = new Batch();
   selected_course: number;
   _course: Course[];
+  add_batch: Batch[];
+ 
 
   @ViewChild(DatatableComponent) table: DatatableComponent;
   constructor(
@@ -32,6 +34,10 @@ export class AddBatchComponent implements OnInit , OnDestroy{
     private _utils: UtilsService,
     private router: Router
     ) { }
+
+   rows = [];
+    temp = [];
+  
   
   ngOnInit() {
     this.initBatch();
@@ -67,11 +73,34 @@ export class AddBatchComponent implements OnInit , OnDestroy{
 
   initBatch() {
     this._utils.unsubscribeSub(this._typeSub);
-  this.batch = new Batch();
+ // this._utils.unsubscribeSub(this._sub);
+ //    this._sub = this._batchService.get().subscribe(
+ //      data => {
+ //        isArray(data) ? this.add_batch = data : data;
+ //        this.rows = this.add_batch;
+ //        this.temp = [...this.add_batch];
+
+ //      }
+ //    );
+ //  }
+  
+  
+ //   updateFilter(event) {
+ //    const val = event.target.value.toLowerCase();
+
+ //    // filter our data
+ //    const temp = this.temp.filter(function(d) {
+ //      return d.name.toLowerCase().indexOf(val) !== -1 || !val;
+ //    });
+
+ //    // update the rows
+ //    this.rows = temp;
+ //    // Whenever the filter changes, always go back to the first page
+ //    this.table.offset = 0;
   }
 
- 
 }
+
 
 
 

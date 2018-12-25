@@ -28,7 +28,7 @@ export class BatchService {
     //this.beforeRequest();
     const options = this._utils.makeOptions(this._headers);
 
-    return this._http.get(`${this._courseUrl}`, options)
+    return this._http.get(`${this._batchUrl}`, options)
       .map((res: Response) => res.json())
       .do(
       data => this.afterRequestGet(),
@@ -47,12 +47,7 @@ export class BatchService {
       error => { console.log(error); }
       );
   }
-
-
-
- //  selectClass(val){
- //   this.selectedClass = val
- // }
+ 
 
 
   beforeRequest(): void {
@@ -64,9 +59,17 @@ export class BatchService {
     this._progress.done();
   }
 
-  afterRequest(data: Batch): void {
-
+  afterRequest(batch: Batch): void {
     this._progress.done();
+  }
+
+ afterGetRequest(): void {
+    this._progress.done();
+  }
+
+  showError(error): void {
+    console.log(error);
+    alert(error._body);
   }
 
 }

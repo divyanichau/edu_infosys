@@ -19,9 +19,10 @@ declare var numeral: any
 export class AddCourseComponent implements OnInit , OnDestroy{
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
+
   obj : Course[];
   course = [];
-  obj_course : Course;
+  obj_course : Course = new Course();
   selected_course: number;
 
 @ViewChild(DatatableComponent) table: DatatableComponent;
@@ -33,7 +34,6 @@ export class AddCourseComponent implements OnInit , OnDestroy{
  
   rows = [];
     temp = [];
-  
   
   ngOnInit() {
     this.initCourse();
@@ -65,27 +65,37 @@ export class AddCourseComponent implements OnInit , OnDestroy{
     );
   }
 
+   
 
-    updateFilter(event) {
+  initCourse() {
+   this._utils.unsubscribeSub(this._sub);
+    this._sub = this._courseService.get().subscribe(
+      data => {
+        isArray(data) ? this.obj = data : data;
+        this.rows = this.obj;
+        this.temp = [...this.obj];
+
+      }
+    );
+  }
+  
+  
+   updateFilter(event) {
     const val = event.target.value.toLowerCase();
+
     // filter our data
     const temp = this.temp.filter(function(d) {
       return d.name.toLowerCase().indexOf(val) !== -1 || !val;
     });
+
     // update the rows
     this.rows = temp;
     // Whenever the filter changes, always go back to the first page
     this.table.offset = 0;
   }
 
-  initCourse() {
-    this._utils.unsubscribeSub(this._typeSub);
-    this.obj_course = new Course();
-    //this.obj_course = {};
-  }
-
- 
 }
+
 
 
 

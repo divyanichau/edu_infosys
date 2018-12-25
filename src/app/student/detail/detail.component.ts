@@ -46,10 +46,5 @@ export class DetailComponent implements OnInit , OnDestroy{
           this.student = data;
         }
       });
-  }
-
-
-
-
- 
+  } 
 }

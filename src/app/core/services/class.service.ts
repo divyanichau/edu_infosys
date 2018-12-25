@@ -21,6 +21,17 @@ export class ClassService {
     private _progress: NgProgress
   ) { }
 
+   find(id: string): Observable<_class> {
+    //this.beforeRequest();
+
+   return this._http.get(`${this._classUrl}${id}/`, this._utils.makeOptions(this._headers))
+      .map((res: Response) => res.json())
+      .do(
+      data => this.afterGetRequest(),
+      error => { console.log(error); }
+      );
+  }
+
   get(): Observable<_class[]> {
     //this.beforeRequest();
     const options = this._utils.makeOptions(this._headers);
@@ -33,7 +44,6 @@ export class ClassService {
       );
   }
 
-
   add(Class: _class): Observable<_class> {
     this.beforeRequest();
     const body = JSON.stringify(Class);
@@ -42,21 +52,32 @@ export class ClassService {
       .map((res: Response) => res.json().data)
       .do(
       data => this.afterRequest(data),
-      error => { console.log(error); }
+      error => { this.showError(error) }
       );
   }
+
+
 
   beforeRequest(): void {
     this._progress.start();
   }
 
-  afterRequest(data: _class): void {
-    console.log(data)
-    this._progress.done();
-  }
 
   afterRequestGet(): void {
     this._progress.done();
+  }
+
+  afterRequest(Class: _class): void {
+    this._progress.done();
+  }
+
+ afterGetRequest(): void {
+    this._progress.done();
+  }
+
+  showError(error): void {
+    console.log(error);
+    alert(error._body);
   }
 
 }
