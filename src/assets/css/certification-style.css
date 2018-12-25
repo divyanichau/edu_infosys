@@ -1,0 +1,28 @@
+.certificate-border{
+    width:800px; 
+    height:600px; 
+    padding:20px; 
+    text-align:center; 
+    border: 10px solid #787878
+}
+.second-border{
+    width:750px;
+    height:550px; 
+    padding:20px; 
+    text-align:center; 
+    border: 5px solid #787878
+}
+.header-text{
+    font-size:50px;
+    font-family: 'Lobster', cursive; 
+    font-weight:bold
+}
+.para-text{
+    font-size: 25px;
+}
+.s-no{
+    margin-left: 0%
+}
+.name{
+  font-size: 30px;
+}

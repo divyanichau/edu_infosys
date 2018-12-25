@@ -45,20 +45,19 @@ export class DetailComponent implements OnInit , OnDestroy{
       .subscribe(data => {
         if (isObject(data)) {
           this.teacher = data;
-          console.log(this.teacher);
+         // console.log(this.teacher);
         }
       });
-    // this._utils.unsubscribeSub(this._sub);
-    // this._sub =  this._routes.paramMap
-    //   .switchMap((params: ParamMap) => {
-    //     return this._teacherService.find(params.get('id'));
-    //   })
-    //   .subscribe(data => {
-    //     if (isObject(data)) {
-    //       this.teacher = data;
-    //       console.log(this.teacher);
-    //     }
-    //   });
+
+  }
+
+  OnUpdate(){
+    this._utils.unsubscribeSub(this._sub);
+    this._sub = this._teacherService.update(this.teacher)
+      .subscribe(data => {
+        console.log(data);
+        alert('teacher added');
+      });
   }
 
 

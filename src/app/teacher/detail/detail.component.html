@@ -56,14 +56,10 @@
                         </li>
                         <li role="guardian">
                           <a href="#guardian_with_icon_title" data-toggle="tab">
-                            <i class="material-icons">person</i> Guardian
+                            <i class="material-icons">work</i> Qualification
                           </a>
                         </li>
-                        <li role="parents">
-                          <a href="#parents_with_icon_title" data-toggle="tab">
-                            <i class="material-icons">people</i> Parents
-                          </a>
-                        </li>
+                     
                       </ul>
                       <div class="tab-content">
                         <div role="tabpanel" class="tab-pane fade in active" id="personal_with_icon_title">
@@ -85,7 +81,7 @@
                               </p>
                               <div class="input-group input-group-lg">
                                 <div class="form-line">
-                                  <input type="text" class="form-control" [(ngModel)]="student.user.last_name">
+                                  <input type="text" class="form-control" [(ngModel)]="teacher.user.last_name">
                                 </div>
                               </div>
                             </div>
@@ -93,7 +89,7 @@
                               <p>
                                 <b>Gender</b>
                               </p>
-                              <select class="form-control show-tick" name="gender" [(ngModel)]="student.user.gender" >
+                              <select class="form-control show-tick" name="gender" [(ngModel)]="teacher.user.gender" >
                                 <option value="1">Male</option>
                                 <option value="2">Female</option>
                                 <option value="3">Others</option>
@@ -106,57 +102,7 @@
                               </p>
                               <div class="input-group input-group-lg">
                                 <div class="form-line">
-                                  <input type="email" class="form-control" [(ngModel)]="student.user.email">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <p>
-                                <b>Blood Group</b>
-                              </p>
-                              <div class="input-group input-group-lg">
-                                <div class="form-line"> 
-                                  <input type="text" class="form-control"  [(ngModel)]="student.user_detail.blood_group">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <p>
-                                <b>Nationality</b>
-                              </p>
-                              <div class="input-group input-group-lg">
-                                <div class="form-line">
-                                  <input type="text" class="form-control" [(ngModel)]="student.user_detail.nationality">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <p>
-                                <b>Mother Tongue</b>
-                              </p>
-                              <div class="input-group input-group-lg">
-                                <div class="form-line">
-                                  <input type="text" class="form-control" [(ngModel)]="student.user_detail.mother_tongue">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <p>
-                                <b>Religion</b>
-                              </p>
-                              <div class="input-group input-group-lg">
-                                <div class="form-line">
-                                  <input type="text" class="form-control" [(ngModel)]="student.user_detail.religion">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <p>
-                                <b>CitizenShip Number</b>
-                              </p>
-                              <div class="input-group input-group-lg">
-                                <div class="form-line">
-                                  <input type="text" class="form-control" [(ngModel)]="student.user_detail.citizenship_no">
+                                  <input type="email" class="form-control" [(ngModel)]="teacher.user.email">
                                 </div>
                               </div>
                             </div>
@@ -171,7 +117,7 @@
                                   </p>
                                   <div class="input-group input-group-lg">
                                     <div class="form-line">
-                                      <input type="text" class="form-control"  [(ngModel)]="student.address_detail.province">
+                                      <input type="text" class="form-control"  [(ngModel)]="teacher.address_detail.province">
                                     </div>
                                   </div>
                                 </div>
@@ -181,7 +127,7 @@
                                     </p>
                                     <div class="input-group input-group-lg">
                                       <div class="form-line">
-                                        <input type="text" class="form-control"  [(ngModel)]="student.address_detail.district">
+                                        <input type="text" class="form-control"  [(ngModel)]="teacher.address_detail.district">
                                       </div>
                                     </div>
                                   </div>
@@ -191,7 +137,7 @@
                                       </p>
                                       <div class="input-group input-group-lg">
                                         <div class="form-line">
-                                          <input type="text" class="form-control"  [(ngModel)]="student.address_detail.city">
+                                          <input type="text" class="form-control"  [(ngModel)]="teacher.address_detail.city">
                                         </div>
                                       </div>
                                     </div>
@@ -201,7 +147,7 @@
                                         </p>
                                         <div class="input-group input-group-lg">
                                           <div class="form-line">
-                                            <input type="text" class="form-control"  [(ngModel)]="student.address_detail.address">
+                                            <input type="text" class="form-control"  [(ngModel)]="teacher.address_detail.address">
                                           </div>
                                         </div>
                                       </div>
@@ -211,14 +157,14 @@
                                           </p>
                                           <div class="input-group input-group-lg">
                                             <div class="form-line">
-                                              <input type="text" class="form-control"  [(ngModel)]="student.phone.number">
+                                              <input type="text" class="form-control"  [(ngModel)]="teacher.phone_detail.number">
                                             </div>
                                           </div>
                                         </div>
                           </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="guardian_with_icon_title">
-                          <b>Guardian Content</b>
+                          <b>Qualification Content</b>
                           <p>
                             Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri
                             ut
@@ -228,17 +174,7 @@
                             sadipscing mel.
                           </p>
                         </div>
-                        <div role="tabpanel" class="tab-pane fade" id="parents_with_icon_title">
-                          <b>Parents Content</b>
-                          <p>
-                            Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri
-                            ut
-                            tation electram moderatius.
-                            Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent aliquid
-                            pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere gubergren
-                            sadipscing mel.
-                          </p>
-                        </div>
+                      
   
                       </div>
   
@@ -251,19 +187,10 @@
                   </div>
                 </div>
               </div>
-           <button class="btn btn-primary">Update</button>
+           <button class="btn btn-primary" (click)="OnUpdate()">Update</button>
            
             </div>
-            <div role="tabpanel" class="tab-pane fade" id="detail_with_icon_title">
-              <b>Detail Content</b>
-              <p>
-                Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri ut tation
-                electram moderatius.
-                Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent aliquid
-                pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere gubergren
-                sadipscing mel.
-              </p>
-            </div>
+            
           </div>
         </div>
       </div>

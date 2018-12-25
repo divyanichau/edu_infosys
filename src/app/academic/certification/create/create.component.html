@@ -1,0 +1,41 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Generate Certificate </h3>
+  </div>
+
+  <div class="panel-body">
+    <div class="form-group">
+
+      <label class="col-sm-2 control-label" for="fullname">Full Name</label>
+
+      <div class="col-md-8">
+        <input type="text" id="fullname" class="form-control">
+      </div>
+    </div>
+
+
+  </div>
+
+
+  <div class="panel-footer">
+    <button type="submit" class="btn btn-primary" (click)="GenerateCertificate()">Generate</button>
+  </div>
+</div>
+
+<div class="panel panel-primary" *ngIf="!isclicked">
+  <div class="certificate-border ">
+    <div class="second-border">
+          <span class="header-text">Certification Of Completion</span><br><br>
+          <span class="para-text"><i>This is to certificate that</i></span><br><br>
+        <span class="name">Dinesh Kc</span><br/><br/>
+        <span class="para-text">Has Completed The Course</span><br/><br/>
+          <span class="name">Bsc.CSit</span><br/><br/>
+          <span class="name">With The Score Of 555</span><br/><br/><br/><br/>
+          <span class="name">Dated</span><br>
+          <span class="name">3065-65-7</span><br>
+        </div>
+  </div>
+</div>
+
+
+

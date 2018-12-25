@@ -15,18 +15,18 @@ declare var numeral: any;
   templateUrl: './detail.component.html',
   styleUrls: []
 })
-  
-export class DetailComponent implements OnInit , OnDestroy{
+
+export class DetailComponent implements OnInit, OnDestroy {
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
-  student : Student = new Student();
+  student: Student = new Student();
 
   constructor(
     private _routes: ActivatedRoute,
     private _studentService: StudentService,
     private _utils: UtilsService,
     private router: Router
-    ) {}
+  ) { }
 
   ngOnInit() {
     this.initStudent();
@@ -43,14 +43,14 @@ export class DetailComponent implements OnInit , OnDestroy{
     // this._sub = this._studentService.find(this.router.snapshot.paramMap.get('id')).subscribe(
     //   data => {
     //     isArray(data) ? this.student = data : data;
-       
+
 
     //   }
     // );
 
 
     this._utils.unsubscribeSub(this._sub);
-    this._sub =  this._routes.paramMap
+    this._sub = this._routes.paramMap
       .switchMap((params: ParamMap) => {
         return this._studentService.find(params.get('id'));
       })
@@ -60,10 +60,17 @@ export class DetailComponent implements OnInit , OnDestroy{
           console.log(this.student);
         }
       });
+
+  }
+
+  OnClick() {
+    this._utils.unsubscribeSub(this._sub);
+    this._sub = this._studentService.update(this.student)
+      .subscribe(data => {
+        console.log(data);
+        alert('student added');
+      });
   }
 
 
-
-
- 
 }

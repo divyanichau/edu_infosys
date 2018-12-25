@@ -71,6 +71,20 @@ export class TeacherService {
   }
 
 
+  update(teacher: Teacher): Observable<Teacher> {
+    this.beforeRequest();
+    const body = JSON.stringify(teacher);
+
+    return this._http.put(`${this._teacherUrl}`, body, this._utils.makeOptions(this._headers))
+      .map((res: Response) => res.json().data)
+      .do(
+      data => this.afterRequest(data),
+      error => { this.showError(error) }
+      );
+  }
+
+
+
   beforeRequest(): void {
     this._progress.start();
   }
