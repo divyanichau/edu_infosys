@@ -18,4 +18,81 @@
                             </h2>
                         </div>
                         <br>
+
+      <div class="panel-body">
+       <div class="row clearfix">
+           <div class="col-sm-4">
+              <label for="reg_input" class="req">Faculty </label>
+                 <select class="form-control" [(ngModel)]="teacher.faculty" name="faculty" required>
+                    <option value="">Select Faculty</option>
+                    <option *ngFor="let f of faculty" [ngValue]="f.id">{{f.name}}</option>
+                  </select>
+           </div>    
    
+            <div class="col-sm-4" id="type">
+                <label for="reg_input" class="req">Teacher Type*</label>
+                   <select class="form-control" name="Teacher[type]" id="Teacher_type">
+                      <option value="prompt">Select Type</option>
+                      <option value="professor">Professor</option>
+                      <option value="Din">Din</option>
+                    </select>                               
+            </div> 
+          </div>
+          <br>
+
+        <div class="row clearfix">
+            <div class="col-sm-4">
+                  <label for="qualification">Qualifiaction</label>
+                     <input type="text" class="form-control" [(ngModel)]="teacher.user.qualification"  [ngModelOptions]="{standalone: true}" name="qualification"  size="84" minlength="25" placeholder="" required>
+        </div>
+
+            <div class="col-sm-4">
+                  <label for="date_of_joining">Date Of Joining</label>
+                     <input type="date" class="form-control" [(ngModel)]="teacher.user.date_of_joining" [ngModelOptions]="{standalone: true}" name="date_of_joining"  size="84" minlength="25" placeholder="" required>
+               </div>
+             </div>
+                
+         <div class="form-group col-sm-2">
+              <label   name="teacher_id"> &nbsp; &nbsp;  </label>
+                <p> &nbsp;&nbsp;
+                  <a (click)="generate_card()" class="btn btn-info">Generate ID Card</a>
+                </p> 
+         </div>
+  </div>
+
+      <div class="col-sm-12"   *ngIf="teacher_id">
+        <div class="row" id="teacher_idcard" >
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Teacher ID Card</h4>
+                    <p>  
+                      <input type="button" onclick="printDiv('print')" value="Print ID Card" class="btn btn-danger">
+                    </p>
+                </div>
+                <div id="print">
+                  <div class="panel-body" id="stuidcard">
+                    <div class="col-sm-6">
+                     <div id="new1">
+                      <div id="holder1">
+                       <div class="box1"> 
+                         <div class="tie1">
+                           <h1>Demo School</h1>
+                            <img src="/../assets/images/01062018114152.png" alt="">
+                          </div>
+
+                            <h1 class="id"><b>TEACHER ID CARD</b></h1>
+                            <img src="/../assets/images/user.jpg" alt="">
+                            <p class="rname" style="margin-left: 48px !important;">   NAME:John Bobby&nbsp;&nbsp;</p>
+                            <p class="postitle">  FACULTY:Economics&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                             <p class="postitle">  Qualification: M.A.</p><br>
+                             <p class="postitle">  Issue Date:2010-07-09</p><br>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                          </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                                       

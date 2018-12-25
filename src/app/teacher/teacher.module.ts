@@ -22,6 +22,7 @@ import { DetailComponent  }  from './detail/detail.component';
 import { IdcardComponent} from './idcard/idcard.component';
 
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -32,7 +33,7 @@ import { IdcardComponent} from './idcard/idcard.component';
 
     TeacherRoutingModule
   ],
-  providers: [CourseService,  TeacherService, ClassService, SectionService, UtilsService],
+  providers: [CourseService,  TeacherService, ClassService, SectionService,  UtilsService],
   declarations: [TeacherComponent,  AddComponent,ListComponent, DetailComponent, IdcardComponent
    ]
 })

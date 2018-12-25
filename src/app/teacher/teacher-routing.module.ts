@@ -7,6 +7,7 @@ import { ListComponent} from './list/list.component';
 import { DetailComponent} from './detail/detail.component';
 import { IdcardComponent} from './idcard/idcard.component';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -33,6 +34,8 @@ const routes: Routes = [
     component: IdcardComponent,
   },
   
+
+
 ];
 
 @NgModule({
