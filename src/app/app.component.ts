@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  constructor(
+    private toastr: ToastrService
+    ) {
+  		this.toastr.info('Welcome to EduInfoSys!', 'BTech',
+    	{timeOut: 4000});
+     }
+
+
 }
