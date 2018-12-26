@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 import 'moment/min/locales.min';
 import { Headers, RequestOptions } from '@angular/http';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { isUndefined } from 'lodash';
 
 declare var $: any;

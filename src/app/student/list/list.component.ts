@@ -1,10 +1,9 @@
 import { Component, OnInit, OnDestroy, Output, EventEmitter, ViewChild } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { isArray } from 'lodash';
 
 import {DatatableComponent}  from '@swimlane/ngx-datatable';
-
 
 import { StudentService } from '../../core/services/student.service';
 import { Student } from '../../core/classes/student';
@@ -24,6 +23,11 @@ export class ListComponent implements OnInit , OnDestroy{
   students : Student[];
   total_students : number;
 
+
+  rows: any[] = [];
+  temp: any[] = [];
+  editing = {};
+
   @ViewChild(DatatableComponent) table: DatatableComponent;
 
   constructor(
@@ -32,14 +36,16 @@ export class ListComponent implements OnInit , OnDestroy{
     private router: Router
     ) {
 
+
+
      }
 
-    rows = [];
-    temp = [];
+    
 
   ngOnInit() {
 
     this.initStudent();
+
   }
 
   ngOnDestroy() {
@@ -72,5 +78,13 @@ export class ListComponent implements OnInit , OnDestroy{
     this.rows = temp;
     // Whenever the filter changes, always go back to the first page
     this.table.offset = 0;
+  }
+
+  updateValue(event, cell, rowIndex) {
+    console.log('inline editing rowIndex', rowIndex)
+    this.editing[rowIndex + '-' + cell] = false;
+    this.rows[rowIndex][cell] = event.target.value;
+    this.rows = [...this.rows];
+    console.log('UPDATED!', this.rows[rowIndex][cell]);
   }
 }

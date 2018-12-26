@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule }   from '@angular/forms';
 
+
 import { Config } from './shared/classes/app';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,8 +36,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    
-    //AngularSlickgridModule.forRoot(),  
+
   ],
   providers: [Config],
   bootstrap: [AppComponent]

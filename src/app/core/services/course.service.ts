@@ -1,8 +1,10 @@
+
+import {map, tap} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
+
 import { NgProgress } from 'ngx-progressbar';
 import { UtilsService } from '../../shared/services/utils.service';
 import { Config } from '../../shared/classes/app';
@@ -24,36 +26,36 @@ export class CourseService {
   find(id: string): Observable<Course> {
     //this.beforeRequest();
 
-    return this._http.get(`${this._courseUrl}${id}/`, this._utils.makeOptions(this._headers))
-      .map((res: Response) => res.json())
-      .do(
+    return this._http.get(`${this._courseUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json()),
+      tap(
       data => this.afterGetRequest(),
       error => { console.log(error); }
-      );
+      ),);
   }
 
   get(): Observable<Course[]> {
     //this.beforeRequest();
     const options = this._utils.makeOptions(this._headers);
 
-    return this._http.get(`${this._courseUrl}`, options)
-      .map((res: Response) => res.json())
-      .do(
+    return this._http.get(`${this._courseUrl}`, options).pipe(
+      map((res: Response) => res.json()),
+      tap(
       data => this.afterRequestGet(),
       error => { console.log(error); }
-      );
+      ),);
   }
 
   add(course: Course): Observable<Course> {
     this.beforeRequest();
     const body = JSON.stringify(course);
 
-    return this._http.post(`${this._courseUrl}`, body, this._utils.makeOptions(this._headers))
-      .map((res: Response) => res.json().data)
-      .do(
+    return this._http.post(`${this._courseUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json().data),
+      tap(
       data => this.afterRequest(data),
       error => { this.showError(error) }
-      );
+      ),);
   }
 
 

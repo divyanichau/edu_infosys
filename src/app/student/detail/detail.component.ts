@@ -1,5 +1,7 @@
+
+import {switchMap} from 'rxjs/operators';
 import { Component, OnInit, OnDestroy, Output, EventEmitter, ViewChild } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Router } from '@angular/router';
 import { isArray, isObject } from 'lodash';
@@ -50,10 +52,10 @@ export class DetailComponent implements OnInit, OnDestroy {
 
 
     this._utils.unsubscribeSub(this._sub);
-    this._sub = this._routes.paramMap
-      .switchMap((params: ParamMap) => {
+    this._sub = this._routes.paramMap.pipe(
+      switchMap((params: ParamMap) => {
         return this._studentService.find(params.get('id'));
-      })
+      }))
       .subscribe(data => {
         if (isObject(data)) {
           this.student = data;
