@@ -10,12 +10,12 @@ import { TimetableComponent } from './timetable/timetable.component';
 const routes: Routes = [
   {
     path: '',
-    component: TimetableComponent
+    component: AcademicComponent
     
   },
   {
     path: 'timetable',
-    component: TimetableComponent,
+    loadChildren: './timetable/timetable.module#TimeTableModule'
   },
   {
     path:'certification',

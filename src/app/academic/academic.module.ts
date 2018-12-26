@@ -10,7 +10,6 @@ import { TimetableService } from '../core/services/timetable.service';
 import { UtilsService } from '../shared/services/utils.service';
 import { AcademicComponent } from './academic.component';
 import { CreateComponent } from './certification/create/create.component';
-import { TimetableComponent} from './timetable/timetable.component';
 
 
 
@@ -26,7 +25,7 @@ import { TimetableComponent} from './timetable/timetable.component';
     AcademicRoutingModule
   ],
   providers: [TimetableService , UtilsService],
-  declarations: [CreateComponent, AcademicComponent,TimetableComponent]
+  declarations: [CreateComponent, AcademicComponent]
 
 })
 

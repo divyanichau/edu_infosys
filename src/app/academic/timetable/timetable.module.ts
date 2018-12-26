@@ -10,6 +10,7 @@ import { TimetableService } from '../../core/services/timetable.service';
 
 import { TimeTableRoutingModule } from './timetable-routing.module';
 import { TimetableComponent } from './timetable.component';
+import { AddTimetableComponent } from './add-timetable/add-timetable.component';
 //import { AddTimetableComponent} from './add-timetable/add-timetable.component';
 
 @NgModule({
@@ -23,6 +24,6 @@ import { TimetableComponent } from './timetable.component';
     TimeTableRoutingModule
   ],
   providers: [TimetableService, UtilsService],
-  declarations: [TimetableComponent]
+  declarations: [TimetableComponent, AddTimetableComponent]
 })
 export class TimeTableModule { }
