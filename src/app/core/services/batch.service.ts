@@ -8,11 +8,13 @@ import { Observable } from 'rxjs';
 import { NgProgress } from 'ngx-progressbar';
 import { UtilsService } from '../../shared/services/utils.service';
 import { Config } from '../../shared/classes/app';
+import { Batch } from '../classes/batch';
 import { Course } from '../classes/course';
 
 
 @Injectable()
-export class CourseService {
+export class BatchService {
+  private _batchUrl = `${new Config().api}/course/batch/`;
   private _courseUrl = `${new Config().api}/course/course/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
 
@@ -23,10 +25,10 @@ export class CourseService {
     private _progress: NgProgress
   ) { }
 
-  find(id: string): Observable<Course> {
+  find(id: string): Observable<Batch> {
     //this.beforeRequest();
 
-    return this._http.get(`${this._courseUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
+    return this._http.get(`${this._batchUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
       map((res: Response) => res.json()),
       tap(
       data => this.afterGetRequest(),
@@ -34,11 +36,11 @@ export class CourseService {
       ),);
   }
 
-  get(): Observable<Course[]> {
+  get(): Observable<Batch[]> {
     //this.beforeRequest();
     const options = this._utils.makeOptions(this._headers);
 
-    return this._http.get(`${this._courseUrl}`, options).pipe(
+    return this._http.get(`${this._batchUrl}`, options).pipe(
       map((res: Response) => res.json()),
       tap(
       data => this.afterGetRequest(),
@@ -46,11 +48,11 @@ export class CourseService {
       ),);
   }
 
-  add(course: Course): Observable<Course> {
+  add(batch : Batch): Observable<Batch> {
     this.beforeRequest();
-    const body = JSON.stringify(course);
+    const body = JSON.stringify(batch);
 
-    return this._http.post(`${this._courseUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
+    return this._http.post(`${this._batchUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
       map((res: Response) => res.json().data),
       tap(
       data => this.afterRequest(data),
@@ -58,11 +60,11 @@ export class CourseService {
       ),);
   }
 
- update(course:Course): Observable<Course> {
+ update(batch:Batch): Observable<Batch> {
     this.beforeRequest();
-    const body = JSON.stringify(course);
+    const body = JSON.stringify(batch);
 
-    return this._http.put(`${this._courseUrl}$course.{id}/`, body, this._utils.makeOptions(this._headers)).pipe(
+    return this._http.put(`${this._batchUrl}$batch.{id}/`, body, this._utils.makeOptions(this._headers)).pipe(
       map((res: Response) => res.json().data),
       tap(
       data => this.afterRequest(data),
@@ -75,7 +77,7 @@ export class CourseService {
     this._progress.start();
   }
 
-  afterRequest(data: Course): void {
+  afterRequest(data: Batch): void {
     this._progress.done();
     alert('course added!!')
   }

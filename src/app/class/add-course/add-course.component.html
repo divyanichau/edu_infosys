@@ -61,9 +61,10 @@
     <div class="content">
  <div class="form-group">
     <div class="row">
-    <div class="col-sm-6">                     
-       <div class="table-responsive"> 
-       <div class="panel panel-default">                    
+    <div class="col-sm-6"> 
+     <div class="panel panel-default">
+              <div class="panel-heading" >                    
+       <div class="table-responsive">                       
               <div class="row">              
                 <div class="col-xs-6 col-md-6">
                   <div class="input-group">
@@ -77,9 +78,9 @@
                 </div>
               </div>
               <!-- <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='search with name'
-                                (keyup)='updateFilter($event)'
+                                (keyup)='updagitteFilter($event)'
                               /> -->
-              <ngx-datatable class="material" [rows]="rows" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+              <ngx-datatable class="material" [rows]="course" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
                 [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
 
                 <ngx-datatable-column name="ID" prop="id">
@@ -119,7 +120,7 @@
                   <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                     Manage
                   </ng-template>
-                  <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                  <ng-template let-row="course" let-value="value" ngx-datatable-cell-template>
                     <a class="glyphicon glyphicon-eye-open" title="" href="/class/add-course/{{value}}"><img src="" alt=""></a>
                     <a class="glyphicon glyphicon-trash left-icon" title="" href="/class/add-course/delete/{{value}}"><img src="" alt=""></a>
                   </ng-template>
@@ -132,6 +133,8 @@
     </div>
   </div>
 </div>
+
+
 
 
 

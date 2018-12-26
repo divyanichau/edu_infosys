@@ -47,74 +47,82 @@
 
 
       
-
-      
 <div class="content-wrapper">           
     <div class="content">
  <div class="form-group">
     <div class="row">
-    <div class="col-sm-6">               
-        <div class="table-responsive">
-       <div class="panel panel-default">
-        <div class="panel-heading">                  
-            <div class="grid-view" id="item-grid">
-
-    <input 
-    type='text'
-    style='padding:8px;margin:15px auto;width:30%;' 
-    placeholder='search with name' 
-    (keyup)='updateFilter($event)'/>
-                              <ngx-datatable
-                                class="material"
-                                [rows]="class"
-                                [sortType]="'multi'"
-                                [columnMode]="'force'"
-                                [headerHeight]="50"
-                                [footerHeight]="50"
-                                [rowHeight]="'auto'"
-                                [limit]="10"
-                                >
-                                <ngx-datatable-column name="ID" prop="id">
-                                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                                </ngx-datatable-column>
-
-                                 <ngx-datatable-column name="Class" prop="name">
-                                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value"ngx-datatable-cell-template>{{value}}</ng-template>
-                                </ngx-datatable-column>
-
-                              <ngx-datatable-column name="Description" prop="description">
-                                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                                </ngx-datatable-column>
-                                
-                               <ngx-datatable-column name="Actions" sortable="false" prop="id">
-                                    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-                                        Manage
-                                    </ng-template>
-                                    
-                                   <ng-template let-row="class" let-value="value" ngx-datatable-cell-template>
-                                        <a class="glyphicon glyphicon-eye-open" title="" href="/class/add-class/{{value}}"><img src="" alt=""></a>
-                                        <a class="glyphicon glyphicon-remove" title="" href=""><img src="" alt=""></a>
-                                      
-                                    </ng-template>
-                                    </ngx-datatable-column>                                                              
-                            </ngx-datatable>
-                        </div>
+    <div class="col-sm-6"> 
+     <div class="panel panel-default">
+              <div class="panel-heading" >                    
+       <div class="table-responsive">                       
+              <div class="row">              
+                <div class="col-xs-6 col-md-6">
+                  <div class="input-group">
+                    <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter Name" id="txtSearch" />
+                    <div class="input-group-btn">
+                      <button class="btn btn-primary" type="submit">
+                        <span class="glyphicon glyphicon-search"></span>
+                      </button>
                     </div>
+                  </div>
                 </div>
+              </div>
+              <!-- <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='search with name'
+                                (keyup)='updagitteFilter($event)'
+                              /> -->
+              <ngx-datatable class="material" [rows]="list" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+                [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+
+                <ngx-datatable-column name="ID" prop="id">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+                <!-- <ngx-datatable-column name="Name" prop="user.first_name">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column> -->
+                <ngx-datatable-column name=" Class" prop="name">
+                  <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                    <span
+                      title="Double click to edit"
+                      (dblclick)="editing[rowIndex + '-name'] = true"
+                      *ngIf="!editing[rowIndex + '-name']">
+                      {{value}}
+                    </span>
+                    <input
+                      autofocus
+                      (blur)="updateValue($event, 'name', rowIndex)"
+                      *ngIf="editing[rowIndex+ '-name']"
+                      type="text"
+                      [value]="value"
+                    />
+                  </ng-template>
+                </ngx-datatable-column>
+
+
+                <ngx-datatable-column name="Description" prop="description">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Actions" sortable="false" prop="id">
+                  <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                    Manage
+                  </ng-template>
+                  <ng-template let-row="list" let-value="value" ngx-datatable-cell-template>
+                    <a class="glyphicon glyphicon-eye-open" title="" href="/class/add-class/{{value}}"><img src="" alt=""></a>
+                    <a class="glyphicon glyphicon-trash left-icon" title="" href="/class/add-class/delete/{{value}}"><img src="" alt=""></a>
+                  </ng-template>
+                </ngx-datatable-column>
+              </ngx-datatable>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
-
-
-
-
-
-
-
+</div>
 
 
 

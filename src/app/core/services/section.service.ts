@@ -46,13 +46,21 @@ export class SectionService {
       ),);
   }
 
+   get(): Observable<Section[]> {
+    //this.beforeRequest();
+    const options = this._utils.makeOptions(this._headers);
 
-  
-
-  selectClass(val){
-   this.selectedClass = val
- }
-
+    return this._http.get(`${this._sectionUrl}`, options).pipe(
+      map((res: Response) => res.json()),
+      tap(
+      data => this.afterGetRequest(),
+      error => { console.log(error); }
+      ),);
+  }
+ 
+ //  selectClass(val){
+ //   this.selectedClass = val
+ // }
 
   beforeRequest(): void {
     this._progress.start();
@@ -60,6 +68,17 @@ export class SectionService {
 
   afterRequest(data: Section): void {
     this._progress.done();
+    alert('course added!!')
+  }
+
+  afterGetRequest(): void {
+    this._progress.done();
+  }
+
+  showError(error): void {
+    console.log(error);
+    alert(error._body);
   }
 
 }
+
