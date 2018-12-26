@@ -49,7 +49,13 @@ const routes: Routes = [
        {
 	  	path: 'subject',
 	  	loadChildren: './subject/subject.module#SubjectModule'
-	   }, 
+	   },
+
+	   {
+	   	path:'academic',
+	   	loadChildren: './academic/academic.module#AcademicModule'
+	   },
+
 
        // {
        // 	path: 'accounting',

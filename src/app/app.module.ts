@@ -13,6 +13,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { TopbarComponent } from './topbar/topbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
+// import { AcademicComponent } from './academic/academic.component';
+
+
 
 
 @NgModule({
@@ -21,18 +24,19 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     RegisterComponent,
     SidebarComponent,
     TopbarComponent,
-    DashboardComponent
+    DashboardComponent,
+    
    
   
    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-
-
     HttpClientModule,
-    FormsModule  
+    FormsModule,
+    AppRoutingModule,
+    
+    //AngularSlickgridModule.forRoot(),  
   ],
   providers: [Config],
   bootstrap: [AppComponent]
