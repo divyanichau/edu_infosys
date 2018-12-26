@@ -7,14 +7,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateComponent implements OnInit {
   isclicked : boolean=true;
-
-  constructor() { }
+  stdName :boolean=true;
+  course:boolean=true;
+  constructor(
+   
+    
+  ) { }
 
   ngOnInit() {
+  
   }
-
+  OnChangeCourse(){
+    console.log('hkhkh')
+    console.log(this.stdName);
+    this.stdName=false;
+   
+  }
+  OnChangeStd(){
+    alert("course selected")
+    this.course=false;
+  }
   GenerateCertificate(){
-    this.isclicked = !this.isclicked;
-
-  }
+    console.log(this.stdName)
+    if(this.stdName==false && this.course==false){
+      this.isclicked = !this.isclicked;
+    }
+   }
 }

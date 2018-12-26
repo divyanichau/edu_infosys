@@ -1,0 +1,250 @@
+[33mcommit 532a544309996ec1196bdfbcdb641a6d5dbe0aa3[m[33m ([m[1;36mHEAD -> [m[1;32mdev3[m[33m)[m
+Author: nepaliwhitehat <dineshkc.mail@gmail.com>
+Date:   Mon Dec 24 16:16:22 2018 +0545
+
+    Student Detail
+
+[33mcommit f296889906b6b1e049ed5dc89ac8aa31e6792f70[m
+Author: Ashish Belwase <belwasetech@Ashishs-MacBook-Pro.local>
+Date:   Sat Dec 22 13:55:57 2018 +0545
+
+    updated homepage designs, fix add batch form issue
+
+[33mcommit 07e15b621e7a6e4726c7e6d3e97454d69dc7279d[m
+Merge: efc3aeb eb9d714
+Author: Ashish Belwase <belwasetech@Ashishs-MacBook-Pro.local>
+Date:   Sat Dec 22 10:14:41 2018 +0545
+
+    Merge remote-tracking branch 'origin/dev4' into dev2
+
+[33mcommit efc3aeb21fd79b23386d9461296fc01978edcec4[m
+Merge: 8357e50 0d2123e
+Author: Ashish Belwase <belwasetech@Ashishs-MacBook-Pro.local>
+Date:   Sat Dec 22 10:13:22 2018 +0545
+
+    merged dev3
+
+[33mcommit 0d2123e2853b55012875ea6ac28b93632072465d[m
+Author: nepaliwhitehat <dineshkc.mail@gmail.com>
+Date:   Fri Dec 21 16:58:21 2018 +0545
+
+    Incomplete student view
+
+[33mcommit eb9d714fc15440d6cb95534d1cef7c096795d0cb[m
+Author: sonika <sans.4lygrl@gmail.com>
+Date:   Fri Dec 21 16:27:51 2018 +0545
+
+    today files
+
+[33mcommit 8357e5007b4e8826822c04b59b1b0788567d9a78[m
+Author: divyanichau <divyanichaudhary123gmail.com>
+Date:   Fri Dec 21 16:26:32 2018 +0545
+
+    today progress
+
+[33mcommit 722b6042ae19daab2fbb8fab8c413919c0b6a074[m
+Author: Ashish Belwase <belwasetech@Ashishs-MacBook-Pro.local>
+Date:   Thu Dec 20 21:19:12 2018 +0545
+
+    cleanup designs
+
+[33mcommit 61b1664eefc0cec4a1f4b6ffe0466f22360b1ebc[m
+Author: nepaliwhitehat <dineshkc.mail@gmail.com>
+Date:   Thu Dec 20 14:08:36 2018 +0545
+
+    initial push
+
+[33mcommit b8caad0bbff6128172f745605f2970d94a6ad049[m[33m ([m[1;31morigin/dev2[m[33m, [m[1;32mdev2[m[33m)[m
+Author: divyanichau <divyanichaudhary123gmail.com>
+Date:   Thu Dec 20 13:43:39 2018 +0545
+
+    update
+
+[33mcommit 2a570a2d2dc178184488b01d961a516d4245c7f6[m
+Author: divyanichau <divyanichaudhary123gmail.com>
+Date:   Fri Oct 5 13:21:47 2018 +0545
+
+    guardian list
+
+[33mcommit b243434e8db08b4e131d45e33203d89a631ea520[m
+Author: divyanichau <divyanichaudhary123gmail.com>
+Date:   Sun Sep 30 16:57:19 2018 +0545
+
+    guardian add, transport
+
+[33mcommit 2addde768fec2f6db573425212c3335a68a58043[m
+Author: divyanichau <divyanichaudhary123gmail.com>
+Date:   Fri Sep 21 15:47:16 2018 +0545
+
+    student, teachter detail
+
+[33mcommit bb3c8d94f3b130bbbebcd9da7a0e8106bd378d83[m
+Author: divyanichau <divyanichaudhary123gmail.com>
+Date:   Thu Sep 20 13:40:40 2018 +0545
+
+    teacher
+
+[33mcommit b1accd7a0891b77375e919ee7f8751bb9ddde44f[m
+Author: divyanichau <divyanichaudhary123gmail.com>
+Date:   Wed Sep 19 13:03:40 2018 +0545
+
+    teacher
+
+[33mcommit cb75db948697718427b2b8923d5d1b9af73e5861[m
+Merge: 03856ec 775cc1a
+Author: Ashish Belwase <belwasetech@Ashishs-MacBook-Pro.local>
+Date:   Mon Sep 17 13:16:08 2018 +0545
+
+    merged dev2: teacher list
+
+[33mcommit 775cc1a25d5d18b9cbebc69a6ec6b0c0d86c6ac7[m
+Author: divyanichau <divyanichaudhary123gmail.com>
+Date:   Mon Sep 17 13:11:47 2018 +0545
+
+    teacher list
+
+[33mcommit 03856ecf072089b38a31a9fda06e3c09933e2d75[m
+Author: Ashish Belwase <belwasetech@Ashishs-MacBook-Pro.local>
+Date:   Mon Sep 10 18:56:58 2018 +0545
+
+    student list, ngx-datatable, student detail
+
+[33mcommit 15611ee95bc8143148a10d6971987bddaae7a00f[m
+Author: divyanichau <divyanichaudhary123gmail.com>
+Date:   Mon Sep 10 16:00:31 2018 +0545
+
+    today progress
+
+[33mcommit baed79c0ff180a4170ea032348895cc4f114331d[m
+Author: Ashish Belwase <belwasetech@Ashishs-MacBook-Pro.local>
+Date:   Mon Sep 10 11:52:52 2018 +0545
+
+    student list, some other tweaks
+
+[33mcommit 87a5804a9c4a5e62211250339c4c629cd712cf98[m
+Author: Ashish Belwase <belwasetech@Ashishs-MacBook-Pro.local>
+Date:   Fri Sep 7 10:27:44 2018 +0545
+
+    section _class
+
+[33mcommit 05e94b9bbf444e44a88e62ab2612822a60e4cd9e[m
+Merge: 8253788 94dc01c
+Author: Ashish Belwase <belwasetech@Ashishs-MacBook-Pro.local>
+Date:   Fri Sep 7 10:13:03 2018 +0545
+
+    Merge remote-tracking branch 'origin/dev2' into dev1
+
+[33mcommit 825378858fb0bcb4baa264f5cbf4799659e84c68[m
+Author: Ashish Belwase <belwasetech@Ashishs-MacBook-Pro.local>
+Date:   Fri Sep 7 10:12:46 2018 +0545
+
+    section updates
+
+[33mcommit 94dc01c9a07c6e5840bf46b6d4a198dcb778898d[m
+Author: Ashish Belwase <belwasetech@Ashishs-MacBook-Pro.local>
+Date:   Fri Sep 7 09:11:31 2018 +0545
+
+    fixed student list route, commented all other in sidebar
+
+[33mcommit be2a8765a544adb01cb2038e4beb89dbd3e24b72[m
+Author: divyanichau <divyanichaudhary123gmail.com>
+Date:   Thu Sep 6 16:54:34 2018 +0545
+
+    frontend
+
+[33mcommit cc719e9a0a3f299705d1c8ec16b407c50b75b1b4[m
+Author: sonika <sans.4lygrl@gmail.com>
+Date:   Thu Sep 6 16:48:59 2018 +0545
+
+    unsolved files
+
+[33mcommit b30fc17e90dd6b6d8d412ad7eb4f35b7e5b80cc2[m
+Author: sonika <sans.4lygrl@gmail.com>
+Date:   Thu Sep 6 12:26:38 2018 +0545
+
+    Added section
+
+[33mcommit f0822632a5e047774d3b8dc6b21f8e2af16af423[m
+Author: sonika <sans.4lygrl@gmail.com>
+Date:   Thu Sep 6 12:16:50 2018 +0545
+
+    file
+
+[33mcommit 7037545cd89c17fabb4f3450fd9f7dcf8783ba50[m
+Author: sonika <sans.4lygrl@gmail.com>
+Date:   Thu Sep 6 12:08:39 2018 +0545
+
+    edited file
+
+[33mcommit 0491204855cc49b2a1ba22d18f391559dd5f3168[m
+Author: sonika <sans.4lygrl@gmail.com>
+Date:   Thu Sep 6 11:30:38 2018 +0545
+
+    classes
+
+[33mcommit 04ae7c72f143fa2549a2dee3a750efc36d2d9cb8[m
+Author: Ashish Belwase <belwasetech@Ashishs-MacBook-Pro.local>
+Date:   Thu Sep 6 08:23:45 2018 +0545
+
+    merged and date fix
+
+[33mcommit 037d55c0162002bf1b5be71d1cb2284e16e2012a[m
+Merge: 54a0210 809f7cb
+Author: Ashish Belwase <belwasetech@Ashishs-MacBook-Pro.local>
+Date:   Thu Sep 6 08:19:55 2018 +0545
+
+    Merge remote-tracking branch 'origin/dev1' into dev2
+
+[33mcommit 54a021049753de1f48caf8fb6aeec5f8f537fdbd[m
+Author: divyanichau <divyanichaudhary123gmail.com>
+Date:   Wed Sep 5 16:47:13 2018 +0545
+
+    frontend
+
+[33mcommit 809f7cbb9c58c782726817305ca555404d33b947[m
+Author: sonika <sans.4lygrl@gmail.com>
+Date:   Wed Sep 5 16:46:23 2018 +0545
+
+    class-section files
+
+[33mcommit 091d7d77ab278b9fc9321e502728b35f88e24cbe[m
+Author: Ashish Belwase <belwasetech@Ashishs-MacBook-Pro.local>
+Date:   Wed Sep 5 09:47:39 2018 +0545
+
+    added new models for student admission
+
+[33mcommit 5d7d39015c7228f0fab29d32bf58ba503600b98f[m
+Author: Ashish Belwase <belwasetech@Ashishs-MacBook-Pro.local>
+Date:   Tue Sep 4 09:03:44 2018 +0545
+
+    huge code refactor, code standards, service,model ..etc
+
+[33mcommit 1d469da98a3c3c6c2b83a641a7d614793b61cc43[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: divyanichau <divyanichaudhary123gmail.com>
+Date:   Mon Sep 3 16:31:49 2018 +0545
+
+    frontend
+
+[33mcommit 90707f003a6c076c93fa5ecdf4af30b483bc9e5b[m
+Author: divyanichau <divyanichaudhary123gmail.com>
+Date:   Wed Aug 8 16:41:16 2018 +0545
+
+    edited files
+
+[33mcommit 2f3d94363df28fba799c883a0e0da19e7a18ffc3[m
+Author: divyanichau <divyanichaudhary123gmail.com>
+Date:   Wed Aug 8 12:39:40 2018 +0545
+
+    edited files
+
+[33mcommit 36cf45276c4bb16d7640af7b87472c5c0b3060d4[m
+Author: divyanichau <divyanichaudhary123gmail.com>
+Date:   Tue Aug 7 16:39:35 2018 +0545
+
+    edit files
+
+[33mcommit 81c068a504fb5f15f9ea044cdeb363b6452e7b59[m
+Author: divyanichau <divyanichaudhary123gmail.com>
+Date:   Sun Aug 5 15:38:22 2018 +0545
+
+    all files

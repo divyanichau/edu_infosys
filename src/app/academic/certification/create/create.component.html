@@ -2,18 +2,24 @@
   <div class="panel-heading">
     <h3 class="panel-title">Generate Certificate </h3>
   </div>
-
   <div class="panel-body">
-    <div class="form-group">
-
-      <label class="col-sm-2 control-label" for="fullname">Full Name</label>
-
-      <div class="col-md-8">
-        <input type="text" id="fullname" class="form-control">
+    <div class="row clearfix">
+      <div class="col-sm-4">
+        <label for="reg_input" class="req" >Course </label>
+        <select class="form-control" (change)="OnChangeCourse()">
+          <option value="0">Select Course</option>
+          <option  value="1">Bsc.csit</option>
+        </select>
       </div>
+      <div class="col-sm-4">
+          <label for="reg_input" class="req">Student Name </label>
+          <select class="form-control"  (change)="OnChangeStd()">
+            <option value="">Select name</option>
+            <option  value="1">Dinesh Kc</option>
+          </select>
+        </div>
+
     </div>
-
-
   </div>
 
 
@@ -26,17 +32,33 @@
 
   <div class="certificate-border ">
     <div class="second-border">
-          <span class="header-text">Certification Of Completion</span><br><br>
-          <span class="para-text"><i>This is to certificate that</i></span><br><br>
-        <span class="name">Dinesh Kc</span><br/><br/>
-        <span class="para-text">Has Completed The Course</span><br/><br/>
-          <span class="name">Bsc.CSit</span><br/><br/>
-          <span class="name">With The Score Of 555</span><br/><br/><br/><br/>
-          <span class="name">Dated</span><br>
-          <span class="name">3065-65-7</span><br>
-        </div>
+
+      <span class="header-text">Certification Of Completion</span><br><br>
+      <span class="para-text"><i>This is to certificate that</i></span><br><br>
+      <span class="name"><strong>Dinesh Kc</strong></span> &nbsp;&nbsp;&nbsp; <span class="para-text">Son Of
+        &nbsp;&nbsp;&nbsp;</span> <span class="para-text"><strong>Dip Bahadur Kc</strong></span><br />
+      <span class="para-text">Resident of &nbsp;&nbsp;&nbsp; </span><span class="para-text"> <strong>Salyan</strong></span>
+      &nbsp;&nbsp;&nbsp;
+      <span class="para-text">For the last &nbsp;&nbsp; </span><span class="para-text"> <strong>5 years</strong></span>
+      &nbsp;&nbsp;
+      <span class="para-text">Has Completed The Course</span>&nbsp;&nbsp;
+      <span class="name"><strong>Bsc.CSit</strong></span>&nbsp;&nbsp;
+      <span class="name">With The Score Of <strong>98%</strong>.</span> &nbsp;&nbsp;
+      <span class="para-text">He Bears Good morals and character and to be the best of my knowlledge ,isnot involved in
+        any cromonal activiy and no personal legal case is pending against him/her.</span>
+      <br><br><br>
+      <div class="col-md-4">
+        <span class="para-text" class="signature-left"><strong>.............................</strong></span><br>
+        <span class="para-text"><strong>Campus Chief</strong></span>
+        <!-- <span class="para-text" class="signature-right"><strong>.............................</strong></span><br>
+          <span class="para-text"><strong>Campus Chief</strong></span> -->
+      </div>
+      <div class="col-md-4 col-md-offset-4">
+        <span class="para-text" class="signature-left"><strong>.............................</strong></span><br>
+        <span class="para-text"><strong>Secretory</strong></span>
+
+      </div>
+    </div>
+  </div>
 
 </div>
-
-
-

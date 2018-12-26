@@ -1,92 +1,92 @@
 <div class="body">
- <div class="content-wrapper">
+  <div class="content-wrapper">
     <div class="content">
       <div class="page-header">
         <ol class="breadcrumb breadcrumb">
-                                <li><a href="javascript:void(0);"><i class="material-icons">home</i> Home</a></li>
-                                <li><a href="javascript:void(0);">Student</a></li>
-                                <li><a href="javascript:void(0);">Student ID Card</a></li>
-            </ol>
+          <li><a href="javascript:void(0);"><i class="material-icons">home</i> Home</a></li>
+          <li><a href="javascript:void(0);">Student</a></li>
+          <li><a href="javascript:void(0);">Student ID Card</a></li>
+        </ol>
 
-   <div class="row">
-     <form ngNativeValidate (ngSubmit)="onSubmit()" #studentForm="ngForm">
-      <div class="col-sm-12">
-          <div class="card">
-                        <div class="header">
-                            <h2>
-                                <b>Student Id Card</b>
-                            </h2>
+        <div class="row">
+          <form ngNativeValidate (ngSubmit)="onSubmit()" #studentForm="ngForm">
+            <div class="col-sm-12">
+              <div class="card">
+                <div class="header">
+                  <h2>
+                    <b>Student Id Card</b>
+                  </h2>
+                </div>
+                <br>
+                <div class="panel-body">
+                  <div class="row clearfix">
+                    <div class="col-sm-4">
+                      <label for="reg_input" class="req">Course* </label>
+                      <select class="form-control" [(ngModel)]="student.course" name="course" required>
+                        <option value="">Select Course</option>
+                        <option *ngFor="let c of courses" [ngValue]="c.id">{{c.name}}</option>
+                      </select>
+                    </div>
+
+                    <div class="col-sm-4">
+                      <label for="reg_input" class="req">Batch*</label>
+                      <select class="form-control" [(ngModel)]="student.batch" name="batch" required>
+                        <option value="">Select Batch</option>
+                        <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option>
+                      </select>
+                    </div>
+
+                    <div class="col-sm-4" id="type">
+                      <label for="reg_input" class="req">Id Type*</label>
+                      <select class="form-control" name="Student[type]" id="Student_type">
+                        <option value="prompt">Select ID Template</option>
+                        <option value="horizontal">Horizontal ID Card</option>
+                        <option value="vertical">Vertical ID Card</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group col-sm-2">
+                      <label name="student_id"> &nbsp; &nbsp; </label>
+                      <p> &nbsp;&nbsp;
+                        <a (click)="generate_card()" class="btn btn-info">Generate ID Card</a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-12" *ngIf="student_id">
+                <div class="row" id="student_idcard">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">Student ID Card</h4>
+                      <p>
+                        <input type="button" onclick="printDiv('print')" value="Print ID Card" class="btn btn-danger">
+                      </p>
+                    </div>
+                    <div id="print">
+                      <div class="panel-body" id="stuidcard">
+                        <div class="col-sm-6">
+                          <div id="new1">
+                            <div id="holder1">
+                              <div class="box1">
+                                <div class="tie1">
+                                  <h1>Demo School</h1>
+                                  <img src="/../assets/images/01062018114152.png" alt="">
+                                </div>
+
+                                <h1 class="id"><b>STUDENT ID CARD</b></h1>
+                                <img src="/../assets/images/user.jpg" alt="">
+                                <p class="rname" style="margin-left: 48px !important;"> NAME:John Bobby&nbsp;&nbsp;</p>
+                                <p class="postitle"> COURSE:STD I 16th
+                                  Batch&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                                <p class="postitle"> DOB:2010-07-07</p><br>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                        <br>
-     <div class="panel-body">
-       <div class="row clearfix">
-           <div class="col-sm-4">
-              <label for="reg_input" class="req">Course* </label>
-                 <select class="form-control" [(ngModel)]="student.course" name="course" required>
-                    <option value="">Select Course</option>
-                    <option *ngFor="let c of courses" [ngValue]="c.id">{{c.name}}</option>
-                  </select>
-           </div>    
-
-        <div class="col-sm-4">
-          <label for="reg_input" class="req">Batch*</label>
-            <select class="form-control"  [(ngModel)]="student.batch" name="batch" required>
-                   <option value="">Select Batch</option>
-                   <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option>
-          </select>
-      </div>                     
-   
-            <div class="col-sm-4" id="type">
-                <label for="reg_input" class="req">Id Type*</label>
-                   <select class="form-control" name="Student[type]" id="Student_type">
-                      <option value="prompt">Select ID Template</option>
-                      <option value="horizontal">Horizontal ID Card</option>
-                      <option value="vertical">Vertical ID Card</option>
-                    </select>                               
-            </div>    
-                
-         <div class="form-group col-sm-2">
-              <label   name="student_id"> &nbsp; &nbsp;  </label>
-                <p> &nbsp;&nbsp;
-                  <a (click)="generate_card()" class="btn btn-info">Generate ID Card</a>
-                </p> 
-         </div>
-      </div>
-    </div>
-  </div>
-
-      <div class="col-sm-12"   *ngIf="student_id">
-        <div class="row" id="student_idcard" >
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">Student ID Card</h4>
-                    <p>  
-                      <input type="button" onclick="printDiv('print')" value="Print ID Card" class="btn btn-danger">
-                    </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div id="print">
-                  <div class="panel-body" id="stuidcard">
-                    <div class="col-sm-6">
-                     <div id="new1">
-                      <div id="holder1">
-                       <div class="box1"> 
-                         <div class="tie1">
-                           <h1>Demo School</h1>
-                            <img src="/../assets/images/01062018114152.png" alt="">
-                          </div>
-
-                            <h1 class="id"><b>STUDENT ID CARD</b></h1>
-                            <img src="/../assets/images/user.jpg" alt="">
-                            <p class="rname" style="margin-left: 48px !important;">   NAME:John Bobby&nbsp;&nbsp;</p>
-                            <p class="postitle">  COURSE:STD I 16th Batch&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                            <p class="postitle">  DOB:2010-07-07</p><br>
-                            </div>
-                            </div>
-                            </div>
-                            </div>
-                          </div>
-                </div>
-            </div>
-        </div>
-    </div>
-                                       
+              </div>

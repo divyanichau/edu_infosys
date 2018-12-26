@@ -25,7 +25,10 @@ const routes: Routes = [
 		path: 'academic',
 		loadChildren: './academic/academic.module#AcademicModule'
 	},
-
+	{
+		path:'setting',
+		loadChildren:'./setting/setting.module#SettingModule'
+	},
    //    {
 	  // 	path: 'parent',
 	  // 	loadChildren: './parent/parent.module#ParentModule'
