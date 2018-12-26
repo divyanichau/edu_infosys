@@ -13,7 +13,7 @@ import { Course } from '../classes/course';
 
 @Injectable()
 export class CourseService {
-  private _courseUrl = `${new Config().api}/course/`;
+  private _courseUrl = `${new Config().api}/course/course/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
 
   constructor(
@@ -41,7 +41,7 @@ export class CourseService {
     return this._http.get(`${this._courseUrl}`, options).pipe(
       map((res: Response) => res.json()),
       tap(
-      data => this.afterRequestGet(),
+      data => this.afterGetRequest(),
       error => { console.log(error); }
       ),);
   }
@@ -58,22 +58,29 @@ export class CourseService {
       ),);
   }
 
+ update(course:Course): Observable<Course> {
+    this.beforeRequest();
+    const body = JSON.stringify(course);
+
+    return this._http.put(`${this._courseUrl}$course.{id}/`, body, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json().data),
+      tap(
+      data => this.afterRequest(data),
+      error => { this.showError(error) }
+      ),);
+  }
 
 
   beforeRequest(): void {
     this._progress.start();
   }
 
-
-  afterRequestGet(): void {
+  afterRequest(data: Course): void {
     this._progress.done();
+    alert('student admitted !!')
   }
 
-  afterRequest(course: Course): void {
-    this._progress.done();
-  }
-
- afterGetRequest(): void {
+  afterGetRequest(): void {
     this._progress.done();
   }
 

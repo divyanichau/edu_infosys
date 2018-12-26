@@ -41,7 +41,7 @@ export class ClassService {
     return this._http.get(`${this._classUrl}`, options).pipe(
       map((res: Response) => res.json()),
       tap(
-      data => this.afterRequestGet(),
+      data => this.afterGetRequest(),
       error => { console.log(error); }
       ),);
   }
@@ -58,22 +58,30 @@ export class ClassService {
       ),);
   }
 
+  update(Class: _class): Observable<_class> {
+    this.beforeRequest();
+    const body = JSON.stringify(Class);
+
+    return this._http.put(`${this._classUrl}$class.{id}/`, body, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json().data),
+      tap(
+      data => this.afterRequest(data),
+      error => { this.showError(error) }
+      ),);
+  }
+
 
 
   beforeRequest(): void {
     this._progress.start();
   }
 
-
-  afterRequestGet(): void {
+  afterRequest(data: _class): void {
     this._progress.done();
+    alert('class added !!')
   }
 
-  afterRequest(Class: _class): void {
-    this._progress.done();
-  }
-
- afterGetRequest(): void {
+  afterGetRequest(): void {
     this._progress.done();
   }
 

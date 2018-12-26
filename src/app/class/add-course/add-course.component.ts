@@ -25,6 +25,10 @@ export class AddCourseComponent implements OnInit , OnDestroy{
   obj_course : Course = new Course();
   selected_course: number;
 
+   rows: any[] = [];
+  temp: any[] = [];
+  editing = {};
+
 @ViewChild(DatatableComponent) table: DatatableComponent;
   constructor(
     private _courseService: CourseService,
@@ -32,8 +36,7 @@ export class AddCourseComponent implements OnInit , OnDestroy{
     private router: Router
     ) { }
  
-  rows = [];
-    temp = [];
+  
   
   ngOnInit() {
     this.initCourse();
@@ -78,9 +81,8 @@ export class AddCourseComponent implements OnInit , OnDestroy{
       }
     );
   }
-  
-  
-   updateFilter(event) {
+
+  updateFilter(event) {
     const val = event.target.value.toLowerCase();
 
     // filter our data
@@ -94,6 +96,13 @@ export class AddCourseComponent implements OnInit , OnDestroy{
     this.table.offset = 0;
   }
 
+  updateValue(event, cell, rowIndex) {
+    console.log('inline editing rowIndex', rowIndex)
+    this.editing[rowIndex + '-' + cell] = false;
+    this.rows[rowIndex][cell] = event.target.value;
+    this.rows = [...this.rows];
+    console.log('UPDATED!', this.rows[rowIndex][cell]);
+  }
 }
 
 

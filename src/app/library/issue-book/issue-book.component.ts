@@ -1,13 +1,17 @@
 import { Component, OnInit, OnDestroy, Output, EventEmitter, ViewChild } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 import { isArray } from 'lodash';
 
 import{ DatatableComponent} from '@swimlane/ngx-datatable';
 import { CourseService } from '../../core/services/course.service';
+//import { BatchService } from '../../core/services/batch.service';
+import { StudentService } from '../../core/services/student.service';
 import { LibraryService } from '../../core/services/library.service';
 import { IssueBook } from '../../core/classes/issuebook';
 import { Course } from '../../core/classes/course';
+//import { Batch } from '../../core/classes/batch';
+import { Student } from '../../core/classes/student';
 import { UtilsService } from '../../shared/services/utils.service';
 
 
@@ -26,23 +30,24 @@ export class IssueBookComponent implements OnInit , OnDestroy{
  default_detail_type = {1:false, 2:false};
  detail_type = this.default_detail_type;
  student = {};
- obj_issue = {};
+
+ obj_book = {};
  issue_book : IssueBook;
 
  _course: Course[];
  selected_course: number;
 
- // _batch: Batch;
+ // _batch: Batch[];
  // selected_batch :number;
 
- // _student: Student;
- // selected_student: number;
+ _student: Student[];
+ selected_student: number;
+
+ _issued_books = [];
 
 
 
 @ViewChild(DatatableComponent) table: DatatableComponent;
-
-
 onChange(newValue){
   this.reset_detail_value();
   this.detail_type[newValue] = true;
@@ -55,6 +60,8 @@ reset_detail_value(){
   constructor(
     private _libraryService: LibraryService,
     private _courseService: CourseService,
+    //private _batchService: BatchService,
+    private _studentService: StudentService,
     private _utils: UtilsService,
     private router: Router
     ) { }
@@ -67,9 +74,7 @@ reset_detail_value(){
     this.reset_detail_value();
     this.detail_type[1]= true;   
     this.loadCourse(); 
-
   }
-
 
   ngOnDestroy() {
     this._utils.unsubscribeSub(this._sub);
@@ -77,13 +82,15 @@ reset_detail_value(){
 
   onSubmit() {
     this._utils.unsubscribeSub(this._sub);
-    console.log(this.obj_issue)
-    this._sub = this._libraryService.addIssue(this.obj_issue)
+    console.log(this.obj_book)
+    this._sub = this._libraryService.addIssue(this.obj_book)
       .subscribe(data => {
         console.log(data);
         alert('book issue');
       });
   }
+
+
 
  loadCourse() {
     this._utils.unsubscribeSub(this._sub);
@@ -92,11 +99,49 @@ reset_detail_value(){
         isArray(data) ? this._course = data : data;
         console.log(this._course)
         this.selected_course = this._course[0].id;
-        //console.log(this.section)
+        //console.log(this.section)\
+        //this.loadBatch();  
       }
     );
   }
 
+
+  // loadBatch() {
+  //   this._utils.unsubscribeSub(this._sub);
+  //   this._sub = this._batchService.get().subscribe(
+  //     data => {
+  //       isArray(data) ? this._batch = data : data;
+  //       console.log(this._batch)
+  //       this.selected_batch = this._batch[0].id;
+  //       //console.log(this.section)
+  //       this.loadStudent();  
+  //     }
+  //   );
+  // }
+
+  // loadStudent() {
+  //   this._utils.unsubscribeSub(this._sub);
+  //   this._sub = this._studentService.get().subscribe(
+  //     data => {
+  //       isArray(data) ? this._student = data : data;
+  //       console.log(this._student)
+  //       this.selected_student = this._student[0].id;
+  //       //console.log(this.section)
+  //       this.loadIssueBook();  
+  //     }
+  //   );
+  // }
+
+
+ loadIssueBook() {
+    this._utils.unsubscribeSub(this._sub);
+    this._sub = this._libraryService.getIssue().subscribe(
+      data => {
+        isArray(data) ? this._issued_books = data : data;
+      
+      }
+    );
+  }
 
     updateFilter(event) {
     const val = event.target.value.toLowerCase();

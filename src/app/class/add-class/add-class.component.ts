@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { isArray } from 'lodash';
 
 import{ DatatableComponent} from '@swimlane/ngx-datatable';
+
 import { ClassService } from '../../core/services/class.service';
 import { _class } from '../../core/classes/class';
 import { UtilsService } from '../../shared/services/utils.service';
@@ -21,24 +22,27 @@ export class AddClassComponent implements OnInit , OnDestroy{
   private _typeSub: Subscription = undefined;
   
   obj : _class = new _class();
+objs: _class[];
   classes = [];
   selected_class: number;
   //add_class : _class[];
  
  @ViewChild(DatatableComponent) table: DatatableComponent;
+
   constructor(
     private _classService: ClassService,
     private _utils: UtilsService,
     private router: Router
     ) { }
 
-   // rows = [];
-   //  temp = [];
+    rows: any[] = [];
+  temp: any[] = [];
+  editing = {};
   
   
   ngOnInit() {
     this.initClass();
-     this.loadClasses();
+     
   }
 
   ngOnDestroy() {
@@ -47,7 +51,7 @@ export class AddClassComponent implements OnInit , OnDestroy{
 
   onSubmit() {
     this._utils.unsubscribeSub(this._sub);
-    console.log(this.obj)
+    console.log(this.objs)
     this._sub = this._classService.add(this.obj)
       .subscribe(data => {
         console.log(data);
@@ -55,46 +59,41 @@ export class AddClassComponent implements OnInit , OnDestroy{
       });
   }
 
-  loadClasses() {
-    this._utils.unsubscribeSub(this._sub);
+  initClass() {
+  this._utils.unsubscribeSub(this._sub);
     this._sub = this._classService.get().subscribe(
       data => {
-        isArray(data) ? this.classes = data : data;
-        console.log(this.classes)
+        isArray(data) ? this.objs = data : data;
+        this.rows = this.objs;
+        this.temp = [...this.objs];
 
       }
     );
   }
 
+  updateFilter(event) {
+    const val = event.target.value.toLowerCase();
 
-  initClass() {
-   this._utils.unsubscribeSub(this._sub);
-  // this._sub = this._classService.get().subscribe(
-  //     data => {
-  //       isArray(data) ? this.add_class = data : data;
-  //       this.rows = this.add_class;
-  //       this.temp = [...this.add_class];
+    // filter our data
+    const temp = this.temp.filter(function(d) {
+      return d.name.toLowerCase().indexOf(val) !== -1 || !val;
+    });
 
-  //     }
-  //   );
-  // }
-  
-  
-  //  updateFilter(event) {
-  //   const val = event.target.value.toLowerCase();
-
-  //   // filter our data
-  //   const temp = this.temp.filter(function(d) {
-  //     return d.name.toLowerCase().indexOf(val) !== -1 || !val;
-  //   });
-
-  //   // update the rows
-  //   this.rows = temp;
-  //   // Whenever the filter changes, always go back to the first page
-  //   this.table.offset = 0;
+    // update the rows
+    this.rows = temp;
+    // Whenever the filter changes, always go back to the first page
+    this.table.offset = 0;
   }
 
+  updateValue(event, cell, rowIndex) {
+    console.log('inline editing rowIndex', rowIndex)
+    this.editing[rowIndex + '-' + cell] = false;
+    this.rows[rowIndex][cell] = event.target.value;
+    this.rows = [...this.rows];
+    console.log('UPDATED!', this.rows[rowIndex][cell]);
+  }
 }
+
 
 
 
