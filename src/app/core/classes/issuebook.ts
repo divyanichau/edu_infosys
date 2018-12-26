@@ -4,7 +4,7 @@ import { Student } from './student';
 export class IssueBook {
   id: number;
   batch: string;
-  issue_date : date;
-  due_date : date;
+  issue_date : Date;
+  due_date : Date;
   book : string;
 }

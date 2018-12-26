@@ -1,7 +1,7 @@
 
 export class BookCategory {
 
-  id : string;
+  id : number;
   name: string;
  section_code: string;
 }

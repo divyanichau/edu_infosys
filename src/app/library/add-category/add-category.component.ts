@@ -19,7 +19,7 @@ export class AddCategoryComponent implements OnInit , OnDestroy{
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
   obj : BookCategory[];
-  obj_category = {};
+  obj_category : BookCategory;
  library = [];
 
 @ViewChild(DatatableComponent) table: DatatableComponent;
