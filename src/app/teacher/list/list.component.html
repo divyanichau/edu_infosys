@@ -2,9 +2,9 @@
     <div class="header" >
         <div class="page-header">
             <ol class="breadcrumb breadcrumb">
-                                <li><a href="javascript:void(0);"><i class="material-icons">home</i> Home</a></li>
-                                <li><a href="javascript:void(0);">Teacher</a></li>
-                                <li><a href="javascript:void(0);">List</a></li>
+                 <li><a href="javascript:void(0);"><i class="material-icons">home</i> Home</a></li>
+                 <li><a href="javascript:void(0);">Teacher</a></li>
+                 <li><a href="javascript:void(0);">List</a></li>
             </ol>
         </div>
     </div>
@@ -33,55 +33,76 @@
                 <div class="body">
                     <div class="table-responsive">
                         <div>
-                             <input
-                                type='text'
-                                style='padding:8px;margin:15px auto;width:30%;'
-                                placeholder='search with name'
-                                (keyup)='updateFilter($event)'
-                              />
-                              <ngx-datatable
-                                class="material"
-                                [rows]="rows"
-                                [sortType]="'multi'"
-                                [columnMode]="'force'"
-                                [headerHeight]="50"
-                                [footerHeight]="50"
-                                [rowHeight]="'auto'"
-                                [limit]="10"
-                                >
-
-                                <ngx-datatable-column name="ID" prop="id">
-                                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                                </ngx-datatable-column>
-
-                                <ngx-datatable-column name="Name" prop="user.first_name">
-                                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                                </ngx-datatable-column>
-
-                                <ngx-datatable-column name="Address" prop="address_detail.address">
-                                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                                </ngx-datatable-column>
-
-                                <ngx-datatable-column name="Phone" prop="phone_detail.number">
-                                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                                </ngx-datatable-column>
-
-                                <ngx-datatable-column name="Actions" sortable="false" prop="id">
-                                    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-                                        Manage
-                                    </ng-template>
-                                    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                                        <a class="glyphicon glyphicon-eye-open" title="" href="/teacher/detail/{{value}}"><img src="" alt=""></a>
-                                        <a class="glyphicon glyphicon-remove left-icon" title="" href=""><img src="" alt=""></a>
-                                    </ng-template>
-                                </ngx-datatable-column>
-                              </ngx-datatable>
-                            </div>
+             <div class="row">
+                <label class="control-label col-sm-1">Search Teacher</label>
+                <div class="col-xs-6 col-md-4">
+                  <div class="input-group">
+                    <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter Name" id="txtSearch" />
+                    <div class="input-group-btn">
+                      <button class="btn btn-primary" type="submit">
+                        <span class="glyphicon glyphicon-search"></span>
+                      </button>
                     </div>
+                  </div>
                 </div>
-            </div>
-        </div>
-    </div>   
-</div>
-           
+              </div>
+              <!-- <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='search with name'
+                                (keyup)='updateFilter($event)'
+                              /> -->
+              <ngx-datatable class="material" [rows]="rows" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+                [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
 
+                <ngx-datatable-column name="ID" prop="id">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Name" prop="user.first_name">
+                  <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                    <span
+                      title="Double click to edit"
+                      (dblclick)="editing[rowIndex + '-name'] = true"
+                      *ngIf="!editing[rowIndex + '-name']">
+                      {{value}}
+                    </span>
+                    <input
+                      autofocus
+                      (blur)="updateValue($event, 'name', rowIndex)"
+                      *ngIf="editing[rowIndex+ '-name']"
+                      type="text"
+                      [value]="value"
+                    />
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Address" prop="address_detail.address">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Phone" prop="phone_detail.number">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Actions" sortable="false" prop="id">
+                  <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                    Manage
+                  </ng-template>
+                  <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <a class="glyphicon glyphicon-eye-open" title="" href="/teacher/detail/{{value}}"><img src="" alt=""></a>
+                    <a class="glyphicon glyphicon-trash left-icon" title="" href="/teacher/delete/{{value}}"><img src="" alt=""></a>
+                  </ng-template>
+                </ngx-datatable-column>
+              </ngx-datatable>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+                          

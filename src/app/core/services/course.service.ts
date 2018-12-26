@@ -13,7 +13,7 @@ import { Course } from '../classes/course';
 
 @Injectable()
 export class CourseService {
-  private _courseUrl = `${new Config().api}/course/`;
+  private _courseUrl = `${new Config().api}/course/course/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
 
   constructor(

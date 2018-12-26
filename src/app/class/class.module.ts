@@ -16,6 +16,8 @@ import { AddClassComponent} from './add-class/add-class.component';
 import { AddSectionComponent} from './add-section/add-section.component';
 import { AddCourseComponent} from './add-course/add-course.component';
 
+
+
 @NgModule({
   imports: [
     CommonModule,

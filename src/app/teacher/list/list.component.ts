@@ -3,7 +3,6 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { isArray } from 'lodash';
 
-
 import {DatatableComponent}  from '@swimlane/ngx-datatable';
 
 import { TeacherService } from '../../core/services/teacher.service';
@@ -23,6 +22,10 @@ export class ListComponent implements OnInit , OnDestroy{
   private _typeSub: Subscription = undefined;
   teachers : Teacher[];
   total_teachers : number;
+
+  rows: any[] = [];
+  temp: any[] = [];
+  editing = {};
  
   @ViewChild(DatatableComponent) table: DatatableComponent;
 
@@ -32,9 +35,9 @@ export class ListComponent implements OnInit , OnDestroy{
     private router: Router
     ) { 
       
+
       }
-    rows =[];
-    temp =[];
+  
   
   ngOnInit() {
 
@@ -73,5 +76,13 @@ export class ListComponent implements OnInit , OnDestroy{
     this.table.offset = 0;
   }
 
+
+   updateValue(event, cell, rowIndex) {
+    console.log('inline editing rowIndex', rowIndex)
+    this.editing[rowIndex + '-' + cell] = false;
+    this.rows[rowIndex][cell] = event.target.value;
+    this.rows = [...this.rows];
+    console.log('UPDATED!', this.rows[rowIndex][cell]);
+  }
  
 }

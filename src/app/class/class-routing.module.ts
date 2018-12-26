@@ -7,6 +7,7 @@ import { AddSectionComponent} from './add-section/add-section.component';
 import { AddCourseComponent} from './add-course/add-course.component';
 
 
+
 const routes: Routes = [
   {
     path: '',
@@ -26,7 +27,9 @@ const routes: Routes = [
    {
     path: 'add-course',
     component: AddCourseComponent,
-  }
+  },
+
+ 
   
 ];
 
