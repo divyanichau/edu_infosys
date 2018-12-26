@@ -26,3 +26,7 @@
 .name{
   font-size: 30px;
 }
+.signature-left{
+    text-align: left;
+    margin-left: 0px;
+}
