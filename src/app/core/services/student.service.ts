@@ -59,6 +59,19 @@ export class StudentService {
   }
 
 
+  update(student:Student): Observable<Student> {
+    this.beforeRequest();
+    const body = JSON.stringify(student);
+
+    return this._http.put(`${this._studentUrl}$student.{id}/`, body, this._utils.makeOptions(this._headers))
+      .map((res: Response) => res.json().data)
+      .do(
+      data => this.afterRequest(data),
+      error => { this.showError(error) }
+      );
+  }
+
+
   beforeRequest(): void {
     this._progress.start();
   }

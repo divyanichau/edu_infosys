@@ -21,6 +21,10 @@ const routes: Routes = [
 	  	path: 'student',
 	  	loadChildren: './student/student.module#StudentModule'
 	  },
+	  {
+		path: 'academic',
+		loadChildren: './academic/academic.module#AcademicModule'
+	},
 
    //    {
 	  // 	path: 'parent',

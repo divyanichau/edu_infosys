@@ -7,6 +7,7 @@ import { ListComponent} from './list/list.component';
 import { ViewDetailComponent } from './view-detail/view-detail.component';
 
 import { IdcardComponent} from './idcard/idcard.component';
+import { DetailComponent } from './detail/detail.component';
 
 const routes: Routes = [
 
@@ -27,7 +28,7 @@ const routes: Routes = [
 
   {
     path: 'detail/:id',
-    component: ViewDetailComponent,
+    component: DetailComponent,
   },
 
   {
