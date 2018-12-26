@@ -3,41 +3,39 @@ import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 import { isArray } from 'lodash';
 
+import { DatatableComponent} from '@swimlane/ngx-datatable';
 import { LibraryService } from '../../core/services/library.service';
-import { AddBook } from '../../core/classes/addbook';
 import { BookCategory } from '../../core/classes/bookcategory';
 import { UtilsService } from '../../shared/services/utils.service';
 
-
 declare var numeral: any
 @Component({
-  selector: 'app-add-book',
-  templateUrl: './add-book.component.html',
+  selector: 'app-add-category',
+  templateUrl: './add-category.component.html',
   styleUrls: []
 })
   
-export class AddBookComponent implements OnInit , OnDestroy{
+export class AddCategoryComponent implements OnInit , OnDestroy{
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
+  obj : BookCategory[];
+  obj_category : BookCategory;
+ library = [];
 
-  selected_lib : number;
-  category : BookCategory[];
-  add_book = {};
-  book : AddBook;
-
-
-  
+@ViewChild(DatatableComponent) table: DatatableComponent;
   constructor(
     private _libraryService: LibraryService,
     private _utils: UtilsService,
     private router: Router
     ) { }
+ 
+  rows = [];
+    temp = [];
   
   
   ngOnInit() {
-    this.initAddBook();
-    this.loadCategory(); 
-   
+    this.initAddCategory();
+    this.loadAddCategory();
   }
 
   ngOnDestroy() {
@@ -45,29 +43,26 @@ export class AddBookComponent implements OnInit , OnDestroy{
   }
 
   onSubmit() {
-    //this.add_book.category = this.selected_lib;
     this._utils.unsubscribeSub(this._sub);
-    //console.log(this.add_book)
-    this._sub = this._libraryService.addBook(this.add_book)
+    console.log(this.obj_category)
+    this._sub = this._libraryService.add(this.obj_category)
       .subscribe(data => {
         console.log(data);
-        alert('book added');
+        alert('category added');
       });
   }
 
-  loadCategory() {
+   loadAddCategory() {
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._libraryService.get().subscribe(
       data => {
-        isArray(data) ? this.category = data : data;
-        console.log(this.category)
-        this.selected_lib = this.category[0].id;
-       console.log(this.add_book)
-      
+        isArray(data) ? this.library = data : data;
+        console.log(this.library)
+
       }
     );
   }
-  
+
   //   updateFilter(event) {
   //   const val = event.target.value.toLowerCase();
   //   // filter our data
@@ -80,10 +75,9 @@ export class AddBookComponent implements OnInit , OnDestroy{
   //   this.table.offset = 0;
   // }
 
-  initAddBook() {
+  initAddCategory() {
     this._utils.unsubscribeSub(this._typeSub);
-    //this.course = new Course();
-    //this.obj_course = {};
+   
   }
 
  

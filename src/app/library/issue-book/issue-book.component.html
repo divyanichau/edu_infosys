@@ -1,0 +1,389 @@
+
+<div class="content-wrapper">
+    <div class="content">
+      <div class="panel-heading">
+         <ol class="breadcrumb breadcrumb" style="background-color:#aabad8;">
+              <li><a href="#"><i class="material-icons">home</i> Home</a></li>
+              <li><a href="#"><i class="material-icons">class</i>Library</a></li>
+              <li class="active"> Issue Book </li>
+           <ul class="breadcrumb-elements">                          
+            </ul>
+            <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+            <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+            </ol> 
+            <br>
+
+  <form (ngSubmit)="onSubmit()" #libraryForm="ngForm">
+
+  <div class="panel panel-default">
+    <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-9 col-xs-9">
+                                
+                     
+      <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                        <li role="presentation" class="active"><a href="#issue_book" data-toggle="tab" aria-expanded="true">Issue Book</a></li>
+                        <li role="presentation" class=""><a href="#issued_list" data-toggle="tab" aria-expanded="false">Issued List</a></li>
+                        <li role="presentation" class=""><a href="#bulk_issued" data-toggle="tab" aria-expanded="false">Bulk Issue</a></li>
+                    </ul>
+                  </div>
+                </div>
+<br>
+                <div class="tab-content" >
+                     <div  class="tab-pane fade in active" id="issue_book" >
+                 
+<div class="row-clearfix">
+                  <div class="panel panel-default">
+                  <div class="panel-heading" style="background-color:#aabad8;">
+                <h4 class="panel-title">Issue Book</h4>
+              </div>
+            </div>
+</div>
+
+
+                <div class="panel-body">
+                          <div class="row clearfix">
+                                    <div class="col-sm-10">                                      
+                                        <input class="form-control ui-autocomplete-input" placeholder="Search by Book No/ ISBN No/ Book Title/ Author" id="librarybook" type="text" value="" name="librarybook" autocomplete="off">
+                                        <input id="hidden-field" name="output" type="hidden" value="">  
+
+                                      </div>
+
+                                    <div class="col-sm-2">
+                                        <label>&nbsp;</label>
+                                        <a href="javascript:getbookdetails()" class="btn btn-info">Search</a>
+                                    </div>
+                                </div>
+                              </div>
+                      
+                        
+  <div class="panel-body">  
+            <div class="col-sm-12">
+                  <label for="user_type">User type</label>
+                  <select class="form-control" (change)="onChange($event.target.value)" name="user_type">
+<option >Select Type</option>
+<option value="1">Student</option>
+<option value="2">Employee</option>
+</select> 
+</div>
+
+        <div class="row clearfix">
+          <div class="col-sm-12"   *ngIf="detail_type[1]">
+            <div class="panel-body">
+        <div class="row">
+            
+            <div class="panel-body">
+              <p><b>STUDENT</b></p><hr>
+                <div class="row clearfix">
+           
+            <div class="col-sm-4">
+                  <label for="student_id">Course</label>
+                  <select class="form-control"       
+                 [(ngModel)]="selected_course" name="id">
+                  <option *ngFor="let c of _course" [ngValue]="c.id">{{c.name}}</option>
+                  </select>
+            </div>
+        
+
+        <div class="col-sm-4">
+                  <label for="student_id">Batch</label>
+                  <select class="form-control"       
+                 [(ngModel)]="selected_batch" name="id">
+                  <option *ngFor="let c of _batch" [ngValue]="c.id">{{c.user.first_name}}</option>
+                  </select>
+            </div>
+      
+
+        <div class="col-sm-4">
+                   <label for="student_id">Student</label>
+                  <select class="form-control"       
+                 [(ngModel)]="selected_student" name="id">
+                  <option *ngFor="let c of _student" [ngValue]="c.id">{{c.user.first_name}}</option>
+                  </select>
+            </div>
+</div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+     <div class="col-sm-12" *ngIf="detail_type[2]">
+            <div class="panel-body">
+               <p><b>EMPLOYEE</b></p><hr>
+                          <div class="row clearfix">
+                                                                         
+                                        <input class="form-control ui-autocomplete-input" placeholder="Search by Book No/ ISBN No/ Book Title/ Author" id="librarybook" type="text" value="" name="librarybook" autocomplete="off">
+            </div>
+          </div>
+       </div>
+ 
+       
+ 
+<div class="panel-body">
+                          
+                                
+                <div class="row clearfix">
+                                <div class="col-sm-12">
+                                    
+              <label for="issue_date">Book Issue Date</label>
+       <input type="date" class="form-control" [(ngModel)]="obj_book.issue_date" name="issue_date" placeholder="Enter Date">
+                                        </div>
+   
+                                    </div>
+                                  </div>
+
+    <div class="panel-body">                
+                <div class="row clearfix">
+                                <div class="col-sm-12">
+                                    
+              <label for="purchase_date">Due Date</label>
+       <input type="date" class="form-control" [(ngModel)]="obj_book.due_date" name="due_date" placeholder="Enter Date">
+                                        </div>
+    </div>
+      
+</div>
+</div>
+
+
+
+  <div class="panel-body">
+    <div class="row clearfix">
+    <div class="form-group">
+ <input class="btn btn-info" name="std_reg_submit" id="std_reg_submit" type="submit" value="Create"> 
+         </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+ <div  class="tab-pane fade in active" id="issued_list" >             
+<div class="body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" style="background-color:#aabad8;">
+                                <h4 class="panel-title">Issued List</h4>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-3"> 
+                                    </div>
+                                    <div class="col-sm-3"> 
+                                    </div>
+                                    <div class="col-sm-3"> 
+                                    </div>
+                                    <div class="col-sm-3"> 
+                                        <input type="text" id="search" class="form-control" placeholder="Search...">
+                                    </div>
+                                  </div>
+                                <br>
+                               
+<div class="content-wrapper">           
+    <div class="content">
+ <div class="form-group">
+    <div class="row">
+    <div class="col-sm-12">               
+        <div class="table-responsive">
+       <div class="panel panel-default">
+        <div class="panel-heading">                  
+            <div class="grid-view" id="item-grid">
+
+   
+                              <ngx-datatable
+                                class="material"
+                                [rows]="library"
+                                [sortType]="'multi'"
+                                [columnMode]="'force'"
+                                [headerHeight]="50"
+                                [footerHeight]="50"
+                                [rowHeight]="'auto'"
+                                [limit]="10"
+                                >
+                              <ngx-datatable-column name="SI. No" prop="id">
+                                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                                </ngx-datatable-column>
+
+                              <ngx-datatable-column name="User Type" prop="name">
+                                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value"ngx-datatable-cell-template>{{value}}</ng-template>
+                                </ngx-datatable-column>
+
+                              <ngx-datatable-column name="User" prop="section_code">
+                                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                                </ngx-datatable-column>
+
+                                 <ngx-datatable-column name="Book No." prop="section_code">
+                                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                                </ngx-datatable-column>
+
+                                 <ngx-datatable-column name="Title" prop="section_code">
+                                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                                </ngx-datatable-column>
+
+                                 <ngx-datatable-column name="Book Requested Date" prop="section_code">
+                                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                                </ngx-datatable-column>
+
+                                 <ngx-datatable-column name="Need Level" prop="section_code">
+                                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                                </ngx-datatable-column>
+
+                                 <ngx-datatable-column name="Status" prop="section_code">
+                                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                                </ngx-datatable-column>
+                                
+                              <ngx-datatable-column name="Accept/Reject" prop="section_code">
+                                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template><ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                                </ngx-datatable-column>                                                     </ngx-datatable>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+ <div class="tab-pane fade in active" id="bulk_issued">
+<div class="row-clearfix">
+                  <div class="panel panel-default">
+                  <div class="panel-heading" style="background-color:#aabad8;">
+                <h4 class="panel-title">Bulk Issue</h4>
+              </div>
+            </div>
+</div>        
+<div class="panel-body">                         
+                <div class="row clearfix">
+                                <div class="col-sm-6">
+                                    
+                                           <label for="phone">Course</label>
+                                             <select class="form-control" name="Bookissue[courseid1]" id="Bookissue_courseid1">
+<option value="">Select Course</option>
+<option value="15">Android</option>
+<option value="16">C Programming</option>
+<option value="45">Calculus</option>
+<option value="47">Data Mining</option>
+<option value="48">Real time</option>
+<option value="53">MMM</option>
+<option value="54">BE123</option>
+<option value="76">one day</option>
+<option value="79">Mathematics</option>
+<option value="92">JAVA</option>
+<option value="94">Cloud Computing</option>
+<option value="95">NETWORKING</option>
+<option value="96">Database</option>
+<option value="97">c plus plus</option>
+</select>
+                                           
+                                        </div>
+                                    
+                                <div class="col-sm-6">
+                                    
+                                           <label for="phone">Batch</label>
+                                             <select class="form-control" name="Bookissue[batchid1]" id="Bookissue_batchid1">
+<option value="">Select Batch</option>
+</select>
+                                        </div>
+                                    </div>
+                               <br>
+                         
+                                       
+                <div class="row clearfix">
+                                <div class="col-sm-6">
+                                
+                                       
+                                           <label for="phone">Book Issue Date</label>
+                                            <input type="date" class="form-control" placeholder="Enter ISBN Number">
+                                        
+                                    
+                                </div>
+                                
+                                <div class="col-sm-6">
+                                   
+                                           <label for="phone">Due Date</label>
+                                            <input type="date" class="form-control" placeholder="Enter Book Number">
+                                        </div>
+                                    </div>
+                                       
+                                   <br>
+                                    <div class="panel-body">
+    <div class="row clearfix">
+    <div class="form-group">
+                                               <button class="btn btn-info" onclick="savebulk()">Save</button>
+                                        </div>
+                                    </div> 
+                                    </div>
+                                    </div>
+                                    </div> 
+                                    </div>
+                                    </div>
+                                    </div>
+                                    
+
+
+
+
+
+
+
+
+
+
+
+
+   
+                          
+                           
+                            
+
+                                    
+                     
+
+        
+    
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+                              
+                                             
+                              
+                            
+                          
+                  
+                                         
+                    
+      

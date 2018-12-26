@@ -39,6 +39,10 @@ export class IdcardComponent implements OnInit , OnDestroy{
     private _utils: UtilsService,
     private router: Router
     ) { }
+
+   rows = [];
+    temp = [];
+  
   
   ngOnInit() {
     this.initTeacher();
@@ -79,3 +83,4 @@ generate_card(){
   }
 
 }
+

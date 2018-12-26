@@ -39,6 +39,7 @@ export class TimetableService {
     const options = this._utils.makeOptions(this._headers);
 
     return this._http.get(`${this._timetableUrl}`, options)
+
       .map((res: Response) => res.json())
       .do(
       data => this.afterGetRequest(),
@@ -58,7 +59,6 @@ export class TimetableService {
       );
   }
 
-
   beforeRequest(): void {
     this._progress.start();
   }
@@ -68,7 +68,8 @@ export class TimetableService {
     alert('Timetable admitted !!')
   }
 
-  afterGetRequest(): void {
+
+ afterGetRequest(): void {
     this._progress.done();
   }
 
@@ -76,5 +77,6 @@ export class TimetableService {
     console.log(error);
     alert(error._body);
   }
+
 
 }

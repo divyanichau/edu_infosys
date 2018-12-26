@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { isArray } from 'lodash';
 
 import {DatatableComponent}  from '@swimlane/ngx-datatable';
-
 import { StudentService } from '../../core/services/student.service';
 import { Student } from '../../core/classes/student';
 import { UtilsService } from '../../shared/services/utils.service';
