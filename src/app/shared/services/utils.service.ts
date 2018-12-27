@@ -12,7 +12,7 @@ declare var numeral: any;
 
 @Injectable()
 export class UtilsService {
-  _notyf = new Notyf();
+  
   _moment = moment;
 
   constructor(
@@ -81,10 +81,10 @@ export class UtilsService {
   notyf(action: string, msg: string): void {
     switch (action) {
       case 'success':
-        this._notyf.confirm(msg);
+        //this._notyf.confirm(msg);
         break;
       case 'failed':
-        this._notyf.alert(msg);
+        //this._notyf.alert(msg);
         break;
 
       default:

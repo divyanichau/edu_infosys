@@ -182,27 +182,27 @@
             <span>Academic</span>
           </a>
 
-                        <ul class="ml-menu">
-                             <li>
-                                   <a routerLink="/academic/certification">
-                                       <span>Certifications</span>
-                                   </a> 
-                               </li>
-                             <li>
-                                <a class="menu-toggle" routerLink="/academic/timetable">
-                                    <span>Time Table</span>
-                                </a>
-                                <ul class = "ml-menu">
-                                    <li>
-                                        <a routerLink = "/academic/timetable/add-timetable">Add </a>
-                                    </li>
-                                </ul>
-                                
-                            </li>
-                            
-                            
-                        </ul>
-                        
+          <ul class="ml-menu">
+            <li>
+              <a routerLink="/academic/certification">
+                <span>Certifications</span>
+              </a>
+            </li>
+            <li>
+              <a class="menu-toggle" routerLink="/academic/timetable">
+                <span>Time Table</span>
+              </a>
+              <ul class="ml-menu">
+                <li>
+                  <a routerLink="/academic/timetable/add-timetable">Add </a>
+                </li>
+              </ul>
+
+            </li>
+
+
+          </ul>
+
 
         </li>
 
@@ -236,6 +236,33 @@
 
         </li>
 
+        <!---Transport Start-->
+        <li>
+          <a class="menu-toggle">
+            <i class="material-icons">directions_bus</i>
+            <span>Transport</span>
+          </a>
+
+          <ul class="ml-menu">
+            <li>
+              <a routerLink="/transport/add_vehicle/">
+                <span>Add Vehicle</span>
+              </a>
+            </li>
+
+        
+            <li>
+              <a routerLink="#">
+                <span>Add Routes</span>
+              </a>
+            </li>
+          </ul>
+
+
+        </li>
+
+        <!---Transport End-->
+
 
         <li>
           <a class="menu-toggle">
@@ -266,5 +293,5 @@
                 <span>Academic Year</span>
               </a>
             </li>
-            </ul>
+          </ul>
         </li>

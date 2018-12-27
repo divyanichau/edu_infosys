@@ -69,6 +69,10 @@ const routes: Routes = [
 	  	path: 'library',
 	  	loadChildren: './library/library.module#LibraryModule'
 	   },
+	   {
+		   path:'transport',
+		   loadChildren:'./transport/transport.module#TransportModule'
+	   },
 
 	];
 

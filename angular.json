@@ -29,7 +29,7 @@
             ],
             "scripts": [
              "node_modules/ng2-toastr/bundles/ng2-toastr.min.js",
-              "node_modules/notyf/dist/notyf.min.js",
+            
                
             ]
                },
