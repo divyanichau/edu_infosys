@@ -37,7 +37,7 @@
        <div class="panel-body">
                   <div class="col-sm-10">
                         <label for="batch">Batch Name</label>
-                           <input type="text" class="form-control" [(ngModel)]="obj_batch.batch"  [ngModelOptions]="{standalone: true}"name="zip_code"  size="84" maxlength="45" placeholder="Enter Description " required>
+                           <input type="text" class="form-control" [(ngModel)]="obj_batch.batch"  [ngModelOptions]="{standalone: true}"name="zip_code"  size="84" maxlength="45" placeholder="Enter Name " required>
                   </div>
               </div>
 
@@ -45,7 +45,7 @@
          
                   <div class="col-sm-10">
                         <label for="start_date">Start Date</label>
-                    <input type= "text" class="form-control" [(ngModel)]= "obj_batch.start_date"  [ngModelOptions]="{standalone: true}">
+                    <input type= "date" class="form-control" [(ngModel)]= "obj_batch.start_date"  [ngModelOptions]="{standalone: true}" name="start)_date">
                             
                   </div>
                 </div>
@@ -53,14 +53,14 @@
                  <div class="panel-body">
                     <div class="col-sm-10">
                         <label for="end_date">End Date</label>
-                           <input type="text" class="form-control" [(ngModel)]="obj_batch.end_date"  [ngModelOptions]="{standalone: true}"name="zip_code"  size="84" maxlength="45" placeholder="Enter Description " required>
+                           <input type="date" class="form-control" [(ngModel)]="obj_batch.end_date"  [ngModelOptions]="{standalone: true}"name="end_date"  size="84" maxlength="45" required>
                   </div>
               </div>
 
               <div class="panel-body">        
                   <div class="col-sm-10">
                         <label for="max_no_of_students">Maximum Number of Students</label>
-                    <input type= "text" class="form-control" [(ngModel)]= "obj_batch.max_no_of_students"  [ngModelOptions]="{standalone: true}">
+                    <input type= "text" class="form-control" [(ngModel)]= "obj_batch.max_no_of_students"  [ngModelOptions]="{standalone: true}" name="max_no_of_students">
                             
                   </div>
              </div>
@@ -115,7 +115,7 @@
 
                
 
-                <ngx-datatable-column name="Batch" prop="batch">
+                <ngx-datatable-column name="Batch" prop="name">
                   <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
                     <span
                       title="Double click to edit"
@@ -131,6 +131,11 @@
                       [value]="value"
                     />
                   </ng-template>
+                </ngx-datatable-column>
+
+ <ngx-datatable-column name="Course" prop="course">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
 

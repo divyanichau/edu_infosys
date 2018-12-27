@@ -9,13 +9,11 @@ import { NgProgress } from 'ngx-progressbar';
 import { UtilsService } from '../../shared/services/utils.service';
 import { Config } from '../../shared/classes/app';
 import { Batch } from '../classes/batch';
-import { Course } from '../classes/course';
 
 
 @Injectable()
 export class BatchService {
   private _batchUrl = `${new Config().api}/course/batch/`;
-  private _courseUrl = `${new Config().api}/course/course/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
 
   constructor(

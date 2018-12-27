@@ -44,7 +44,7 @@ export class AddSectionComponent implements OnInit , OnDestroy{
   ngOnInit() {
     this.initSection();
     this.loadClasses();
-    this.loadSection();  
+   
     //this.section.r_class = 1; //Change this to api returned class array first element
   }
 
@@ -71,6 +71,7 @@ export class AddSectionComponent implements OnInit , OnDestroy{
         console.log(this._classes)
         this.selected_class = this._classes[0].id;
         console.log(this.section)
+         this.loadSection();  
       }
     );
   }

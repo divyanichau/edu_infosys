@@ -19,34 +19,25 @@ export class SectionService {
   selectedClass = {};
  
 
-
-  constructor(
+ constructor(
     private _utils: UtilsService,
     private _http: Http,
     private _router: Router,
     private _progress: NgProgress
   ) { }
 
-  getSection(){
-    this._http.get('http://192.168.1.77:8001/api/library/class/').subscribe(data => {     
-      console.log(this.section);
+   find(id: string): Observable<Section> {
+    //this.beforeRequest();
 
-       });
- }
-
-  add(section: Section): Observable<Section> {
-    this.beforeRequest();
-    const body = JSON.stringify(section);
-
-    return this._http.post(`${this._sectionUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
-      map((res: Response) => res.json().data),
+   return this._http.get(`${this._sectionUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json()),
       tap(
-      data => this.afterRequest(data),
+      data => this.afterGetRequest(),
       error => { console.log(error); }
       ),);
   }
 
-   get(): Observable<Section[]> {
+  get(): Observable<Section[]> {
     //this.beforeRequest();
     const options = this._utils.makeOptions(this._headers);
 
@@ -57,10 +48,32 @@ export class SectionService {
       error => { console.log(error); }
       ),);
   }
- 
- //  selectClass(val){
- //   this.selectedClass = val
- // }
+
+  add(section: Section): Observable<Section> {
+    this.beforeRequest();
+    const body = JSON.stringify(section);
+
+    return this._http.post(`${this._sectionUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json().data),
+      tap(
+      data => this.afterRequest(data),
+      error => { this.showError(error) }
+      ),);
+  }
+
+  update(section: Section): Observable<Section> {
+    this.beforeRequest();
+    const body = JSON.stringify(section);
+
+    return this._http.put(`${this._sectionUrl}$section.{id}/`, body, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json().data),
+      tap(
+      data => this.afterRequest(data),
+      error => { this.showError(error) }
+      ),);
+  }
+
+
 
   beforeRequest(): void {
     this._progress.start();
@@ -68,7 +81,7 @@ export class SectionService {
 
   afterRequest(data: Section): void {
     this._progress.done();
-    alert('course added!!')
+    alert('class added !!')
   }
 
   afterGetRequest(): void {
@@ -81,4 +94,5 @@ export class SectionService {
   }
 
 }
+
 

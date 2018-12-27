@@ -71,6 +71,7 @@ export class AddBatchComponent implements OnInit , OnDestroy{
       data => {
         isArray(data) ? this._batch = data : data;
         console.log(this._batch)
+         this.loadCourse();
 
       }
     );
