@@ -4,6 +4,8 @@
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
 
 
+@import '~ngx-toastr/toastr.css';
+
 .ngx-datatable.bootstrap {
    box-shadow: none;
    font-size: 13px;

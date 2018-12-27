@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/cor
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { isArray } from 'lodash';
+import { ToastrService } from 'ngx-toastr';
+
 
 import { CourseService } from '../../core/services/course.service';
 import { StudentService } from '../../core/services/student.service';
@@ -28,9 +30,11 @@ export class AddComponent implements OnInit , OnDestroy{
     private _studentService: StudentService,
     private _courseService: CourseService,
     private _utils: UtilsService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
     ) { }
-  
+
+
   ngOnInit() {
     this.initStudent();
     this.loadCourses();
@@ -45,7 +49,8 @@ export class AddComponent implements OnInit , OnDestroy{
     this._sub = this._studentService.add(this.student)
       .subscribe(data => {
         console.log(data);
-        alert('student added');
+        this.toastr.success('Student Added !', 'Success',{timeOut: 3000});
+
       });
   }
 
@@ -63,6 +68,9 @@ export class AddComponent implements OnInit , OnDestroy{
   initStudent() {
     this._utils.unsubscribeSub(this._typeSub);
     this.student = new Student();
+    //this.student.batch = 0;
+    
+    
   }
 
  
