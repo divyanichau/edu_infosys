@@ -9,6 +9,7 @@ import { SectionService } from '../core/services/section.service';
 import { BatchService } from '../core/services/batch.service';
 import { CourseService } from '../core/services/course.service';
 import { ClassService } from '../core/services/class.service';
+//import { TeacherAllocationService } from '../core/services/teacher-allocation.service';
 import { UtilsService } from '../shared/services/utils.service';
 
 import { ClassRoutingModule } from './class-routing.module';

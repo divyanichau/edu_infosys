@@ -5,4 +5,5 @@ export class _class {
 	class: number;
 	section: string;
 	teacher: string;
+	
 }

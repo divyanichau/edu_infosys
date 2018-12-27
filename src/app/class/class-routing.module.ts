@@ -33,7 +33,9 @@ const routes: Routes = [
   {
     path: 'add-batch',
     component: AddBatchComponent,
-  },  
+  }, 
+
+  
 ];
 
 @NgModule({

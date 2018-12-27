@@ -53,7 +53,7 @@ export class AddSectionComponent implements OnInit , OnDestroy{
   }
 
   onSubmit() {
-    this.section._class = this.selected_class;
+    //this.section._class = this.selected_class;
     this._utils.unsubscribeSub(this._sub);
     console.log(this.section)
     this._sub = this._sectionService.add(this.section)
