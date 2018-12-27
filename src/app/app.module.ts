@@ -17,6 +17,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { TopbarComponent } from './topbar/topbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
+
 // import { AcademicComponent } from './academic/academic.component';
 
 
@@ -29,7 +30,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     SidebarComponent,
     TopbarComponent,
     DashboardComponent,
-    
+  
    
   
    

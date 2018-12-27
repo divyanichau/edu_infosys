@@ -7,10 +7,13 @@ import { NgProgressModule } from 'ngx-progressbar';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { UtilsService } from '../../shared/services/utils.service';
 import { TimetableService } from '../../core/services/timetable.service';
+import { TeacherService } from '../../core/services/teacher.service';
+
 
 import { TimeTableRoutingModule } from './timetable-routing.module';
 import { TimetableComponent } from './timetable.component';
 import { AddTimetableComponent } from './add-timetable/add-timetable.component';
+import { ViewTimetableComponent } from './view-timetable/view-timetable.component';
 //import { AddTimetableComponent} from './add-timetable/add-timetable.component';
 
 @NgModule({
@@ -23,7 +26,7 @@ import { AddTimetableComponent } from './add-timetable/add-timetable.component';
 
     TimeTableRoutingModule
   ],
-  providers: [TimetableService, UtilsService],
-  declarations: [TimetableComponent, AddTimetableComponent]
+  providers: [TeacherService,TimetableService, UtilsService,],
+  declarations: [TimetableComponent, AddTimetableComponent, ViewTimetableComponent]
 })
 export class TimeTableModule { }

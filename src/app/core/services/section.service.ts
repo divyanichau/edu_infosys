@@ -52,10 +52,11 @@ export class SectionService {
   selectClass(val){
    this.selectedClass = val
  }
-
+ 
 
   beforeRequest(): void {
     this._progress.start();
+
   }
 
   afterRequest(data: Section): void {
