@@ -7,13 +7,13 @@ import { Observable } from 'rxjs';
 import { NgProgress } from 'ngx-progressbar';
 import { UtilsService } from '../../shared/services/utils.service';
 import { Config } from '../../shared/classes/app';
-import { Student } from '../classes/student';
+import { Subject } from '../classes/subject';
 
 
 @Injectable()
-export class StudentService {
-  private _admissionUrl = `${new Config().api}/admission/student/`;
-  private _studentUrl = `${new Config().api}/student/`;
+export class SubjectService {
+  private _admissionUrl = `${new Config().api}/subject/`;
+  private _subjectUrl = `${new Config().api}/subject/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
 
   constructor(
@@ -23,10 +23,10 @@ export class StudentService {
     private _progress: NgProgress
   ) { }
 
-  find(id: string): Observable<Student> {
+  find(id: string): Observable<Subject> {
     //this.beforeRequest();
 
-    return this._http.get(`${this._studentUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
+    return this._http.get(`${this._subjectUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
       map((res: Response) => res.json()),
       tap(
       data => this.afterGetRequest(),
@@ -35,11 +35,11 @@ export class StudentService {
   }
 
 
-  get(): Observable<Student[]> {
+  get(): Observable<Subject[]> {
     //this.beforeRequest();
     const options = this._utils.makeOptions(this._headers);
 
-    return this._http.get(`${this._studentUrl}`, options).pipe(
+    return this._http.get(`${this._subjectUrl}`, options).pipe(
       map((res: Response) => res.json()),
       tap(
       data => this.afterGetRequest(),
@@ -47,9 +47,9 @@ export class StudentService {
       ),);
   }
 
-  add(student: Student): Observable<Student> {
+  add(subject: Subject): Observable<Subject> {
     this.beforeRequest();
-    const body = JSON.stringify(student);
+    const body = JSON.stringify(subject);
 
     return this._http.post(`${this._admissionUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
       map((res: Response) => res.json().data),
@@ -60,11 +60,11 @@ export class StudentService {
   }
 
 
-  update(student:Student): Observable<Student> {
+  update(subject:Subject): Observable<Subject> {
     this.beforeRequest();
-    const body = JSON.stringify(student);
+    const body = JSON.stringify(subject);
 
-    return this._http.put(`${this._studentUrl}$student.{id}/`, body, this._utils.makeOptions(this._headers)).pipe(
+    return this._http.put(`${this._subjectUrl}$subject.{id}/`, body, this._utils.makeOptions(this._headers)).pipe(
       map((res: Response) => res.json().data),
       tap(
       data => this.afterRequest(data),
@@ -77,9 +77,9 @@ export class StudentService {
     this._progress.start();
   }
 
-  afterRequest(data: Student): void {
+  afterRequest(data: Subject): void {
     this._progress.done();
-    alert('student admitted !!')
+    alert('subject admitted !!')
   }
 
   afterGetRequest(): void {
