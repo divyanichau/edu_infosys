@@ -13,7 +13,11 @@ declare var numeral: any;
 
 @Injectable()
 export class UtilsService {
+<<<<<<< HEAD
  // _notyf = new Notyf();
+=======
+  //_notyf = new Notyf();
+>>>>>>> origin/dev5
   _moment = moment;
 
   constructor(

@@ -5,7 +5,9 @@ import { isArray } from 'lodash';
 
 import{ DatatableComponent} from '@swimlane/ngx-datatable';
 import { TimetableService } from '../../../core/services/timetable.service';
+import { TeacherService } from '../../../core/services/teacher.service';
 import { Timetable } from '../../../core/classes/timetable';
+import { Teacher } from '../../../core/classes/teacher';
 import { UtilsService } from '../../../shared/services/utils.service';
 
 
@@ -17,21 +19,24 @@ declare var numeral: any;
 })
   
 export class AddTimetableComponent implements OnInit , OnDestroy{
+	isclicked : boolean=true;
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
+  teachers: Teacher[];
   obj : Timetable;
    timetables = [];
 
   @ViewChild(DatatableComponent) table: DatatableComponent;
   constructor(
     private _timetableService: TimetableService,
+    private _teacherService: TeacherService,
     private _utils: UtilsService,
     private router: Router
     ) { }
   
   ngOnInit() {
     this.initTimetable();
-    this.loadTimetables();
+    this.loadTeachers();
   }
 
   ngOnDestroy() {
@@ -49,12 +54,12 @@ export class AddTimetableComponent implements OnInit , OnDestroy{
   }
 
 
-   loadTimetables() {
+   loadTeachers() {
     this._utils.unsubscribeSub(this._sub);
-    this._sub = this._timetableService.get().subscribe(
+    this._sub = this._teacherService.get().subscribe(
       data => {
-        isArray(data) ? this.timetables = data : data;
-        console.log(this.timetables)
+        isArray(data) ? this.teachers = data : data;
+        console.log(this.teachers)
 
       }
     );
@@ -64,7 +69,11 @@ export class AddTimetableComponent implements OnInit , OnDestroy{
     this._utils.unsubscribeSub(this._typeSub);
     this.obj = new Timetable();
   }
+  
+   generate_Timetable(){
+	this.isclicked = !this.isclicked;
 
+}
  
 }
 
