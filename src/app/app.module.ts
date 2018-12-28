@@ -29,7 +29,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     SidebarComponent,
     TopbarComponent,
     DashboardComponent,
-
+  
    
   ],
   imports: [
