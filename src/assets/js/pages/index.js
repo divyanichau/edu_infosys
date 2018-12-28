@@ -10,8 +10,8 @@
     });
 
     initRealTimeChart();
-    initDonutChart();
-    initSparkline();
+    //initDonutChart();
+    //initSparkline();
 });
 
 var realtime = 'on';
