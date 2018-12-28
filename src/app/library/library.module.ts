@@ -7,6 +7,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { UtilsService } from '../shared/services/utils.service';
 
 import { LibraryService } from '../core/services/library.service';
+import { BatchService } from '../core/services/batch.service';
+import { StudentService } from '../core/services/student.service';
 import { CourseService } from '../core/services/course.service';
 import { LibraryRoutingModule } from './library-routing.module';
 import { LibraryComponent } from './library.component';
@@ -24,7 +26,7 @@ import { IssueBookComponent} from './issue-book/issue-book.component';
 
     LibraryRoutingModule
   ],
-  providers: [LibraryService, CourseService, UtilsService],
+  providers: [LibraryService, CourseService, BatchService, StudentService, UtilsService],
   declarations: [LibraryComponent, AddBookComponent, AddCategoryComponent, IssueBookComponent]
 })
 export class LibraryModule { }

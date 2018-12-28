@@ -5,12 +5,12 @@ import { isArray } from 'lodash';
 
 import{ DatatableComponent} from '@swimlane/ngx-datatable';
 import { CourseService } from '../../core/services/course.service';
-//import { BatchService } from '../../core/services/batch.service';
+import { BatchService } from '../../core/services/batch.service';
 import { StudentService } from '../../core/services/student.service';
 import { LibraryService } from '../../core/services/library.service';
 import { IssueBook } from '../../core/classes/issuebook';
 import { Course } from '../../core/classes/course';
-//import { Batch } from '../../core/classes/batch';
+import { Batch } from '../../core/classes/batch';
 import { Student } from '../../core/classes/student';
 import { UtilsService } from '../../shared/services/utils.service';
 
@@ -37,8 +37,8 @@ export class IssueBookComponent implements OnInit , OnDestroy{
  _course: Course[];
  selected_course: number;
 
- // _batch: Batch[];
- // selected_batch :number;
+ _batch: Batch[];
+ selected_batch :number;
 
  _student: Student[];
  selected_student: number;
@@ -60,7 +60,7 @@ reset_detail_value(){
   constructor(
     private _libraryService: LibraryService,
     private _courseService: CourseService,
-    //private _batchService: BatchService,
+    private _batchService: BatchService,
     private _studentService: StudentService,
     private _utils: UtilsService,
     private router: Router
@@ -92,45 +92,42 @@ reset_detail_value(){
 
 
 
- loadCourse() {
+ 
+   loadCourse() {
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._courseService.get().subscribe(
       data => {
         isArray(data) ? this._course = data : data;
         console.log(this._course)
         this.selected_course = this._course[0].id;
-        //console.log(this.section)\
-        //this.loadBatch();  
+         this.loadBatch();
       }
     );
   }
 
+  loadBatch() {
+    this._utils.unsubscribeSub(this._sub);
+    this._sub = this._batchService.get().subscribe(
+      data => {
+        isArray(data) ? this._batch = data : data;
+        console.log(this._batch)
+        this.selected_batch = this._batch[0].id;
+       this.loadStudent();
+      }
+    );
+  }
 
-  // loadBatch() {
-  //   this._utils.unsubscribeSub(this._sub);
-  //   this._sub = this._batchService.get().subscribe(
-  //     data => {
-  //       isArray(data) ? this._batch = data : data;
-  //       console.log(this._batch)
-  //       this.selected_batch = this._batch[0].id;
-  //       //console.log(this.section)
-  //       this.loadStudent();  
-  //     }
-  //   );
-  // }
-
-  // loadStudent() {
-  //   this._utils.unsubscribeSub(this._sub);
-  //   this._sub = this._studentService.get().subscribe(
-  //     data => {
-  //       isArray(data) ? this._student = data : data;
-  //       console.log(this._student)
-  //       this.selected_student = this._student[0].id;
-  //       //console.log(this.section)
-  //       this.loadIssueBook();  
-  //     }
-  //   );
-  // }
+  loadStudent() {
+    this._utils.unsubscribeSub(this._sub);
+    this._sub = this._studentService.get().subscribe(
+      data => {
+        isArray(data) ? this._student = data : data;
+        console.log(this._student)
+        this.selected_student = this._student[0].id;
+        this.loadIssueBook();  
+      }
+    );
+  }
 
 
  loadIssueBook() {

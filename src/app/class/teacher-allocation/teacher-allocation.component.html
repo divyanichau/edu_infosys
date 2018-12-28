@@ -1,0 +1,146 @@
+<div class="body">
+ <div class="content-wrapper">
+    <div class="content">
+      <div class="page-header">
+         <ol class="breadcrumb breadcrumb" >
+              <li><a href="#"><i class="material-icons">home</i> Home</a></li>
+              <li><a href="#"><i class="material-icons">class</i>Class</a></li>
+              <li class="active">Class Teacher Allocation</li>
+           <ul class="breadcrumb-elements">                          
+            </ul>
+            <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a><a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+            </ol> 
+            </div>
+          </div>
+         
+          
+  
+      <form (ngSubmit)="onSubmit()" #classForm="ngForm">
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+              <div class="panel-heading" >
+                <h4 class="panel-title">Add Class Teacher Allocation</h4>
+              </div>
+              <br>
+
+<div class="row clearfix">
+       <div class="panel-body">
+    
+            <div class="col-sm-10">
+                  <label for="course">Course</label>
+                  <select class="form-control"       
+                 [(ngModel)]="selected_course" name="name">
+                  <option *ngFor="let c of _course" [ngValue]="c.id">{{c.name}}</option>
+                  </select>
+            </div>
+          </div>
+
+           <div class="panel-body">   
+            <div class="col-sm-10">
+                  <label for="course">Batch</label>
+                  <select class="form-control"       
+                 [(ngModel)]="selected_batch" name="name">
+                  <option *ngFor="let c of _batch" [ngValue]="c.id">{{c.name}}</option>
+                  </select>
+            </div>
+          </div>
+             
+               <div class="panel-body">   
+            <div class="col-sm-10">
+                  <label for="course">Class Teacher</label>
+                  <select class="form-control"       
+                 [(ngModel)]="selected_teacher" name="name">
+                  <option *ngFor="let c of _teacher" [ngValue]="c.id">{{c.user.first_name}}</option>
+                  </select>
+            </div>
+          </div>
+           </div>
+           
+              <div class="panel-body"> 
+          <div class="form-group">
+                  <button class="btn btn-primary btn-lg"  type="Submit"><b>Add Batch</b></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      
+
+      
+<div class="content-wrapper">           
+    <div class="content">
+ <div class="form-group">
+    <div class="row">
+    <div class="col-sm-6"> 
+     <div class="panel panel-default">
+              <div class="panel-heading" >                    
+       <div class="table-responsive">                       
+              <div class="row">              
+                <div class="col-xs-6 col-md-6">
+                  <div class="input-group">
+                    <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter Name" id="txtSearch" />
+                    <div class="input-group-btn">
+                      <button class="btn btn-primary" type="submit">
+                        <span class="glyphicon glyphicon-search"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='search with name'
+                                (keyup)='updagitteFilter($event)'
+                              /> -->
+              <ngx-datatable class="material" [rows]="_classteacher" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+                [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+
+                <ngx-datatable-column name="ID" prop="id">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+                <!-- <ngx-datatable-column name="Name" prop="user.first_name">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column> -->
+<ngx-datatable-column name="Batch" prop="batch">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>     
+               
+
+                
+
+ <ngx-datatable-column name="Course" prop="course">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>                 
+
+                  <ngx-datatable-column name="Class Teacher Allocation" prop="teacher_allocation">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+
+                <ngx-datatable-column name="Actions" sortable="false" prop="id">
+                  <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                    Manage
+                  </ng-template>
+                  <ng-template let-row="_classteacher" let-value="value" ngx-datatable-cell-template>
+                    <a class="glyphicon glyphicon-eye-open" title="" href="/class/teacher-allocation/{{value}}"><img src="" alt=""></a>
+                    <a class="glyphicon glyphicon-trash left-icon" title="" href="/class/teacher-allocation/delete/{{value}}"><img src="" alt=""></a>
+                  </ng-template>
+                </ngx-datatable-column>
+              </ngx-datatable>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+

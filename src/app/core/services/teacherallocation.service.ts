@@ -8,12 +8,12 @@ import { Observable } from 'rxjs';
 import { NgProgress } from 'ngx-progressbar';
 import { UtilsService } from '../../shared/services/utils.service';
 import { Config } from '../../shared/classes/app';
-import { Batch } from '../classes/batch';
+import { TeacherAllocation } from '../classes/teacher-allocation';
 
 
 @Injectable()
-export class BatchService {
-  private _batchUrl = `${new Config().api}/course/batch/`;
+export class TeacherAllocationService {
+  private _teacherallocationUrl = `${new Config().api}/course/course/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
 
   constructor(
@@ -23,22 +23,11 @@ export class BatchService {
     private _progress: NgProgress
   ) { }
 
-  find(id: string): Observable<Batch> {
-    //this.beforeRequest();
-
-    return this._http.get(`${this._batchUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
-      map((res: Response) => res.json()),
-      tap(
-      data => this.afterGetRequest(),
-      error => { console.log(error); }
-      ),);
-  }
-
-  get(): Observable<Batch[]> {
+  get(): Observable<TeacherAllocation[]> {
     //this.beforeRequest();
     const options = this._utils.makeOptions(this._headers);
 
-    return this._http.get(`${this._batchUrl}`, options).pipe(
+    return this._http.get(`${this._teacherallocationUrl}`, options).pipe(
       map((res: Response) => res.json()),
       tap(
       data => this.afterGetRequest(),
@@ -46,11 +35,11 @@ export class BatchService {
       ),);
   }
 
-  add(batch : Batch): Observable<Batch> {
+  add( teacherallocation: TeacherAllocation ): Observable<TeacherAllocation> {
     this.beforeRequest();
-    const body = JSON.stringify(batch);
+    const body = JSON.stringify(teacherallocation);
 
-    return this._http.post(`${this._batchUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
+    return this._http.post(`${this._teacherallocationUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
       map((res: Response) => res.json().data),
       tap(
       data => this.afterRequest(data),
@@ -58,26 +47,16 @@ export class BatchService {
       ),);
   }
 
- update(batch:Batch): Observable<Batch> {
-    this.beforeRequest();
-    const body = JSON.stringify(batch);
-
-    return this._http.put(`${this._batchUrl}$batch.{id}/`, body, this._utils.makeOptions(this._headers)).pipe(
-      map((res: Response) => res.json().data),
-      tap(
-      data => this.afterRequest(data),
-      error => { this.showError(error) }
-      ),);
-  }
+ 
 
 
   beforeRequest(): void {
     this._progress.start();
   }
 
-  afterRequest(data: Batch): void {
+  afterRequest(data: TeacherAllocation): void {
     this._progress.done();
-    
+   
   }
 
   afterGetRequest(): void {

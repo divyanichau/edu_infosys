@@ -1,6 +1,7 @@
 export class Batch {
 	
 	id : number;
+	name : string;
 	batch : string;
 	course : string;
 	start_date : string;

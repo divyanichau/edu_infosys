@@ -79,7 +79,7 @@ export class SubjectService {
 
   afterRequest(data: Subject): void {
     this._progress.done();
-    alert('subject admitted !!')
+    
   }
 
   afterGetRequest(): void {
@@ -88,7 +88,7 @@ export class SubjectService {
 
   showError(error): void {
     console.log(error);
-    alert(error._body);
+   
   }
 
 }

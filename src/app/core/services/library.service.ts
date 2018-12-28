@@ -121,7 +121,7 @@ export class LibraryService {
 
   showError(error): void {
     console.log(error);
-    alert(error._body);
+   
   }
 
 }

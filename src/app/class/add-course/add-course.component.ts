@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, Output, EventEmitter, ViewChild } from '@
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { isArray } from 'lodash';
+import { ToastrService } from 'ngx-toastr';
 
 import{ DatatableComponent} from '@swimlane/ngx-datatable';
 
@@ -34,10 +35,9 @@ export class AddCourseComponent implements OnInit , OnDestroy{
   constructor(
     private _courseService: CourseService,
     private _utils: UtilsService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
     ) { }
- 
-  
   
   ngOnInit() {
     this.initCourse();
@@ -54,7 +54,7 @@ export class AddCourseComponent implements OnInit , OnDestroy{
     this._sub = this._courseService.add(this.obj_course)
       .subscribe(data => {
         console.log(data);
-        alert('Course added');
+        this.toastr.success('Course Added !', 'Success',{timeOut: 3000});
       });
   }
 
