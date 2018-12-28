@@ -22,26 +22,26 @@ export class AddClassComponent implements OnInit , OnDestroy{
   private _typeSub: Subscription = undefined;
   
   obj : _class = new _class();
-objs: _class[];
-  classes = [];
+  list = [];
+  objs: _class[];
   selected_class: number;
   //add_class : _class[];
+
+   rows: any[] = [];
+  temp: any[] = [];
+  editing = {};
  
  @ViewChild(DatatableComponent) table: DatatableComponent;
-
   constructor(
     private _classService: ClassService,
     private _utils: UtilsService,
     private router: Router
     ) { }
 
-    rows: any[] = [];
-  temp: any[] = [];
-  editing = {};
-  
-  
+   
   ngOnInit() {
     this.initClass();
+    this.loadClass();
      
   }
 
@@ -51,12 +51,24 @@ objs: _class[];
 
   onSubmit() {
     this._utils.unsubscribeSub(this._sub);
-    console.log(this.objs)
+    console.log(this.obj)
     this._sub = this._classService.add(this.obj)
       .subscribe(data => {
         console.log(data);
         alert('Class added');
       });
+  }
+
+
+   loadClass() {
+    this._utils.unsubscribeSub(this._sub);
+    this._sub = this._classService.get().subscribe(
+      data => {
+        isArray(data) ? this.list = data : data;
+        console.log(this.list)
+
+      }
+    );
   }
 
   initClass() {

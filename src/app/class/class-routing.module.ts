@@ -5,6 +5,7 @@ import { ClassComponent } from './class.component';
 import { AddClassComponent } from './add-class/add-class.component';
 import { AddSectionComponent} from './add-section/add-section.component';
 import { AddCourseComponent} from './add-course/add-course.component';
+import { AddBatchComponent} from './add-batch/add-batch.component';
 
 
 
@@ -29,7 +30,11 @@ const routes: Routes = [
     component: AddCourseComponent,
   },
 
- 
+  {
+    path: 'add-batch',
+    component: AddBatchComponent,
+  }, 
+
   
 ];
 

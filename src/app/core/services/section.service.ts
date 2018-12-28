@@ -19,20 +19,35 @@ export class SectionService {
   selectedClass = {};
  
 
-
-  constructor(
+ constructor(
     private _utils: UtilsService,
     private _http: Http,
     private _router: Router,
     private _progress: NgProgress
   ) { }
 
-  getSection(){
-    this._http.get('http://192.168.1.77:8001/api/library/class/').subscribe(data => {     
-      console.log(this.section);
+   find(id: string): Observable<Section> {
+    //this.beforeRequest();
 
-       });
- }
+   return this._http.get(`${this._sectionUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json()),
+      tap(
+      data => this.afterGetRequest(),
+      error => { console.log(error); }
+      ),);
+  }
+
+  get(): Observable<Section[]> {
+    //this.beforeRequest();
+    const options = this._utils.makeOptions(this._headers);
+
+    return this._http.get(`${this._sectionUrl}`, options).pipe(
+      map((res: Response) => res.json()),
+      tap(
+      data => this.afterGetRequest(),
+      error => { console.log(error); }
+      ),);
+  }
 
   add(section: Section): Observable<Section> {
     this.beforeRequest();
@@ -42,16 +57,22 @@ export class SectionService {
       map((res: Response) => res.json().data),
       tap(
       data => this.afterRequest(data),
-      error => { console.log(error); }
+      error => { this.showError(error) }
       ),);
   }
 
+  update(section: Section): Observable<Section> {
+    this.beforeRequest();
+    const body = JSON.stringify(section);
 
-  
+    return this._http.put(`${this._sectionUrl}$section.{id}/`, body, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json().data),
+      tap(
+      data => this.afterRequest(data),
+      error => { this.showError(error) }
+      ),);
+  }
 
-  selectClass(val){
-   this.selectedClass = val
- }
 
 
   beforeRequest(): void {
@@ -60,6 +81,18 @@ export class SectionService {
 
   afterRequest(data: Section): void {
     this._progress.done();
+    alert('class added !!')
+  }
+
+  afterGetRequest(): void {
+    this._progress.done();
+  }
+
+  showError(error): void {
+    console.log(error);
+    alert(error._body);
   }
 
 }
+
+
