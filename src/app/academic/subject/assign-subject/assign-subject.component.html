@@ -82,7 +82,7 @@
                 </div>
               </div>
          
-              <ngx-datatable class="material" [rows]="rows" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+              <ngx-datatable class="material" [rows]="subjects" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
                 [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
 
                 <ngx-datatable-column name="ID" prop="id">
@@ -114,7 +114,7 @@
                 </ngx-datatable-column>
 
 
-                <ngx-datatable-column name="Subject" prop="name">
+                <ngx-datatable-column name="subjects" prop="name">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>

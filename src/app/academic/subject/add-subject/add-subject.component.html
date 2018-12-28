@@ -38,7 +38,7 @@
         <div class="row clearfix">
             <div class="col-sm-10">
                 <label for="description">Description</label>
-                     <input type="text" class="form-control" [(ngModel)]="subject.description" [ngModelOptions]="{standalone: true}" name="description"  size="84" minlength="15" placeholder="Enter Description" required>
+                     <input type="text" class="form-control" [(ngModel)]="subject.description" [ngModelOptions]="{standalone: true}" name="description"  size="84" maxlength="15" placeholder="Enter Description" required>
             </div>
           </div>
             <br>
@@ -71,10 +71,10 @@
                 </div>
               </div>
          
-              <ngx-datatable class="material" [rows]="rows" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+              <ngx-datatable class="material" [rows]="subjects" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
                 [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
 
-                <ngx-datatable-column name="SI.NO" prop="si.no">
+                <ngx-datatable-column name="ID" prop="id">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
@@ -106,7 +106,7 @@
                   <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                     Manage
                   </ng-template>
-                  <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                  <ng-template let-row="subjects" let-value="value" ngx-datatable-cell-template>
                     <a class="glyphicon glyphicon-eye-open" title="" href="/academic/subject/add-subect{{value}}"><img src="" alt=""></a>
                     <a class="glyphicon glyphicon-trash left-icon" title="" href="/academic/subject/add-subject/delete/{{value}}"><img src="" alt=""></a>
                   </ng-template>

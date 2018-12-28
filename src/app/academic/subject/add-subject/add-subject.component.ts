@@ -23,6 +23,11 @@ export class AddSubjectComponent implements OnInit , OnDestroy{
   subject : Subject;
   subjects = [];
 
+  rows: any[] = [];
+  temp: any[] = [];
+  editing = {};
+
+
   @ViewChild(DatatableComponent) table: DatatableComponent;
   constructor(
     private _subjectService: SubjectService,
@@ -66,6 +71,7 @@ export class AddSubjectComponent implements OnInit , OnDestroy{
   initSubject() {
     this._utils.unsubscribeSub(this._typeSub);
     this.subject= new Subject();
+
   }
 
  

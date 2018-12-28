@@ -31,6 +31,9 @@ export class AssignSubjectComponent implements OnInit , OnDestroy{
   courses: Course[];
   batch: Batch[];
  
+ rows: any[] = [];
+  temp: any[] = [];
+  editing = {};
 
 
   constructor(
