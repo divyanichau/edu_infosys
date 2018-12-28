@@ -7,11 +7,15 @@ import { NgProgressModule } from 'ngx-progressbar';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { UtilsService } from '../../shared/services/utils.service';
 import { SubjectService } from '../../core/services/subject.service';
+import { CourseService } from '../../core/services/course.service';
+import { BatchService } from '../../core/services/batch.service';
 
 import { SubjectRoutingModule } from './subject-routing.module';
+
 import { SubjectComponent } from './subject.component';
 import { AddSubjectComponent } from './add-subject/add-subject.component';
-//import { AddTimetableComponent} from './add-timetable/add-timetable.component';
+import { AssignSubjectComponent } from './assign-subject/assign-subject.component';
+import { ElectiveSubjectComponent } from './elective-subject/elective-subject.component';
 
 @NgModule({
   imports: [
@@ -23,7 +27,7 @@ import { AddSubjectComponent } from './add-subject/add-subject.component';
 
     SubjectRoutingModule
   ],
-  providers: [SubjectService, UtilsService],
-  declarations: [SubjectComponent, AddSubjectComponent]
+  providers: [SubjectService, CourseService, BatchService, UtilsService],
+  declarations: [SubjectComponent, AddSubjectComponent, AssignSubjectComponent, ElectiveSubjectComponent ]
 })
 export class SubjectModule { }

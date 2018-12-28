@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, Output, EventEmitter, ViewChild } from '@
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 import { isArray } from 'lodash';
+import { ToastrService } from 'ngx-toastr';
 
 import{ DatatableComponent} from '@swimlane/ngx-datatable';
 import { SubjectService } from '../../../core/services/subject.service';
@@ -19,14 +20,15 @@ declare var numeral: any;
 export class AddSubjectComponent implements OnInit , OnDestroy{
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
-  obj : Subject;
+  subject : Subject;
   subjects = [];
 
   @ViewChild(DatatableComponent) table: DatatableComponent;
   constructor(
     private _subjectService: SubjectService,
     private _utils: UtilsService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
     ) { }
   
   ngOnInit() {
@@ -40,11 +42,12 @@ export class AddSubjectComponent implements OnInit , OnDestroy{
 
   onSubmit() {
     this._utils.unsubscribeSub(this._sub);
-    console.log(this.obj)
-    this._sub = this._subjectService.add(this.obj)
+    console.log(this.subject)
+    this._sub = this._subjectService.add(this.subject)
       .subscribe(data => {
         console.log(data);
-        alert('Subject added');
+         this.toastr.success('Subject Added !', 'Success',{timeOut: 3000});
+
       });
   }
 
@@ -62,7 +65,7 @@ export class AddSubjectComponent implements OnInit , OnDestroy{
 
   initSubject() {
     this._utils.unsubscribeSub(this._typeSub);
-    this.obj = new Subject();
+    this.subject= new Subject();
   }
 
  

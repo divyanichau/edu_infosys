@@ -1,6 +1,8 @@
 export class Subject {
   id: string;
   name: string;
-  code: number;
+  code: string;
+  course: string;
+  batch: string;
   description: string;
 }

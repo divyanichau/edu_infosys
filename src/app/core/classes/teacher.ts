@@ -12,5 +12,7 @@ export class Teacher {
   address_detail: Address = new Address();
   description: string;
   qualification: string;
+  name: string;
+
 }
 

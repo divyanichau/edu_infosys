@@ -18,6 +18,8 @@ const routes: Routes = [
     path: 'timetable',
     loadChildren: './timetable/timetable.module#TimeTableModule'
   },
+
+  
   {
     path: 'subject',
     loadChildren: './subject/subject.module#SubjectModule'
