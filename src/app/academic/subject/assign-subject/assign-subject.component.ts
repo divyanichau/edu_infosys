@@ -14,6 +14,7 @@ import { BatchService } from '../../../core/services/batch.service';
 import { Subject } from '../../../core/classes/subject';
 import { Course } from '../../../core/classes/course';
 import { Batch } from '../../../core/classes/batch';
+import { AssignSubject} from '../../../core/classes/assignsubject';
 import { UtilsService } from '../../../shared/services/utils.service';
 
 
@@ -27,11 +28,18 @@ declare var numeral: any;
 export class AssignSubjectComponent implements OnInit , OnDestroy{
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
-  subject : Subject =new Subject();
+ // subject : AssignSubject =new AssignSubject();
+  subject: Subject =new Subject();
   courses: Course[];
   batch: Batch[];
+  subjects: Subject[];
+
+  selected_subject: string;
+  selected_batch: string;
+  selected_course: string;
+
  
- rows: any[] = [];
+  rows: any[] = [];
   temp: any[] = [];
   editing = {};
 
@@ -49,6 +57,7 @@ export class AssignSubjectComponent implements OnInit , OnDestroy{
   ngOnInit() {
     this.initSubject();
     this.loadCourses();
+  
     
   }
 
@@ -57,11 +66,18 @@ export class AssignSubjectComponent implements OnInit , OnDestroy{
   }
 
   onSubmit() {
+    //console.log(this.selected_course);
+    this.subject.batch=this.selected_batch;
+    this.subject.course=this.selected_course;
+    //this.subject=this.selected_subject;
     this._utils.unsubscribeSub(this._sub);
-    this._sub = this._subjectService.add(this.subject)
+    //this.subject.course=this.subject.course;
+
+     console.log(this.subject)
+    this._sub = this._subjectService.addSubject(this.subject)
       .subscribe(data => {
         console.log(data);
-        this.toastr.success('Subject Added !', 'Success',{timeOut: 3000});
+        this.toastr.success('Subject Assign !', 'Success',{timeOut: 3000});
 
       });
   }
@@ -72,7 +88,12 @@ export class AssignSubjectComponent implements OnInit , OnDestroy{
       data => {
         isArray(data) ? this.courses = data : data;
         console.log(this.courses);
+
         this.loadBatch();
+
+         if(this.courses.length > 0){
+         // this.selected_course = this.courses[0].id;
+        }
       }
     );
   }
@@ -83,10 +104,43 @@ export class AssignSubjectComponent implements OnInit , OnDestroy{
       data => {
         isArray(data) ? this.batch = data : data;
         console.log(this.batch);
+          this.loadSubjects();
+
+
+        if(this.batch.length > 0){
+      //    this.selected_batch = this.batch[0].id;
+        }
+      }
+    );
+  }
+
+
+  //  loadSubject() {
+  //   this._utils.unsubscribeSub(this._sub);
+  //   this._sub = this._subjectService.get().subscribe(
+  //     data => {
+  //       isArray(data) ? this.subjects = data : data;
+  //       console.log(this.subjects);
+  //        this.loadSubjects();
+  //     }
+  //   );
+  // }
+
+ loadSubjects() {
+    this._utils.unsubscribeSub(this._sub);
+    this._sub = this._subjectService.get().subscribe(
+      data => {
+        isArray(data) ? this.subjects = data : data;
+        console.log(this.subjects);
+
+        if(this.subjects.length > 0){
+          this.selected_subject = this.subjects[0].id;
+        }
 
       }
     );
   }
+
 
   initSubject() {
     this._utils.unsubscribeSub(this._typeSub);

@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SubjectComponent } from './subject.component';
 import { AddSubjectComponent } from './add-subject/add-subject.component';
 import { AssignSubjectComponent} from './assign-subject/assign-subject.component';
+import { ElectiveSubjectComponent} from './elective-subject/elective-subject.component';
 
 
 const routes: Routes = [
@@ -27,7 +28,7 @@ const routes: Routes = [
 
  {
     path: 'elective-subject',
-    component: AssignSubjectComponent
+    component: ElectiveSubjectComponent
   }
 
   

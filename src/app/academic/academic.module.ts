@@ -26,7 +26,7 @@ import { CreateComponent } from './certification/create/create.component';
 
     AcademicRoutingModule
   ],
-  providers: [ TimetableService, SubjectService, UtilsService],
+  providers: [ TimetableService, SubjectService,  UtilsService],
   declarations: [CreateComponent,  AcademicComponent]
 
 })
