@@ -37,7 +37,7 @@
 
            <div class="panel-body">   
             <div class="col-sm-10">
-                  <label for="course">Batch</label>
+                  <label for="batch">Batch</label>
                   <select class="form-control"       
                  [(ngModel)]="selected_batch" name="name">
                   <option *ngFor="let c of _batch" [ngValue]="c.id">{{c.name}}</option>
@@ -47,7 +47,7 @@
              
                <div class="panel-body">   
             <div class="col-sm-10">
-                  <label for="course">Class Teacher</label>
+                  <label for="class_teacher">Class Teacher</label>
                   <select class="form-control"       
                  [(ngModel)]="selected_teacher" name="name">
                   <option *ngFor="let c of _teacher" [ngValue]="c.id">{{c.user.first_name}}</option>
@@ -115,7 +115,7 @@
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>                 
 
-                  <ngx-datatable-column name="Class Teacher Allocation" prop="teacher_allocation">
+                  <ngx-datatable-column name="Class Teacher Allocation" prop="class_teacher">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>

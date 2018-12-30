@@ -14,6 +14,7 @@ import { Batch } from '../../core/classes/batch';
 import { Student } from '../../core/classes/student';
 import { UtilsService } from '../../shared/services/utils.service';
 
+import { ToastrService } from 'ngx-toastr';
 
 declare var numeral: any
 @Component({
@@ -31,8 +32,7 @@ export class IssueBookComponent implements OnInit , OnDestroy{
  detail_type = this.default_detail_type;
  student = {};
 
- obj_book = {};
- issue_book : IssueBook;
+  obj_book : IssueBook = new IssueBook();
 
  _course: Course[];
  selected_course: number;
@@ -44,8 +44,11 @@ export class IssueBookComponent implements OnInit , OnDestroy{
  selected_student: number;
 
  _issued_books = [];
+  objs : IssueBook[];
 
-
+  rows: any[] = [];
+  temp: any[] = [];
+  editing = {};
 
 @ViewChild(DatatableComponent) table: DatatableComponent;
 onChange(newValue){
@@ -63,11 +66,10 @@ reset_detail_value(){
     private _batchService: BatchService,
     private _studentService: StudentService,
     private _utils: UtilsService,
-    private router: Router
+     private router: Router,
+    private toastr: ToastrService
     ) { }
- 
-  rows = [];
-    temp = [];
+  
   
   
   ngOnInit() {
@@ -82,16 +84,16 @@ reset_detail_value(){
 
   onSubmit() {
     this._utils.unsubscribeSub(this._sub);
+    // this.obj_book.course = this.selected_course;
+    // this.obj_book.batch = this.selected_batch;
+    // this.obj_book.student = this.selected_student;
     console.log(this.obj_book)
     this._sub = this._libraryService.addIssue(this.obj_book)
       .subscribe(data => {
         console.log(data);
-        alert('book issue');
+     this.toastr.success('Issue Book !', 'Success',{timeOut: 3000});
       });
   }
-
-
-
  
    loadCourse() {
     this._utils.unsubscribeSub(this._sub);
@@ -153,9 +155,15 @@ reset_detail_value(){
   }
 
   initIssueBook() {
-    this._utils.unsubscribeSub(this._typeSub);
-    //this.course = new Course();
-    //this.obj_course = {};
+    this._utils.unsubscribeSub(this._sub);
+    // this._sub = this._libraryService.get().subscribe(
+    //   data => {
+    //     isArray(data) ? this.objs = data : data;
+    //     this.rows = this.objs;
+    //     this.temp = [...this.objs];
+
+    //   }
+    // );
   }
 
  

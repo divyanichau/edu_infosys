@@ -17,8 +17,6 @@ export class LibraryService {
   private _addcategoryUrl = `${new Config().api}/library/category/`;
   private _addbookUrl = `${new Config().api}/library/books/`;
   private _issuebookUrl = `${new Config().api}/library/issue/`;
-  private _courseUrl = `${new Config().api}/course/course/`;
-  private _studentUrl = `${new Config().api}/admission/student/`;
   
   private _headers = this._utils.makeHeaders({ withToken: true });
 

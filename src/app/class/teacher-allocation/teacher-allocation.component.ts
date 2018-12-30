@@ -74,18 +74,16 @@ export class TeacherAllocationComponent implements OnInit , OnDestroy{
 
   onSubmit() {
     this._utils.unsubscribeSub(this._sub);
-    this.obj_teacher.course = this.selected_course;
-    this.obj_teacher.batch = this.selected_batch;
-    this.obj_teacher.teacher_allocation = this.selected_teacher;
+    // this.obj_teacher.course = this.selected_course;
+    // this.obj_teacher.batch = this.selected_batch;
+    // this.obj_teacher.class_teacher = this.selected_teacher;
     console.log(this.obj_teacher)
     this._sub = this._teacherallocationService.add(this.obj_teacher)
       .subscribe(data => {
         console.log(data);
         this.toastr.success('Class Teacher Allocation Added !', 'Success',{timeOut: 3000});
       });
-  }
-
-  
+  }  
 
    loadCourse() {
     this._utils.unsubscribeSub(this._sub);

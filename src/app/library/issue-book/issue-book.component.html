@@ -182,7 +182,7 @@
                 </div>
               </div>
           
-              <ngx-datatable class="material" [rows]="list" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+              <ngx-datatable class="material" [rows]="_issued_books" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
                 [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
 
                 <ngx-datatable-column name="ID" prop="id">
@@ -224,7 +224,7 @@
                   <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                     Manage
                   </ng-template>
-                  <ng-template let-row="list" let-value="value" ngx-datatable-cell-template>
+                  <ng-template let-row="_issued_books" let-value="value" ngx-datatable-cell-template>
                     <a class="glyphicon glyphicon-eye-open" title="" href="/class/add-class/{{value}}"><img src="" alt=""></a>
                     <a class="glyphicon glyphicon-trash left-icon" title="" href="/class/add-class/delete/{{value}}"><img src="" alt=""></a>
                   </ng-template>
@@ -272,6 +272,7 @@
                   </select>
             </div>
           </div>
+          <br>
       
                          
                                        
@@ -279,16 +280,17 @@
                                 <div class="col-sm-6">
                                 
                                        
-                                           <label for="phone">Book Issue Date</label>
-                                            <input type="date" class="form-control" placeholder="Enter ISBN Number">
+                                                                
+              <label for="issue_date">Book Issue Date</label>
+       <input type="date" class="form-control" [(ngModel)]="obj_book.issue_date" name="issue_date" placeholder="Enter Date">
                                         
                                     
                                 </div>
                                 
                                 <div class="col-sm-6">
                                    
-                                           <label for="phone">Due Date</label>
-                                            <input type="date" class="form-control" placeholder="Enter Book Number">
+                                          <label for="purchase_date">Due Date</label>
+       <input type="date" class="form-control" [(ngModel)]="obj_book.due_date" name="due_date" placeholder="Enter Date">
                                         </div>
                                     </div>
                                        

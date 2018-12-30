@@ -13,7 +13,7 @@ import { TeacherAllocation } from '../classes/teacher-allocation';
 
 @Injectable()
 export class TeacherAllocationService {
-  private _teacherallocationUrl = `${new Config().api}/course/course/`;
+  private _teacherallocationUrl = `${new Config().api}/course/classteacher/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
 
   constructor(
