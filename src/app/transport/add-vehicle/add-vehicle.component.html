@@ -1,68 +1,73 @@
 <div class="body">
-  <div class="content-wrapper">
-
-    <div class="col-sm-6">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">Add Vehicle</h4>
-        </div>
-        <div class="panel-body">
-          <div class="row clearfix">
-            <div class="col-sm-6">
-              <label for="vehicle_no" class="label-control">Vehicle No</label>
-              <input type="text" class="form-control" name="vehicle_no" placeholder="Vehicle No">
-
-            </div>
-            <div class="col-sm-6">
-              <label for="no_of_seat" class="label-control">No Of Seat</label>
-              <input type="text" class="form-control" name="No Of Seat" placeholder="No Of Seat">
-
-            </div>
-
-            <div class="col-sm-6 form-top-margin">
-              <label for="maximum_allowed" class="label-control">Maximum Allowed</label>
-              <input type="text" class="form-control" name="maximum_allowed" placeholder="Maximum Allowed">
-
-            </div>
-            <div class="col-md-6 form-top-margin">
-              <label for="contact_person"> Contact Person</label>
-              <input type="text" name="contact_person" id="contact_person" class="form-control" placeholder="contact_person">
-
-            </div>
-            <!-- <div class="col-sm-6">
-                          <label for="insurance" class="label-control">Insurance Renew Date</label>
-                          <input type="date" class="form-control" name="insurance">
-        
-                        </div> -->
-
-            <div class="col-md-6 form-top-margin">
-              <label for="driver">Select Driver</label>
-
-              <select class="form-control" [(ngModel)]="selected_driver">
-                <option *ngFor="let driver of _driver" [ngValue]="driver.id">{{driver.name}}</option>
-               
-              </select>
-            </div>
-            <div class="col-md-4 form-top-margin ">
-              <button type="button" class="btn btn-primary waves-effect" data-toggle="modal" data-target="#smallModal"
-                style="margin-top:23px;margin-left: -23px;">+Add New</button>
-            </div>
-
-
-
-
-
+  <form (ngSubmit)="onSubmitVehicle()" #vehicleForm="ngForm">
+    <div class="content-wrapper">
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">Add Vehicle</h4>
           </div>
+          <div class="panel-body">
+            <div class="row clearfix">
+              <div class="col-sm-6">
+                <label for="vehicle_no" class="label-control">Vehicle No</label>
+                <input type="text" id="vehicle_no" class="form-control" name="vehicle_no" [(ngModel)]="vobj.vehicle_no" placeholder="Vehicle No">
 
-          <div class="panel-footer">
-            <button class="btn btn-primary" type="Submit">Add Vehicle</button>
+              </div>
+              <div class="col-sm-6">
+                <label for="no_of_seat" class="label-control">No Of Seat</label>
+                <input type="text" id="no_of_seat" class="form-control" name="no_of_seats" [(ngModel)]="vobj.no_of_seats" placeholder="No Of Seat">
+
+              </div>
+
+              <div class="col-sm-6 form-top-margin">
+                <label for="maximum_allowed" class="label-control">Maximum Allowed</label>
+                <input type="text" id="maximum_allowed" class="form-control" name="max_allowed" placeholder="Maximum Allowed"
+                  [(ngModel)]="vobj.max_allowed">
+
+              </div>
+              <div class="col-md-6 form-top-margin">
+                <label for="contact_person"> Contact Person</label>
+                <input type="text" name="contact_person" id="contact_person" class="form-control" placeholder="contact_person"
+                  [(ngModel)]="vobj.contact_person">
+
+              </div>
+           <div class="row">
+              <div class="col-sm-6 form-top-margin" style="margin-left:17px;">
+                  <label for="insurance" class="label-control">Insurance Renew Date</label>
+                  <input type="date" id="insurance" class="form-control" name="insurance_renew_date" [(ngModel)]="vobj.insurance_renew_date">
+
+                </div>
+           </div>
+
+              <div class="col-md-6 form-top-margin">
+                <label for="driver">Select Driver</label>
+
+                <select class="form-control" name="selected_driver" [(ngModel)]="selected_driver">
+                  <option *ngFor="let driver of _driver" [ngValue]="driver.id" >{{driver.name}}</option>
+
+                </select>
+              </div>
+              <div class="col-md-4 form-top-margin ">
+                <button type="button" class="btn btn-primary waves-effect" data-toggle="modal" data-target="#smallModal"
+                  style="margin-top:23px;margin-left: -23px;">+Add New</button>
+              </div>
+
+
+
+
+
+            </div>
+
+            <div class="panel-footer">
+              <button class="btn btn-primary" type="Submit">Add Vehicle</button>
+            </div>
           </div>
         </div>
       </div>
+
+
     </div>
-
-
-  </div>
+  </form>
 </div>
 <div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
@@ -77,22 +82,25 @@
 
               <div class="col-md-6">
                 <label for="name"> name</label>
-                <input type="text" name="name" id="name" class="form-control"[(ngModel)]= "obj.name" placeholder="name">
+                <input type="text" name="name" id="name" class="form-control" [(ngModel)]="obj.name" placeholder="name">
 
               </div>
               <div class="col-md-6 ">
                 <label for="present address"> Present Address</label>
-                <input type="text" name="present_address" class="form-control" placeholder="present Address" [(ngModel)]="obj.current_address">
+                <input type="text" name="present_address" class="form-control" placeholder="present Address"
+                  [(ngModel)]="obj.current_address">
               </div>
               <div class="col-md-6 form-top-margin">
                 <label for="permanent_address"> Permanent Address</label>
-                <input type="text" name="permanent_address" id="permanent_address" class="form-control" placeholder="Permanent Address" [(ngModel)]="obj.permanent_address">
+                <input type="text" name="permanent_address" id="permanent_address" class="form-control" placeholder="Permanent Address"
+                  [(ngModel)]="obj.permanent_address">
 
               </div>
 
               <div class="col-md-6 form-top-margin">
                 <label for="phone"> Phone No.</label>
-                <input type="number" name="phone" id="phone" class="form-control" placeholder="eg-9810xxxxxx " [(ngModel)]="obj.phone_no">
+                <input type="number" name="phone" id="phone" class="form-control" placeholder="eg-9810xxxxxx "
+                  [(ngModel)]="obj.phone_no">
 
               </div>
               <div class="col-md-6 form-top-margin">
@@ -102,7 +110,8 @@
               </div>
               <div class="col-md-6 form-top-margin">
                 <label for="lcn">License Number</label>
-                <input type="number" name="lcn" id="lcn" class="form-control" placeholder="eg:111-xxx-xxx-xx" [(ngModel)]="obj.license_no">
+                <input type="number" name="lcn" id="lcn" class="form-control" placeholder="eg:111-xxx-xxx-xx"
+                  [(ngModel)]="obj.license_no">
 
               </div>
 

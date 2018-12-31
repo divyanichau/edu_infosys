@@ -5,6 +5,7 @@ import 'moment/min/locales.min';
 import { Headers, RequestOptions } from '@angular/http';
 import { Subscription } from 'rxjs';
 import { isUndefined } from 'lodash';
+import { ToastrService } from 'ngx-toastr';
 
 
 declare var $: any;
@@ -19,6 +20,7 @@ export class UtilsService {
 
   constructor(
     //private translate: TranslateService,
+    private toastr:ToastrService
   ) { }
 
   get token(): string {
@@ -80,14 +82,14 @@ export class UtilsService {
     });
   }
 
-  notyf(action: string, msg: string): void {
+  notify(action: string, msg: string): void {
     switch (action) {
       case 'success':
-      //  this._notyf.confirm(msg);
+      this.toastr.success(msg , 'Success',{timeOut: 3000});
         break;
 
       case 'failed':
-       // this._notyf.alert(msg);
+      this.toastr.error(msg , 'Error',{timeOut: 3000})
         break;
 
       default:
