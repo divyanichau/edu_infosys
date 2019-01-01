@@ -8,6 +8,7 @@ import { NgProgress } from 'ngx-progressbar';
 import { UtilsService } from '../../shared/services/utils.service';
 import { Config } from '../../shared/classes/app';
 import { Subject } from '../classes/subject';
+import { AssignSubject } from '../classes/assignsubject';
 
 
 @Injectable()
@@ -75,7 +76,7 @@ export class SubjectService {
 
 
 
-  getSubject(): Observable<Subject[]> {
+  getSubject(): Observable<AssignSubject[]> {
     //this.beforeRequest();
     const options = this._utils.makeOptions(this._headers);
 
@@ -87,7 +88,7 @@ export class SubjectService {
       ),);
   }
 
-  addSubject(subject: Subject): Observable<Subject> {
+  addSubject(subject: AssignSubject): Observable<AssignSubject> {
     this.beforeRequest();
     const body = JSON.stringify(subject);
 

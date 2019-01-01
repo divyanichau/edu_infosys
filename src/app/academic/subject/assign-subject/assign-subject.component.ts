@@ -28,15 +28,20 @@ declare var numeral: any;
 export class AssignSubjectComponent implements OnInit , OnDestroy{
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
- // subject : AssignSubject =new AssignSubject();
-  subject: Subject =new Subject();
+ 
+  subject : AssignSubject =new AssignSubject();
+ 
   courses: Course[];
   batch: Batch[];
   subjects: Subject[];
 
-  selected_subject: string;
-  selected_batch: string;
-  selected_course: string;
+  objs: AssignSubject[];
+  _subjects=[];
+
+
+  selected_subject: number;
+  selected_batch: number;
+  selected_course: number;
 
  
   rows: any[] = [];
@@ -57,7 +62,8 @@ export class AssignSubjectComponent implements OnInit , OnDestroy{
   ngOnInit() {
     this.initSubject();
     this.loadCourses();
-  
+
+   
     
   }
 
@@ -66,17 +72,16 @@ export class AssignSubjectComponent implements OnInit , OnDestroy{
   }
 
   onSubmit() {
-    //console.log(this.selected_course);
-    this.subject.batch=this.selected_batch;
-    this.subject.course=this.selected_course;
-    //this.subject=this.selected_subject;
+    console.log(this.selected_course);
+     this.subject.batch=this.selected_batch;
+     this.subject.course=this.selected_course;
+    this.subject.subject=this.selected_subject;
     this._utils.unsubscribeSub(this._sub);
-    //this.subject.course=this.subject.course;
-
-     console.log(this.subject)
+ 
+    console.log(this.subject)
     this._sub = this._subjectService.addSubject(this.subject)
       .subscribe(data => {
-        console.log(data);
+     
         this.toastr.success('Subject Assign !', 'Success',{timeOut: 3000});
 
       });
@@ -87,12 +92,11 @@ export class AssignSubjectComponent implements OnInit , OnDestroy{
     this._sub = this._courseService.get().subscribe(
       data => {
         isArray(data) ? this.courses = data : data;
-        console.log(this.courses);
-
+      //  console.log(this.courses);
         this.loadBatch();
 
          if(this.courses.length > 0){
-         // this.selected_course = this.courses[0].id;
+          this.selected_course = this.courses[0].id;
         }
       }
     );
@@ -103,38 +107,27 @@ export class AssignSubjectComponent implements OnInit , OnDestroy{
     this._sub = this._batchService.get().subscribe(
       data => {
         isArray(data) ? this.batch = data : data;
-        console.log(this.batch);
+       // console.log(this.batch);
           this.loadSubjects();
 
-
         if(this.batch.length > 0){
-      //    this.selected_batch = this.batch[0].id;
+         this.selected_batch = this.batch[0].id;
         }
       }
     );
   }
 
-
-  //  loadSubject() {
-  //   this._utils.unsubscribeSub(this._sub);
-  //   this._sub = this._subjectService.get().subscribe(
-  //     data => {
-  //       isArray(data) ? this.subjects = data : data;
-  //       console.log(this.subjects);
-  //        this.loadSubjects();
-  //     }
-  //   );
-  // }
 
  loadSubjects() {
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._subjectService.get().subscribe(
       data => {
         isArray(data) ? this.subjects = data : data;
-        console.log(this.subjects);
+        //console.log(this.subjects);
 
         if(this.subjects.length > 0){
           this.selected_subject = this.subjects[0].id;
+          this.loadSubject();
         }
 
       }
@@ -142,12 +135,29 @@ export class AssignSubjectComponent implements OnInit , OnDestroy{
   }
 
 
+  
+ loadSubject() {
+  this._utils.unsubscribeSub(this._sub);
+   this._sub = this._subjectService.getSubject().subscribe(
+      data => {
+        isArray(data) ? this._subjects = data : data;
+       console.log(this._subjects);
+      }
+    );
+  }
+
   initSubject() {
-    this._utils.unsubscribeSub(this._typeSub);
-    this.subject = new Subject();
+    this._utils.unsubscribeSub(this._sub);
+    this._sub = this._subjectService.getSubject().subscribe(
+      data => {
+        isArray(data) ? this.objs = data : data;
+        this.rows = this.objs;
+        this.temp = [...this.objs];
+      // this.subject = new Subject();
     
   }
 
- 
+ );
+}
 }
 

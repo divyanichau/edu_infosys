@@ -79,7 +79,7 @@
                 </div>
               </div>
          
-              <ngx-datatable class="material" [rows]="subjects" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+              <ngx-datatable class="material" [rows]="_subjects" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
                 [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
 
                 <ngx-datatable-column name="ID" prop="id">
@@ -111,7 +111,7 @@
                 </ngx-datatable-column>
 
 
-                <ngx-datatable-column name="subjects" prop="name">
+                <ngx-datatable-column name="Subjects" prop="subject">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
@@ -121,7 +121,7 @@
                   <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                     Manage
                   </ng-template>
-                  <ng-template let-row="subjects" let-value="value" ngx-datatable-cell-template>
+                  <ng-template let-row="_subjects" let-value="value" ngx-datatable-cell-template>
                     <a class="glyphicon glyphicon-eye-open" title="" href="/academic/subject/assign-subject{{value}}"><img src="" alt=""></a>
                     <a class="glyphicon glyphicon-trash left-icon" title="" href="/academic/subject/assign-subject/delete/{{value}}"><img src="" alt=""></a>
                   </ng-template>

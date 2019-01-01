@@ -1,8 +1,12 @@
 export class AssignSubject {
 	
 	id : number;
-	batch : string;
-	course : string;
-	subject : string;
+	batch : number;
+	course : number;
+	subject: number;
+	// name: string;
+	// code: string;
+	// description: string;
+
 	
 }

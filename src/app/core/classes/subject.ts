@@ -1,8 +1,9 @@
 export class Subject {
-  id: string;
+  id: number;
   name: string;
   code: string;
   course: string;
   batch: string;
   description: string;
+  subject: string;
 }
