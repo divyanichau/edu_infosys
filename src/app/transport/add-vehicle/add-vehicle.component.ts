@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { isArray } from 'lodash';
 import { ToastrService } from 'ngx-toastr';
+import {DatatableComponent}  from '@swimlane/ngx-datatable';
 
 import { DriverService } from '../../core/services/driver.service';
 import { VehicleService } from '../../core/services/vehicle.service';
@@ -23,13 +24,22 @@ export class AddVehicleComponent implements OnInit {
   vobj : Vehicle = new Vehicle(); 
   _driver: _Driver[];
   selected_driver: number;
+  vehicles:Vehicle[];
+  rows: any[] = [];
+  temp: any[] = [];
 
+  @ViewChild(DatatableComponent) table: DatatableComponent;
   constructor(
+  
     private _driverService: DriverService,
     private _vehicleService : VehicleService,
     private _utils: UtilsService,
-    private toastr: ToastrService
-  ) { }
+    private toastr: ToastrService,
+   
+  ) {
+  
+   
+   }
 
   ngOnInit() {
     this.loadDriver();
@@ -43,7 +53,8 @@ export class AddVehicleComponent implements OnInit {
     //console.log(this.obj)
     this._sub = this._driverService.AddDriver(this.obj).subscribe(data => {
      // console.log(data);
-      alert("Driver Added");
+      //alert("Driver Added");
+  
     });
 
   }
@@ -65,11 +76,25 @@ export class AddVehicleComponent implements OnInit {
     this._sub = this._driverService.getDriver().subscribe(
       data => {
         isArray(data) ? this._driver = data : data;
-        console.log("Selected Driver",this._driver);
+       // console.log("Selected Driver",this._driver);
         this.selected_driver = this._driver[0].id;
-
+        this.loadVehicle();
       }
     );
+    }
+
+    loadVehicle(){
+      this._utils.unsubscribeSub(this._sub);
+      this._sub = this._vehicleService.get().subscribe(
+        data => {
+          //console.log(data)
+          isArray(data) ? this.vehicles = data : data;
+          console.log("veicles",this.vehicles);
+         // console.log("allocated_Student",this.allocated_student);
+          //  this.rows = this.allocated_student;
+          // this.temp = [...this.allocated_student];
+    }
+      );
     }
   
 }

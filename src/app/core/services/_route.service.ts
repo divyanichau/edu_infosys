@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 //import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+
 
 import { NgProgress } from 'ngx-progressbar';
 import { UtilsService } from '../../shared/services/utils.service';
@@ -22,8 +24,21 @@ export class _RouteService{
     private _utils: UtilsService,
     private _http: Http,
    // private _router: Router,
-    private _progress: NgProgress
+    private _progress: NgProgress,
+    private toastr: ToastrService
   ) { }
+
+
+  find(id: string): Observable<_Route> {
+    //this.beforeRequest();
+
+    return this._http.get(`${this._routeUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json()),
+      tap(
+      data => this.afterGetRequest(),
+      error => { console.log(error); }
+      ),);
+  }
 
   AddRoute(_route: _Route): Observable<_Route> {
     this.beforeRequest();
@@ -55,15 +70,14 @@ export class _RouteService{
   }
 
   afterRequest(data: _Route): void {
-    this._progress.done();
-   // alert('vehicle added !!')
+    this.toastr.success('Done','Transport Allocated',{timeOut: 3000});
   }
 
+
   showError(error): void {
-    console.log(error);
-    alert(error._body);
+    this.toastr.error('Error',error._body,{timeOut: 3000});
+
   }
-  
   afterGetRequest(): void {
     this._progress.done();
   }

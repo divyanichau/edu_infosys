@@ -7,3 +7,12 @@ export class allocate_transport {
     student: number;
     route: number
 }
+export class allocate_transportGet{
+    id:number;
+    batch:string;
+    course:string;
+    route:string;
+    class:string;
+    section:string;
+    student:string;
+}

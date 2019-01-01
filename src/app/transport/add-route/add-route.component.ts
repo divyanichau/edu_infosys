@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 // import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { isArray } from 'lodash';
 
 
 import { _RouteService } from '../../core/services/_route.service';
@@ -18,7 +19,7 @@ declare var numeral: any;
 
 export class AddRouteComponent implements OnInit {
   private _sub: Subscription = undefined;
-
+_route: _Route[];
   route: _Route = new _Route();
 
 
@@ -31,7 +32,7 @@ export class AddRouteComponent implements OnInit {
 
 
   ngOnInit() {
-
+    this.loadRoute();
   }
   onSubmitRoute() {
     this._utils.unsubscribeSub(this._sub);
@@ -42,6 +43,18 @@ export class AddRouteComponent implements OnInit {
     });
   }
 
+  loadRoute(){
+    this._utils.unsubscribeSub(this._sub);
+    this._sub = this._routerService1.get().subscribe(
+      data => {
+        //console.log(data)
+        isArray(data) ? this._route = data : data;
+       // console.log("veicleroutess",this._route);
+        //  this.rows = this.allocated_student;
+        // this.temp = [...this.allocated_student];
+  }
+    );
+  }
 
 }
 

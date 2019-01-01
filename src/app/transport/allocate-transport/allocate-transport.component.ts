@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewChild} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { isArray } from 'lodash';
 import { ToastrService } from 'ngx-toastr';
 import { UtilsService } from '../../shared/services/utils.service';
+import {DatatableComponent}  from '@swimlane/ngx-datatable';
 
 import { BatchService } from '../../core/services/batch.service'
 import { CourseService } from '../../core/services/course.service';
@@ -20,7 +21,7 @@ import { _class } from '../../core/classes/class';
 import { Section } from '../../core/classes/section';
 import { Student } from '../../core/classes/student';
 import { _Route } from '../../core/classes/_route';
-import { allocate_transport } from '../../core/classes/allocate-transport'
+import { allocate_transport ,allocate_transportGet} from '../../core/classes/allocate-transport'
 
 
 
@@ -39,6 +40,10 @@ export class AllocateTransportComponent implements OnInit {
   _student: Student[];
   _route: _Route[]
   _allocate_transport: allocate_transport = new allocate_transport();
+  allocated_student:allocate_transportGet[];
+
+  rows: any[] = [];
+  temp: any[] = [];
 
   selected_batch: number;
   selected_course: number;
@@ -47,7 +52,7 @@ export class AllocateTransportComponent implements OnInit {
   selected_student: number;
   selected_route: number;
 
-
+  @ViewChild(DatatableComponent) table: DatatableComponent;
   constructor(
     private _utils: UtilsService,
     private toastr: ToastrService,
@@ -61,7 +66,9 @@ export class AllocateTransportComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loadBatch();
+     this.init_transport();
+    
+  
 
   }
 
@@ -142,7 +149,7 @@ export class AllocateTransportComponent implements OnInit {
     this._allocate_transport.section=this.selected_section;
     this._allocate_transport.student=this.selected_student;
     this._allocate_transport.route=this.selected_route;
-    console.log(this._allocate_transport);
+   // console.log(this._allocate_transport);
      
      this._sub = this._transportAllocateService.add(this._allocate_transport)
 
@@ -153,6 +160,37 @@ export class AllocateTransportComponent implements OnInit {
      
     });
  
+  }
+  init_transport(){
+ 
+    this._utils.unsubscribeSub(this._sub);
+    this._sub = this._transportAllocateService.get().subscribe(
+      data => {
+        //console.log(data)
+        isArray(data) ? this.allocated_student = data : data;
+       // console.log("allocated_Student",this.allocated_student);
+         this.rows = this.allocated_student;
+        this.temp = [...this.allocated_student];
+
+        this.loadBatch();
+
+      }
+    );
+  }
+
+  updateFilter(event) {
+    const val = event.target.value.toLowerCase();
+
+    // filter our data
+    const temp = this.temp.filter(function(d) {
+     // console.log(d.student.toLowerCase(), val)
+      return d.student.toLowerCase().indexOf(val) !== -1 || !val;
+    });
+
+    // update the rows
+    this.allocated_student = temp;
+    // Whenever the filter changes, always go back to the first page
+    this.table.offset = 0;
   }
 }
 

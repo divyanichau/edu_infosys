@@ -39,6 +39,20 @@ export class VehicleService {
       error => { this.showError(error) }
       ),);
   }
+
+  get(): Observable<Vehicle[]> {
+    //this.beforeRequest();
+    const options = this._utils.makeOptions(this._headers);
+
+    return this._http.get(`${this._vehicleUrl}`, options).pipe(
+      map((res: Response) => res.json()),
+      tap(
+     data => {},
+      //error => { console.log(error); }
+      error => { this.showError(error) }
+      ),);
+  }
+
   beforeRequest(): void {
     this._progress.start();
 
