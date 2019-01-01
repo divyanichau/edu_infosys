@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { NgProgressModule } from 'ngx-progressbar';
+import { NgProgressModule } from '@ngx-progressbar/core';
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ToastrModule } from 'ngx-toastr';
@@ -31,10 +31,12 @@ import { DetailComponent } from './detail/detail.component';
     CommonModule,
     FormsModule,
     HttpModule,
-    NgProgressModule,
     NgxDatatableModule,
     ToastrModule.forRoot(), // ToastrModule added
-
+    NgProgressModule.withConfig({
+      spinnerPosition: 'left',
+      color: 'red'
+    }),
 
     StudentRoutingModule
   ],

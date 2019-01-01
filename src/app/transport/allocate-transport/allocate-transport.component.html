@@ -1,6 +1,7 @@
+<ng-progress #progressBar></ng-progress>
 <div class="body">
   <div class="content-wrapper">
-    <form>
+    <form (ngSubmit)="allocateTransport()" #transport="ngForm">
       <div class="col-md-6">
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -9,68 +10,139 @@
         </div>
         <div class="body">
           <div class="row clearfix">
-              <div class="col-md-6">
-                  <span>Select Batch</span>
-                  <select class="form-control">
-                    <option value="0">Select Batch</option>
-                    <option value="1">2073</option>
-    
-                  </select>
-                </div>
-                <div class="col-md-6 ">
-                    <span>Select Course</span>
-                    <select class="form-control">
-                      <option value="0">Select Course</option>
-                      <option value="1">Bsc.Csit</option>
-      
-                    </select>
-                </div>
-                <div class="col-md-6 form-top-margin">
-                    <span>Select Class</span>
-                    <select class="form-control">
-                      <option value="0">Select Class</option>
-                      <option value="1">A</option>
-      
-                    </select>
-                  </div>
-                <div class="col-md-6 form-top-margin">
-                    <span>Select Section</span>
-                    <select class="form-control">
-                      <option value="0">Select Section</option>
-                      <option value="1">A</option>
-      
-                    </select>
-                  </div>
+            <div class="col-md-6">
+              <span>Select Batch</span>
+              <select class="form-control" name="batch" [(ngModel)]="selected_batch">
+                <!-- <option value="0">Select Batch</option> -->
+                <option *ngFor="let batch of _batch" [ngValue]="batch.id">{{batch.name}}</option>
+
+              </select>
+            </div>
+            <div class="col-md-6 ">
+              <span>Select Course</span>
+              <select class="form-control" name="course" [(ngModel)]="selected_course">
+                <option *ngFor="let c of _course" [ngValue]="c.id">{{c.name}}</option>
+                <!-- <option value="1">Bsc.Csit</option> -->
+
+              </select>
+            </div>
+            <div class="col-md-6 form-top-margin">
+              <span>Select Class</span>
+              <select class="form-control" name="class" [(ngModel)]="selected_class">
+                <option *ngFor="let cls of class" [ngValue]="cls.id">{{cls.name}}</option>
+                <!-- <option value="1">A</option> -->
+
+              </select>
+            </div>
+            <div class="col-md-6 form-top-margin">
+              <span>Select Section</span>
+              <select class="form-control" name="section" [(ngModel)]="selected_section">
+                <option *ngFor="let sec of _section" [ngValue]="sec.id">{{sec.name}}</option>
+                <!-- <option value="1">A</option> -->
+
+              </select>
+            </div>
             <div class="col-md-6 form-top-margin">
               <span>Select Student</span>
-              <select class="form-control">
-                <option value="0">Select Student</option>
-                <option value="1">Dinesh Kc</option>
+              <select class="form-control" name="student" [(ngModel)]="selected_student">
+                <option *ngFor="let std of _student" [ngValue]="std.id">{{std.user.first_name }} {{std.user.last_name
+                  }} </option>
+                <!-- <option value="1">Dinesh Kc</option> -->
 
               </select>
             </div>
             <div class="col-md-6 form-top-margin">
               <span>Select Route</span>
-              <select class="form-control">
-                <option value="0">Select Route</option>
-                <option value="1">Dinesh Kc</option>
+              <select class="form-control" name="route" [(ngModel)]="selected_route">
+                <option *ngFor="let route of _route" [ngValue]="route.id">{{route.vehicle_route}}</option>
+                <!-- <option value="1">Dinesh Kc</option> -->
 
               </select>
             </div>
           </div>
         </div>
-          <div class="panel-footer">
-            <button class="btn btn-primary">Allocate</button>
-          </div>
+        <div class="panel-footer">
+          <button class="btn btn-primary" type="submit">Allocate</button>
+        </div>
 
-       
+
 
       </div>
     </form>
 
-      <div class="col-md-6">
-        <h1>View Section</h1>
-      </div>
 
   </div>
+</div>
+
+<div class="row-clearfix">
+  <div class="col-md-6">
+      <div class="card">
+          <div class="body">
+              <div class="table-responsive">
+                <div>
+                  <div class="row">
+                    <label class="control-label col-sm-2">Search Student</label>
+                    <div class="col-xs-7 col-md-5">
+                      <div class="input-group">
+                        <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter Name" id="txtSearch" />
+                        <div class="input-group-btn">
+                          <button class="btn btn-primary" type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='search with name'
+                                    (keyup)='updateFilter($event)'
+                                  /> -->
+                  <ngx-datatable class="material" [rows]="allocated_student" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+                    [footerHeight]="50" [rowHeight]="'auto'" [limit]="3">
+    
+                    <ngx-datatable-column name="ID" prop="id">
+                      <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                      <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                    </ngx-datatable-column>
+    
+                    <!-- <ngx-datatable-column name="Name" prop="user.first_name">
+                      <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                      <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                    </ngx-datatable-column> -->
+                    <!-- <ngx-datatable-column name="Name" prop="user.first_name">
+                      <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-name'] = true" *ngIf="!editing[rowIndex + '-name']">
+                          {{value}}
+                        </span>
+                        <input autofocus (blur)="updateValue($event, 'name', rowIndex)" *ngIf="editing[rowIndex+ '-name']"
+                          type="text" [value]="value" />
+                      </ng-template>
+                    </ngx-datatable-column> -->
+    
+                    <ngx-datatable-column name="Student Name" prop="student">
+                      <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                      <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                    </ngx-datatable-column>
+    
+                    <ngx-datatable-column name="Route" prop="route">
+                      <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                      <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                    </ngx-datatable-column>
+    
+                    <ngx-datatable-column name="Actions" sortable="false" prop="id">
+                      <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                        Manage
+                      </ng-template>
+                      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                        <a class="glyphicon glyphicon-eye-open" title="" href="/student/detail/{{value}}"><img src="" alt=""></a>
+                        <a class="glyphicon glyphicon-trash left-icon" title="" href="/student/delete/{{value}}"><img src=""
+                            alt=""></a>
+                      </ng-template>
+                    </ngx-datatable-column>
+                  </ngx-datatable>
+                </div>
+              </div>
+            </div>
+      </div>
   </div>
+
+</div>

@@ -1,9 +1,9 @@
-import { Course } from './course';
-import { Student } from './student';
 
 export class IssueBook {
   id: number;
-  batch: string;
+  course : number;
+  batch: number;
+  student: number;
   issue_date : Date;
   due_date : Date;
   book : string;

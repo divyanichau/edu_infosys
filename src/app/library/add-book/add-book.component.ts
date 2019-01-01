@@ -7,7 +7,7 @@ import { LibraryService } from '../../core/services/library.service';
 import { AddBook } from '../../core/classes/addbook';
 import { BookCategory } from '../../core/classes/bookcategory';
 import { UtilsService } from '../../shared/services/utils.service';
-
+import { ToastrService } from 'ngx-toastr';
 
 declare var numeral: any
 @Component({
@@ -30,8 +30,10 @@ export class AddBookComponent implements OnInit , OnDestroy{
   constructor(
     private _libraryService: LibraryService,
     private _utils: UtilsService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
     ) { }
+  
   
   
   ngOnInit() {
@@ -51,7 +53,7 @@ export class AddBookComponent implements OnInit , OnDestroy{
     this._sub = this._libraryService.addBook(this.add_book)
       .subscribe(data => {
         console.log(data);
-        alert('book added');
+      this.toastr.success('Issue Book !', 'Success',{timeOut: 3000});
       });
   }
 
@@ -60,9 +62,9 @@ export class AddBookComponent implements OnInit , OnDestroy{
     this._sub = this._libraryService.get().subscribe(
       data => {
         isArray(data) ? this.category = data : data;
-        console.log(this.category)
+        console.log(this.category);
         this.selected_lib = this.category[0].id;
-       console.log(this.add_book)
+       console.log(this.add_book);
       
       }
     );

@@ -23,12 +23,12 @@
               "src/assets"
             ],
             "styles": [
-             "node_modules/ng2-toastr/bundles/ng2-toastr.min.css",
+             //"node_modules/ng2-toastr/bundles/ng2-toastr.umd.min.css",
               "src/styles.css",
 
             ],
             "scripts": [
-             "node_modules/ng2-toastr/bundles/ng2-toastr.min.js",
+             //"node_modules/ng2-toastr/bundles/ng2-toastr.umd.min.js",
             
                
             ]

@@ -5,7 +5,6 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { NgProgress } from 'ngx-progressbar';
 import { UtilsService } from '../../shared/services/utils.service';
 import { Config } from '../../shared/classes/app';
 import { _class } from '../classes/class';
@@ -19,8 +18,7 @@ export class ClassService {
   constructor(
     private _utils: UtilsService,
     private _http: Http,
-    private _router: Router,
-    private _progress: NgProgress
+    private _router: Router
   ) { }
 
    find(id: string): Observable<_class> {
@@ -73,21 +71,21 @@ export class ClassService {
 
 
   beforeRequest(): void {
-    this._progress.start();
+    this._utils.start_progress();
   }
 
   afterRequest(data: _class): void {
-    this._progress.done();
-    alert('class added !!')
+    this._utils.stop_progress();
+   
   }
 
   afterGetRequest(): void {
-    this._progress.done();
+    this._utils.stop_progress();
   }
 
   showError(error): void {
     console.log(error);
-    alert(error._body);
+   
   }
 
 }

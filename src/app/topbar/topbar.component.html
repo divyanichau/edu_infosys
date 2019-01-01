@@ -1,3 +1,4 @@
+<ng-progress #progressBar></ng-progress>
 <!-- Page Loader -->
     <div class="page-loader-wrapper">
         <div class="loader">
@@ -41,7 +42,7 @@
                 <ul class="nav navbar-nav navbar-right">
 
                     <li>
-                        <span class="label bg-light-blue">Academic Year: ( 2075 - 2076 )</span>
+                        <span class="label bg-light-blue">Academic Year: ( {{stat?.academic.academic_year}} )  </span>
                     </li>
 
                     <!-- Call Search -->

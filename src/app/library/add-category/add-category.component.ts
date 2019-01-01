@@ -7,6 +7,7 @@ import { DatatableComponent} from '@swimlane/ngx-datatable';
 import { LibraryService } from '../../core/services/library.service';
 import { BookCategory } from '../../core/classes/bookcategory';
 import { UtilsService } from '../../shared/services/utils.service';
+import { ToastrService } from 'ngx-toastr';
 
 declare var numeral: any
 @Component({
@@ -18,19 +19,23 @@ declare var numeral: any
 export class AddCategoryComponent implements OnInit , OnDestroy{
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
+
   obj : BookCategory[];
-  obj_category : BookCategory;
- library = [];
+  obj_category : BookCategory = new BookCategory();
+  library = [];
+  selected_category: number;
+
+  rows: any[] = [];
+  temp: any[] = [];
+  editing = {};
 
 @ViewChild(DatatableComponent) table: DatatableComponent;
   constructor(
     private _libraryService: LibraryService,
     private _utils: UtilsService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
     ) { }
- 
-  rows = [];
-    temp = [];
   
   
   ngOnInit() {
@@ -44,11 +49,11 @@ export class AddCategoryComponent implements OnInit , OnDestroy{
 
   onSubmit() {
     this._utils.unsubscribeSub(this._sub);
-    console.log(this.obj_category)
+    console.log(this.obj_category);
     this._sub = this._libraryService.add(this.obj_category)
       .subscribe(data => {
         console.log(data);
-        alert('category added');
+            this.toastr.success('Book Category Added !', 'Success',{timeOut: 3000});
       });
   }
 
@@ -57,7 +62,7 @@ export class AddCategoryComponent implements OnInit , OnDestroy{
     this._sub = this._libraryService.get().subscribe(
       data => {
         isArray(data) ? this.library = data : data;
-        console.log(this.library)
+        console.log(this.library);
 
       }
     );
@@ -77,11 +82,19 @@ export class AddCategoryComponent implements OnInit , OnDestroy{
 
   initAddCategory() {
     this._utils.unsubscribeSub(this._typeSub);
-   
+    this._sub = this._libraryService.get().subscribe(
+      data => {
+        isArray(data) ? this.obj = data : data;
+        this.rows = this.obj;
+        this.temp = [...this.obj];
+
+      }
+    );
+  }
   }
 
  
-}
+
 
 
 

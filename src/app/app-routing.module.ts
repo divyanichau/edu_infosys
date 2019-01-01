@@ -3,13 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { TopbarComponent } from './topbar/topbar.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+//import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 const routes: Routes = [
 	 {
 	    path: "",
-	    component: DashboardComponent
+	    loadChildren: './dashboard/dashboard.module#DashboardModule'
 	  },
 
 	  {

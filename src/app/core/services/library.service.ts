@@ -5,7 +5,6 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { NgProgress } from 'ngx-progressbar';
 import { UtilsService } from '../../shared/services/utils.service';
 import { Config } from '../../shared/classes/app';
 import { AddBook } from '../../core/classes/addbook';
@@ -17,16 +16,13 @@ export class LibraryService {
   private _addcategoryUrl = `${new Config().api}/library/category/`;
   private _addbookUrl = `${new Config().api}/library/books/`;
   private _issuebookUrl = `${new Config().api}/library/issue/`;
-  private _courseUrl = `${new Config().api}/course/course/`;
-  private _studentUrl = `${new Config().api}/admission/student/`;
   
   private _headers = this._utils.makeHeaders({ withToken: true });
 
   constructor(
     private _utils: UtilsService,
     private _http: Http,
-    private _router: Router,
-    private _progress: NgProgress
+    private _router: Router
   ) { }
 
   get(): Observable<BookCategory[]> {
@@ -107,21 +103,21 @@ export class LibraryService {
 
   
   beforeRequest(): void {
-    this._progress.start();
+    this._utils.start_progress();
   }
 
   afterRequest(data: AddBook): void {
-    this._progress.done();
+    this._utils.stop_progress();
   }
 
 
   afterRequestGet(): void {
-    this._progress.done();
+    this._utils.stop_progress();
   }
 
   showError(error): void {
     console.log(error);
-    alert(error._body);
+   
   }
 
 }
