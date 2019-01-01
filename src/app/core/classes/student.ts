@@ -6,7 +6,7 @@ import { Phone } from './phone';
 
 
 export class Student {
-  id: string;
+  id: number;
   batch: number;
   course: number;
   class: number;

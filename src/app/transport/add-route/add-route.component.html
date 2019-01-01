@@ -1,6 +1,6 @@
 <div class="body">
   <div class="content-wrapper">
-    <form>
+    <form (ngSubmit)="onSubmitRoute()" #routeForm="ngForm">
     <div class="col-md-6">
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -11,29 +11,29 @@
           <div class="row clearfix">
             <div class="col-md-6">
               <label for="start_location" class="label-control">Start Location</label>
-              <input type="text" class="form-control" name="start_location" placeholder="Start Location">
+              <input type="text" id="start_location" class="form-control" name="start_location" [(ngModel)]="route.start_location" placeholder="Start Location">
 
             </div>
             <div class="col-md-6">
               <label for="end_location" class="label-control">End Location</label>
-              <input type="text" class="form-control" name="end_location" placeholder="End Location">
+              <input type="text" class="form-control" name="end_location" placeholder="End Location"  [(ngModel)]="route.stop_location" >
 
             </div>
             <div class="col-md-6 form-top-margin">
                 <label for="start_time" class="label-control">Start Time</label>
-                <input type="time" class="form-control" name="end_location" placeholder="Start Time">
+                <input type="time" class="form-control" name="end_location" placeholder="Start Time"  [(ngModel)]="route.start_time" >
   
               </div>
               <div class="col-md-6 form-top-margin">
                   <label for="Amount" class="label-control">Amount</label>
-                  <input type="number" class="form-control" name="amount" placeholder="Amount">
+                  <input type="number" class="form-control" name="amount" placeholder="Amount"  [(ngModel)]="route.fee_amount" >
     
                 </div>
 
         </div>
           </div>
       <div class="panel-footer">
-        <button class="btn btn-primary">Add Routes</button>
+        <button type="submit" class="btn btn-primary">Add Routes</button>
       </div>
     </div>
   </form>
