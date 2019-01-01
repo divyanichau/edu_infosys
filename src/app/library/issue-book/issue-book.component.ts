@@ -76,7 +76,7 @@ reset_detail_value(){
     this.reset_detail_value();
     this.detail_type[1]= true;   
     this.loadCourse(); 
-    this.initIssueBook();
+   
   }
 
   ngOnDestroy() {
@@ -85,9 +85,9 @@ reset_detail_value(){
 
   onSubmit() {
     this._utils.unsubscribeSub(this._sub);
-    // this.obj_book.course = this.selected_course;
-    // this.obj_book.batch = this.selected_batch;
-    // this.obj_book.student = this.selected_student;
+    this.obj_book.course = this.selected_course;
+    this.obj_book.batch = this.selected_batch;
+    this.obj_book.student = this.selected_student;
     console.log(this.obj_book);
     this._sub = this._libraryService.addIssue(this.obj_book)
       .subscribe(data => {
@@ -108,7 +108,7 @@ reset_detail_value(){
     );
   }
 
-  loadBatch() {
+   loadBatch() {
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._batchService.get().subscribe(
       data => {
@@ -130,6 +130,7 @@ reset_detail_value(){
         this.loadIssueBook();  
       }
     );
+
   }
 
 
@@ -138,9 +139,11 @@ reset_detail_value(){
     this._sub = this._libraryService.getIssue().subscribe(
       data => {
         isArray(data) ? this._issued_books = data : data;
-      
+        console.log(this._issued_books);
+        this.initIssueBook();
       }
     );
+
   }
 
     updateFilter(event) {
@@ -160,7 +163,7 @@ reset_detail_value(){
     this._sub = this._libraryService.getIssue().subscribe(
       data => {
         isArray(data) ? this.objs = data : data;
-        console.log("issud Book",data);
+        //console.log("issud Book",data);
         this.rows = this.objs;
         this.temp = [...this.objs];
 
