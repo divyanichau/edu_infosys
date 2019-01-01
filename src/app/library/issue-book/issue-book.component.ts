@@ -76,6 +76,7 @@ reset_detail_value(){
     this.reset_detail_value();
     this.detail_type[1]= true;   
     this.loadCourse(); 
+    this.initIssueBook();
   }
 
   ngOnDestroy() {
@@ -87,7 +88,7 @@ reset_detail_value(){
     // this.obj_book.course = this.selected_course;
     // this.obj_book.batch = this.selected_batch;
     // this.obj_book.student = this.selected_student;
-    console.log(this.obj_book)
+    console.log(this.obj_book);
     this._sub = this._libraryService.addIssue(this.obj_book)
       .subscribe(data => {
         console.log(data);
@@ -100,7 +101,7 @@ reset_detail_value(){
     this._sub = this._courseService.get().subscribe(
       data => {
         isArray(data) ? this._course = data : data;
-        console.log(this._course)
+        console.log(this._course);
         this.selected_course = this._course[0].id;
          this.loadBatch();
       }
@@ -112,7 +113,7 @@ reset_detail_value(){
     this._sub = this._batchService.get().subscribe(
       data => {
         isArray(data) ? this._batch = data : data;
-        console.log(this._batch)
+        console.log(this._batch);
         this.selected_batch = this._batch[0].id;
        this.loadStudent();
       }
@@ -124,7 +125,7 @@ reset_detail_value(){
     this._sub = this._studentService.get().subscribe(
       data => {
         isArray(data) ? this._student = data : data;
-        console.log(this._student)
+        console.log(this._student);
         this.selected_student = this._student[0].id;
         this.loadIssueBook();  
       }
@@ -156,17 +157,16 @@ reset_detail_value(){
 
   initIssueBook() {
     this._utils.unsubscribeSub(this._sub);
-    // this._sub = this._libraryService.get().subscribe(
-    //   data => {
-    //     isArray(data) ? this.objs = data : data;
-    //     this.rows = this.objs;
-    //     this.temp = [...this.objs];
+    this._sub = this._libraryService.getIssue().subscribe(
+      data => {
+        isArray(data) ? this.objs = data : data;
+        console.log("issud Book",data);
+        this.rows = this.objs;
+        this.temp = [...this.objs];
 
-    //   }
-    // );
+      }
+    );
   }
-
- 
 }
 
 
