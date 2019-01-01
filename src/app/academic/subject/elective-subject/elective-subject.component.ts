@@ -14,6 +14,7 @@ import { BatchService } from '../../../core/services/batch.service';
 import { Subject } from '../../../core/classes/subject';
 import { Course } from '../../../core/classes/course';
 import { Batch } from '../../../core/classes/batch';
+import { ElectiveSubject} from '../../../core/classes/electivesubject';
 import { UtilsService } from '../../../shared/services/utils.service';
 
 
@@ -27,10 +28,25 @@ declare var numeral: any;
 export class ElectiveSubjectComponent implements OnInit , OnDestroy{
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
-  subject : Subject =new Subject();
+ 
+  subject : ElectiveSubject =new ElectiveSubject();
+ 
   courses: Course[];
   batch: Batch[];
+  subjects: Subject[];
+
+  objs: ElectiveSubject[];
+  _subjects=[];
+
+
+  selected_subject: number;
+  selected_batch: number;
+  selected_course: number;
+
  
+  rows: any[] = [];
+  temp: any[] = [];
+  editing = {};
 
 
   constructor(
@@ -46,6 +62,8 @@ export class ElectiveSubjectComponent implements OnInit , OnDestroy{
   ngOnInit() {
     this.initSubject();
     this.loadCourses();
+
+   
     
   }
 
@@ -54,11 +72,16 @@ export class ElectiveSubjectComponent implements OnInit , OnDestroy{
   }
 
   onSubmit() {
+    console.log(this.selected_course);
+     this.subject.batch=this.selected_batch;
+     this.subject.course=this.selected_course;
+    this.subject.subject=this.selected_subject;
     this._utils.unsubscribeSub(this._sub);
-    this._sub = this._subjectService.add(this.subject)
+    console.log(this.subject)
+    this._sub = this._subjectService.addSubject(this.subject)
       .subscribe(data => {
-        console.log(data);
-        this.toastr.success(' Elective Subject Added !', 'Success',{timeOut: 3000});
+     
+        this.toastr.success('Subject Assign !', 'Success',{timeOut: 3000});
 
       });
   }
@@ -68,8 +91,12 @@ export class ElectiveSubjectComponent implements OnInit , OnDestroy{
     this._sub = this._courseService.get().subscribe(
       data => {
         isArray(data) ? this.courses = data : data;
-        console.log(this.courses);
+      //  console.log(this.courses);
         this.loadBatch();
+
+         if(this.courses.length > 0){
+          this.selected_course = this.courses[0].id;
+        }
       }
     );
   }
@@ -79,18 +106,57 @@ export class ElectiveSubjectComponent implements OnInit , OnDestroy{
     this._sub = this._batchService.get().subscribe(
       data => {
         isArray(data) ? this.batch = data : data;
-        console.log(this.batch);
+       // console.log(this.batch);
+          this.loadSubjects();
+
+        if(this.batch.length > 0){
+         this.selected_batch = this.batch[0].id;
+        }
+      }
+    );
+  }
+
+
+ loadSubjects() {
+    this._utils.unsubscribeSub(this._sub);
+    this._sub = this._subjectService.get().subscribe(
+      data => {
+        isArray(data) ? this.subjects = data : data;
+        //console.log(this.subjects);
+
+        if(this.subjects.length > 0){
+          this.selected_subject = this.subjects[0].id;
+          this.loadSubject();
+        }
 
       }
     );
   }
 
+
+  
+ loadSubject() {
+  this._utils.unsubscribeSub(this._sub);
+   this._sub = this._subjectService.getSubject().subscribe(
+      data => {
+        isArray(data) ? this._subjects = data : data;
+       console.log(this._subjects);
+      }
+    );
+  }
+
   initSubject() {
-    this._utils.unsubscribeSub(this._typeSub);
-    this.subject = new Subject();
+    this._utils.unsubscribeSub(this._sub);
+    this._sub = this._subjectService.getSubject().subscribe(
+      data => {
+        isArray(data) ? this.objs = data : data;
+        this.rows = this.objs;
+        this.temp = [...this.objs];
+      // this.subject = new Subject();
     
   }
 
- 
+ );
+}
 }
 

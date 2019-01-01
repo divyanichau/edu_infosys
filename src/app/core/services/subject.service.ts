@@ -11,6 +11,7 @@ import { Subject } from '../classes/subject';
 import { AssignSubject } from '../classes/assignsubject';
 
 
+
 @Injectable()
 export class SubjectService {
   private _teacherUrl = `${new Config().api}/teacher/addsubject/`;

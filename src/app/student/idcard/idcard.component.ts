@@ -4,9 +4,12 @@ import { Router } from '@angular/router';
 import { isArray } from 'lodash';
 
 import { CourseService } from '../../core/services/course.service';
+import { BatchService } from '../../core/services/batch.service';
 import { StudentService } from '../../core/services/student.service';
+
 import { Student } from '../../core/classes/student';
 import { Course } from '../../core/classes/course';
+import { Batch } from '../../core/classes/batch';
 import { UtilsService } from '../../shared/services/utils.service';
 
 
@@ -22,6 +25,7 @@ export class IdcardComponent implements OnInit , OnDestroy{
   private _typeSub: Subscription = undefined;
   student : Student;
   courses: Course[];
+  batch: Batch[];
   student_id = false;
 
   onChange(newValue){
@@ -36,6 +40,7 @@ export class IdcardComponent implements OnInit , OnDestroy{
   constructor(
     private _studentService: StudentService,
     private _courseService: CourseService,
+    private _batchService: BatchService,
     private _utils: UtilsService,
     private router: Router
     ) { }
@@ -64,16 +69,33 @@ export class IdcardComponent implements OnInit , OnDestroy{
     this._sub = this._courseService.get().subscribe(
       data => {
         isArray(data) ? this.courses = data : data;
-        console.log(this.courses);
-
+        console.log(this.batch);
+        this.loadBatch();
       }
     );
   }
+
+   loadBatch() {
+    this._utils.unsubscribeSub(this._sub);
+    this._sub = this._batchService.get().subscribe(
+      data => {
+        isArray(data) ? this.batch = data : data;
+         console.log(this.courses);
+
+
+       }
+    );
+  }
+
 
   initStudent() {
     this._utils.unsubscribeSub(this._typeSub);
     this.student = new Student();
   }
+
+
+
+
 
   generate_card(){
     this.student_id = true;

@@ -77,7 +77,6 @@ export class AssignSubjectComponent implements OnInit , OnDestroy{
      this.subject.course=this.selected_course;
     this.subject.subject=this.selected_subject;
     this._utils.unsubscribeSub(this._sub);
- 
     console.log(this.subject)
     this._sub = this._subjectService.addSubject(this.subject)
       .subscribe(data => {

@@ -1,4 +1,4 @@
-export class AssignSubject {
+export class ElectiveSubject {
 	
 	id : number;
 	batch : number;
