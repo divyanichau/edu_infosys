@@ -30,10 +30,7 @@ export class TeacherAllocationComponent implements OnInit , OnDestroy{
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
 
-  obj : TeacherAllocation[];
-
-  _classteacher = [];
-
+  
   obj_teacher : TeacherAllocation = new TeacherAllocation();
   
    _course: Course[];
@@ -44,6 +41,10 @@ export class TeacherAllocationComponent implements OnInit , OnDestroy{
 
    _teacher: Teacher[];
    selected_teacher : number;
+
+   obj : TeacherAllocation[];
+  _classteacher = [];
+
  
   rows: any[] = [];
   temp: any[] = [];
@@ -74,10 +75,10 @@ export class TeacherAllocationComponent implements OnInit , OnDestroy{
 
   onSubmit() {
     this._utils.unsubscribeSub(this._sub);
-    // this.obj_teacher.course = this.selected_course;
-    // this.obj_teacher.batch = this.selected_batch;
-    // this.obj_teacher.class_teacher = this.selected_teacher;
-    console.log(this.obj_teacher)
+    this.obj_teacher.course = this.selected_course;
+    this.obj_teacher.batch = this.selected_batch;
+    this.obj_teacher.class_teacher = this.selected_teacher;
+    console.log(this.obj_teacher);
     this._sub = this._teacherallocationService.add(this.obj_teacher)
       .subscribe(data => {
         console.log(data);
@@ -90,7 +91,7 @@ export class TeacherAllocationComponent implements OnInit , OnDestroy{
     this._sub = this._courseService.get().subscribe(
       data => {
         isArray(data) ? this._course = data : data;
-        console.log(this._course)
+        console.log(this._course);
         this.selected_course = this._course[0].id;
          this.loadBatch();
       }
@@ -102,7 +103,7 @@ export class TeacherAllocationComponent implements OnInit , OnDestroy{
     this._sub = this._batchService.get().subscribe(
       data => {
         isArray(data) ? this._batch = data : data;
-        console.log(this._batch)
+        console.log(this._batch);
         this.selected_batch = this._batch[0].id;
        this.loadClassTeacher();
       }
@@ -114,7 +115,7 @@ export class TeacherAllocationComponent implements OnInit , OnDestroy{
     this._sub = this._teacherService.get().subscribe(
       data => {
         isArray(data) ? this._teacher = data : data;
-        console.log(this._teacher)
+        console.log(this._teacher);
         this.selected_teacher = this._teacher[0].id;
         this.loadTeacherAllocation();
       }
@@ -126,9 +127,8 @@ export class TeacherAllocationComponent implements OnInit , OnDestroy{
     this._sub = this._teacherallocationService.get().subscribe(
       data => {
         isArray(data) ? this._classteacher = data : data;
-        console.log(this._classteacher)
-         this.loadCourse();
-
+        console.log(this._classteacher);
+    
       }
     );
   }

@@ -53,7 +53,7 @@ export class AddClassComponent implements OnInit , OnDestroy{
 
   onSubmit() {
     this._utils.unsubscribeSub(this._sub);
-    console.log(this.obj)
+    console.log(this.obj);
     this._sub = this._classService.add(this.obj)
       .subscribe(data => {
         console.log(data);
@@ -67,7 +67,7 @@ export class AddClassComponent implements OnInit , OnDestroy{
     this._sub = this._classService.get().subscribe(
       data => {
         isArray(data) ? this.list = data : data;
-        console.log(this.list)
+        console.log(this.list);
 
       }
     );

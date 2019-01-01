@@ -1,6 +1,6 @@
 export class TeacherAllocation {
 	id : number;
-	course : string;
+	course : number;
 	batch : number;
-	class_teacher : string;
+	class_teacher : number;
 }

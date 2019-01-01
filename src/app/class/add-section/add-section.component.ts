@@ -61,7 +61,7 @@ export class AddSectionComponent implements OnInit , OnDestroy{
     this._utils.unsubscribeSub(this._sub);
     console.log("class'",this.selected_class);
     this.section._class = this.selected_class;
-    console.log(this.section)
+    console.log(this.section);
     this._sub = this._sectionService.add(this.section)
       .subscribe(data => {
         console.log(data);
@@ -75,9 +75,9 @@ export class AddSectionComponent implements OnInit , OnDestroy{
     this._sub = this._classService.get().subscribe(
       data => {
         isArray(data) ? this._classes = data : data;
-        console.log(this._classes)
+        console.log(this._classes);
         this.selected_class = this._classes[0].id;
-        console.log(this.section)
+        console.log(this.section);
          this.loadSection();  
       }
     );
@@ -88,7 +88,7 @@ export class AddSectionComponent implements OnInit , OnDestroy{
     this._sub = this._sectionService.get().subscribe(
       data => {
         isArray(data) ? this._section = data : data;
-        console.log(this._section)
+        console.log(this._section);
 
       }
     );

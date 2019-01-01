@@ -50,7 +50,7 @@ export class AddCourseComponent implements OnInit , OnDestroy{
 
   onSubmit() {
     this._utils.unsubscribeSub(this._sub);
-    console.log(this.obj_course)
+    console.log(this.obj_course);
     this._sub = this._courseService.add(this.obj_course)
       .subscribe(data => {
         console.log(data);
@@ -63,7 +63,7 @@ export class AddCourseComponent implements OnInit , OnDestroy{
     this._sub = this._courseService.get().subscribe(
       data => {
         isArray(data) ? this.course = data : data;
-        console.log(this.course)
+        console.log(this.course);
 
       }
     );

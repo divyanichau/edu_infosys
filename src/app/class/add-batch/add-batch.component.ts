@@ -60,10 +60,10 @@ export class AddBatchComponent implements OnInit , OnDestroy{
   onSubmit() {
     this._utils.unsubscribeSub(this._sub);
      this.obj_batch.course = this.selected_course;
-    console.log(this.obj_batch)
+    console.log(this.obj_batch);
     this._sub = this._batchService.add(this.obj_batch)
       .subscribe(data => {
-        console.log(data);
+       
         this.toastr.success('Batch Added !', 'Success',{timeOut: 3000});
       });
   }
@@ -73,7 +73,7 @@ export class AddBatchComponent implements OnInit , OnDestroy{
     this._sub = this._batchService.get().subscribe(
       data => {
         isArray(data) ? this._batch = data : data;
-        console.log(this._batch)
+        console.log(this._batch);
          this.loadCourse();
 
       }
@@ -85,9 +85,9 @@ export class AddBatchComponent implements OnInit , OnDestroy{
     this._sub = this._courseService.get().subscribe(
       data => {
         isArray(data) ? this._course = data : data;
-        console.log(this._course)
+        console.log(this._course);
         this.selected_course = this._course[0].id;
-        console.log(this.obj_batch)
+        console.log(this.obj_batch);
       }
     );
   }

@@ -49,7 +49,7 @@ export class AddCategoryComponent implements OnInit , OnDestroy{
 
   onSubmit() {
     this._utils.unsubscribeSub(this._sub);
-    console.log(this.obj_category)
+    console.log(this.obj_category);
     this._sub = this._libraryService.add(this.obj_category)
       .subscribe(data => {
         console.log(data);
@@ -62,7 +62,7 @@ export class AddCategoryComponent implements OnInit , OnDestroy{
     this._sub = this._libraryService.get().subscribe(
       data => {
         isArray(data) ? this.library = data : data;
-        console.log(this.library)
+        console.log(this.library);
 
       }
     );
