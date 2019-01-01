@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 
-import { NgProgress } from 'ngx-progressbar';
 import { UtilsService } from '../../shared/services/utils.service';
 import { Config } from '../../shared/classes/app';
 import { Vehicle } from '../classes/vehicle';
@@ -23,8 +22,7 @@ export class VehicleService {
   constructor(
     private _utils: UtilsService,
     private _http: Http,
-    private _router: Router,
-    private _progress: NgProgress,
+    private _router: Router
    
   ) { }
 
@@ -40,16 +38,17 @@ export class VehicleService {
       ),);
   }
   beforeRequest(): void {
-    this._progress.start();
+    this._utils.start_progress();
 
   }
 
   afterRequest(data: Vehicle): void {
-   
+   this._utils.stop_progress();
     this._utils.notify("success","Vehicle Added!");
   }
 
   showError(error): void {
+    this._utils.stop_progress();
     this._utils.notify("failed",error._body);
   }
 }

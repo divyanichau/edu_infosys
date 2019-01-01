@@ -4,7 +4,6 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 //import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { NgProgress } from 'ngx-progressbar';
 import { UtilsService } from '../../shared/services/utils.service';
 import { Config } from '../../shared/classes/app';
 import { _Route } from '../classes/_route';
@@ -22,7 +21,6 @@ export class _RouteService{
     private _utils: UtilsService,
     private _http: Http,
    // private _router: Router,
-    private _progress: NgProgress
   ) { }
 
   AddRoute(_route: _Route): Observable<_Route> {
@@ -50,13 +48,12 @@ export class _RouteService{
   }
 
   beforeRequest(): void {
-    this._progress.start();
+    this._utils.start_progress();
 
   }
 
   afterRequest(data: _Route): void {
-    this._progress.done();
-   // alert('vehicle added !!')
+    this._utils.stop_progress();
   }
 
   showError(error): void {
@@ -65,6 +62,6 @@ export class _RouteService{
   }
   
   afterGetRequest(): void {
-    this._progress.done();
+    this._utils.stop_progress();
   }
 }

@@ -5,7 +5,6 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { NgProgress } from 'ngx-progressbar';
 import { UtilsService } from '../../shared/services/utils.service';
 import { Config } from '../../shared/classes/app';
 import { TeacherAllocation } from '../classes/teacher-allocation';
@@ -19,8 +18,7 @@ export class TeacherAllocationService {
   constructor(
     private _utils: UtilsService,
     private _http: Http,
-    private _router: Router,
-    private _progress: NgProgress
+    private _router: Router
   ) { }
 
   get(): Observable<TeacherAllocation[]> {
@@ -51,16 +49,16 @@ export class TeacherAllocationService {
 
 
   beforeRequest(): void {
-    this._progress.start();
+    this._utils.start_progress();
   }
 
   afterRequest(data: TeacherAllocation): void {
-    this._progress.done();
+   this._utils.stop_progress();
    
   }
 
   afterGetRequest(): void {
-    this._progress.done();
+    this._utils.stop_progress();
   }
 
   showError(error): void {

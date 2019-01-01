@@ -4,7 +4,6 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { NgProgress } from 'ngx-progressbar';
 import { UtilsService } from '../../shared/services/utils.service';
 import { Config } from '../../shared/classes/app';
 import { Student } from '../classes/student';
@@ -19,8 +18,7 @@ export class StudentService {
   constructor(
     private _utils: UtilsService,
     private _http: Http,
-    private _router: Router,
-    private _progress: NgProgress
+    private _router: Router
   ) { }
 
   find(id: string): Observable<Student> {
@@ -36,7 +34,7 @@ export class StudentService {
 
 
   get(): Observable<Student[]> {
-    //this.beforeRequest();
+    this.beforeRequest();
     const options = this._utils.makeOptions(this._headers);
 
     return this._http.get(`${this._studentUrl}`, options).pipe(
@@ -74,16 +72,16 @@ export class StudentService {
 
 
   beforeRequest(): void {
-    this._progress.start();
+    this._utils.start_progress();
   }
 
   afterRequest(data: Student): void {
-    this._progress.done();
+   this._utils.stop_progress();
    
   }
 
   afterGetRequest(): void {
-    this._progress.done();
+    this._utils.stop_progress();
   }
 
   showError(error): void {
