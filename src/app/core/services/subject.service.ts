@@ -114,10 +114,6 @@ export class SubjectService {
 
   showError(error): void {
     console.log(error);
-<<<<<<< HEAD
-=======
-   
->>>>>>> origin/dev4
   }
 
 }
