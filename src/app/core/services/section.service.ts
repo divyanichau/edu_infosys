@@ -86,7 +86,6 @@ export class SectionService {
 
   afterRequest(data: Section): void {
     this._progress.done();
-    alert('class added !!')
   }
 
   afterGetRequest(): void {
@@ -95,7 +94,6 @@ export class SectionService {
 
   showError(error): void {
     console.log(error);
-    alert(error._body);
   }
 
 }

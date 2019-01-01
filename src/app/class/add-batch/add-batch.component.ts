@@ -3,12 +3,13 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { isArray } from 'lodash';
 
+import { ToastrService } from 'ngx-toastr';
+
 import{ DatatableComponent} from '@swimlane/ngx-datatable';
 import { CourseService } from '../../core/services/course.service';
 import { Course } from '../../core/classes/course';
 import { BatchService } from '../../core/services/batch.service';
 import { Batch } from '../../core/classes/batch';
-
 import { UtilsService } from '../../shared/services/utils.service';
 
 
@@ -41,7 +42,8 @@ export class AddBatchComponent implements OnInit , OnDestroy{
     private _batchService: BatchService,
     private _courseService: CourseService,
     private _utils: UtilsService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
     ) { }
  
   
@@ -57,11 +59,12 @@ export class AddBatchComponent implements OnInit , OnDestroy{
 
   onSubmit() {
     this._utils.unsubscribeSub(this._sub);
+     this.obj_batch.course = this.selected_course;
     console.log(this.obj_batch)
     this._sub = this._batchService.add(this.obj_batch)
       .subscribe(data => {
         console.log(data);
-        alert('Batch added');
+        this.toastr.success('Batch Added !', 'Success',{timeOut: 3000});
       });
   }
 

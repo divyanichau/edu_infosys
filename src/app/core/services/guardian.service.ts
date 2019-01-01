@@ -67,7 +67,7 @@ export class GuardianService {
 
   afterRequest(data: Guardian): void {
     this._progress.done();
-    alert('guardian admitted !!')
+    
   }
 
   afterGetRequest(): void {
@@ -76,7 +76,7 @@ export class GuardianService {
 
   showError(error): void {
     console.log(error);
-    alert(error._body);
+   
   }
 
 }

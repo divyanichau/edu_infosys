@@ -78,7 +78,7 @@ export class ClassService {
 
   afterRequest(data: _class): void {
     this._progress.done();
-    alert('class added !!')
+   
   }
 
   afterGetRequest(): void {
@@ -87,7 +87,7 @@ export class ClassService {
 
   showError(error): void {
     console.log(error);
-    alert(error._body);
+   
   }
 
 }

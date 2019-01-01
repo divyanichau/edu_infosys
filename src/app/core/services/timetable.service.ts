@@ -67,7 +67,7 @@ export class TimetableService {
 
   afterRequest(data: Timetable): void {
     this._progress.done();
-    alert('Timetable admitted !!')
+    
   }
 
 
@@ -77,7 +77,7 @@ export class TimetableService {
 
   showError(error): void {
     console.log(error);
-    alert(error._body);
+  
   }
 
 

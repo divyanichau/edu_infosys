@@ -3,9 +3,12 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { isArray } from 'lodash';
 
+import { ToastrService } from 'ngx-toastr';
+
 import{ DatatableComponent} from '@swimlane/ngx-datatable';
 import { SectionService } from '../../core/services/section.service';
 import { ClassService } from '../../core/services/class.service';
+
 import { Section } from '../../core/classes/section';
 import { _class } from '../../core/classes/class';
 import { UtilsService } from '../../shared/services/utils.service';
@@ -38,7 +41,8 @@ export class AddSectionComponent implements OnInit , OnDestroy{
     private _sectionService: SectionService,
     private _classService: ClassService,
     private _utils: UtilsService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
     ) { }
   
   ngOnInit() {
@@ -55,11 +59,14 @@ export class AddSectionComponent implements OnInit , OnDestroy{
   onSubmit() {
     //this.section._class = this.selected_class;
     this._utils.unsubscribeSub(this._sub);
+    console.log("class'",this.selected_class);
+    this.section._class = this.selected_class;
     console.log(this.section)
     this._sub = this._sectionService.add(this.section)
       .subscribe(data => {
         console.log(data);
-        alert('Section added');
+        //alert('Section added');
+        this.toastr.success('Section Added !', 'Success',{timeOut: 3000});
       });
   }
 
