@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgProgress } from 'ngx-progressbar';
 import { UtilsService } from '../../shared/services/utils.service';
 import { Config } from '../../shared/classes/app';
-import { allocate_transport } from '../../core/classes/allocate-transport';
+import { allocate_transport,allocate_transportGet } from '../../core/classes/allocate-transport';
 
 @Injectable()
 export class AllocateTransportService {
@@ -24,6 +24,7 @@ export class AllocateTransportService {
     private _router: Router,
     private _progress: NgProgress,
     private toastr: ToastrService
+
   ) { }
 
  
@@ -37,6 +38,18 @@ export class AllocateTransportService {
       map((res: Response) => res.json()),
       tap(
       data => this.afterRequest(data),
+      error => { this.showError(error) }
+      ),);
+  }
+    get(): Observable<allocate_transportGet[]> {
+    //this.beforeRequest();
+    const options = this._utils.makeOptions(this._headers);
+
+    return this._http.get(`${this._allocateUrl}`, options).pipe(
+      map((res: Response) => res.json()),
+      tap(
+     data => {},
+      //error => { console.log(error); }
       error => { this.showError(error) }
       ),);
   }

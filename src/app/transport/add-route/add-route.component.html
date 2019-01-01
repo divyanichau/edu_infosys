@@ -2,47 +2,101 @@
 <div class="body">
   <div class="content-wrapper">
     <form (ngSubmit)="onSubmitRoute()" #routeForm="ngForm">
-    <div class="col-md-6">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">Add Routes</h4>
+      <div class="col-md-6">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h4 class="panel-title">Add Routes</h4>
+          </div>
         </div>
-      </div>
-      <div class="body">
+        <div class="body">
           <div class="row clearfix">
             <div class="col-md-6">
               <label for="start_location" class="label-control">Start Location</label>
-              <input type="text" id="start_location" class="form-control" name="start_location" [(ngModel)]="route.start_location" placeholder="Start Location">
+              <input type="text" id="start_location" class="form-control" name="start_location" [(ngModel)]="route.start_location"
+                placeholder="Start Location">
 
             </div>
             <div class="col-md-6">
               <label for="end_location" class="label-control">End Location</label>
-              <input type="text" class="form-control" name="end_location" placeholder="End Location"  [(ngModel)]="route.stop_location" >
+              <input type="text" class="form-control" name="end_location" placeholder="End Location" [(ngModel)]="route.stop_location">
 
             </div>
             <div class="col-md-6 form-top-margin">
-                <label for="start_time" class="label-control">Start Time</label>
-                <input type="time" class="form-control" name="end_location" placeholder="Start Time"  [(ngModel)]="route.start_time" >
-  
-              </div>
-              <div class="col-md-6 form-top-margin">
-                  <label for="Amount" class="label-control">Amount</label>
-                  <input type="number" class="form-control" name="amount" placeholder="Amount"  [(ngModel)]="route.fee_amount" >
-    
-                </div>
+              <label for="start_time" class="label-control">Start Time</label>
+              <input type="time" class="form-control" name="end_location" placeholder="Start Time" [(ngModel)]="route.start_time">
 
-        </div>
+            </div>
+            <div class="col-md-6 form-top-margin">
+              <label for="Amount" class="label-control">Amount</label>
+              <input type="number" class="form-control" name="amount" placeholder="Amount" [(ngModel)]="route.fee_amount">
+
+            </div>
+
           </div>
-      <div class="panel-footer">
-        <button type="submit" class="btn btn-primary">Add Routes</button>
+        </div>
+        <div class="panel-footer">
+          <button type="submit" class="btn btn-primary">Add Routes</button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+
+</div>
+
+<div class="body">
+
+  <div class="content-wrapper">
+    <div class="col-sm-6">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h4 class="panel-title">Manage Route</h4>
+        </div>
+        <div class="panel-body">
+
+
+          <div class="table-responsive">
+          
+            <ngx-datatable class="material" [rows]="_route" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+              [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+
+              <ngx-datatable-column name="ID" prop="id">
+                <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+              </ngx-datatable-column>
+
+           
+
+              <ngx-datatable-column name="Vehicle Route" prop="vehicle_route">
+                <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+              </ngx-datatable-column>
+              
+              <ngx-datatable-column name="Start Time" prop="start_time">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+              <ngx-datatable-column name="Actions" sortable="false" prop="id">
+                <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                  Manage
+                </ng-template>
+
+                <ng-template let-row="list" let-value="value" ngx-datatable-cell-template>
+                  <a class="glyphicon glyphicon-eye-open" title="" href="/transport/edit_route/{{value}}"><img src="" alt=""></a>
+                  <a class="glyphicon glyphicon-trash left-icon" title="" href="#"><img
+                      src="" alt=""></a>
+                </ng-template>
+              </ngx-datatable-column>
+            </ngx-datatable>
+          </div>
+        </div>
+
+
       </div>
     </div>
-  </form>
-    <div class="col-md-6">
-      <h1>
-        View Section
-      </h1>
-    </div>
+
+
   </div>
 
 </div>

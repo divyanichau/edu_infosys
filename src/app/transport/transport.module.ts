@@ -23,6 +23,8 @@ import { ClassService } from '../core/services/class.service';
 import { SectionService } from '../core/services/section.service';
 import { StudentService } from '../core/services/student.service';
 import { AllocateTransportService } from '../core/services/allocate-transport.servie';
+import { AllocateTransportEditComponent } from './allocate-transport/edit/allocate-transport-edit.component';
+import { EditRouteComponent } from './edit-route/edit-route.component';
 
 @NgModule({
 
@@ -39,6 +41,6 @@ import { AllocateTransportService } from '../core/services/allocate-transport.se
   providers: [UtilsService, DriverService,
      VehicleService,_RouteService,BatchService,CourseService,
      ClassService,SectionService,StudentService,AllocateTransportService],
-  declarations: [AddVehicleComponent, AddRouteComponent, AllocateTransportComponent]
+  declarations: [AddVehicleComponent, AddRouteComponent, AllocateTransportComponent, AllocateTransportEditComponent, EditRouteComponent,]
 })
 export class TransportModule { }

@@ -1,0 +1,74 @@
+<div class="body">
+    <div class="content-wrapper">
+      <form (ngSubmit)="allocateTransport()" #transport="ngForm">
+        <div class="col-md-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">Transport Allocation</h4>
+            </div>
+          </div>
+          <div class="body">
+            <div class="row clearfix">
+              <div class="col-md-6">
+                <span>Select Batch</span>
+                <select class="form-control" name="batch" [(ngModel)]="selected_batch">
+                  <!-- <option value="0">Select Batch</option> -->
+                  <option *ngFor="let batch of _batch" [ngValue]="batch.id">{{batch.name}}</option>
+  
+                </select>
+              </div>
+              <div class="col-md-6 ">
+                <span>Select Course</span>
+                <select class="form-control" name="course" [(ngModel)]="selected_course">
+                  <option *ngFor="let c of _course" [ngValue]="c.id">{{c.name}}</option>
+                  <!-- <option value="1">Bsc.Csit</option> -->
+  
+                </select>
+              </div>
+              <div class="col-md-6 form-top-margin">
+                <span>Select Class</span>
+                <select class="form-control" name="class" [(ngModel)]="selected_class">
+                  <option *ngFor="let cls of class" [ngValue]="cls.id">{{cls.name}}</option>
+                  <!-- <option value="1">A</option> -->
+  
+                </select>
+              </div>
+              <div class="col-md-6 form-top-margin">
+                <span>Select Section</span>
+                <select class="form-control" name="section" [(ngModel)]="selected_section">
+                  <option *ngFor="let sec of _section" [ngValue]="sec.id">{{sec.name}}</option>
+                  <!-- <option value="1">A</option> -->
+  
+                </select>
+              </div>
+              <div class="col-md-6 form-top-margin">
+                <span>Select Student</span>
+                <select class="form-control" name="student" [(ngModel)]="selected_student">
+                  <option *ngFor="let std of _student" [ngValue]="std.id">{{std.user.first_name }} {{std.user.last_name
+                    }} </option>
+                  <!-- <option value="1">Dinesh Kc</option> -->
+  
+                </select>
+              </div>
+              <div class="col-md-6 form-top-margin">
+                <span>Select Route</span>
+                <select class="form-control" name="route" [(ngModel)]="selected_route">
+                  <option *ngFor="let route of _route" [ngValue]="route.id">{{route.vehicle_route}}</option>
+                  <!-- <option value="1">Dinesh Kc</option> -->
+  
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <button class="btn btn-primary" type="submit">Allocate</button>
+          </div>
+  
+  
+  
+        </div>
+      </form>
+  
+  
+    </div>
+  </div>

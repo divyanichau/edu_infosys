@@ -59,6 +59,7 @@ export class ListComponent implements OnInit , OnDestroy{
     this._sub = this._studentService.get().subscribe(
       data => {
         isArray(data) ? this.students = data : data;
+        console.log("Students",this.students);
         this.rows = this.students;
         this.temp = [...this.students];
 

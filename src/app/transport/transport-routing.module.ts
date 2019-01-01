@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 import { AddRouteComponent } from './add-route/add-route.component';
 import { AllocateTransportComponent } from './allocate-transport/allocate-transport.component';
+import { AllocateTransportEditComponent } from './allocate-transport/edit/allocate-transport-edit.component';
+import { EditRouteComponent } from './edit-route/edit-route.component';
 
 const routes: Routes = [
   {
@@ -16,7 +18,11 @@ const routes: Routes = [
   {
     path:'allocate_transport',
     component:AllocateTransportComponent
-  }
+  },
+  {
+    path: 'edit_route/:id',
+    component: EditRouteComponent,
+  },
 ];
 
 @NgModule({

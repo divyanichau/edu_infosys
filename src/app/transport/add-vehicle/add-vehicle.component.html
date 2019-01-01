@@ -3,7 +3,7 @@
   <form (ngSubmit)="onSubmitVehicle()" #vehicleForm="ngForm">
     <div class="content-wrapper">
       <div class="col-sm-6">
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
           <div class="panel-heading">
             <h4 class="panel-title">Add Vehicle</h4>
           </div>
@@ -11,12 +11,14 @@
             <div class="row clearfix">
               <div class="col-sm-6">
                 <label for="vehicle_no" class="label-control">Vehicle No</label>
-                <input type="text" id="vehicle_no" class="form-control" name="vehicle_no" [(ngModel)]="vobj.vehicle_no" placeholder="Vehicle No">
+                <input type="text" id="vehicle_no" class="form-control" name="vehicle_no" [(ngModel)]="vobj.vehicle_no"
+                  placeholder="Vehicle No">
 
               </div>
               <div class="col-sm-6">
                 <label for="no_of_seat" class="label-control">No Of Seat</label>
-                <input type="text" id="no_of_seat" class="form-control" name="no_of_seats" [(ngModel)]="vobj.no_of_seats" placeholder="No Of Seat">
+                <input type="text" id="no_of_seat" class="form-control" name="no_of_seats" [(ngModel)]="vobj.no_of_seats"
+                  placeholder="No Of Seat">
 
               </div>
 
@@ -32,19 +34,19 @@
                   [(ngModel)]="vobj.contact_person">
 
               </div>
-           <div class="row">
-              <div class="col-sm-6 form-top-margin" style="margin-left:17px;">
+              <div class="row">
+                <div class="col-sm-6 form-top-margin" style="margin-left:17px;">
                   <label for="insurance" class="label-control">Insurance Renew Date</label>
                   <input type="date" id="insurance" class="form-control" name="insurance_renew_date" [(ngModel)]="vobj.insurance_renew_date">
 
                 </div>
-           </div>
+              </div>
 
               <div class="col-md-6 form-top-margin">
                 <label for="driver">Select Driver</label>
 
                 <select class="form-control" name="selected_driver" [(ngModel)]="selected_driver">
-                  <option *ngFor="let driver of _driver" [ngValue]="driver.id" >{{driver.name}}</option>
+                  <option *ngFor="let driver of _driver" [ngValue]="driver.id">{{driver.name}}</option>
 
                 </select>
               </div>
@@ -127,4 +129,76 @@
       </div>
     </form>
   </div>
+</div>
+<!--Hello View Section-->
+
+<div class="body">
+
+  <div class="content-wrapper">
+    <div class="col-sm-6">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h4 class="panel-title">Manage Vehicle</h4>
+        </div>
+        <div class="panel-body">
+
+
+          <div class="table-responsive">
+            <!-- <div class="row">
+              <div class="col-xs-6 col-md-6">
+                <div class="input-group">
+                  <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter Name" id="txtSearch" />
+                  <div class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">
+                      <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            <!-- <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='search with name'
+                                (keyup)='updagitteFilter($event)'
+                              /> -->
+            <ngx-datatable class="material" [rows]="vehicles" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+              [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+
+              <ngx-datatable-column name="ID" prop="id">
+                <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+              </ngx-datatable-column>
+
+           
+
+              <ngx-datatable-column name="Vehicle No" prop="vehicle_no">
+                <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+              </ngx-datatable-column>
+              
+              <ngx-datatable-column name="Driver" prop="driver">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+               </ngx-datatable-column>
+
+              <ngx-datatable-column name="Actions" sortable="false" prop="id">
+                <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                  Manage
+                </ng-template>
+
+                <ng-template let-row="list" let-value="value" ngx-datatable-cell-template>
+                  <a class="glyphicon glyphicon-eye-open" title="" href="#"><img src="" alt=""></a>
+                  <a class="glyphicon glyphicon-trash left-icon" title="" href="#"><img
+                      src="" alt=""></a>
+                </ng-template>
+              </ngx-datatable-column>
+            </ngx-datatable>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+
+  </div>
+
 </div>
