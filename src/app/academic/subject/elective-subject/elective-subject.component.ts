@@ -67,8 +67,6 @@ export class ElectiveSubjectComponent implements OnInit , OnDestroy{
   ngOnInit() {
     this.initSubject();
     this.loadCourses();
-
-   
     
   }
 
@@ -87,7 +85,7 @@ export class ElectiveSubjectComponent implements OnInit , OnDestroy{
     this._sub = this._subjectService.addSubject(this.subject)
       .subscribe(data => {
      
-        this.toastr.success('Subject Assign !', 'Success',{timeOut: 3000});
+        this.toastr.success('Elective Subject !', 'Success',{timeOut: 3000});
 
       });
   }
@@ -97,7 +95,7 @@ export class ElectiveSubjectComponent implements OnInit , OnDestroy{
     this._sub = this._courseService.get().subscribe(
       data => {
         isArray(data) ? this.courses = data : data;
-        console.log(this.courses);
+        //console.log(this.courses);
         this.loadBatch();
 
          if(this.courses.length > 0){
@@ -112,7 +110,7 @@ export class ElectiveSubjectComponent implements OnInit , OnDestroy{
     this._sub = this._batchService.get().subscribe(
       data => {
         isArray(data) ? this.batch = data : data;
-        console.log(this.batch);
+        //console.log(this.batch);
           this.loadSubjects();
 
         if(this.batch.length > 0){
@@ -128,7 +126,7 @@ export class ElectiveSubjectComponent implements OnInit , OnDestroy{
     this._sub = this._subjectService.get().subscribe(
       data => {
         isArray(data) ? this.subjects = data : data;
-        console.log(this.subjects);
+        //console.log(this.subjects);
 
         if(this.subjects.length > 0){
           this.selected_subject = this.subjects[0].id;
@@ -144,7 +142,7 @@ export class ElectiveSubjectComponent implements OnInit , OnDestroy{
     this._sub = this._studentService.get().subscribe(
       data => {
         isArray(data) ? this.student = data : data;
-        console.log(this.student);
+       // console.log(this.student);
 
         if(this.student.length > 0){
           this.selected_student = this.student[0].id;
@@ -154,8 +152,6 @@ export class ElectiveSubjectComponent implements OnInit , OnDestroy{
       }
     );
   }
-
-
 
   
  loadSubject() {

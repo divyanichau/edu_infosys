@@ -8,6 +8,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { AcademicRoutingModule } from './academic-routing.module';
 import { TimetableService } from '../core/services/timetable.service';
 import { SubjectService } from '../core/services/subject.service';
+import { SubjectAllocationService } from '../core/services/subject-allocation.service';
+
 import { UtilsService } from '../shared/services/utils.service';
 import { AcademicComponent } from './academic.component';
 import { CreateComponent } from './certification/create/create.component';
@@ -26,7 +28,7 @@ import { CreateComponent } from './certification/create/create.component';
 
     AcademicRoutingModule
   ],
-  providers: [ TimetableService, SubjectService,  UtilsService],
+  providers: [ TimetableService, SubjectService, SubjectAllocationService, UtilsService],
   declarations: [CreateComponent,  AcademicComponent]
 
 })
