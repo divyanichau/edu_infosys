@@ -6,4 +6,5 @@ export class Subject {
   batch: string;
   description: string;
   subject: string;
+  student: string;
 }

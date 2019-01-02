@@ -4,6 +4,7 @@ export class ElectiveSubject {
 	batch : number;
 	course : number;
 	subject: number;
+	student: number;
 	
 	
 }

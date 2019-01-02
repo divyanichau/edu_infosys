@@ -9,11 +9,13 @@ import{ DatatableComponent} from '@swimlane/ngx-datatable';
 import { CourseService } from '../../../core/services/course.service';
 import { SubjectService } from '../../../core/services/subject.service';
 import { BatchService } from '../../../core/services/batch.service';
+import { StudentService } from '../../../core/services/student.service';
 
 
 import { Subject } from '../../../core/classes/subject';
 import { Course } from '../../../core/classes/course';
 import { Batch } from '../../../core/classes/batch';
+import { Student } from '../../../core/classes/student';
 import { ElectiveSubject} from '../../../core/classes/electivesubject';
 import { UtilsService } from '../../../shared/services/utils.service';
 
@@ -34,6 +36,7 @@ export class ElectiveSubjectComponent implements OnInit , OnDestroy{
   courses: Course[];
   batch: Batch[];
   subjects: Subject[];
+  student: Student[];
 
   objs: ElectiveSubject[];
   _subjects=[];
@@ -42,6 +45,7 @@ export class ElectiveSubjectComponent implements OnInit , OnDestroy{
   selected_subject: number;
   selected_batch: number;
   selected_course: number;
+  selected_student: number;
 
  
   rows: any[] = [];
@@ -53,6 +57,7 @@ export class ElectiveSubjectComponent implements OnInit , OnDestroy{
     private _subjectService: SubjectService,
     private _courseService: CourseService,
     private _batchService: BatchService,
+    private _studentService: StudentService,
     private _utils: UtilsService,
     private router: Router,
     private toastr: ToastrService
@@ -75,7 +80,8 @@ export class ElectiveSubjectComponent implements OnInit , OnDestroy{
     console.log(this.selected_course);
      this.subject.batch=this.selected_batch;
      this.subject.course=this.selected_course;
-    this.subject.subject=this.selected_subject;
+     this.subject.subject=this.selected_subject;
+     this.subject.student=this.selected_student;
     this._utils.unsubscribeSub(this._sub);
     console.log(this.subject)
     this._sub = this._subjectService.addSubject(this.subject)
@@ -91,7 +97,7 @@ export class ElectiveSubjectComponent implements OnInit , OnDestroy{
     this._sub = this._courseService.get().subscribe(
       data => {
         isArray(data) ? this.courses = data : data;
-      //  console.log(this.courses);
+        console.log(this.courses);
         this.loadBatch();
 
          if(this.courses.length > 0){
@@ -106,7 +112,7 @@ export class ElectiveSubjectComponent implements OnInit , OnDestroy{
     this._sub = this._batchService.get().subscribe(
       data => {
         isArray(data) ? this.batch = data : data;
-       // console.log(this.batch);
+        console.log(this.batch);
           this.loadSubjects();
 
         if(this.batch.length > 0){
@@ -122,10 +128,26 @@ export class ElectiveSubjectComponent implements OnInit , OnDestroy{
     this._sub = this._subjectService.get().subscribe(
       data => {
         isArray(data) ? this.subjects = data : data;
-        //console.log(this.subjects);
+        console.log(this.subjects);
 
         if(this.subjects.length > 0){
           this.selected_subject = this.subjects[0].id;
+          this.loadStudent();
+        }
+
+      }
+    );
+  }
+
+   loadStudent() {
+    this._utils.unsubscribeSub(this._sub);
+    this._sub = this._studentService.get().subscribe(
+      data => {
+        isArray(data) ? this.student = data : data;
+        console.log(this.student);
+
+        if(this.student.length > 0){
+          this.selected_student = this.student[0].id;
           this.loadSubject();
         }
 
@@ -134,10 +156,11 @@ export class ElectiveSubjectComponent implements OnInit , OnDestroy{
   }
 
 
+
   
  loadSubject() {
   this._utils.unsubscribeSub(this._sub);
-   this._sub = this._subjectService.getSubject().subscribe(
+   this._sub = this._subjectService.getElective().subscribe(
       data => {
         isArray(data) ? this._subjects = data : data;
        console.log(this._subjects);
@@ -147,7 +170,7 @@ export class ElectiveSubjectComponent implements OnInit , OnDestroy{
 
   initSubject() {
     this._utils.unsubscribeSub(this._sub);
-    this._sub = this._subjectService.getSubject().subscribe(
+    this._sub = this._subjectService.getElective().subscribe(
       data => {
         isArray(data) ? this.objs = data : data;
         this.rows = this.objs;
@@ -159,4 +182,3 @@ export class ElectiveSubjectComponent implements OnInit , OnDestroy{
  );
 }
 }
-

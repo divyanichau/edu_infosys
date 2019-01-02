@@ -5,7 +5,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { NgProgress } from 'ngx-progressbar';
+
 import { UtilsService } from '../../shared/services/utils.service';
 import { Config } from '../../shared/classes/app';
 import { Batch } from '../classes/batch';
@@ -19,8 +19,7 @@ export class BatchService {
   constructor(
     private _utils: UtilsService,
     private _http: Http,
-    private _router: Router,
-    private _progress: NgProgress
+    private _router: Router
   ) { }
 
   find(id: string): Observable<Batch> {
@@ -72,16 +71,16 @@ export class BatchService {
 
 
   beforeRequest(): void {
-    this._progress.start();
+   
   }
 
   afterRequest(data: Batch): void {
-    this._progress.done();
+  
     
   }
 
   afterGetRequest(): void {
-    this._progress.done();
+ 
   }
 
   showError(error): void {

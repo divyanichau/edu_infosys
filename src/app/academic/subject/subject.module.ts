@@ -9,7 +9,7 @@ import { UtilsService } from '../../shared/services/utils.service';
 import { SubjectService } from '../../core/services/subject.service';
 import { CourseService } from '../../core/services/course.service';
 import { BatchService } from '../../core/services/batch.service';
-
+import { StudentService } from '../../core/services/student.service';
 
 import { SubjectRoutingModule } from './subject-routing.module';
 
@@ -28,7 +28,7 @@ import { ElectiveSubjectComponent } from './elective-subject/elective-subject.co
 
     SubjectRoutingModule
   ],
-  providers: [SubjectService, CourseService, BatchService,  UtilsService],
+  providers: [SubjectService, CourseService, BatchService, StudentService,  UtilsService],
   declarations: [SubjectComponent, AddSubjectComponent, AssignSubjectComponent, ElectiveSubjectComponent ]
 })
 export class SubjectModule { }

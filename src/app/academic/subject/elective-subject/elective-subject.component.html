@@ -53,13 +53,13 @@
                <div class="row clearfix">
                    <div class="col-sm-10" >
                      <label for="reg_input" class="req">Student*</label>
-                      <select class="form-control"  [(ngModel)]="student.user.name" name="student" >
-                        <option value="">Select Student</option>
-                          <option *ngFor="let s of students" [ngValue]="s.id">{{s.name}}</option>
+                      <select class="form-control"  [(ngModel)]="selected_student" name="student" >
+                          <option *ngFor="let a of student" [ngValue]="a.id">{{a.user.first_name}}</option>
                       </select>
                     </div>
                 </div>  
-                <br>  
+                <br> 
+
           <div class="form-group">
             <button class="btn btn-primary btn-lg" type="Submit"><b>Save</b></button>
        </div>
@@ -115,7 +115,7 @@
                   </ng-template>
                 </ngx-datatable-column>
 
-           <ngx-datatable-column name="Course" prop="course">
+                <ngx-datatable-column name="Course" prop="course">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
@@ -130,7 +130,6 @@
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
-
 
 
                 <ngx-datatable-column name="Actions" sortable="false" prop="id">
