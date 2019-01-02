@@ -1,7 +1,7 @@
  
 export class AddBook {
 	
-  id: string;
+ id: string;
  purchase_date: string;
  bill_no: number;
  isbn_no: number;
@@ -9,7 +9,7 @@ export class AddBook {
  title: string;
  author: string;
  edition: string;
- category: string;
+ category: number;
  publisher: string;
  no_of_copies: number;
  shell_no: string;

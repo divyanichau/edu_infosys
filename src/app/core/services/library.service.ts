@@ -62,7 +62,7 @@ export class LibraryService {
   }
 
 
-  addBook(library): Observable<AddBook> {
+  addBook(library: AddBook): Observable<AddBook> {
     this.beforeRequest();
     const body = JSON.stringify(library);
     console.log(body)

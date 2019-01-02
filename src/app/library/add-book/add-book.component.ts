@@ -22,8 +22,9 @@ export class AddBookComponent implements OnInit , OnDestroy{
 
   selected_lib : number;
   category : BookCategory[];
-  add_book = {};
-  book : AddBook;
+
+  add_book : AddBook = new AddBook();
+
 
 
   
@@ -47,9 +48,9 @@ export class AddBookComponent implements OnInit , OnDestroy{
   }
 
   onSubmit() {
-    //this.add_book.category = this.selected_lib;
+    
     this._utils.unsubscribeSub(this._sub);
-    //console.log(this.add_book)
+    this.add_book.category = this.selected_lib;
     this._sub = this._libraryService.addBook(this.add_book)
       .subscribe(data => {
         console.log(data);
@@ -64,7 +65,7 @@ export class AddBookComponent implements OnInit , OnDestroy{
         isArray(data) ? this.category = data : data;
         console.log(this.category);
         this.selected_lib = this.category[0].id;
-       console.log(this.add_book);
+      //console.log(this.add_book);
       
       }
     );
@@ -84,7 +85,7 @@ export class AddBookComponent implements OnInit , OnDestroy{
 
   initAddBook() {
     this._utils.unsubscribeSub(this._typeSub);
-    //this.course = new Course();
+     this.add_book = new AddBook();
     //this.obj_course = {};
   }
 
