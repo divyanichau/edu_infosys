@@ -38,8 +38,8 @@ _route: _Route[];
     this._utils.unsubscribeSub(this._sub);
     console.log(this.route);
     this._sub = this._routerService1.AddRoute(this.route).subscribe(data => {
-      console.log(data);
-      this.toastr.success('Vehicle Added !', 'Success', { timeOut: 3000 });
+     // console.log(data);
+     // this.toastr.success('Vehicle Added !', 'Success', { timeOut: 3000 });
     });
   }
 
@@ -54,6 +54,23 @@ _route: _Route[];
         // this.temp = [...this.allocated_student];
   }
     );
+  }
+
+
+ 
+  OnDeleteEvent(id:number){
+    if(confirm("Are You Sure Want To Delete?")){
+      this._routerService1.delete(id).subscribe(data => 
+        {
+        //console.log(data);
+        // this.toastr.success('Vehicle Added !', 'Success', { timeOut: 3000 });
+       },(errr)=>{
+         console.log(errr);
+       }
+       );
+     }
+   
+    
   }
 
 }

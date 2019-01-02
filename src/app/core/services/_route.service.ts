@@ -63,6 +63,29 @@ export class _RouteService{
       error => { console.log(error); }
       ),);
   }
+  update(_route: _Route,id:string): Observable<_Route> {
+    this.beforeRequest();
+    const body = JSON.stringify(_route);
+
+    return this._http.put(`${this._routeUrl}${id}/`, body, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json().data),
+      tap(
+      data => this.afterUpdateRequest(data),
+      error => { this.showError(error) }
+      ),);
+  }
+
+  delete(id:number): Observable<_Route> {
+    this.beforeRequest();
+   // const body = JSON.stringify(_route);
+
+    return this._http.delete(`${this._routeUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json().data),
+      tap(
+    //  data => this.afterDeteleRequestRequest(),
+      error => { this.showError(error) }
+      ),);
+  }
 
   beforeRequest(): void {
     this._utils.start_progress();
@@ -71,8 +94,17 @@ export class _RouteService{
 
   afterRequest(data: _Route): void {
     this._utils.stop_progress();
-    this.toastr.success('Done','Transport Allocated',{timeOut: 3000});
+    this.toastr.success('Done','Route Allocated',{timeOut: 3000});
 
+  }
+  afterUpdateRequest(data: _Route): void {
+    this._utils.stop_progress();
+    this.toastr.success('Done','Route Updated',{timeOut: 3000});
+
+  }
+  afterDeteleRequestRequest(){
+    this._utils.stop_progress();
+    this.toastr.warning('Done','Route Deleted',{timeOut: 3000});
   }
 
 

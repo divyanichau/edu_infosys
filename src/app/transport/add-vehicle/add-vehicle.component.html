@@ -185,9 +185,10 @@
                 </ng-template>
 
                 <ng-template let-row="list" let-value="value" ngx-datatable-cell-template>
-                  <a class="glyphicon glyphicon-eye-open" title="" href="#"><img src="" alt=""></a>
-                  <a class="glyphicon glyphicon-trash left-icon" title="" href="#"><img
-                      src="" alt=""></a>
+                  <!-- <a class="glyphicon glyphicon-eye-open" title="" href="#"><img src="" alt=""></a> -->
+                  <!-- <a class="glyphicon glyphicon-trash left-icon" title="" href="#"><img
+                      src="" alt=""></a> -->
+                      <button class="glyphicon glyphicon-trash left-icon btn btn-danger" style="margin-left:35px;" (click)="vehicleDelete(value)"></button>
                 </ng-template>
               </ngx-datatable-column>
             </ngx-datatable>
