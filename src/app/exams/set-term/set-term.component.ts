@@ -7,6 +7,8 @@ import { isArray } from 'lodash';
 import { UtilsService } from '../../shared/services/utils.service';
 
 import { BatchService } from '../../core/services/batch.service';
+import { SetTermService } from '../../core/services/set-term.service';
+import { setTerm } from '../../core/classes/exam/set-term';
 
 import { Batch } from '../../core/classes/batch'
 
@@ -18,27 +20,71 @@ import { Batch } from '../../core/classes/batch'
 export class SetTermComponent implements OnInit {
   private _sub: Subscription = undefined;
 
+  totlTerm:setTerm[];
   obj : Batch[];
+  
   _batch:[];
+  _term :setTerm = new setTerm();
+  selected_batch: number;
 
   constructor(
     private _utils:UtilsService,
     private _batchService:BatchService,
+    private _setTermService:SetTermService,
 
   ) { }
 
   ngOnInit() {
-    this.loadBatch();
+   this.loadExamTerm();
   }
   loadBatch() {
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._batchService.get().subscribe(
       data => {
         isArray(data) ? this.obj = data : data;
-        console.log(this.obj);
-       //  this.loadCourse();
+      //  console.log(this.obj);
+        this.selected_batch=this.obj[0].id;
+       
 
       }
     );
+  }
+  loadExamTerm() {
+    this._utils.unsubscribeSub(this._sub);
+    this._sub = this._setTermService.get().subscribe(
+      data => {
+        isArray(data) ? this.totlTerm = data : data;
+       console.log("Terms",this.totlTerm);
+       this.loadBatch();
+       
+
+      }
+    );
+  }
+
+  OnSubmitTerm(){
+    this._term.batch=this.selected_batch;
+    this._utils.unsubscribeSub(this._sub);
+    this._sub = this._setTermService.add(this._term).subscribe(
+      data => {
+      
+     
+
+      }
+    );
+   
+  }
+  exmTermDelete(id:number){
+    if(confirm("Are You Sure Want To Delete?")){
+      this._setTermService.delete(id).subscribe(data => 
+        {
+        //console.log(data);
+        alert("Deleted");
+        //this.toastr.success('Vehicle Added !', 'Success', { timeOut: 3000 });
+       },(errr)=>{
+         console.log(errr);
+       }
+       );
+     }
   }
 }
