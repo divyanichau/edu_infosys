@@ -16,6 +16,7 @@ export class LibraryService {
   private _addcategoryUrl = `${new Config().api}/library/category/`;
   private _addbookUrl = `${new Config().api}/library/books/`;
   private _issuebookUrl = `${new Config().api}/library/issue/`;
+
   
   private _headers = this._utils.makeHeaders({ withToken: true });
 
@@ -89,6 +90,32 @@ export class LibraryService {
 
 
   addIssue(library): Observable<IssueBook> {
+    this.beforeRequest();
+    const body = JSON.stringify(library);
+    console.log(body)
+
+    return this._http.post(`${this._issuebookUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json().data),
+      tap(
+      data => this.afterRequest(data),
+      error => { console.log(error); }
+      ),);
+  }
+
+
+  getReturn(): Observable<IssueBook[]> {
+    //this.beforeRequest();
+    const options = this._utils.makeOptions(this._headers);
+    return this._http.get(`${this._issuebookUrl}`, options).pipe(
+      map((res: Response) => res.json()),
+      tap(
+      data => this.afterRequestGet(),
+      error => { console.log(error); }
+      ),);
+  }
+
+
+  addReturn(library): Observable<IssueBook> {
     this.beforeRequest();
     const body = JSON.stringify(library);
     console.log(body)

@@ -12,9 +12,11 @@ import { StudentService } from '../core/services/student.service';
 import { CourseService } from '../core/services/course.service';
 import { LibraryRoutingModule } from './library-routing.module';
 import { LibraryComponent } from './library.component';
+
 import { AddBookComponent} from './add-book/add-book.component';
 import { AddCategoryComponent} from './add-category/add-category.component';
 import { IssueBookComponent} from './issue-book/issue-book.component';
+import { BookReturnComponent} from './book-return/book-return.component';
 
 @NgModule({
   imports: [
@@ -27,6 +29,6 @@ import { IssueBookComponent} from './issue-book/issue-book.component';
     LibraryRoutingModule
   ],
   providers: [LibraryService, CourseService, BatchService, StudentService, UtilsService],
-  declarations: [LibraryComponent, AddBookComponent, AddCategoryComponent, IssueBookComponent]
+  declarations: [LibraryComponent, AddBookComponent, AddCategoryComponent, BookReturnComponent, IssueBookComponent]
 })
 export class LibraryModule { }

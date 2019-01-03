@@ -1,0 +1,185 @@
+
+ <div class="content-wrapper">
+    <div class="content">
+      <div class="page-header">
+         <ol class="breadcrumb breadcrumb">
+              <li><a href="#"><i class="material-icons">home</i> Home</a></li>
+              <li><a href="#"><i class="material-icons">class</i>Library </a></li>
+              <li class="active"> Book Return</li>
+           <ul class="breadcrumb-elements">                          
+            </ul>
+            <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a><a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+            </ol> 
+            <br>
+
+  <form (ngSubmit)="onSubmit()" #sectionForm="ngForm">
+   <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-primary">
+              <div class="panel-body">
+              <div class="panel-heading">
+                <h4 class="panel-title">Return Book</h4>
+              </div>
+              <br> 
+
+  <div class="panel-body">
+    <div class="row clearfix">
+             <div class="col-sm-9">                                      
+               <input class="form-control ui-autocomplete-input" placeholder="Search by Book No/ ISBN No/ Book Title/ Author" id="librarybook" type="text" value="" name="librarybook" autocomplete="off"
+                                            ngxTypeahead
+                                            [taUrl]="url"
+                                            [taParams]="params"
+                                            (taSelected)="handleResultSelected($event)">
+
+               <input id="hidden-field" name="output" type="hidden" value="">  </div>
+
+                 <div class="col-sm-3">
+                      <label>&nbsp;</label>
+                       <a href="javascript:getbookdetails()" class="btn btn-info">Search</a>
+                                    </div>
+                                  </div>
+</div>
+                                
+                              
+<div class="panel-body">
+ <div class="row-clearfix">
+             <label for="reg_input_name">Return / Renewal</label>
+                                    <select class="form-control" name="Bookreturn[returnorrenewal]" id="Bookreturn_returnorrenewal">
+<option value="">Select Option</option>
+<option value="1">Return</option>
+<option value="2">Renewal</option>
+</select>            
+                 
+                                <div class="form-group" id="datedifference" style="display:none">
+                                    <div class="alert alert-success">
+                                        <b>  <label id="tick"></label></b>
+                                    </div>
+                                </div>
+                                <div class="form-group" id="duedate" style="display:none">
+                                    <label for="due_date">Due Date</label>
+                                    <input class="form-control hasDatepicker" placeholder="Enter Due Date" id="Bookreturn_due_date" name="Bookreturn[due_date]" type="text">                                    <div class="school_val_error" id="Bookreturn_bookreturn_date_em_" style="display:none"></div>                                </div>
+
+                                <div class="form-group" id="returndate" style="display:none">
+                                    <label for="reg_input_name" class="req">Return Date</label>
+                                    <input class="form-control hasDatepicker" placeholder="return date" id="Bookreturn_bookreturn_date" name="Bookreturn[bookreturn_date]" type="text">                                    <div class="school_val_error" id="Bookreturn_bookreturn_date_em_" style="display:none"></div>                                </div>
+                                <div class="form-group" id="fine" style="display:none">
+                                    <label for="Bookreturn_bookreturn_fineamount"> Fine Amount</label>                                    <input class="form-control" name="Bookreturn[bookreturn_fineamount]" id="Bookreturn_bookreturn_fineamount" type="text" maxlength="6">                                    <div class="school_val_error" id="Bookreturn_bookreturn_fineamount_em_" style="display:none"></div>                                </div>
+                                <div class="form-group" id="remarks" style="display:none">
+                                    <label>Remarks</label>
+                                    <textarea class="form-control" name="Bookreturn[bookreturn_remarks]" id="Bookreturn_bookreturn_remarks"></textarea>                                    <div class="school_val_error" id="Bookreturn_bookreturn_remarks_em_" style="display:none"></div>                                </div>
+                            </div>
+</div>
+    </div>
+
+
+<div class="panel-body">
+    <div class="form-group">
+            <button class="btn btn-info" style="background-color:#aabad8;" type="Submit"><b>Save</b></button>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="content-wrapper">           
+    <div class="content">
+ <div class="form-group">
+    <div class="row">
+    <div class="col-sm-6"> 
+     <div class="panel panel-default">
+              <div class="panel-heading" >                    
+       <div class="table-responsive">                       
+              <div class="row">              
+                <div class="col-xs-6 col-md-6">
+                  <div class="input-group">
+                    <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter Name" id="txtSearch" />
+                    <div class="input-group-btn">
+                      <button class="btn btn-primary" type="submit">
+                        <span class="glyphicon glyphicon-search"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='search with name'
+                                (keyup)='updagitteFilter($event)'
+                              /> -->
+              <ngx-datatable class="material" [rows]="library" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+                [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+
+                <ngx-datatable-column name="ID" prop="id">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+                <!-- <ngx-datatable-column name="Name" prop="user.first_name">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column> -->
+                <ngx-datatable-column name="User" prop="name">
+                  <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                    <span
+                      title="Double click to edit"
+                      (dblclick)="editing[rowIndex + '-name'] = true"
+                      *ngIf="!editing[rowIndex + '-name']">
+                      {{value}}
+                    </span>
+                    <input
+                      autofocus
+                      (blur)="updateValue($event, 'name', rowIndex)"
+                      *ngIf="editing[rowIndex+ '-name']"
+                      type="text"
+                      [value]="value"
+                    />
+                  </ng-template>
+                </ngx-datatable-column>
+
+
+                <ngx-datatable-column name="Course" prop="course">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Batch" prop="batch">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Book No" prop="no">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+               
+
+                <ngx-datatable-column name="Actions" sortable="false" prop="id">
+                  <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                    Manage
+                  </ng-template>
+                  <ng-template let-row="library" let-value="value" ngx-datatable-cell-template>
+                    <a class="glyphicon glyphicon-eye-open" title="" href="/class/add-course/{{value}}"><img src="" alt=""></a>
+                    <a class="glyphicon glyphicon-trash left-icon" title="" href="/class/add-course/delete/{{value}}"><img src="" alt=""></a>
+                  </ng-template>
+                </ngx-datatable-column>
+              </ngx-datatable>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+       
+   
+
+
+
+
+
+
+
+
