@@ -20,6 +20,7 @@ export class BatchService {
     private _utils: UtilsService,
     private _http: Http,
     private _router: Router
+
   ) { }
 
   find(id: string): Observable<Batch> {
@@ -71,16 +72,17 @@ export class BatchService {
 
 
   beforeRequest(): void {
+
    
   }
 
   afterRequest(data: Batch): void {
   
-    
   }
 
+
   afterGetRequest(): void {
- 
+
   }
 
   showError(error): void {

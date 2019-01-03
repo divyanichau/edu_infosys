@@ -1,0 +1,57 @@
+
+<div class="body">
+  <form (ngSubmit)="onSubmitSetTerm()" #setTerm="ngForm">
+    <div class="content-wrapper">
+      <div class="col-sm-6">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h4 class="panel-title">Set Term</h4>
+          </div>
+          <div class="panel-body">
+            <div class="row clearfix">
+              <div class="col-sm-6">
+                <label for="term_name" class="label-control">Term Name</label>
+                <input type="text" id="term_name" class="form-control" name="term_name" [(ngModel)]="vobj.vehicle_no"
+                  placeholder="Term Name">
+
+              </div>
+
+              <div class="col-sm-6 ">
+                <label for="start_date" class="label-control">Start Date</label>
+                <input type="date" id="start_date" class="form-control" name="start_date" [(ngModel)]="vobj.insurance_renew_date">
+
+              </div>
+
+                <div class="col-sm-6 form-top-margin" >
+                  <label for="end_date" class="label-control">End Date</label>
+                  <input type="date" id="end_date" class="form-control" name="end_date" [(ngModel)]="vobj.insurance_renew_date">
+
+                </div>
+          
+              <div class="col-md-6 form-top-margin">
+                <label for="batch">Select Batch</label>
+
+                <select class="form-control" name="batch" [(ngModel)]="selected_driver">
+                  <option *ngFor="let driver of _driver" [ngValue]="driver.id">{{driver.name}}</option>
+
+                </select>
+              </div>
+             
+
+
+
+
+
+            </div>
+
+            <div class="panel-footer">
+              <button class="btn btn-primary" type="Submit">Set Term</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </form>
+</div>

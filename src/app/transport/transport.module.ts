@@ -25,6 +25,7 @@ import { StudentService } from '../core/services/student.service';
 import { AllocateTransportService } from '../core/services/allocate-transport.servie';
 import { AllocateTransportEditComponent } from './allocate-transport/edit/allocate-transport-edit.component';
 import { EditRouteComponent } from './edit-route/edit-route.component';
+import { EditVehicleComponent } from './edit-vehicle/edit-vehicle.component';
 
 @NgModule({
 
@@ -41,6 +42,6 @@ import { EditRouteComponent } from './edit-route/edit-route.component';
   providers: [UtilsService, DriverService,
      VehicleService,_RouteService,BatchService,CourseService,
      ClassService,SectionService,StudentService,AllocateTransportService],
-  declarations: [AddVehicleComponent, AddRouteComponent, AllocateTransportComponent, AllocateTransportEditComponent, EditRouteComponent,]
+  declarations: [AddVehicleComponent, AddRouteComponent, AllocateTransportComponent, AllocateTransportEditComponent, EditRouteComponent, EditVehicleComponent,]
 })
 export class TransportModule { }

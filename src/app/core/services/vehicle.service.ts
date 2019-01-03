@@ -51,6 +51,18 @@ export class VehicleService {
       ),);
   }
 
+  delete(id: number): Observable<Vehicle> {
+    this.beforeRequest();
+    //const body = JSON.stringify(_vehicle);
+
+    return this._http.delete(`${this._vehicleUrl}${id}/`,  this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json().data),
+      tap(
+      //data => this.afterRequest(data),
+      error => { this.showError(error) }
+      ),);
+  }
+
   beforeRequest(): void {
     this._utils.start_progress();
 
