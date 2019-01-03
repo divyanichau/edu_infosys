@@ -51,6 +51,18 @@ export class IssueBookComponent implements OnInit , OnDestroy{
   temp: any[] = [];
   editing = {};
 
+  url = 'http://suggestqueries.google.com/complete/search';
+  params = {
+    hl: 'en',
+    ds: 'yt',
+    xhr: 't',
+    client: 'youtube'
+  };
+  query = '';
+  search = '';
+
+  
+
 @ViewChild(DatatableComponent) table: DatatableComponent;
 onChange(newValue){
   this.reset_detail_value();
@@ -170,6 +182,10 @@ reset_detail_value(){
 
       }
     );
+  }
+
+  handleResultSelected(result) {
+    this.search = result;
   }
 }
 

@@ -44,8 +44,17 @@
                 <div class="panel-body">
                          
                                     <div class="col-sm-10">                                      
-                                        <input class="form-control ui-autocomplete-input" placeholder="Search by Book No/ ISBN No/ Book Title/ Author" id="librarybook" type="text" ng-change="myFunc()" ng-model="myValue" name="librarybook" autocomplete="off">
-                                        <input id="hidden-field" name="output" type="hidden" value="">  
+                                       <!--  <input class="form-control ui-autocomplete-input" placeholder="Search by Book No/ ISBN No/ Book Title/ Author" id="librarybook" type="text" ng-change="myFunc()" ng-model="myValue" name="librarybook" autocomplete="off">
+                                        <input id="hidden-field" name="output" type="hidden" value="">   -->
+
+                                        <div class="search-results">
+                                          <input class="form-control ui-autocomplete-input" placeholder="Search by Book No/ ISBN No/ Book Title/ Author" [value]="search"
+                                            ngxTypeahead
+                                            [taUrl]="url"
+                                            [taParams]="params"
+                                            (taSelected)="handleResultSelected($event)"
+                                          >
+                                        </div>
 
                                       </div>
 
