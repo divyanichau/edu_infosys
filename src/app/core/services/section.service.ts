@@ -36,7 +36,7 @@ export class SectionService {
   }
 
   get(): Observable<Section[]> {
-    //this.beforeRequest();
+    this.beforeRequest();
     const options = this._utils.makeOptions(this._headers);
 
     return this._http.get(`${this._sectionUrl}`, options).pipe(

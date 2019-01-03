@@ -57,7 +57,7 @@
                                 
                                        
                                            <label for="isbn_number">Book ISBN No.</label>
-                                            <input type="text" class="form-control" [(ngModel)]="add_book.isbn_number" name="isbn_number" placeholder="Enter ISBN Number">
+                                            <input type="text" class="form-control" [(ngModel)]="add_book.isbn_no" name="isbn_number" placeholder="Enter ISBN Number">
                                         
                                     
                                 </div>
@@ -96,11 +96,11 @@
                                     
                                 <div class="col-sm-6">
                                    
-                                  <label for="book_category">Book Category</label>
+                                  <label for="category">Book Category</label>
                             
 
      <select class="form-control"       
-     [(ngModel)]="selected_lib" name="bookcategory">
+     [(ngModel)]="selected_lib" name="name">
       <option *ngFor="let c of category" [ngValue]="c.id">{{c.name}}</option>
       </select>
              
@@ -118,7 +118,7 @@
                                 <div class="col-sm-6">
                                    
                                            <label for="no_of_copies">No.of Copies</label>
-                                            <input type="text" class="form-control" [(ngModel)]="add_book.no_of_copies" name="no_of_copies" placeholder="Enter Book Number">
+                                            <input type="number" class="form-control" [(ngModel)]="add_book.no_of_copies" name="no_of_copies" placeholder="Enter Book Number">
                                         </div>
                                     </div>
                                <br>
@@ -135,7 +135,7 @@
                                    
                                            <label for="book_position">Book Position</label>
                                             <input type="text" class="form-control"
-                                            [(ngModel)]="add_book.book_position" name="book_position" placeholder="Enter Book Number">
+                                            [(ngModel)]="add_book.position" name="book_position" placeholder="Enter Book Number">
                                         </div>
                                     </div>
                                
@@ -154,13 +154,13 @@
                                 <select class="form-control" [(ngModel)]="add_book.book_condition" name="book_condition">
 
                                     <option>--Select Option--</option>
-                                    <option value="1">As New</option>
+                                    <option value="1">As_New</option>
                                     <option value="2">Fine</option>
                                       <option value="3">Very Good</option>
                                         <option value="4">Good</option>
                                           <option value="5">Fair</option>
                                             <option value="6">Poor</option>
-                                              <option value="7">Missing</option>
+                                            <option value="7">Missing</option>
                                                 <option value="8">Lost</option>
                                    
                                 </select>
