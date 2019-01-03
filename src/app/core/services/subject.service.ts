@@ -1,8 +1,10 @@
 import {map, tap} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { Router } from '@angular/router';
+//import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+
 
 
 import { UtilsService } from '../../shared/services/utils.service';
@@ -22,7 +24,8 @@ export class SubjectService {
   constructor(
     private _utils: UtilsService,
     private _http: Http,
-    private _router: Router
+    //private _router: Router
+     private toastr: ToastrService
   ) { }
 
   find(id: string): Observable<Subject> {
@@ -74,6 +77,21 @@ export class SubjectService {
       error => { this.showError(error) }
       ),);
   }
+
+
+
+  delete(id:number): Observable<Subject> {
+    this.beforeRequest();
+   // const body = JSON.stringify(subject);
+
+    return this._http.delete(`${this._teacherUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json().data),
+      tap(
+    //  data => this.afterDeteleRequestRequest(),
+      error => { this.showError(error) }
+      ),);
+  }
+
 
 
 
@@ -132,6 +150,7 @@ export class SubjectService {
   afterRequest(data: Subject): void {
     this._utils.stop_progress();
   }
+
 
   afterGetRequest(): void {
     this._utils.stop_progress();

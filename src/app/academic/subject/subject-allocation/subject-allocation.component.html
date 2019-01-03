@@ -10,7 +10,7 @@
         </ol>
 
         <div class="row">
-          <form ngNativeValidate (ngSubmit)="onSubmit()" #subjectForm="ngForm">
+          <form ngNativeValidate (ngSubmit)="subjectAllocation()" #subjectForm="ngForm">
             <div class="col-sm-6">
               <div class="card">
                 <div class="header">
@@ -43,8 +43,8 @@
                <div class="row clearfix">
                     <div class="col-sm-10" >
                       <label for="reg_input" class="req">Teacher*</label>
-                      <select class="form-control"  [(ngModel)]="selected_teacher" name="subject" required>
-                          <option *ngFor="let t of teacher" [ngValue]="t.id">{{t.name}}</option>
+                      <select class="form-control"  [(ngModel)]="selected_teacher" name="teacher" required>
+                          <option *ngFor="let t of teachers" [ngValue]="t.id">{{t.user.first_name}}</option>
                       </select>
                     </div>
                 </div>    
@@ -66,4 +66,70 @@
    </div>
 </div>
 </div>
+
+<div class="row-clearfix">
+  <div class="col-md-6">
+      <div class="card">
+          <div class="body">
+              <div class="table-responsive">
+                <div>
+                  <div class="row">
+                    <label class="control-label col-sm-2">Search Teacher</label>
+                    <div class="col-xs-7 col-md-5">
+                      <div class="input-group">
+                        <!-- <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter Name" id="txtSearch" /> -->
+                        <div class="input-group-btn">
+                          <button class="btn btn-primary" type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                   <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='search with name' (keyup)='updateFilter($event)'/> 
+
+                  <ngx-datatable class="material" [rows]="allocated_student" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+                    [footerHeight]="50" [rowHeight]="'auto'" [limit]="3">
+    
+                    <ngx-datatable-column name="ID" prop="id">
+                      <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                      <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                    </ngx-datatable-column>
+    
+                    <ngx-datatable-column name="Teacher Name" prop="teacher">
+                      <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                      <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                    </ngx-datatable-column>
+    
+                    <ngx-datatable-column name="Batch" prop="batch">
+                      <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                      <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                    </ngx-datatable-column>
+    
+
+                    <ngx-datatable-column name="Course" prop="course">
+                      <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                      <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                    </ngx-datatable-column>
+    
+
+                    <ngx-datatable-column name="Actions" sortable="false" prop="id">
+                      <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                        Manage
+                      </ng-template>
+                      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                        <a class="glyphicon glyphicon-eye-open" title="" href="/teacher/detail/{{value}}"><img src="" alt=""></a>
+                        <a class="glyphicon glyphicon-trash left-icon" title="" href="/teacher/delete/{{value}}"><img src=""
+                            alt=""></a>
+                      </ng-template>
+                    </ngx-datatable-column>
+                  </ngx-datatable>
+                </div>
+              </div>
+            </div>
+      </div>
+  </div>
+
+</div>
+
 

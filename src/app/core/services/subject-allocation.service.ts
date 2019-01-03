@@ -27,6 +27,17 @@ export class SubjectAllocationService {
   ) { }
 
  
+ find(id: string): Observable<subject_allocation> {
+    //this.beforeRequest();
+
+    return this._http.get(`${this._allocationUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json()),
+      tap(
+      data => this.afterGetRequest(),
+      error => { console.log(error); }
+      ),);
+  }
+
 
  
   add(_subject_allocation : subject_allocation): Observable<subject_allocation> {
@@ -67,5 +78,7 @@ export class SubjectAllocationService {
     this.toastr.error('Error',error._body,{timeOut: 3000});
 
   }
-
+ afterGetRequest(): void {
+   // this._utils.stop_progress();
+  }
 }

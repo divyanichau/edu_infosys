@@ -8,12 +8,14 @@ import {DatatableComponent}  from '@swimlane/ngx-datatable';
 import { BatchService } from '../../../core/services/batch.service'
 import { CourseService } from '../../../core/services/course.service';
 import { TeacherService } from '../../../core/services/teacher.service';
+import { SubjectService } from '../../../core/services/subject.service';
 import { SubjectAllocationService } from '../../../core/services/subject-allocation.service';
 
 
-import { Batch } from '../../../core/classes/batch'
+import { Batch } from '../../../core/classes/batch';
 import { Course } from '../../../core/classes/course';
 import { Teacher } from '../../../core/classes/teacher';
+import { Subject } from '../../../core/classes/subject';
 import { subject_allocation ,subject_allocationGet} from '../../../core/classes/subject-allocation';
 
 
@@ -24,11 +26,13 @@ import { subject_allocation ,subject_allocationGet} from '../../../core/classes/
   templateUrl: './subject-allocation.component.html',
   styleUrls: []
 })
+
 export class SubjectAllocationComponent implements OnInit {
   private _sub: Subscription = undefined;
-  _batch: Batch[];
-  _course: Course[];
-  _teacher: Teacher[];
+  batch: Batch[];
+  courses: Course[];
+  teachers: Teacher[];
+  subjects: Subject[];
   _subject_allocation: subject_allocation = new subject_allocation();
   teacher_allocation:subject_allocationGet[];
 
@@ -37,35 +41,33 @@ export class SubjectAllocationComponent implements OnInit {
 
   selected_batch: number;
   selected_course: number;
-  selected_class: number;
   selected_teacher: number;
- 
+  selected_subject: number;
 
   @ViewChild(DatatableComponent) table: DatatableComponent;
   constructor(
     private _utils: UtilsService,
     private toastr: ToastrService,
-    private _batchService: BatchService,
-    private _courseService: CourseService,
-    private _teacherService: TeacherService,
+    private batchService: BatchService,
+    private courseService: CourseService,
+    private teacherService: TeacherService,
+    private subjectService: SubjectService,
     private _subjectAllocationService:SubjectAllocationService
   ) { }
 
   ngOnInit() {
      this.init_subject();
-    
+     this.loadBatch();
   
 
   }
 
   loadBatch() {
-    // console.log("Batch Loaded");
     this._utils.unsubscribeSub(this._sub);
-    this._sub = this._batchService.get().subscribe(
+    this._sub = this.batchService.get().subscribe(
       data => {
-        isArray(data) ? this._batch = data : data;
-        // console.log("Total Batch", this._batch);
-        this.selected_batch = this._batch[0].id;
+        isArray(data) ? this.batch = data : data;
+        this.selected_batch = this.batch[0].id;
         this.loadCourse();
 
       }
@@ -74,24 +76,38 @@ export class SubjectAllocationComponent implements OnInit {
 
   loadCourse() {
     this._utils.unsubscribeSub(this._sub);
-    this._sub = this._courseService.get().subscribe(
+    this._sub = this.courseService.get().subscribe(
       data => {
-        isArray(data) ? this._course = data : data;
-        // console.log("Total Course", this._course);
-        this.selected_course = this._course[0].id;
-         this.getTeacher();
+        isArray(data) ? this.courses = data : data;
+        this.selected_course = this.courses[0].id;
+           this.loadTeacher();
       }
     );
   }
   
 
-  getTeacher() {
+  loadTeacher() {
     this._utils.unsubscribeSub(this._sub);
-    this._sub = this._teacherService.get().subscribe(
+    this._sub = this.teacherService.get().subscribe(
       data => {
-        isArray(data) ? this._teacher = data : data;
-        // console.log("Total Teacher", this._teacher);
-        this.selected_teacher = this._teacher[0].id;
+        isArray(data) ? this.teachers = data : data;
+        this.selected_teacher = this.teachers[0].id;
+        this.loadSubject();
+      }
+    );
+  }
+
+   loadSubject() {
+    this._utils.unsubscribeSub(this._sub);
+    this._sub = this.subjectService.get().subscribe(
+      data => {
+        isArray(data) ? this.subjects = data : data;
+        //console.log(this.subjects);
+
+        if(this.subjects.length > 0){
+          this.selected_subject = this.subjects[0].id;
+        }
+
       }
     );
   }
@@ -99,11 +115,10 @@ export class SubjectAllocationComponent implements OnInit {
 
   subjectAllocation() {
     this._utils.unsubscribeSub(this._sub);
-    
     this._subject_allocation.batch=this.selected_batch;
     this._subject_allocation.course=this.selected_course;
     this._subject_allocation.teacher=this.selected_teacher;
-   // console.log(this._allocate_transport);
+    this._subject_allocation.subject=this.selected_subject;
      
      this._sub = this._subjectAllocationService.add(this._subject_allocation)
 
@@ -125,8 +140,6 @@ export class SubjectAllocationComponent implements OnInit {
          this.rows = this.teacher_allocation;
         this.temp = [...this.teacher_allocation];
 
-        this.loadBatch();
-
       }
     );
   }
@@ -137,7 +150,7 @@ export class SubjectAllocationComponent implements OnInit {
     // filter our data
     const temp = this.temp.filter(function(d) {
      // console.log(d.student.toLowerCase(), val)
-      return d.student.toLowerCase().indexOf(val) !== -1 || !val;
+      return d.teacher.toLowerCase().indexOf(val) !== -1 || !val;
     });
 
     // update the rows
