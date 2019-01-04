@@ -73,6 +73,10 @@ const routes: Routes = [
 	    path: "exam",
 	    loadChildren: './exams/exams.module#ExamsModule'
 	  },
+	  {
+	    path: "report",
+	    loadChildren: './report/report.module#ReportModule'
+	  },
 
 	];
 

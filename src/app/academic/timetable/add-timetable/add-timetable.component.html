@@ -25,10 +25,10 @@
        <div class="row clearfix">
            <div class="col-sm-4">
               <label for="reg_input" class="req">Teacher </label>
-                 <select class="form-control" [(ngModel)]="teacher.user.first_name" name="reg_input">
+                 <select class="form-control" [(ngModel)]="selected_teacher" name="reg_input" required>
                     <option value="">Select teacher</option>
 
-                    <option *ngFor="let teacher of teachers" [ngValue]="teacher.id">{{teacher.user.first_name}}</option>
+                    <option *ngFor="let teacher of teachers" [ngValue]="teacher.id" required >{{teacher.user.first_name}}</option>
                   </select>
            </div>    
            </div>   
@@ -38,22 +38,21 @@
          <div class="form-group col-sm-2">
               <label   name="teacher_id"> &nbsp; &nbsp;  </label>
                 <p> &nbsp;&nbsp;
-                  <a (click)="generate_Timetable()" class="btn btn-info">Add</a>
+                  <a (click)="generate_timetable()" class="btn btn-info">Add</a>
                 </p> 
          </div>
   </div>
 
-    <div class="col-sm-12"   *ngIf="isclicked">
-
-          
-
+    <div class="col-sm-12"   *ngIf="time_table">
         <div class="table-responsive">
+          <br>
             <div>
+
               <div class="row">
-                <label class="control-label col-sm-1">Search timetable</label>
+                <label class="control-label col-sm-1">timetable type</label>
                 <div class="col-xs-6 col-md-4">
                   <div class="input-group">
-                    <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter Name" id="txtSearch" />
+                    <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter time table Name" id="txtSearch" />
                     <div class="input-group-btn">
                       <button class="btn btn-primary" type="submit">
                         <span class="glyphicon glyphicon-search"></span>
@@ -62,58 +61,47 @@
                   </div>
                 </div>
               </div>
-              <!-- <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='search with name'
-                                (keyup)='updateFilter($event)'
-                              /> -->
+
               <ngx-datatable class="material" [rows]="rows" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
                 [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
 
-                <ngx-datatable-column name="ID" prop="id">
+                <ngx-datatable-column name="Time" prop="time">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
-                <!-- <ngx-datatable-column name="Name" prop="user.first_name">
+                <ngx-datatable-column name="Sunday" prop="Sunday">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column> -->
-                <ngx-datatable-column name="Name" prop="user.first_name">
-                  <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-                    <span
-                      title="Double click to edit"
-                      (dblclick)="editing[rowIndex + '-name'] = true"
-                      *ngIf="!editing[rowIndex + '-name']">
-                      {{value}}
-                    </span>
-                    <input
-                      autofocus
-                      (blur)="updateValue($event, 'name', rowIndex)"
-                      *ngIf="editing[rowIndex+ '-name']"
-                      type="text"
-                      [value]="value"
-                    />
+                  <ng-template let-value="value" ngx-datatable-cell-template>
+
                   </ng-template>
                 </ngx-datatable-column>
-
-                <ngx-datatable-column name="Address" prop="address_detail.address">
+                <ngx-datatable-column name="Monday" prop="monday">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Phone" prop="phone.number">
+                <ngx-datatable-column name="Tuesday" prop="tuesday">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
- 
-                <ngx-datatable-column name="Actions" sortable="false" prop="id">
-                  <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-                    Manage
-                  </ng-template>
-                 <!--  <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                    <a class="glyphicon glyphicon-eye-open" title="" href="/student/detail/{{value}}"><img src="" alt=""></a>
-                    <a class="glyphicon glyphicon-trash left-icon" title="" href="/student/delete/{{value}}"><img src="" alt=""></a>
-                  </ng-template> -->
+
+                <ngx-datatable-column name="Wednesday" prop="wednesday">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
+
+                <ngx-datatable-column name="Thursday" prop="thrusday">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+
+                <ngx-datatable-column name="Friday" prop="friday">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
               </ngx-datatable>
             </div>
           </div>
