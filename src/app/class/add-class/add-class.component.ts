@@ -77,9 +77,9 @@ export class AddClassComponent implements OnInit , OnDestroy{
   this._utils.unsubscribeSub(this._sub);
     this._sub = this._classService.get().subscribe(
       data => {
-        isArray(data) ? this.objs = data : data;
-        this.list = this.objs;
-        this.temp = [...this.objs];
+        isArray(data) ? this.list = data : data;
+        this.rows = this.list;
+        this.temp = [...this.list];
 
       }
     );

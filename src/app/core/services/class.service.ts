@@ -86,8 +86,8 @@ export class ClassService {
     this._utils.start_progress();
   }
 
-  afterRequest(data: _class): void {
-    this._utils.stop_progress();
+  afterRequest(data:_class): void {
+   this._utils.stop_progress();
    
   }
 
@@ -97,7 +97,7 @@ export class ClassService {
 
   showError(error): void {
     console.log(error);
-   
+    
   }
 
 }
