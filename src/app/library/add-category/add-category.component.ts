@@ -40,7 +40,7 @@ export class AddCategoryComponent implements OnInit , OnDestroy{
   
   ngOnInit() {
     this.initAddCategory();
-    this.loadAddCategory();
+  
   }
 
   ngOnDestroy() {
@@ -57,16 +57,7 @@ export class AddCategoryComponent implements OnInit , OnDestroy{
       });
   }
 
-   loadAddCategory() {
-    this._utils.unsubscribeSub(this._sub);
-    this._sub = this._libraryService.get().subscribe(
-      data => {
-        isArray(data) ? this.library = data : data;
-        console.log(this.library);
-
-      }
-    );
-  }
+  
 
   //   updateFilter(event) {
   //   const val = event.target.value.toLowerCase();
@@ -84,13 +75,36 @@ export class AddCategoryComponent implements OnInit , OnDestroy{
     this._utils.unsubscribeSub(this._typeSub);
     this._sub = this._libraryService.get().subscribe(
       data => {
-        isArray(data) ? this.obj = data : data;
-        this.rows = this.obj;
-        this.temp = [...this.obj];
+        isArray(data) ? this.library = data : data;
+        this.rows = this.library;
+        this.temp = [...this.library];
 
       }
     );
   }
+
+  updateFilter(event) {
+    const val = event.target.value.toLowerCase();
+
+    // filter our data
+    const temp = this.temp.filter(function(d) {
+      return d.name.toLowerCase().indexOf(val) !== -1 || !val;
+    });
+
+    // update the rows
+    this.library = temp;
+    // Whenever the filter changes, always go back to the first page
+    this.table.offset = 0;
+  }
+
+  updateValue(event, cell, rowIndex) {
+    console.log('inline editing rowIndex', rowIndex)
+    this.editing[rowIndex + '-' + cell] = false;
+    this.rows[rowIndex][cell] = event.target.value;
+    this.rows = [...this.rows];
+    console.log('UPDATED!', this.rows[rowIndex][cell]);
+  }
+
   }
 
  

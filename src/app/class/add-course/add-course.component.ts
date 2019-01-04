@@ -41,7 +41,7 @@ export class AddCourseComponent implements OnInit , OnDestroy{
   
   ngOnInit() {
     this.initCourse();
-    this.loadCourse();
+   
   }
 
   ngOnDestroy() {
@@ -58,16 +58,7 @@ export class AddCourseComponent implements OnInit , OnDestroy{
       });
   }
 
-   loadCourse() {
-    this._utils.unsubscribeSub(this._sub);
-    this._sub = this._courseService.get().subscribe(
-      data => {
-        isArray(data) ? this.course = data : data;
-        console.log(this.course);
-
-      }
-    );
-  }
+  
 
    
 
