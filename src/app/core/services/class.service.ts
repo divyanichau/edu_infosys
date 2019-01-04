@@ -68,6 +68,18 @@ export class ClassService {
       ),);
   }
 
+ delete(id: number): Observable<_class> {
+    this.beforeRequest();
+    //const body = JSON.stringify(Class);
+
+    return this._http.delete(`${this._classUrl}${id}/`,  this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json().data),
+      tap(
+      //data => this.afterRequest(data),
+      error => { this.showError(error) }
+      ),);
+  }
+
 
 
   beforeRequest(): void {

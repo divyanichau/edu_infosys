@@ -138,7 +138,7 @@ export class TeacherAllocationComponent implements OnInit , OnDestroy{
     this._sub = this._teacherallocationService.get().subscribe(
       data => {
         isArray(data) ? this.obj = data : data;
-        this.rows = this.obj;
+        this._classteacher = this.obj;
         this.temp = [...this.obj];
 
       }
@@ -154,7 +154,7 @@ export class TeacherAllocationComponent implements OnInit , OnDestroy{
     });
 
     // update the rows
-    this.rows = temp;
+    this._classteacher = temp;
     // Whenever the filter changes, always go back to the first page
     this.table.offset = 0;
   }

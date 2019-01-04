@@ -78,7 +78,7 @@ export class AddClassComponent implements OnInit , OnDestroy{
     this._sub = this._classService.get().subscribe(
       data => {
         isArray(data) ? this.objs = data : data;
-        this.rows = this.objs;
+        this.list = this.objs;
         this.temp = [...this.objs];
 
       }
@@ -94,7 +94,7 @@ export class AddClassComponent implements OnInit , OnDestroy{
     });
 
     // update the rows
-    this.rows = temp;
+    this.list = temp;
     // Whenever the filter changes, always go back to the first page
     this.table.offset = 0;
   }
@@ -106,9 +106,23 @@ export class AddClassComponent implements OnInit , OnDestroy{
     this.rows = [...this.rows];
     console.log('UPDATED!', this.rows[rowIndex][cell]);
   }
+
+
+ classDelete(id:number){
+      console.log(id);
+      if(confirm("Are You Sure Want To Delete?")){
+        this._classService.delete(id).subscribe(data => 
+          {
+          //console.log(data);
+          // this.toastr.success('Vehicle Added !', 'Success', { timeOut: 3000 });
+         },(err)=>{
+           console.log(err);
+           alert(err);
+         }
+         );
+       }
+    }
 }
-
-
 
 
 

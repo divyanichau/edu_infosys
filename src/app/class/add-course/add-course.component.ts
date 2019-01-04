@@ -76,7 +76,7 @@ export class AddCourseComponent implements OnInit , OnDestroy{
     this._sub = this._courseService.get().subscribe(
       data => {
         isArray(data) ? this.obj = data : data;
-        this.rows = this.obj;
+        this.course = this.obj;
         this.temp = [...this.obj];
 
       }
@@ -92,7 +92,7 @@ export class AddCourseComponent implements OnInit , OnDestroy{
     });
 
     // update the rows
-    this.rows = temp;
+    this.course = temp;
     // Whenever the filter changes, always go back to the first page
     this.table.offset = 0;
   }

@@ -5,6 +5,7 @@ import { LibraryComponent } from './library.component';
 import { AddBookComponent } from './add-book/add-book.component';
 import { AddCategoryComponent} from './add-category/add-category.component';
 import { IssueBookComponent} from './issue-book/issue-book.component';
+import { BookReturnComponent} from './book-return/book-return.component';
 
 const routes: Routes = [
 
@@ -26,6 +27,11 @@ const routes: Routes = [
 	   {
 	    path: "issue-book",
 	    component:IssueBookComponent,	    
+	  },
+
+	   {
+	    path: "book-return",
+	    component:BookReturnComponent,	    
 	  }
 	 
 	];

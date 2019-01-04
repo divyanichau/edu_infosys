@@ -1,7 +1,7 @@
 <div class="content-wrapper">
     <div class="content">
       <div class="page-header">
-         <ol class="breadcrumb breadcrumb" style="background-color:#aabad8;">
+         <ol class="breadcrumb breadcrumb">
               <li><a href="#"><i class="material-icons">home</i> Home</a></li>
               <li><a href="#"><i class="material-icons">class</i>Course</a></li>
               <li class="active"> Add Course </li>
@@ -15,9 +15,9 @@
     
    <div class="row">
         <div class="col-sm-6">
-            <div class="panel panel-default">
-              <div class="panel-body">
-              <div class="panel-heading" style="background-color:#aabad8;">
+            <div class="panel panel-primary">
+           
+              <div class="panel-heading">
                 <h4 class="panel-title">Add Course</h4>
               </div>
               <br> 
@@ -55,7 +55,7 @@
     </div>
   </div>
 </div>
-</div>
+
 
 <div class="content-wrapper">           
     <div class="content">
@@ -120,7 +120,7 @@
                   <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                     Manage
                   </ng-template>
-                  <ng-template let-row="course" let-value="value" ngx-datatable-cell-template>
+                  <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                     <a class="glyphicon glyphicon-eye-open" title="" href="/class/add-course/{{value}}"><img src="" alt=""></a>
                     <a class="glyphicon glyphicon-trash left-icon" title="" href="/class/add-course/delete/{{value}}"><img src="" alt=""></a>
                   </ng-template>

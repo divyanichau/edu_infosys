@@ -66,7 +66,7 @@ onChange(newValue){
   onSubmit() {
     this._utils.unsubscribeSub(this._sub);
     console.log(this.return);
-    this._sub = this._libraryService.add(this.return)
+    this._sub = this._libraryService.addReturn(this.return)
       .subscribe(data => {
         console.log(data);
             this.toastr.success('Book Category Added !', 'Success',{timeOut: 3000});
@@ -98,7 +98,7 @@ onChange(newValue){
 
   initAddCategory() {
     this._utils.unsubscribeSub(this._typeSub);
-    this._sub = this._libraryService.get().subscribe(
+    this._sub = this._libraryService.getReturn().subscribe(
       data => {
         isArray(data) ? this.obj = data : data;
         this.rows = this.obj;

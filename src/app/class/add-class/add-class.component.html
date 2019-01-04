@@ -16,7 +16,7 @@
   <div class="row">
       <form (ngSubmit)="onSubmit()" #classForm="ngForm">
         <div class="col-sm-6">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
               <div class="panel-heading" >
                 <h4 class="panel-title">Add Class</h4>
               </div>
@@ -78,10 +78,7 @@
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
-                <!-- <ngx-datatable-column name="Name" prop="user.first_name">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column> -->
+
                 <ngx-datatable-column name=" Class" prop="name">
                   <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
                     <span
@@ -110,9 +107,9 @@
                   <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                     Manage
                   </ng-template>
-                  <ng-template let-row="list" let-value="value" ngx-datatable-cell-template>
+                  <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                     <a class="glyphicon glyphicon-eye-open" title="" href="/class/add-class/{{value}}"><img src="" alt=""></a>
-                    <a class="glyphicon glyphicon-trash left-icon" title="" href="/class/add-class/delete/{{value}}"><img src="" alt=""></a>
+                    <button class="glyphicon glyphicon-trash left-icon btn btn-danger" style="margin-left:35px;" (click)="classDelete(value)"></button>
                   </ng-template>
                 </ngx-datatable-column>
               </ngx-datatable>

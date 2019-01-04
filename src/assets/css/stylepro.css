@@ -3,7 +3,10 @@
  background-color:#e4e4e4;
   }*/
 
-
+.navbar-brand b {
+	font-family: sans-serif;
+    font-size: 25px;
+}
 
 .panel {
     margin-bottom: 20px;
