@@ -1,6 +1,6 @@
 
 <div class="body">
-  <form (ngSubmit)="onSubmitSetTerm()" #setTerm="ngForm">
+  <form (ngSubmit)="OnSubmitTerm()" #setTerm="ngForm">
     <div class="content-wrapper">
       <div class="col-sm-6">
         <div class="panel panel-primary">
@@ -11,28 +11,28 @@
             <div class="row clearfix">
               <div class="col-sm-6">
                 <label for="term_name" class="label-control">Term Name</label>
-                <input type="text" id="term_name" class="form-control" name="term_name" [(ngModel)]="vobj.vehicle_no"
+                <input type="text" id="term_name" class="form-control" name="term_name" [(ngModel)]="_term.name"
                   placeholder="Term Name">
 
               </div>
 
               <div class="col-sm-6 ">
                 <label for="start_date" class="label-control">Start Date</label>
-                <input type="date" id="start_date" class="form-control" name="start_date" [(ngModel)]="vobj.insurance_renew_date">
+                <input type="date" id="start_date" class="form-control" name="start_date" [(ngModel)]="_term.start_date">
 
               </div>
 
                 <div class="col-sm-6 form-top-margin" >
                   <label for="end_date" class="label-control">End Date</label>
-                  <input type="date" id="end_date" class="form-control" name="end_date" [(ngModel)]="vobj.insurance_renew_date">
+                  <input type="date" id="end_date" class="form-control" name="end_date" [(ngModel)]="_term.end_date">
 
                 </div>
           
               <div class="col-md-6 form-top-margin">
                 <label for="batch">Select Batch</label>
 
-                <select class="form-control" name="batch" [(ngModel)]="selected_driver">
-                  <option *ngFor="let driver of _driver" [ngValue]="driver.id">{{driver.name}}</option>
+                <select class="form-control" name="batch" [(ngModel)]="selected_batch">
+                  <option *ngFor="let batch of obj" [ngValue]="batch.id">{{batch.name}}</option>
 
                 </select>
               </div>
@@ -55,3 +55,78 @@
     </div>
   </form>
 </div>
+
+<!--Hello View Section-->
+
+<div class="body">
+
+  <div class="content-wrapper">
+    <div class="col-sm-6">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h4 class="panel-title">Manage Vehicle</h4>
+        </div>
+        <div class="panel-body">
+
+
+          <div class="table-responsive">
+            <!-- <div class="row">
+              <div class="col-xs-6 col-md-6">
+                <div class="input-group">
+                  <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter Name" id="txtSearch" />
+                  <div class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">
+                      <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            <!-- <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='search with name'
+                                (keyup)='updagitteFilter($event)'
+                              /> -->
+            <ngx-datatable class="material" [rows]="totlTerm" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+              [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+
+              <ngx-datatable-column name="ID" prop="id">
+                <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+              </ngx-datatable-column>
+
+           
+
+              <ngx-datatable-column name="Name" prop="name">
+                <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+              </ngx-datatable-column>
+              
+              <ngx-datatable-column name="Batch" prop="batch">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+               </ngx-datatable-column>
+
+              <ngx-datatable-column name="Actions" sortable="false" prop="id">
+                <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                  Manage
+                </ng-template>
+
+                <ng-template let-row="list" let-value="value" ngx-datatable-cell-template>
+                  <a class="glyphicon glyphicon-eye-open btn btn-primary" style="margin-left:-5px;" title="" href="/exam/edit_term/{{value}}"><img src="" alt=""></a>
+                  <!-- <a class="glyphicon glyphicon-trash left-icon" title="" href="#"><img
+                      src="" alt=""></a> -->
+                      <button class="glyphicon glyphicon-trash left-icon btn btn-danger" style="margin-left:2px;" (click)="exmTermDelete(value)"></button>
+                </ng-template>
+              </ngx-datatable-column>
+            </ngx-datatable>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+
+  </div>
+
+</div>
+<!--View Section End-->
