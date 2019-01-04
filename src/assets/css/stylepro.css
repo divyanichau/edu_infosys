@@ -27,3 +27,9 @@
 .form-top-margin{
     margin-top: 15px;
 }
+
+
+
+.datatable-col-id {
+    width:5px !important;
+}

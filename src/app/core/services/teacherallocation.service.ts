@@ -45,7 +45,18 @@ export class TeacherAllocationService {
       ),);
   }
 
- 
+  delete(id: number): Observable<TeacherAllocation> {
+    this.beforeRequest();
+    //const body = JSON.stringify(teacherallocation);
+
+    return this._http.delete(`${this._teacherallocationUrl}${id}/`,  this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json().data),
+      tap(
+      //data => this.afterRequest(data),
+      error => { this.showError(error) }
+      ),);
+  }
+
 
 
   beforeRequest(): void {

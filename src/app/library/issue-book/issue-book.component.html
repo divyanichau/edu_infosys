@@ -59,12 +59,36 @@
                                       </div>
 
                                     <div class="col-sm-2">
-                                        <label>&nbsp;</label>
-                                        <a href="javascript:getbookdetails()" class="btn btn-info">Search</a>
-                                    </div>
-                                </div>
-                          
-                      
+                <a class="btn btn-primary waves-effect" data-toggle="modal" data-target="#smallModal">Search</a>
+                
+              </div>
+                                </div> 
+
+                                                 
+                                <div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <form ngNativeValidate (ngSubmit)="onSubmitDriver()" #driverForm="ngForm">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="panel-body">
+            <div class="row clearfix">
+
+             <table align="center">
+    <tbody id="bookdetails" style="font-size: 14px"><tr><td class="text-muted" style="font-size: 14px">ISBN No.:</td><td>&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td class="text-muted" style="font-size: 14px">Book No.:</td><td>&nbsp;12121</td></tr><tr><td colspan="5">&nbsp;</td></tr><tr><td class="text-muted" style="font-size: 14px">Title:</td><td>&nbsp;Jungle Book</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td class="text-muted" style="font-size: 14px">Author:</td><td>&nbsp;Rudyard Kipling</td></tr><tr><td colspan="5">&nbsp;</td></tr><tr><td class="text-muted" style="font-size: 14px">Edition:</td><td></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td class="text-muted" style="font-size: 14px">Category:</td><td>Fiction 1</td></tr><tr><td colspan="5">&nbsp;</td></tr><tr><td class="text-muted" style="font-size: 14px">Publisher:</td><td>&nbsp;Siso</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td class="text-muted" style="font-size: 14px">No of Copies:</td><td>&nbsp;2</td></tr><tr><td colspan="5">&nbsp;</td></tr><tr><td class="text-muted" style="font-size: 14px">Shelf No:</td><td>&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td class="text-muted" style="font-size: 14px">Book Position:</td><td>&nbsp;</td></tr><tr><td colspan="5">&nbsp;</td></tr><tr><td class="text-muted" style="font-size: 14px">Cost:</td><td>&nbsp;250</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td class="text-muted" style="font-size: 14px">Language:</td><td>&nbsp;English</td></tr><tr><td colspan="5">&nbsp;</td></tr><tr><td class="text-muted" style="font-size: 14px">Condition:</td><td>&nbsp;Fine</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td class="text-muted" style="font-size: 14px">Status:</td><td>&nbsp;Issued</td></tr></tbody>
+                                                    </table>
+
+            </div>
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          
+          <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CLOSE</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>                 
                         
   <div class="panel-body">  
             <div class="col-sm-12">

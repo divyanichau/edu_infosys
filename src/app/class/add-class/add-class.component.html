@@ -107,7 +107,7 @@
                   <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                     Manage
                   </ng-template>
-                  <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                  <ng-template let-row="list" let-value="value" ngx-datatable-cell-template>
                     <a class="glyphicon glyphicon-eye-open" title="" href="/class/add-class/{{value}}"><img src="" alt=""></a>
                     <button class="glyphicon glyphicon-trash left-icon btn btn-danger" style="margin-left:35px;" (click)="classDelete(value)"></button>
                   </ng-template>

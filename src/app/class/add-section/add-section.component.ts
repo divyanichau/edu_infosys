@@ -125,6 +125,21 @@ export class AddSectionComponent implements OnInit , OnDestroy{
     this.rows = [...this.rows];
     console.log('UPDATED!', this.rows[rowIndex][cell]);
   }
+
+  sectionDelete(id:number){
+      console.log(id);
+      if(confirm("Are You Sure Want To Delete?")){
+        this._sectionService.delete(id).subscribe(data => 
+          {
+          //console.log(data);
+          // this.toastr.success('Vehicle Added !', 'Success', { timeOut: 3000 });
+         },(err)=>{
+           console.log(err);
+           alert(err);
+         }
+         );
+       }
+    }
 }
 
 

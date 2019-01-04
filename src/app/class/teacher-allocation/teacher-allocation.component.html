@@ -127,7 +127,7 @@
                   </ng-template>
                   <ng-template let-row="_classteacher" let-value="value" ngx-datatable-cell-template>
                     <a class="glyphicon glyphicon-eye-open" title="" href="/class/teacher-allocation/{{value}}"><img src="" alt=""></a>
-                    <a class="glyphicon glyphicon-trash left-icon" title="" href="/class/teacher-allocation/delete/{{value}}"><img src="" alt=""></a>
+                    <button class="glyphicon glyphicon-trash left-icon btn btn-danger" style="margin-left:35px;" (click)="teacherDelete(value)"></button>
                   </ng-template>
                 </ngx-datatable-column>
               </ngx-datatable>

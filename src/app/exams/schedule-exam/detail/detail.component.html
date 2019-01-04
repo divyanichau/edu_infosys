@@ -1,0 +1,46 @@
+<div class="body">
+  <form (ngSubmit)="onSubmitUpdateSchedule()" #scheduleExam="ngForm">
+    <div class="content-wrapper">
+      <div class="col-sm-6">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h4 class="panel-title">Schedule Exam</h4>
+          </div>
+          <div class="panel-body">
+            <div class="row clearfix">
+              <div class="col-md-6 ">
+                <label for="subject">Select Subject</label>
+                <select class="form-control" name="subject" [(ngModel)]="selected_subject">
+                  <option *ngFor="let sub of totlSub" [ngValue]="sub.id">{{sub.name}}</option>
+                </select>
+              </div>
+              <div class="col-md-6 ">
+                <label for="term">Select Term</label>
+
+                <select class="form-control" name="term" [(ngModel)]="selected_term">
+                  <option *ngFor="let term of totlTerm" [ngValue]="term.id">{{term.name}}</option>
+                </select>
+              </div>
+              <div class="col-sm-6 form-top-margin">
+                <label for="date" class="label-control">Date</label>
+                <input type="date" id="date" class="form-control" name="date" [(ngModel)]="scheduleExm.date">
+              </div>
+              <div class="col-sm-6 form-top-margin">
+                <label for="start_time" class="label-control">Start Time</label>
+                <input type="time" id="start_time" class="form-control" name="start_time" [(ngModel)]="scheduleExm.start_time">
+              </div>
+              <div class="col-sm-6 form-top-margin">
+                <label for="end_time" class="label-control">End Time</label>
+                <input type="time" id="end_time" class="form-control" name="end_time" [(ngModel)]="scheduleExm.end_time"
+                  placeholder="Term Name">
+              </div>
+            </div>
+            <div class="panel-footer">
+              <button class="btn btn-primary" type="Submit">Update Schedule</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
