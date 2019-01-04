@@ -13,58 +13,63 @@
 
   <form (ngSubmit)="onSubmit()" #courseForm="ngForm">
     
-   <div class="row">
         <div class="col-sm-6">
             <div class="panel panel-primary">
            
               <div class="panel-heading">
                 <h4 class="panel-title">Add Course</h4>
               </div>
-              <br> 
+             
 
-  <div class="panel-body">
-    <div class="row clearfix">
-             <div class="col-sm-6">
-                  <label for="name">Course Name</label>
-                     <input type="text" class="form-control" [(ngModel)]="obj_course.name" name="name"  size="84" maxlength="45" placeholder="Enter Course Name " required>
-            </div>
-             <div class="col-sm-6">
-                  <label for="department">Department</label>
-                     <input type="text" class="form-control" [(ngModel)]="obj_course.department" name="department"  size="84" maxlength="45" placeholder="Enter Department " required>
-            </div>
-        </div>
-<br>
-      <div class="row clearfix">
-          <div class="col-sm-6">
-                  <label for="course_code">Course code</label>
-                     <input type="text" class="form-control" [(ngModel)]="obj_course.code" name="code"  size="84" maxlength="45" placeholder="Enter Course Code " required>
-            </div>
-             <div class="col-sm-6">
-                  <label for="description">Description</label>
-                     <input type="text" class="form-control" [(ngModel)]="obj_course.description" name="description"  size="84" maxlength="45" placeholder=" Description " required>
-            </div>
-        </div>
-         
-<br>
-<br>
+              <div class="panel-body">
+                
+                <div class="row clearfix">
+                  <div class="col-sm-6">
+                    <label for="name">Course Name</label>
+                      <input type="text" class="form-control" [(ngModel)]="obj_course.name" name="name"  size="84" maxlength="45" placeholder="Enter Course Name " required>
+                  </div>
 
-    <div class="form-group">
-            <button class="btn btn-info" style="background-color:#aabad8;" type="Submit"><b>Save</b></button>
-        </div>
+                  <div class="col-sm-6">
+                              <label for="course_code">Course code</label>
+                                 <input type="text" class="form-control" [(ngModel)]="obj_course.code" name="code"  size="84" maxlength="45" placeholder="Enter Course Code " required>
+                  </div>
 
+                </div>
+
+                <div class="row clearfix">
+
+                  <div class="col-sm-6">
+                          <label for="description">Description</label>
+                             <input type="text" class="form-control" [(ngModel)]="obj_course.description" name="description"  size="84" maxlength="45" placeholder=" Description " required>
+                  </div>
+                </div>
+
+                 <div class="form-group">
+                    <button class="btn btn-primary m-t-15"  type="Submit"><b>Save</b></button>
+                  </div>
+
+              </div>
+
+              
+                 
+             
+                 
+             
+        </div>
     </div>
-  </div>
-</div>
+  </form>
 
 
-<div class="content-wrapper">           
-    <div class="content">
  <div class="form-group">
     <div class="row">
     <div class="col-sm-6"> 
-     <div class="panel panel-default">
-              <div class="panel-heading" >                    
-       <div class="table-responsive">                       
+     <div class="panel panel-primary">
+       <div class="panel-heading" > 
+          <h4 class="panel-title">Courses</h4>
+        </div>
+
+        <div class="panel-body">                   
+          <div class="table-responsive">                       
               <div class="row">              
                 <div class="col-xs-6 col-md-6">
                   <div class="input-group">
