@@ -11,6 +11,9 @@ import { BatchService } from '../core/services/batch.service';
 import { UtilsService } from '../shared/services/utils.service';
 import { SetTermService } from '../core/services/set-term.service';
 import { TermDetailComponent } from './set-term/term-detail/term-detail.component';
+import { SubjectService } from '../core/services/subject.service';
+import { ExamScheduleService } from '../core/services/schedule-exam.service';
+import { DetailComponent } from './schedule-exam/detail/detail.component';
 
 @NgModule({
 
@@ -20,7 +23,7 @@ import { TermDetailComponent } from './set-term/term-detail/term-detail.componen
     FormsModule,
     NgxDatatableModule
   ],
-  providers:[BatchService,UtilsService,SetTermService],
-  declarations: [SetTermComponent, ScheduleExamComponent, TermDetailComponent],
+  providers:[BatchService,UtilsService,SetTermService,SubjectService,ExamScheduleService],
+  declarations: [SetTermComponent, ScheduleExamComponent, TermDetailComponent, DetailComponent],
 })
 export class ExamsModule { }

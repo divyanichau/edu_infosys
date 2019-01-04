@@ -1,5 +1,5 @@
 export class setTerm{
-    id:string;
+    id:number;
     name:string;
     start_date:Date;
     end_date:Date;
