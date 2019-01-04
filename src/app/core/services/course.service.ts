@@ -68,6 +68,19 @@ export class CourseService {
       ),);
   }
 
+   delete(id: number): Observable<Course> {
+    this.beforeRequest();
+    //const body = JSON.stringify(course);
+
+    return this._http.delete(`${this._courseUrl}${id}/`,  this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json().data),
+      tap(
+      //data => this.afterRequest(data),
+      error => { this.showError(error) }
+      ),);
+  }
+
+
 
   beforeRequest(): void {
     this._utils.start_progress();
