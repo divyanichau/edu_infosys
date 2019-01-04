@@ -19,12 +19,15 @@ declare var numeral: any;
 })
   
 export class AddTimetableComponent implements OnInit , OnDestroy{
-	isclicked : boolean=true;
+	time_table = false;
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
   teachers: Teacher[];
+  teacher: Teacher;
+  selected_teacher : number;
   obj : Timetable;
    timetables = [];
+   rows = [];
 
   @ViewChild(DatatableComponent) table: DatatableComponent;
   constructor(
@@ -37,6 +40,12 @@ export class AddTimetableComponent implements OnInit , OnDestroy{
   ngOnInit() {
     this.initTimetable();
     this.loadTeachers();
+    this.rows = [
+    	{'time':'10:00-11:00', 'sunday':'suraj', 'monday':'' ,'tuesday': '', 'wednesday': ''},
+    	{'time':'11:00-12:00', 'sunday':false, 'monday':''},
+    	{'time':'12:00-1:00', 'sunday':false, 'monday':''},
+
+    ];
   }
 
   ngOnDestroy() {
@@ -70,10 +79,16 @@ export class AddTimetableComponent implements OnInit , OnDestroy{
     this.obj = new Timetable();
   }
   
-   generate_Timetable(){
-	this.isclicked = !this.isclicked;
+   generate_timetable(){
+   	console.log(this.selected_teacher)
+   	if(this.selected_teacher > 0){
+   		 this.time_table = true;
+   	}
+   
+  }
 
-}
+
+
  
 }
 
