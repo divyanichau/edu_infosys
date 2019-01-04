@@ -47,7 +47,7 @@ export class AddSectionComponent implements OnInit , OnDestroy{
   
   ngOnInit() {
     this.initSection();
-    this.loadClasses();
+   
    
     //this.section.r_class = 1; //Change this to api returned class array first element
   }
@@ -65,6 +65,7 @@ export class AddSectionComponent implements OnInit , OnDestroy{
       .subscribe(data => {
         console.log(data);
         this.toastr.success('Section Added !', 'Success',{timeOut: 3000});
+         this.loadClasses();
       });
   }
 
@@ -76,29 +77,19 @@ export class AddSectionComponent implements OnInit , OnDestroy{
         console.log(this._classes);
         this.selected_class = this._classes[0].id;
         console.log(this.section);
-         this.loadSection();  
+          
       }
     );
   }
 
-    loadSection() {
-    this._utils.unsubscribeSub(this._sub);
-    this._sub = this._sectionService.get().subscribe(
-      data => {
-        isArray(data) ? this._section = data : data;
-        console.log(this._section);
-
-      }
-    );
-  }
-
+  
   initSection() {
     this._utils.unsubscribeSub(this._typeSub);
       this._sub = this._sectionService.get().subscribe(
       data => {
-        isArray(data) ? this.obj = data : data;
-        this._section = this.obj;
-        this.temp = [...this.obj];
+        isArray(data) ? this._section = data : data;
+        this.rows = this._section;
+        this.temp = [...this._section];
 
       }
     );

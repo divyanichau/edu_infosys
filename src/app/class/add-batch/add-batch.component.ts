@@ -50,7 +50,7 @@ export class AddBatchComponent implements OnInit , OnDestroy{
   
   ngOnInit() {
     this.initBatch();
-    this.loadBatch();
+    
   }
 
   ngOnDestroy() {
@@ -65,19 +65,8 @@ export class AddBatchComponent implements OnInit , OnDestroy{
       .subscribe(data => {
        
         this.toastr.success('Batch Added !', 'Success',{timeOut: 3000});
+        this.loadCourse();
       });
-  }
-
-   loadBatch() {
-    this._utils.unsubscribeSub(this._sub);
-    this._sub = this._batchService.get().subscribe(
-      data => {
-        isArray(data) ? this._batch = data : data;
-        console.log(this._batch);
-         this.loadCourse();
-
-      }
-    );
   }
 
    loadCourse() {
@@ -98,9 +87,9 @@ export class AddBatchComponent implements OnInit , OnDestroy{
    this._utils.unsubscribeSub(this._sub);
     this._sub = this._batchService.get().subscribe(
       data => {
-        isArray(data) ? this.obj = data : data;
-        this._batch = this.obj;
-        this.temp = [...this.obj];
+        isArray(data) ? this._batch = data : data;
+        this.rows = this._batch;
+        this.temp = [...this._batch];
 
       }
     );
@@ -115,7 +104,7 @@ export class AddBatchComponent implements OnInit , OnDestroy{
     });
 
     // update the rows
-    this.rows = temp;
+    this._batch = temp;
     // Whenever the filter changes, always go back to the first page
     this.table.offset = 0;
   }

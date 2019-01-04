@@ -78,7 +78,7 @@ export class TeacherAllocationComponent implements OnInit , OnDestroy{
     this.obj_teacher.course = this.selected_course;
     this.obj_teacher.batch = this.selected_batch;
     this.obj_teacher.class_teacher = this.selected_teacher;
-    console.log(this.obj_teacher);
+    //console.log(this.obj_teacher);
     this._sub = this._teacherallocationService.add(this.obj_teacher)
       .subscribe(data => {
         console.log(data);
@@ -117,29 +117,19 @@ export class TeacherAllocationComponent implements OnInit , OnDestroy{
         isArray(data) ? this._teacher = data : data;
         console.log(this._teacher);
         this.selected_teacher = this._teacher[0].id;
-        this.loadTeacherAllocation();
+       
       }
     );
   }
 
-   loadTeacherAllocation() {
-    this._utils.unsubscribeSub(this._sub);
-    this._sub = this._teacherallocationService.get().subscribe(
-      data => {
-        isArray(data) ? this._classteacher = data : data;
-        console.log(this._classteacher);
-    
-      }
-    );
-  }
-
+   
   initTeacherAllocation() {
    this._utils.unsubscribeSub(this._sub);
     this._sub = this._teacherallocationService.get().subscribe(
       data => {
-        isArray(data) ? this.obj = data : data;
-        this._classteacher = this.obj;
-        this.temp = [...this.obj];
+        isArray(data) ? this._classteacher  = data : data;
+        this.rows= this._classteacher ;
+        this.temp = [...this._classteacher ];
 
       }
     );
