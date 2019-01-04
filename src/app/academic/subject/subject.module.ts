@@ -20,6 +20,7 @@ import { AddSubjectComponent } from './add-subject/add-subject.component';
 import { AssignSubjectComponent } from './assign-subject/assign-subject.component';
 import { ElectiveSubjectComponent } from './elective-subject/elective-subject.component';
 import { SubjectAllocationComponent } from './subject-allocation/subject-allocation.component';
+import { EditSubjectComponent } from './edit-subject/edit-subject.component';
 
 
 
@@ -34,6 +35,6 @@ import { SubjectAllocationComponent } from './subject-allocation/subject-allocat
     SubjectRoutingModule
   ],
   providers: [SubjectService, CourseService, BatchService, StudentService, TeacherService, SubjectAllocationService, UtilsService],
-  declarations: [SubjectComponent, AddSubjectComponent, AssignSubjectComponent, ElectiveSubjectComponent, SubjectAllocationComponent ]
+  declarations: [SubjectComponent, AddSubjectComponent, AssignSubjectComponent, ElectiveSubjectComponent, SubjectAllocationComponent, EditSubjectComponent ]
 })
 export class SubjectModule { }

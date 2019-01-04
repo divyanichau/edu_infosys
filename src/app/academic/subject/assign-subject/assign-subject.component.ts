@@ -158,5 +158,19 @@ export class AssignSubjectComponent implements OnInit , OnDestroy{
 
  );
 }
+
+subjectDelete(id:number){
+      console.log(id);
+      if(confirm("Are You Sure Want To Delete?")){
+        this._subjectService.delete(id).subscribe(data => 
+          {
+         },(err)=>{
+           console.log(err);
+           alert(err);
+         }
+         );
+       }
+    }
+
 }
 

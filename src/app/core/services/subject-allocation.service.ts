@@ -65,6 +65,20 @@ export class SubjectAllocationService {
   }
 
 
+  delete(id:number): Observable<subject_allocation> {
+    this.beforeRequest();
+   // const body = JSON.stringify(subject);
+
+    return this._http.delete(`${this._allocationUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json().data),
+      tap(
+    //  data => this.afterDeteleRequestRequest(),
+      error => { this.showError(error) }
+      ),);
+  }
+
+
+
   beforeRequest(): void {
     //this._progress.start();
   }
@@ -73,6 +87,10 @@ export class SubjectAllocationService {
     this.toastr.success('Done','Subject Allocated',{timeOut: 3000});
   }
 
+  afterDeteleRequestRequest(){
+    this._utils.stop_progress();
+    this.toastr.warning('Done','Subject Allocated Deleted',{timeOut: 3000});
+  }
 
   showError(error): void {
     this.toastr.error('Error',error._body,{timeOut: 3000});

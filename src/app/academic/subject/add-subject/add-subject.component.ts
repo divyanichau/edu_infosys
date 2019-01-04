@@ -38,7 +38,7 @@ export class AddSubjectComponent implements OnInit , OnDestroy{
   
   ngOnInit() {
     this.initSubject();
-    this.loadSubjects();
+   // this.loadSubjects();
   }
 
   ngOnDestroy() {
@@ -70,6 +70,14 @@ export class AddSubjectComponent implements OnInit , OnDestroy{
 
   initSubject() {
     this._utils.unsubscribeSub(this._typeSub);
+      this._sub = this._subjectService.get().subscribe(
+      data => {
+        isArray(data) ? this.subjects = data : data;
+        this.rows = this.subjects;
+        this.temp = [...this.subjects];
+      }
+      
+    );
     this.subject= new Subject();
 
   }
@@ -89,6 +97,29 @@ export class AddSubjectComponent implements OnInit , OnDestroy{
        }
     }
    
+
+   updateFilter(event) {
+     const val = event.target.value.toLowerCase();
+
+    // filter our data
+    const temp = this.temp.filter(function(d) {
+     // console.log(d.student.toLowerCase(), val)
+      return d.name.toLowerCase().indexOf(val) !== -1 || !val;
+    });
+
+    // update the rows
+    this.subjects = temp;
+    // Whenever the filter changes, always go back to the first page
+    this.table.offset = 0;
+  }
+
+  // updateValue(event, cell, rowIndex) {
+  //   console.log('inline editing rowIndex', rowIndex)
+  //   this.editing[rowIndex + '-' + cell] = false;
+  //   this.rows[rowIndex][cell] = event.target.value;
+  //   this.rows = [...this.rows];
+  //   console.log('UPDATED!', this.rows[rowIndex][cell]);
+  // }
     
   }
 

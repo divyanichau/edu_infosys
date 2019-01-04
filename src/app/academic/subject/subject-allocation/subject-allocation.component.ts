@@ -45,6 +45,7 @@ export class SubjectAllocationComponent implements OnInit {
   selected_subject: number;
 
   @ViewChild(DatatableComponent) table: DatatableComponent;
+  
   constructor(
     private _utils: UtilsService,
     private toastr: ToastrService,
@@ -143,6 +144,19 @@ export class SubjectAllocationComponent implements OnInit {
       }
     );
   }
+
+  subjectDelete(id:number){
+      console.log(id);
+      if(confirm("Are You Sure Want To Delete?")){
+        this._subjectAllocationService.delete(id).subscribe(data => 
+          {
+         },(err)=>{
+           console.log(err);
+           alert(err);
+         }
+         );
+       }
+    }
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();

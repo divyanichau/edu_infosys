@@ -20,6 +20,7 @@ import { RegisterComponent } from './register/register.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { TopbarComponent } from './topbar/topbar.component';
 
+
 // import { AcademicComponent } from './academic/academic.component';
 
 

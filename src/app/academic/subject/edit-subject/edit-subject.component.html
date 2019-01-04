@@ -1,0 +1,52 @@
+<div class="body">
+  <div class="content-wrapper">
+    <div class="content">
+      <div class="page-header">
+        <ol class="breadcrumb breadcrumb">
+          <li><a href="javascript:void(0);"><i class="material-icons">home</i> Home</a></li>
+          <li><a href="javascript:void(0);">Academic</a></li>
+          <li><a href="javascript:void(0);">Subjects</a></li>
+          <li><a href="javascript:void(0);"> Add Subject</a></li>
+        </ol>
+
+        <div class="row">
+          <form ngNativeValidate (ngSubmit)="onSubmit()" #subjectForm="ngForm">
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="header">
+                  <h2>
+                    <b style="color: black;">Add  Subject</b>
+                  </h2>
+                </div>
+                <br>
+     <div class="panel-body">
+          <div class="row clearfix">
+            <div class="col-sm-10">
+                  <label for="subject-name">Subject Name</label>
+                     <input type="text" class="form-control" [(ngModel)]="subject.name"  [ngModelOptions]="{standalone: true}" name="subject-name"  size="84" maxlength="45" placeholder="Enter Subject Name" required>
+        </div>
+      </div>
+      <br>
+
+       <div class="row clearfix">
+            <div class="col-sm-10">
+                  <label for="code">Code</label>
+                     <input type="text" class="form-control" [(ngModel)]="subject.code" [ngModelOptions]="{standalone: true}" name="code"  size="84" maxlength="8" placeholder="Enter Code" required>
+               </div>
+         </div>
+    <br>
+        <div class="row clearfix">
+            <div class="col-sm-10">
+                <label for="description">Description</label>
+                     <input type="text" class="form-control" [(ngModel)]="subject.description" [ngModelOptions]="{standalone: true}" name="description"  size="84" maxlength="15" placeholder="Enter Description" required>
+            </div>
+          </div>
+            <br>
+
+          <div class="form-group">
+            <button class="btn btn-primary btn-lg" type="Submit"><b>Update Subject</b></button>
+       </div>
+     </div>
+   </div>
+ </div>
+

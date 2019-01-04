@@ -66,7 +66,7 @@ export class SubjectService {
 
 
 
-  update(subject:Subject): Observable<Subject> {
+  update(subject:Subject, id:string): Observable<Subject> {
     this.beforeRequest();
     const body = JSON.stringify(subject);
 
@@ -150,6 +150,18 @@ export class SubjectService {
   afterRequest(data: Subject): void {
     this._utils.stop_progress();
   }
+
+  afterUpdateRequest(data: Subject): void {
+    this._utils.stop_progress();
+    this.toastr.success('Done','Subject Updated',{timeOut: 3000});
+
+  }
+
+  afterDeteleRequestRequest(){
+    this._utils.stop_progress();
+    this.toastr.warning('Done','Subject  Deleted',{timeOut: 3000});
+  }
+
 
 
   afterGetRequest(): void {
