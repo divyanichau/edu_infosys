@@ -3,6 +3,7 @@ export class subject_allocation {
     batch: number;
     course: number;
     teacher: number;
+    subject: number;
     
 }
 export class subject_allocationGet{
@@ -10,4 +11,5 @@ export class subject_allocationGet{
     batch:string;
     course:string;
     teacher:string;
+    subject:string;
 }
