@@ -99,7 +99,7 @@ export class AddBatchComponent implements OnInit , OnDestroy{
     this._sub = this._batchService.get().subscribe(
       data => {
         isArray(data) ? this.obj = data : data;
-        this.rows = this.obj;
+        this._batch = this.obj;
         this.temp = [...this.obj];
 
       }

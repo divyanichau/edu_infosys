@@ -17,7 +17,7 @@
   
       <form (ngSubmit)="onSubmit()" #batchForm="ngForm">
         <div class="col-sm-6">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
               <div class="panel-heading" >
                 <h4 class="panel-title">Add Batch</h4>
               </div>
@@ -160,7 +160,7 @@
                   <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                     Manage
                   </ng-template>
-                  <ng-template let-row="_batch" let-value="value" ngx-datatable-cell-template>
+                  <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                     <a class="glyphicon glyphicon-eye-open" title="" href="/class/add-batch/{{value}}"><img src="" alt=""></a>
                     <a class="glyphicon glyphicon-trash left-icon" title="" href="/class/add-batch/delete/{{value}}"><img src="" alt=""></a>
                   </ng-template>

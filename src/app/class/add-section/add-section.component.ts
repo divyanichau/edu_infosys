@@ -59,13 +59,11 @@ export class AddSectionComponent implements OnInit , OnDestroy{
   onSubmit() {
     //this.section._class = this.selected_class;
     this._utils.unsubscribeSub(this._sub);
-    console.log("class'",this.selected_class);
     this.section._class = this.selected_class;
     console.log(this.section);
     this._sub = this._sectionService.add(this.section)
       .subscribe(data => {
         console.log(data);
-        //alert('Section added');
         this.toastr.success('Section Added !', 'Success',{timeOut: 3000});
       });
   }
@@ -99,7 +97,7 @@ export class AddSectionComponent implements OnInit , OnDestroy{
       this._sub = this._sectionService.get().subscribe(
       data => {
         isArray(data) ? this.obj = data : data;
-        this.rows = this.obj;
+        this._section = this.obj;
         this.temp = [...this.obj];
 
       }
@@ -115,7 +113,7 @@ export class AddSectionComponent implements OnInit , OnDestroy{
     });
 
     // update the rows
-    this.rows = temp;
+    this._section = temp;
     // Whenever the filter changes, always go back to the first page
     this.table.offset = 0;
   }

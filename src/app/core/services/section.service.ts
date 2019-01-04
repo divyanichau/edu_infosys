@@ -71,6 +71,7 @@ export class SectionService {
       ),);
   }
 
+ 
 
   selectClass(val){
    this.selectedClass = val
