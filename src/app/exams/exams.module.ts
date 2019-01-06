@@ -14,6 +14,10 @@ import { TermDetailComponent } from './set-term/term-detail/term-detail.componen
 import { SubjectService } from '../core/services/subject.service';
 import { ExamScheduleService } from '../core/services/schedule-exam.service';
 import { DetailComponent } from './schedule-exam/detail/detail.component';
+import { MarksEntryComponent } from './marks-entry/marks-entry.component';
+import { CourseService } from '../core/services/course.service';
+import { ClassService } from '../core/services/class.service';
+import { SectionService } from '../core/services/section.service';
 
 @NgModule({
 
@@ -23,7 +27,8 @@ import { DetailComponent } from './schedule-exam/detail/detail.component';
     FormsModule,
     NgxDatatableModule
   ],
-  providers:[BatchService,UtilsService,SetTermService,SubjectService,ExamScheduleService],
-  declarations: [SetTermComponent, ScheduleExamComponent, TermDetailComponent, DetailComponent],
+  providers:[BatchService,UtilsService,SetTermService,SubjectService,
+    ExamScheduleService,CourseService,ClassService,SectionService],
+  declarations: [SetTermComponent, ScheduleExamComponent, TermDetailComponent, DetailComponent, MarksEntryComponent],
 })
 export class ExamsModule { }

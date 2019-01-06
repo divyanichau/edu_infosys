@@ -65,7 +65,7 @@ export class AddSectionComponent implements OnInit , OnDestroy{
       .subscribe(data => {
         console.log(data);
         this.toastr.success('Section Added !', 'Success',{timeOut: 3000});
-         this.loadClasses();
+        // this.loadClasses();
       });
   }
 
@@ -90,6 +90,7 @@ export class AddSectionComponent implements OnInit , OnDestroy{
         isArray(data) ? this._section = data : data;
         this.rows = this._section;
         this.temp = [...this._section];
+        this.loadClasses();
 
       }
     );

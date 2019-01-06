@@ -4,6 +4,7 @@ import { SetTermComponent } from './set-term/set-term.component';
 import { ScheduleExamComponent } from './schedule-exam/schedule-exam.component';
 import { TermDetailComponent } from './set-term/term-detail/term-detail.component';
 import { DetailComponent } from './schedule-exam/detail/detail.component';
+import { MarksEntryComponent } from './marks-entry/marks-entry.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path:'schedule_exam/edit/:id',
     component:DetailComponent
+  },
+  {
+    path:'marks_entry',
+    component:MarksEntryComponent
   }
 ];
 
