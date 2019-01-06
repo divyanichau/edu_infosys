@@ -45,7 +45,7 @@ export class AddSubjectComponent implements OnInit , OnDestroy{
     this._utils.unsubscribeSub(this._sub);
   }
 
-  onSubmit() {
+  OnSubmitSubject() {
     this._utils.unsubscribeSub(this._sub);
     console.log(this.subject)
     this._sub = this._subjectService.add(this.subject)

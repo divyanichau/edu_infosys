@@ -1,26 +1,13 @@
 <div class="body">
-  <div class="content-wrapper">
-    <div class="content">
-      <div class="page-header">
-        <ol class="breadcrumb breadcrumb">
-          <li><a href="javascript:void(0);"><i class="material-icons">home</i> Home</a></li>
-          <li><a href="javascript:void(0);">Academic</a></li>
-          <li><a href="javascript:void(0);">Subjects</a></li>
-          <li><a href="javascript:void(0);"> Add Subject</a></li>
-        </ol>
-
-        <div class="row">
-          <form ngNativeValidate (ngSubmit)="onSubmit()" #subjectForm="ngForm">
-            <div class="col-sm-6">
-              <div class="card">
-                <div class="header">
-                  <h2>
-                    <b style="color: black;">Add  Subject</b>
-                  </h2>
-                </div>
-                <br>
-     <div class="panel-body">
-          <div class="row clearfix">
+  <form ngNativeValidate (ngSubmit)="OnSubmitSubject()" #subjectForm="ngForm">
+    <div class="content-wrapper">
+      <div class="col-sm-6">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+              <h4 class="panel-title">Add  Subject</h4>
+          </div>
+       <div class="panel-body">
+          <div class="row clearfix">     
             <div class="col-sm-10">
                   <label for="subject-name">Subject Name</label>
                      <input type="text" class="form-control" [(ngModel)]="subject.name"  [ngModelOptions]="{standalone: true}" name="subject-name"  size="84" maxlength="45" placeholder="Enter Subject Name" required>
@@ -43,23 +30,23 @@
           </div>
             <br>
 
-          <div class="form-group">
+          <div class="panel-footer">
             <button class="btn btn-primary btn-lg" type="Submit"><b>Create</b></button>
        </div>
      </div>
    </div>
  </div>
 
- <div class="content-wrapper">           
-    <div class="content">
- <div class="form-group">
-    <div class="row">
+
+<div class="body">
+  <div class="content-wrapper">           
     <div class="col-sm-6"> 
-     <div class="panel panel-default">
-              <div class="panel-heading" >                    
+      <div class="panel panel-primary">
+        <div class="panel-heading">    
+         <h4 class="panel-title">Search Subject</h4>
+        </div>
+        <div class="panel-body">
        <div class="table-responsive">                       
-              <div class="row">    
-               <label class="control-label col-sm-1">Search Subject</label>  
                <div class="col-xs-6 col-md-6">
                   <div class="input-group">
                     <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter Name" id="txtSearch" />
@@ -108,9 +95,9 @@
                     Manage
                   </ng-template>
                   <ng-template let-row="subjects" let-value="value" ngx-datatable-cell-template>
-                    <a class="glyphicon glyphicon-eye-open" title="" href="/academic/subject/add-subect{{value}}"><img src="" alt=""></a>
+                    <a class="glyphicon glyphicon-eye-open  btn btn-primary" style=" margin-left:-5px;" title="" href="/academic/subject/edit-subject/{{value}}"><img src="" alt=""></a>
                     <!-- <a class="glyphicon glyphicon-trash left-icon" title="" href="/academic/subject/add-subject/delete/{{value}}"><img src="" alt=""></a> -->
-                     <button class="glyphicon glyphicon-trash left-icon btn btn-danger" style="margin-left:15px;" (click)="subjectDelete(value)"></button>
+                     <button class="glyphicon glyphicon-trash left-icon btn btn-danger" style="margin-left:2px;" (click)="subjectDelete(value)"></button>
                   </ng-template>
                 </ngx-datatable-column>
               </ngx-datatable>

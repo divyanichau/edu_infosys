@@ -21,6 +21,7 @@ export class SubjectService {
   private _electiveUrl = `${new Config().api}/course/electivesubject/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
 
+
   constructor(
     private _utils: UtilsService,
     private _http: Http,
@@ -59,7 +60,7 @@ export class SubjectService {
     return this._http.post(`${this._teacherUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
       map((res: Response) => res.json().data),
       tap(
-      data => this.afterRequest(data),
+      data => this.afterAddRequest(data),
       error => { this.showError(error) }
       ),);
   }
@@ -67,13 +68,14 @@ export class SubjectService {
 
 
   update(subject:Subject, id:string): Observable<Subject> {
+    console.log(subject);
     this.beforeRequest();
     const body = JSON.stringify(subject);
 
-    return this._http.put(`${this._teacherUrl}$subject.{id}/`, body, this._utils.makeOptions(this._headers)).pipe(
+    return this._http.put(`${this._teacherUrl}${id}/`, body, this._utils.makeOptions(this._headers)).pipe(
       map((res: Response) => res.json().data),
       tap(
-      data => this.afterRequest(data),
+      data => this.afterUpdateRequest(data),
       error => { this.showError(error) }
       ),);
   }
@@ -88,7 +90,7 @@ export class SubjectService {
       map((res: Response) => res.json().data),
       tap(
     //  data => this.afterDeteleRequestRequest(),
-      error => { this.showError(error) }
+      //error => { this.showError(error) }
       ),);
   }
 
@@ -114,7 +116,7 @@ export class SubjectService {
     return this._http.post(`${this._courseUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
       map((res: Response) => res.json().data),
       tap(
-      data => this.afterRequest(data),
+      data => this.afterAddRequest(data),
       error => { this.showError(error) }
       ),);
   }
@@ -137,7 +139,7 @@ export class SubjectService {
     return this._http.post(`${this._electiveUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
       map((res: Response) => res.json().data),
       tap(
-      data => this.afterRequest(data),
+      data => this.afterAddRequest(data),
       error => { this.showError(error) }
       ),);
   }
@@ -147,9 +149,10 @@ export class SubjectService {
     this._utils.start_progress();
   }
 
-  afterRequest(data: Subject): void {
+   afterAddRequest(data: Subject): void {
     this._utils.stop_progress();
-  }
+     this._utils.notify("success","Subject Added!");
+   }
 
   afterUpdateRequest(data: Subject): void {
     this._utils.stop_progress();
@@ -169,7 +172,8 @@ export class SubjectService {
   }
 
   showError(error): void {
-    console.log(error);
+     this._utils.stop_progress();
+    this._utils.notify("failed",error._body);
   }
 
 }
