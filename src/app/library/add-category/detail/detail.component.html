@@ -1,0 +1,35 @@
+<form (ngSubmit)="onSubmitUpdate()" #libraryForm="ngForm">
+    
+   <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-primary">
+             
+              <div class="panel-heading">
+                <h4 class="panel-title">Add Book Category</h4>
+              </div>
+              <br> 
+
+  <div class="panel-body">
+   
+                  <label for="name">Category Name</label>
+                <input type="text" class="form-control" [(ngModel)]="obj_category.name" name="name"  size="84" maxlength="45" placeholder="Enter Category Name " required>
+            
+            <br>
+     
+         
+                  <label for="section_code">Section code</label>
+                     <input type="text" class="form-control" [(ngModel)]="obj_category.section_code" name="section_code"  size="84" maxlength="45" placeholder="Enter Section Code " required>
+            
+<br>
+<br>
+ <div class="panel-body">
+<div class="row">
+    <div class="form-group">
+            <button class="btn btn-info" style="background-color:#aabad8;" type="Submit"><b>Save</b></button>
+        </div>
+
+    </div>
+  </div>
+</div>
+</div>
+</div>

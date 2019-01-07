@@ -26,7 +26,6 @@ export class AddSectionComponent implements OnInit , OnDestroy{
   private _typeSub: Subscription = undefined;
   
   _section = [];
-   obj : Section[];
 
   section : Section = new Section();
   _classes: _class[];
@@ -65,7 +64,7 @@ export class AddSectionComponent implements OnInit , OnDestroy{
       .subscribe(data => {
         console.log(data);
         this.toastr.success('Section Added !', 'Success',{timeOut: 3000});
-         this.loadClasses();
+         
       });
   }
 
@@ -81,8 +80,7 @@ export class AddSectionComponent implements OnInit , OnDestroy{
       }
     );
   }
-
-  
+ 
   initSection() {
     this._utils.unsubscribeSub(this._typeSub);
       this._sub = this._sectionService.get().subscribe(
@@ -90,7 +88,7 @@ export class AddSectionComponent implements OnInit , OnDestroy{
         isArray(data) ? this._section = data : data;
         this.rows = this._section;
         this.temp = [...this._section];
-
+        this.loadClasses();
       }
     );
   }

@@ -10,10 +10,10 @@ import{ DatatableComponent} from '@swimlane/ngx-datatable';
 import { TeacherService } from '../../core/services/teacher.service';
 import { TeacherAllocationService } from '../../core/services/teacherallocation.service';
 import { CourseService } from '../../core/services/course.service';
-import { BatchService } from '../../core/services/batch.service';
+import { ClassService } from '../../core/services/class.service';
 
 import { Course } from '../../core/classes/course';
-import { Batch } from '../../core/classes/batch';
+import { _class } from '../../core/classes/class';
 import { Teacher } from '../../core/classes/teacher';
 import { TeacherAllocation } from '../../core/classes/teacher-allocation';
 
@@ -36,8 +36,8 @@ export class TeacherAllocationComponent implements OnInit , OnDestroy{
    _course: Course[];
    selected_course: number;
 
-   _batch: Batch[];
-   selected_batch :number;
+   _classes: _class[];
+   selected_class :number;
 
    _teacher: Teacher[];
    selected_teacher : number;
@@ -55,7 +55,7 @@ export class TeacherAllocationComponent implements OnInit , OnDestroy{
 
     private _teacherallocationService: TeacherAllocationService,
     private _courseService: CourseService,
-    private _batchService: BatchService,
+    private _classService: ClassService,
     private _teacherService: TeacherService,
     private _utils: UtilsService,
     private router: Router,
@@ -76,7 +76,7 @@ export class TeacherAllocationComponent implements OnInit , OnDestroy{
   onSubmit() {
     this._utils.unsubscribeSub(this._sub);
     this.obj_teacher.course = this.selected_course;
-    this.obj_teacher.batch = this.selected_batch;
+    this.obj_teacher.batch = this.selected_class;
     this.obj_teacher.class_teacher = this.selected_teacher;
     //console.log(this.obj_teacher);
     this._sub = this._teacherallocationService.add(this.obj_teacher)
@@ -93,18 +93,18 @@ export class TeacherAllocationComponent implements OnInit , OnDestroy{
         isArray(data) ? this._course = data : data;
         console.log(this._course);
         this.selected_course = this._course[0].id;
-         this.loadBatch();
+         this.loadClass();
       }
     );
   }
 
-  loadBatch() {
+  loadClass() {
     this._utils.unsubscribeSub(this._sub);
-    this._sub = this._batchService.get().subscribe(
+    this._sub = this._classService.get().subscribe(
       data => {
-        isArray(data) ? this._batch = data : data;
-        console.log(this._batch);
-        this.selected_batch = this._batch[0].id;
+        isArray(data) ? this._classes = data : data;
+        console.log(this._classes);
+        this.selected_class = this._classes[0].id;
        this.loadClassTeacher();
       }
     );

@@ -20,7 +20,6 @@ export class BookReturnComponent implements OnInit , OnDestroy{
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
 
-  obj : BookReturn[];
   return : BookReturn = new BookReturn();
   library = [];
   //selected_category: number;
@@ -56,7 +55,7 @@ onChange(newValue){
   
   ngOnInit() {
     this.initAddCategory();
-    this.loadAddCategory();
+    
   }
 
   ngOnDestroy() {
@@ -73,15 +72,24 @@ onChange(newValue){
       });
   }
 
-   loadAddCategory() {
-    this._utils.unsubscribeSub(this._sub);
-    this._sub = this._libraryService.get().subscribe(
+  
+
+  
+
+  initAddCategory() {
+    this._utils.unsubscribeSub(this._typeSub);
+    this._sub = this._libraryService.getReturn().subscribe(
       data => {
         isArray(data) ? this.library = data : data;
-        console.log(this.library);
+        this.rows = this.library;
+        this.temp = [...this.library];
 
       }
     );
+  }
+
+   handleResultSelected(result) {
+    this.search = result;
   }
 
   //   updateFilter(event) {
@@ -95,22 +103,6 @@ onChange(newValue){
   //   // Whenever the filter changes, always go back to the first page
   //   this.table.offset = 0;
   // }
-
-  initAddCategory() {
-    this._utils.unsubscribeSub(this._typeSub);
-    this._sub = this._libraryService.getReturn().subscribe(
-      data => {
-        isArray(data) ? this.obj = data : data;
-        this.rows = this.obj;
-        this.temp = [...this.obj];
-
-      }
-    );
-  }
-
-   handleResultSelected(result) {
-    this.search = result;
-  }
 }
 
   

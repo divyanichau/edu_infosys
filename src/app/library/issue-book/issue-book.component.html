@@ -1,4 +1,4 @@
-
+<div class="body">
 <div class="content-wrapper">
     <div class="content">
       <div class="panel-heading">
@@ -15,24 +15,25 @@
 
   <form (ngSubmit)="onSubmit()" #libraryForm="ngForm">
 
-  <div class="panel panel-primary">
-    <div class="container-fluid">
-            <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-9 col-xs-9">
-                                
-                     
-      <ul class="nav nav-tabs tab-nav-right" role="tablist">
-                        <li role="presentation" class="active"><a href="#issue_book" data-toggle="tab" aria-expanded="true">Issue Book</a></li>
-                        <li role="presentation" class=""><a href="#issued_list" data-toggle="tab" aria-expanded="false">Issued List</a></li>
-                        
+  <div class="panel panel-primary">                    
+      <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+          <a href="#issue_book" data-toggle="tab">
+              <i class="material-icons">loyalty</i> Schedule Subject
+          </a>
+      </li><li role="presentation">
+          <a href="#issued_list" data-toggle="tab">
+              <i class="material-icons">list</i> Issued List
+          </a>
+      </li>
+   
                     </ul>
-                  </div>
+  
                 </div>
 <br>
                 <div class="tab-content" >
-                     <div  class="tab-pane fade in active" id="issue_book" >
-                 
-<div class="row-clearfix">
+                <div  class="tab-pane fade in active" id="issue_book" >
+                 <div class="body">                  
                   <div class="panel panel-primary">
                   <div class="panel-heading">
                 <h4 class="panel-title">Issue Book</h4>
@@ -44,8 +45,7 @@
                 <div class="panel-body">
                          
                                     <div class="col-sm-10">                                      
-                                       <!--  <input class="form-control ui-autocomplete-input" placeholder="Search by Book No/ ISBN No/ Book Title/ Author" id="librarybook" type="text" ng-change="myFunc()" ng-model="myValue" name="librarybook" autocomplete="off">
-                                        <input id="hidden-field" name="output" type="hidden" value="">   -->
+                                      
 
                                         <div class="search-results">
                                           <input class="form-control ui-autocomplete-input" placeholder="Search by Book No/ ISBN No/ Book Title/ Author" [value]="search"
@@ -93,22 +93,26 @@
   <div class="panel-body">  
             <div class="col-sm-12">
                   <label for="user_type">User type</label>
-                  <select class="form-control" (change)="onChange($event.target.value)" name="user_type">
+    <select class="form-control" (change)="onChange($event.target.value)" name="user_type">
 <option >Select Type</option>
 <option value="1">Student</option>
 <option value="2">Employee</option>
 </select> 
 </div>
 
-        <div class="row clearfix">
-          <div class="col-sm-12"   *ngIf="detail_type[1]">
+       
+          <div class="col-sm-12"   *ngIf="detail_type[1]">           
             <div class="panel-body">
-        <div class="row">
-            
-            <div class="panel-body">
-              <p><b>STUDENT</b></p><hr>
-                <div class="row clearfix">
+             <div class="row clearfix">
+                                                                         
+                                        <input class="form-control ui-autocomplete-input" placeholder="Search by Book No/ ISBN No/ Book Title/ Author" id="librarybook" type="text" value="" name="librarybook" autocomplete="off">
+            </div>
+          </div>
+          
+               <p><b>OR</b></p>
            
+
+                <div class="row clearfix">           
             <div class="col-sm-4">
                   <label for="student_id">Course</label>
                   <select class="form-control"       
@@ -135,22 +139,19 @@
                   </select>
             </div>
 </div>
-  </div>
 </div>
-</div>
-</div>
-</div>
+
+
 
      <div class="col-sm-12" *ngIf="detail_type[2]">
             <div class="panel-body">
-               <p><b>EMPLOYEE</b></p><hr>
                           <div class="row clearfix">
                                                                          
                                         <input class="form-control ui-autocomplete-input" placeholder="Search by Book No/ ISBN No/ Book Title/ Author" id="librarybook" type="text" value="" name="librarybook" autocomplete="off">
             </div>
           </div>
        </div>
- 
+
        
  
 <div class="panel-body">
@@ -188,21 +189,30 @@
     </div>
   </div>
 </div>
+ </div>
+
+
+
+
+
+
+
 
 
 
 
 
  <div  class="tab-pane fade in active" id="issued_list" >             
-      
-<div class="content-wrapper">           
-    <div class="content">
- <div class="form-group">
-    <div class="row">
-    <div class="col-sm-12"> 
-     <div class="panel panel-default">
-              <div class="panel-heading" >                    
-       <div class="table-responsive">                       
+     <div class="form-group">
+  <div class="row">
+   <div class="col-sm-12"> 
+     <div class="panel panel-primary">
+       <div class="panel-heading" > 
+          <h4 class="panel-title">Issued List</h4>
+        </div>
+
+        <div class="panel-body">                   
+          <div class="table-responsive">                       
               <div class="row">              
                 <div class="col-xs-6 col-md-6">
                   <div class="input-group">
@@ -271,11 +281,11 @@
     </div>
   </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-</div>
+
+
+
+
+
 
 
 

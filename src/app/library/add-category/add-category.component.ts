@@ -20,7 +20,7 @@ export class AddCategoryComponent implements OnInit , OnDestroy{
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
 
-  obj : BookCategory[];
+  
   obj_category : BookCategory = new BookCategory();
   library = [];
   selected_category: number;
@@ -104,6 +104,21 @@ export class AddCategoryComponent implements OnInit , OnDestroy{
     this.rows = [...this.rows];
     console.log('UPDATED!', this.rows[rowIndex][cell]);
   }
+
+  categoryDelete(id:number){
+      console.log(id);
+      if(confirm("Are You Sure Want To Delete?")){
+        this._libraryService.delete(id).subscribe(data => 
+          {
+          //console.log(data);
+          // this.toastr.success('Vehicle Added !', 'Success', { timeOut: 3000 });
+         },(err)=>{
+           console.log(err);
+           alert(err);
+         }
+         );
+       }
+    }
 
   }
 

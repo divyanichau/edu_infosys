@@ -64,7 +64,9 @@ export class IssueBookComponent implements OnInit , OnDestroy{
   
 
 @ViewChild(DatatableComponent) table: DatatableComponent;
+
 onChange(newValue){
+  console.log(newValue)
   this.reset_detail_value();
   this.detail_type[newValue] = true;
 }

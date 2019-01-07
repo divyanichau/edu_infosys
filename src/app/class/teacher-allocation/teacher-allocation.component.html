@@ -37,10 +37,10 @@
 
            <div class="panel-body">   
             <div class="col-sm-10">
-                  <label for="batch">Batch</label>
+                  <label for="batch">Class</label>
                   <select class="form-control"       
-                 [(ngModel)]="selected_batch" name="name">
-                  <option *ngFor="let c of _batch" [ngValue]="c.id">{{c.name}}</option>
+                 [(ngModel)]="selected_class" name="name">
+                  <option *ngFor="let c of _classes" [ngValue]="c.id">{{c.name}}</option>
                   </select>
             </div>
           </div>
@@ -102,7 +102,7 @@
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column> -->
-<ngx-datatable-column name="Batch" prop="batch">
+<ngx-datatable-column name="Class" prop="batch">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>     

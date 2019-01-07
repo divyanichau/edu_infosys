@@ -6,6 +6,7 @@ import { AddBookComponent } from './add-book/add-book.component';
 import { AddCategoryComponent} from './add-category/add-category.component';
 import { IssueBookComponent} from './issue-book/issue-book.component';
 import { BookReturnComponent} from './book-return/book-return.component';
+import { DetailComponent} from './add-category/detail/detail.component';
 
 const routes: Routes = [
 
@@ -16,22 +17,27 @@ const routes: Routes = [
       
 	 {
 	    path: "add-book",
-	    component:AddBookComponent,	    
+	    component:AddBookComponent	    
 	  },
 
 	   {
 	    path: "add-category",
-	    component:AddCategoryComponent,	   	    
+	    component:AddCategoryComponent	   	    
+	  },
+
+	   {
+	    path: "add-category/detail/:id",
+	    component:DetailComponent	   	    
 	  },
 
 	   {
 	    path: "issue-book",
-	    component:IssueBookComponent,	    
+	    component:IssueBookComponent	    
 	  },
 
 	   {
 	    path: "book-return",
-	    component:BookReturnComponent,	    
+	    component:BookReturnComponent	    
 	  }
 	 
 	];
