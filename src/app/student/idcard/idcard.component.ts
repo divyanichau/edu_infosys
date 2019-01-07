@@ -23,6 +23,7 @@ declare var numeral: any;
 export class IdcardComponent implements OnInit , OnDestroy{
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
+  
   student : Student;
   courses: Course[];
   batch: Batch[];

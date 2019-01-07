@@ -19,7 +19,7 @@
       <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active">
           <a href="#issue_book" data-toggle="tab">
-              <i class="material-icons">loyalty</i> Schedule Subject
+              <i class="material-icons">loyalty</i> Issue Book
           </a>
       </li><li role="presentation">
           <a href="#issued_list" data-toggle="tab">
@@ -105,12 +105,12 @@
             <div class="panel-body">
              <div class="row clearfix">
                                                                          
-                                        <input class="form-control ui-autocomplete-input" placeholder="Search by Book No/ ISBN No/ Book Title/ Author" id="librarybook" type="text" value="" name="librarybook" autocomplete="off">
+                                        <input class="form-control ui-autocomplete-input" placeholder="Search" id="librarybook" type="text" value="" name="librarybook" autocomplete="off">
             </div>
           </div>
           
-               <p><b>OR</b></p>
-           
+             <div class="align-center m-t-15 font-bold">OR</div>
+           <br>
 
                 <div class="row clearfix">           
             <div class="col-sm-4">
@@ -141,45 +141,39 @@
 </div>
 </div>
 
-
-
      <div class="col-sm-12" *ngIf="detail_type[2]">
             <div class="panel-body">
                           <div class="row clearfix">
                                                                          
-                                        <input class="form-control ui-autocomplete-input" placeholder="Search by Book No/ ISBN No/ Book Title/ Author" id="librarybook" type="text" value="" name="librarybook" autocomplete="off">
+                                        <input class="form-control ui-autocomplete-input" placeholder="Search" id="librarybook" type="text" value="" name="librarybook" autocomplete="off">
             </div>
           </div>
        </div>
+</div>
+</div>
+      
 
-       
- 
-<div class="panel-body">
-                          
-                                
+      <div class="panel-body">                              
                 <div class="row clearfix">
                                 <div class="col-sm-12">
                                     
               <label for="issue_date">Book Issue Date</label>
        <input type="date" class="form-control" [(ngModel)]="obj_book.issue_date" name="issue_date" placeholder="Enter Date">
                                         </div>
-   
-                                    </div>
-                                  </div>
+   </div>
 
-    <div class="panel-body">                
+                                    </div> 
+ 
+ 
+  <div class="panel-body">                
                 <div class="row clearfix">
                                 <div class="col-sm-12">
                                     
               <label for="purchase_date">Due Date</label>
        <input type="date" class="form-control" [(ngModel)]="obj_book.due_date" name="due_date" placeholder="Enter Date">
-                                        </div>
+     </div>
     </div>
-      
-</div>
-</div>
- </div>
-
+       </div>
 
   <div class="panel-body">
     <div class="row clearfix">
@@ -188,7 +182,6 @@
          </div>
     </div>
   </div>
-</div>
  </div>
 
 
@@ -202,7 +195,8 @@
 
 
 
- <div  class="tab-pane fade in active" id="issued_list" >             
+
+  <div role="tabpanel" class="tab-pane fade" id="issued_list">         
      <div class="form-group">
   <div class="row">
    <div class="col-sm-12"> 

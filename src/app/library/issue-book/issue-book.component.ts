@@ -31,7 +31,6 @@ export class IssueBookComponent implements OnInit , OnDestroy{
  selectedDevice = 'Student';
  default_detail_type = {1:false, 2:false};
  detail_type = this.default_detail_type;
- student = {};
 
   obj_book : IssueBook = new IssueBook();
 
@@ -45,7 +44,16 @@ export class IssueBookComponent implements OnInit , OnDestroy{
  selected_student: number;
 
  _issued_books = [];
-  objs : IssueBook[];
+
+
+ onChange(newValue) {
+    this.reset_details_value();
+    this.detail_type[newValue] = true;
+  }
+
+  reset_details_value(){
+    this.detail_type = this.default_detail_type;
+  }
 
   rows: any[] = [];
   temp: any[] = [];
@@ -65,16 +73,6 @@ export class IssueBookComponent implements OnInit , OnDestroy{
 
 @ViewChild(DatatableComponent) table: DatatableComponent;
 
-onChange(newValue){
-  console.log(newValue)
-  this.reset_detail_value();
-  this.detail_type[newValue] = true;
-}
-
-reset_detail_value(){
-  this.detail_type = this.default_detail_type;
-}
-
   constructor(
     private _libraryService: LibraryService,
     private _courseService: CourseService,
@@ -88,9 +86,9 @@ reset_detail_value(){
   
   
   ngOnInit() {
-    this.reset_detail_value();
+    this.reset_details_value();
     this.detail_type[1]= true;   
-    this.loadCourse(); 
+    this.loadCourse();  
    
   }
 
@@ -100,8 +98,6 @@ reset_detail_value(){
 
   onSubmit() {
     this._utils.unsubscribeSub(this._sub);
-    this.obj_book.course = this.selected_course;
-    this.obj_book.batch = this.selected_batch;
     this.obj_book.student = this.selected_student;
     console.log(this.obj_book);
     this._sub = this._libraryService.addIssue(this.obj_book)
@@ -142,48 +138,37 @@ reset_detail_value(){
         isArray(data) ? this._student = data : data;
         console.log(this._student);
         this.selected_student = this._student[0].id;
-        this.loadIssueBook();  
+         
       }
     );
 
   }
 
+   
 
- loadIssueBook() {
+  initIssueBook() {
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._libraryService.getIssue().subscribe(
       data => {
         isArray(data) ? this._issued_books = data : data;
-        console.log(this._issued_books);
-        this.initIssueBook();
+        //console.log("issud Book",data);
+        this.rows = this._issued_books;
+        this.temp = [...this._issued_books];
+        
       }
     );
-
   }
 
-    updateFilter(event) {
+   updateFilter(event) {
     const val = event.target.value.toLowerCase();
     // filter our data
     const temp = this.temp.filter(function(d) {
       return d.name.toLowerCase().indexOf(val) !== -1 || !val;
     });
     // update the rows
-    this.rows = temp;
+    this._issued_books= temp;
     // Whenever the filter changes, always go back to the first page
     this.table.offset = 0;
-  }
-
-  initIssueBook() {
-    this._utils.unsubscribeSub(this._sub);
-    this._sub = this._libraryService.getIssue().subscribe(
-      data => {
-        isArray(data) ? this.objs = data : data;
-        //console.log("issud Book",data);
-        this.rows = this.objs;
-        this.temp = [...this.objs];
-
-      }
-    );
   }
 
   handleResultSelected(result) {
