@@ -9,7 +9,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { ReportRoutingModule } from './report-routing.module';
 import { StudentReportComponent} from './student-report/student-report.component';
 import { ReportComponent } from './report.component';
-
+import { BatchService } from '../core/services/batch.service';
+import { UtilsService } from '../shared/services/utils.service';
+import { StudentReportService } from '../core/services/studentreport.service';
 
 
 @NgModule({
@@ -26,7 +28,7 @@ import { ReportComponent } from './report.component';
 
   ReportRoutingModule
   ],
-  providers: [],
+  providers: [BatchService , UtilsService,StudentReportService],
 
   declarations: [ ReportComponent , StudentReportComponent]
 

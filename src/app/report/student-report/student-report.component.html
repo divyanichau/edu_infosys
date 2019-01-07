@@ -1,3 +1,170 @@
-<p>
-  student-report works!
-</p>
+
+<div class="body">
+  <div class="content-wrapper">
+    <div class="content">
+      <div class="page-header">
+        <ol class="breadcrumb breadcrumb">
+          <li><a href="javascript:void(0);"><i class="material-icons">home</i> Home</a></li>
+          <li><a href="javascript:void(0);">Student</a></li>
+          <li><a href="javascript:void(0);">Report</a></li>
+        </ol>
+
+        <div class="row ">
+          <form ngNativeValidate (ngSubmit)="onSubmit()" #studentForm="ngForm">
+            <div class="col-sm-12">
+              <div class="card">
+
+                <div class="header ">
+                  <h2>
+                    <b>Student Report</b>
+                  </h2>
+                </div>
+                <br>
+                <div class="panel-body">
+                  <div class="row clearfix">
+                    <div class="col-sm-4">
+                      <label for="student_report" class="req">Report For </label>
+                      <select class="form-control" [(ngModel)]="student_report.report" name="student_report">
+                        <option value="">Select option</option>
+                        <option>hostel</option>
+                        <option>gender</option>
+                        <option>school/batch</option>
+                        <!-- <option *ngFor="let s_report of s_reports" [ngValue]="s_report.id">{{s_report.name}}</option> -->
+                      </select>
+                    </div>
+
+                    <div class="col-sm-4">
+                      <label for="reg_input" class="req">school/batch</label>
+                      <select class="form-control" [(ngModel)]="student_report.batch" name="batch" >
+                        <!-- <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option> -->
+                        <option>school</option>
+                        <option>batch</option>
+                      </select>
+                    </div>
+
+                    <div class="col-sm-4">
+                      <label for="reg_input" class="req">school/batch</label>
+                      <select class="form-control" [(ngModel)]="student_report.batch" name="batch" >
+                        <!-- <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option> -->
+                        <option>school</option>
+                        <option>batch</option>
+                      </select>
+                    </div>
+                </div>
+
+
+
+
+
+                    <!-- <div class="col-sm-4" id="type">
+                      <label for="reg_input" class="req">Id Type*</label>
+                      <select class="form-control" name="Student[type]" id="Student_type">
+                        <option value="prompt">Select ID Template</option>
+                        <option value="horizontal">Horizontal ID Card</option>
+                        <option value="vertical">Vertical ID Card</option>
+                      </select>
+                    </div>
+ -->                 <br>
+                  <div class ="row">
+                <div class="form-group col-sm-2">
+
+                        <button type="submit" class="btn btn-primary col-sm-1 " (click)="get_report()">Get report</button>
+                         <button type="submit" class="btn btn-danger col-sm-offset-8" onclick="printDiv('print')">print report</button>
+                          
+                         <button type="submit" class="btn btn-success col-sm-offset-1 button-margin">excel</button> 
+                  
+                  </div>
+                 </div>
+                </div>
+              </div>
+            </div>
+         </form>
+       </div>
+     </div>
+    </div>
+  </div>
+</div>
+
+ <div class="col-sm-12"   *ngIf="studentreport">
+        <div class="table-responsive">
+          <br>
+            <div>
+
+              <div class="row">
+                <label class="control-label col-sm-1">Student Report</label>
+                <div class="col-xs-6 col-md-4">
+                  <div class="input-group">
+                    <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter name" id="txtSearch" />
+                    <div class="input-group-btn">
+                      <button class="btn btn-primary" type="submit">
+                        <span class="glyphicon glyphicon-search"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <ngx-datatable class="material" [rows]="rows" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+                [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+
+                <ngx-datatable-column name="ID" prop="id">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Roll NO" prop="rollno">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>
+
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Name" prop="name">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+                 <ngx-datatable-column name="Class" prop="class">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Address" prop="address">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Contact No" prop="contactno">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Father Name" prop="fathername">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+
+                <ngx-datatable-column name="Mother Name" prop="mothername">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Email" prop="email">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+              </ngx-datatable>
+            </div>
+          </div>
+
+
+
+ 
+        
+    </div>
+      
+      
+
+
+             
