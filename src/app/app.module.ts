@@ -19,6 +19,7 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { TopbarComponent } from './topbar/topbar.component';
+
 //import { ReportComponent } from './report/report.component';
 
 
@@ -33,6 +34,7 @@ import { TopbarComponent } from './topbar/topbar.component';
     RegisterComponent,
     SidebarComponent,
     TopbarComponent,
+  
    // ReportComponent,
     
     //DashboardComponent,

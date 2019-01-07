@@ -9,6 +9,7 @@ export class Event {
   progress: number;
   date_start: Date;
   date_end: Date;
-  tasks: Task[] = [];
+ // tasks: Task[] = [];
+ // type: string;
 
 }

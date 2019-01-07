@@ -1,24 +1,11 @@
 <div class="body">
-  <div class="content-wrapper">
-    <div class="content">
-      <div class="page-header">
-        <ol class="breadcrumb breadcrumb">
-          <li><a href="javascript:void(0);"><i class="material-icons">home</i> Home</a></li>
-          <li><a href="javascript:void(0);">Academic</a></li>
-          <li><a href="javascript:void(0);">Subjects</a></li>
-          <li><a href="javascript:void(0);">Subject Allocation</a></li>
-        </ol>
-
-        <div class="row">
-          <form ngNativeValidate (ngSubmit)="subjectAllocation()" #subjectForm="ngForm">
-            <div class="col-sm-6">
-              <div class="card">
-                <div class="header">
-                  <h2>
-                    <b>Subject Allocation</b>
-                  </h2>
-                </div>
-                <br>
+  <form ngNativeValidate (ngSubmit)="subjectAllocation()" #subjectForm="ngForm">
+    <div class="content-wrapper">
+      <div class="col-sm-6">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+              <h4 class="panel-title">Subject Allocation</h4>
+          </div>
                 <div class="panel-body">
                   <div class="row clearfix">
                     <div class="col-sm-10">
@@ -60,24 +47,27 @@
                 </div>    
                 <br>
 
-          <div class="form-group">
+          <div class="panel-footer">
             <button class="btn btn-primary btn-lg" type="Submit"><b>Allocate</b></button>
        </div>
    </div>
 </div>
 </div>
 
-<div class="row-clearfix">
-  <div class="col-md-6">
-      <div class="card">
-          <div class="body">
+
+
+<div class="body">
+  <div class="content-wrapper">           
+    <div class="col-sm-6"> 
+      <div class="panel panel-primary">
+        <div class="panel-heading">    
+         <h4 class="panel-title">Search Subject</h4>
+        </div>
+           <div class="panel-body">
               <div class="table-responsive">
-                <div>
-                  <div class="row">
-                    <label class="control-label col-sm-2">Search Teacher</label>
-                    <div class="col-xs-7 col-md-5">
+                    <div class="col-xs-7 col-md-6">
                       <div class="input-group">
-                        <!-- <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter Name" id="txtSearch" /> -->
+                        <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter Name" id="txtSearch" /> 
                         <div class="input-group-btn">
                           <button class="btn btn-primary" type="submit">
                             <span class="glyphicon glyphicon-search"></span>

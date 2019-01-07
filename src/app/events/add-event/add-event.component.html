@@ -1,0 +1,151 @@
+<div class="body">
+  <form ngNativeValidate (ngSubmit)="OnSubmitEvent()" #eventForm="ngForm">
+    <div class="content-wrapper">
+      <div class="col-sm-6">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+              <h4 class="panel-title">Add  Event</h4>
+          </div>
+       <div class="panel-body">
+          <div class="row clearfix">     
+            <div class="col-sm-10">
+                  <label for="event-name">Event Name</label>
+                     <input type="text" class="form-control" [(ngModel)]="_event.name"  [ngModelOptions]="{standalone: true}" name="event-name"  size="84" maxlength="45" placeholder="Enter Event Name" required>
+        </div>
+      </div>
+      <br>
+
+       <div class="row clearfix">
+            <div class="col-sm-10">
+                  <label for="description">Description</label>
+                     <input type="text" class="form-control" [(ngModel)]="_event.code" [ngModelOptions]="{standalone: true}" name="description"  size="84" maxlength="8" placeholder="Enter description" required>
+               </div>
+         </div>
+    <br>
+        <div class="row clearfix">
+            <div class="col-sm-10">
+                <label for="status">Status</label>
+                     <input type="text" class="form-control" [(ngModel)]="_event.status" [ngModelOptions]="{standalone: true}" name="status"  size="84" maxlength="15" placeholder="Enter status" required>
+            </div>
+          </div>
+            <br>
+            <div class="row clearfix">
+            <div class="col-sm-10">
+                <label for="manager">Manager</label>
+                     <input type="text" class="form-control" [(ngModel)]="_event.manager" [ngModelOptions]="{standalone: true}" name="manager"  size="84" maxlength="15" placeholder="Enter manager" required>
+            </div>
+          </div>
+            <br>
+            <div class="row clearfix">
+            <div class="col-sm-10">
+                <label for="progress">Progress</label>
+                     <input type="text" class="form-control" [(ngModel)]="_event.progress" [ngModelOptions]="{standalone: true}" name="progress"  size="84" maxlength="15" placeholder="Enter progress" required>
+            </div>
+          </div>
+            <br>
+             <div class="row clearfix">
+            <div class="col-sm-10">
+                <label for="start_date">Start Date</label>
+                     <input type="date" class="form-control" [(ngModel)]="_event.date_start" [ngModelOptions]="{standalone: true}" name="start_date"  size="84" maxlength="15" placeholder="" required>
+            </div>
+          </div>
+            <br>
+             <div class="row clearfix">
+            <div class="col-sm-10">
+                <label for="end_date">End Date</label>
+                     <input type="date" class="form-control" [(ngModel)]="_event.date_end" [ngModelOptions]="{standalone: true}" name="end_date"  size="84" maxlength="15" placeholder="" required>
+            </div>
+          </div>
+            <br>
+          <div class="panel-footer">
+            <button class="btn btn-primary btn-lg" type="Submit"><b>Save</b></button>
+       </div>
+     </div>
+   </div>
+ </div>
+
+
+<div class="body">
+  <div class="content-wrapper">           
+    <div class="col-sm-6"> 
+      <div class="panel panel-primary">
+        <div class="panel-heading">    
+         <h4 class="panel-title">Search Event</h4>
+        </div>
+        <div class="panel-body">
+       <div class="table-responsive">                       
+               <div class="col-xs-6 col-md-6">
+                  <div class="input-group">
+                    <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter Name" id="txtSearch" />
+                    <div class="input-group-btn">
+                      <button class="btn btn-primary" type="submit">
+                        <span class="glyphicon glyphicon-search"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+         
+              <ngx-datatable class="material" [rows]="events" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+                [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+
+                <ngx-datatable-column name="ID" prop="id">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name=" Event" prop="name">
+                  <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                    <span
+                      title="Double click to edit"
+                      (dblclick)="editing[rowIndex + '-name'] = true"
+                      *ngIf="!editing[rowIndex + '-name']">
+                      {{value}}
+                    </span>
+                    <input
+                      autofocus
+                      (blur)="updateValue($event, 'name', rowIndex)"
+                      *ngIf="editing[rowIndex+ '-name']"
+                      type="text"
+                      [value]="value"
+                    />
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name=" Start Date " prop="date_start">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+
+
+                <ngx-datatable-column name="Actions" sortable="false" prop="id">
+                  <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                    Manage
+                  </ng-template>
+                  <ng-template let-row="events" let-value="value" ngx-datatable-cell-template>
+                    <a class="glyphicon glyphicon-eye-open  btn btn-primary" style=" margin-left:-5px;" title="" href="/event/edit-event/{{value}}"><img src="" alt=""></a>
+                    <!-- <a class="glyphicon glyphicon-trash left-icon" title="" href="/academic/subject/add-subject/delete/{{value}}"><img src="" alt=""></a> -->
+                     <button class="glyphicon glyphicon-trash left-icon btn btn-danger" style="margin-left:2px;" (click)="eventDelete(value)"></button>
+                  </ng-template>
+                </ngx-datatable-column>
+              </ngx-datatable>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+    
+
+
+       
