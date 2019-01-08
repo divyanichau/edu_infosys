@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { EventsComponent } from './events.component';
 import { EventTypesComponent } from './event-types/event-types.component';
 import { AddEventComponent} from './add-event/add-event.component';
+import { EventDetailComponent } from './add-event/event-detail/event-detail.component';
 
 const routes: Routes = [
 
@@ -22,6 +23,11 @@ const routes: Routes = [
     path: 'add-event',
     component: AddEventComponent,
   },
+
+   {
+    path: 'edit-event/:id',
+    component: EventDetailComponent
+  }
 
 ];
 

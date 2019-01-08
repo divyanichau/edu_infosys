@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+
 
 import { UtilsService } from '../../shared/services/utils.service';
 import { Config } from '../../shared/classes/app';
@@ -17,7 +19,8 @@ export class EventService {
  constructor(
     private _utils: UtilsService,
     private _http: Http,
-    private _router: Router
+    private _router: Router,
+    private toastr: ToastrService
   ) { }
 
   find(id: string): Observable<Event> {
@@ -80,7 +83,18 @@ export class EventService {
       ),);
   }
 
+ updateEvent(event:Event, id:string): Observable<Event> {
+    console.log(event);
+    this.beforeRequest();
+    const body = JSON.stringify(event);
 
+    return this._http.put(`${this._addeventUrl}${id}/`, body, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json().data),
+      tap(
+      data => this.afterUpdateRequest(data),
+      error => { this.showError(error) }
+      ),);
+  }
 
 
   beforeRequest(): void {
@@ -90,6 +104,12 @@ export class EventService {
   afterRequest(data: Event): void {
    this._utils.stop_progress();
    
+  }
+
+   afterUpdateRequest(data: Event): void {
+    this._utils.stop_progress();
+    this.toastr.success('Done','Event Updated',{timeOut: 3000});
+
   }
 
   afterGetRequest(): void {

@@ -5,11 +5,13 @@ export class Event {
   name: string;
   description: string;
   status: string;
-  manager: string;
+  manager: number;
   progress: number;
   date_start: Date;
   date_end: Date;
  // tasks: Task[] = [];
- // type: string;
+ type: number;
+ // event: string;
+ //teacher: number;
 
 }
