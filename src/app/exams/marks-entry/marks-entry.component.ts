@@ -17,12 +17,49 @@ import { Section } from '../../core/classes/section';
   styleUrls: ['./marks-entry.component.css']
 })
 export class MarksEntryComponent implements OnInit {
+
+  // rows = [
+  //   { name: 'Austin', gender: 'Male', company: 'Swimlane' },
+  //   { name: 'Dany', gender: 'Male', company: 'KFC' },
+  //   { name: 'Molly', gender: 'Female', company: 'Burger King' },
+  // ];
+  // columns = [
+  //   { prop: 'name' },
+  //   { name: 'Gender' },
+  //   { name: 'Company' }
+  // ];
+  rows = [
+    {
+      id:1,
+      name:'Dinesh Kc',
+      th:60,
+      pr:40,
+      total:100,
+      result:"Pass"
+    },
+    {
+      id:1,
+      name:'Anup Kc',
+      th:60,
+      pr:40,
+      total:100,
+      result:"Pass"
+    }
+  ]
+
+  // rows: any[] = [];
+  // temp: any[] = [];
+  editing = {};
+  //rows = [];
+
   private _sub: Subscription = undefined;
-  val : boolean=true;
+  val : boolean;
+  val1:boolean;
   _course:Course[]
   class : _class[]
   _section:Section[]
 
+  
   selected_course: number;
   selected_class: number;
   selected_section: number;
@@ -77,9 +114,29 @@ export class MarksEntryComponent implements OnInit {
 
   onChange() {
     console.log(this.selected_course);
-    this.val=true;
+    this.val=false;
+    this.val1=false;
 }
   marksEntryNext(){
-    this.val=!this.val;
+    this.val=true;
+  }
+
+  loadBodyData(){
+    if (this.rows.length>0){
+    this.val1=true;
+  }
+  }
+
+  updateValue(event, cell, rowIndex) {
+    // console.log("sgsjjsd");
+    // console.log(event);
+    // console.log(cell);
+    // console.log(rowIndex);
+    console.log('inline editing rowIndex', rowIndex)
+    this.editing[rowIndex + '-' + cell] = false;
+    this.rows[rowIndex][cell] = event.target.value;
+    this.rows = [...this.rows];
+    console.log(this.rows);
+    console.log('UPDATED!', this.rows[rowIndex][cell]);
   }
 }

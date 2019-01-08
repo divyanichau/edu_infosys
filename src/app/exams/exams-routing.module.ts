@@ -5,6 +5,7 @@ import { ScheduleExamComponent } from './schedule-exam/schedule-exam.component';
 import { TermDetailComponent } from './set-term/term-detail/term-detail.component';
 import { DetailComponent } from './schedule-exam/detail/detail.component';
 import { MarksEntryComponent } from './marks-entry/marks-entry.component';
+import { ResultPreparationComponent } from './result-preparation/result-preparation.component';
 
 const routes: Routes = [
   {
@@ -26,7 +27,11 @@ const routes: Routes = [
   {
     path:'marks_entry',
     component:MarksEntryComponent
-  }
+  },
+ {
+  path:'result_preperation',
+  component:ResultPreparationComponent
+ }
 ];
 
 @NgModule({

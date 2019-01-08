@@ -18,6 +18,7 @@ import { MarksEntryComponent } from './marks-entry/marks-entry.component';
 import { CourseService } from '../core/services/course.service';
 import { ClassService } from '../core/services/class.service';
 import { SectionService } from '../core/services/section.service';
+import { ResultPreparationComponent } from './result-preparation/result-preparation.component';
 
 @NgModule({
 
@@ -29,6 +30,6 @@ import { SectionService } from '../core/services/section.service';
   ],
   providers:[BatchService,UtilsService,SetTermService,SubjectService,
     ExamScheduleService,CourseService,ClassService,SectionService],
-  declarations: [SetTermComponent, ScheduleExamComponent, TermDetailComponent, DetailComponent, MarksEntryComponent],
+  declarations: [SetTermComponent, ScheduleExamComponent, TermDetailComponent, DetailComponent, MarksEntryComponent, ResultPreparationComponent],
 })
 export class ExamsModule { }
