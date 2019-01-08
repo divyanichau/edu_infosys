@@ -18,6 +18,7 @@ import { AddCategoryComponent} from './add-category/add-category.component';
 import { IssueBookComponent} from './issue-book/issue-book.component';
 import { BookReturnComponent} from './book-return/book-return.component';
 import { DetailComponent} from './add-category/detail/detail.component';
+import { ReportComponent} from './report/report.component';
 
 @NgModule({
   imports: [
@@ -30,6 +31,6 @@ import { DetailComponent} from './add-category/detail/detail.component';
     LibraryRoutingModule
   ],
   providers: [LibraryService, CourseService, BatchService, StudentService, UtilsService],
-  declarations: [LibraryComponent, AddBookComponent,DetailComponent, AddCategoryComponent, BookReturnComponent, IssueBookComponent]
+  declarations: [LibraryComponent, ReportComponent, AddBookComponent, DetailComponent, AddCategoryComponent, BookReturnComponent, IssueBookComponent]
 })
 export class LibraryModule { }

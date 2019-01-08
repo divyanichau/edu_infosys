@@ -11,6 +11,7 @@ import { AddBook } from '../../core/classes/addbook';
 import { BookCategory } from '../../core/classes/bookcategory';
 import { IssueBook } from '../../core/classes/issuebook';
 import { BookReturn } from '../../core/classes/bookreturn';
+import { Report } from '../../core/classes/bookreport';
 
 @Injectable()
 export class LibraryService {
@@ -18,6 +19,7 @@ export class LibraryService {
   private _addbookUrl = `${new Config().api}/library/books/`;
   private _issuebookUrl = `${new Config().api}/library/issue/`;
   private _bookreturnUrl = `${new Config().api}/library/return/`;
+   private _reportUrl = `${new Config().api}/library/report/`;
 
   
   private _headers = this._utils.makeHeaders({ withToken: true });
@@ -140,6 +142,32 @@ export class LibraryService {
       error => { console.log(error); }
       ),);
   }
+
+
+  getReport(): Observable<Report[]> {
+    //this.beforeRequest();
+    const options = this._utils.makeOptions(this._headers);
+    return this._http.get(`${this._reportUrl}`, options).pipe(
+      map((res: Response) => res.json()),
+      tap(
+      data => this.afterRequestGet(),
+      error => { console.log(error); }
+      ),);
+  }
+
+
+  addReport(library: Report): Observable<Report> {
+    this.beforeRequest();
+    const body = JSON.stringify(library);
+
+    return this._http.post(`${this._reportUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json().data),
+      tap(
+      data => this.afterRequest(data),
+      error => { console.log(error); }
+      ),);
+  }
+
 
    update(library : BookCategory,id:string): Observable<BookCategory> {
     console.log("Uhshsd",library);

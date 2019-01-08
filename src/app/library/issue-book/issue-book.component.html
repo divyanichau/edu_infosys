@@ -41,31 +41,24 @@
             </div>
 </div>
 
- <div class="row clearfix">
-                <div class="panel-body">
-                         
-                                    <div class="col-sm-10">                                      
-                                      
+<div class="row clearfix">
+  <div class="panel-body">      
+     <div class="col-sm-10">
+       <div class="search-results">
+         <input class="form-control ui-autocomplete-input" placeholder="Search by Book No/ ISBN No/ Book Title/ Author" [value]="search"
+             ngxTypeahead
+             [taUrl]="url"
+             [taParams]="params"
+             (taSelected)="handleResultSelected($event)">
+       </div>
+      </div>
+ 
+<div class="col-sm-2">
+ <a class="btn btn-primary waves-effect" data-toggle="modal" data-target="#smallModal">Search</a>                
+</div>
+  </div> 
 
-                                        <div class="search-results">
-                                          <input class="form-control ui-autocomplete-input" placeholder="Search by Book No/ ISBN No/ Book Title/ Author" [value]="search"
-                                            ngxTypeahead
-                                            [taUrl]="url"
-                                            [taParams]="params"
-                                            (taSelected)="handleResultSelected($event)"
-                                          >
-                                        </div>
-
-                                      </div>
-
-                                    <div class="col-sm-2">
-                <a class="btn btn-primary waves-effect" data-toggle="modal" data-target="#smallModal">Search</a>
-                
-              </div>
-                                </div> 
-
-                                                 
-                                <div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
+  <div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <form ngNativeValidate (ngSubmit)="onSubmitDriver()" #driverForm="ngForm">
       <div class="modal-content">
@@ -94,14 +87,14 @@
             <div class="col-sm-12">
                   <label for="user_type">User type</label>
     <select class="form-control" (change)="onChange($event.target.value)" name="user_type">
-<option >Select Type</option>
-<option value="1">Student</option>
-<option value="2">Employee</option>
+<option value="1">Select Type</option>
+<option value="2">Student</option>
+<option value="3">Employee</option>
 </select> 
 </div>
 
        
-          <div class="col-sm-12"   *ngIf="detail_type[1]">           
+          <div class="col-sm-12"   *ngIf="detail_type[2]">           
             <div class="panel-body">
              <div class="row clearfix">
                                                                          
@@ -141,11 +134,11 @@
 </div>
 </div>
 
-     <div class="col-sm-12" *ngIf="detail_type[2]">
+     <div class="col-sm-12" *ngIf="detail_type[3]">
             <div class="panel-body">
                           <div class="row clearfix">
                                                                          
-                                        <input class="form-control ui-autocomplete-input" placeholder="Search" id="librarybook" type="text" value="" name="librarybook" autocomplete="off">
+                                        <input class="form-control ui-autocomplete-input" placeholder="Search Employee" id="librarybook" type="text" value="" name="librarybook" autocomplete="off">
             </div>
           </div>
        </div>
@@ -292,29 +285,3 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          
-                              
-                                             
-                              
-                            
-                          
-                  
-                                         
-                    
-      

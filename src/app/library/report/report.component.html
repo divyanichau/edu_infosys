@@ -1,0 +1,116 @@
+<div class="body">
+  <div class="content-wrapper">
+    <div class="content">
+      <div class="page-header">
+        <ol class="breadcrumb breadcrumb">
+          <li><a href="javascript:void(0);"><i class="material-icons">home</i> Home</a></li>
+          <li><a href="javascript:void(0);">Library</a></li>
+          <li><a href="javascript:void(0);">Reports</a></li>
+        </ol>
+
+        <div class="row">
+          <form ngNativeValidate (ngSubmit)="onSubmit()" #studentForm="ngForm">
+            <div class="col-sm-12">
+              <div class="card">
+                <div class="header">
+                  <h2>
+                    <b>Reports</b>
+                  </h2>
+                </div>
+                <br>
+                    <div class="panel-body">  
+            <div class="col-sm-3">
+                  <label for="user_type">Report For</label>
+    <select class="form-control" (change)="onChange($event.target.value)" name="user_type">
+<option value="1">Select Type</option>
+<option value="2">Available</option>
+<option value="3">Issued Book</option>
+<option value="4">Recovery Book</option>
+<option value="5">Condition Wise</option>
+<option value="6">Student Wise</option>
+<option value="7">Employee Wise</option>
+</select> 
+</div>
+           
+
+            <div class="col-sm-3" *ngIf="detail_type[3]">
+                  <label for="user_type">Report type</label>
+    <select class="form-control" (change)="onChange($event.target.value)" name="user_type">
+<option value="8">Select Type</option>
+<option value="9">Date Wise</option>
+<option value="10">Batch Wise</option>
+</select> 
+</div>
+
+                <div class="col-sm-3" *ngIf="detail_type[9]">        
+                  <label for="section_name">Start Date</label>
+                     <input type="text" class="form-control" [(ngModel)]="report.name" name="name"  size="84" maxlength="45" placeholder="Enter Section Name " required>
+               </div>
+
+               <div class="col-sm-3" *ngIf="detail_type[9]">        
+                  <label for="section_name">Due Date</label>
+                     <input type="text" class="form-control" [(ngModel)]="report.name" name="name"  size="84" maxlength="45" placeholder="Enter Section Name " required>
+               </div>
+
+                <div class="col-sm-4"   *ngIf="detail_type[10]">        
+                  <label for="section_name">Class Wise</label>
+                     <input type="text" class="form-control" [(ngModel)]="report.name" name="name"  size="84" maxlength="45" placeholder="Enter Section Name " required>
+               </div>
+
+                    <div class="form-group col-sm-2">
+                      <label name="student_id"> &nbsp; &nbsp; </label>
+                       <p>
+                        <input type="button" onclick="printDiv('print')" value="Print Report" class="btn btn-danger">
+                      </p>
+                    </div>
+               
+
+                  </div>
+                </div>
+              </div>
+
+
+
+
+ <div class="col-sm-12" *ngIf="detail_type[2]"> 
+ <div class="row" id="detail_type[20]">  
+     <div class="panel panel-default">
+       <div class="panel-heading" >                    
+          <div class="table-responsive">                       
+              <div class="row">              
+              </div>
+              <ngx-datatable class="material" [rows]="library" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+                [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+
+                <ngx-datatable-column name="ID" prop="id">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Book Category" prop="name">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Section Code" prop="section_code">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Actions" sortable="false" prop="id">
+                  <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                    Manage
+                  </ng-template>
+                  <ng-template let-row="library" let-value="value" ngx-datatable-cell-template>
+                  </ng-template>
+                </ngx-datatable-column>
+              </ngx-datatable>
+            </div>
+          </div>
+        </div>
+  </div>
+ </div>
+
+  
+          
+      

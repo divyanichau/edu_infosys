@@ -29,7 +29,8 @@ export class IssueBookComponent implements OnInit , OnDestroy{
   private _typeSub: Subscription = undefined;
  // obj : category[];
  selectedDevice = 'Student';
- default_detail_type = {1:false, 2:false};
+ default_detail_type = {1:false, 2:false, 3:false};
+
  detail_type = this.default_detail_type;
 
   obj_book : IssueBook = new IssueBook();
@@ -48,18 +49,23 @@ export class IssueBookComponent implements OnInit , OnDestroy{
 
  onChange(newValue) {
     this.reset_details_value();
+
     this.detail_type[newValue] = true;
   }
 
   reset_details_value(){
     this.detail_type = this.default_detail_type;
+
+    this.detail_type[1]=false;
+    this.detail_type[2]=false;
+    this.detail_type[3]=false;
   }
 
   rows: any[] = [];
   temp: any[] = [];
   editing = {};
 
-  url = 'http://suggestqueries.google.com/complete/search';
+  url = 'http://192.168.1.87:8002/api/library/issue/search/';
   params = {
     hl: 'en',
     ds: 'yt',

@@ -7,6 +7,7 @@ import { AddCategoryComponent} from './add-category/add-category.component';
 import { IssueBookComponent} from './issue-book/issue-book.component';
 import { BookReturnComponent} from './book-return/book-return.component';
 import { DetailComponent} from './add-category/detail/detail.component';
+import { ReportComponent} from './report/report.component';
 
 const routes: Routes = [
 
@@ -38,6 +39,11 @@ const routes: Routes = [
 	   {
 	    path: "book-return",
 	    component:BookReturnComponent	    
+	  },
+
+	   {
+	    path: "report",
+	    component:ReportComponent	    
 	  }
 	 
 	];
