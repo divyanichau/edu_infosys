@@ -44,7 +44,7 @@ export class StudentReportService {
       ),);
   }
 
-  addStudentReport(studentreport : StudentReport): Observable<StudentReport> {
+  addStudentReport(studentreport : StudentReport): Observable<StudentReport[]> {
     this.beforeRequest();
     const body = JSON.stringify(studentreport);
 

@@ -23,26 +23,122 @@
                 <div class="panel-body">
                   <div class="row clearfix">
                     <div class="col-sm-4">
-                      <label for="student_report" class="req">Report For </label>
-                      <select class="form-control" [(ngModel)]="student_report.report" name="student_report">
-                        <option value="">Select option</option>
-                        <option>hostel</option>
-                        <option>gender</option>
-                        <option>school/batch</option>
+                      <label for="reportfor" class="req">Report For </label>
+                      <select class="form-control" (change)="onChange($event.target.value)" name="reportfor">
+                        <option value ="0">Select option</option>
+                        <option value ="1">hostel</option>
+                        <option value = "2">bloodgroup</option>
+                        <option value = "3">category</option>
+                         <option value ="4">State</option>
+                        <option value ="5">gender</option>
+                        <option value = "6">caste</option>
+                        <option value = "7">fees</option>
+
                         <!-- <option *ngFor="let s_report of s_reports" [ngValue]="s_report.id">{{s_report.name}}</option> -->
                       </select>
                     </div>
 
-                    <div class="col-sm-4">
-                      <label for="reg_input" class="req">school/batch</label>
-                      <select class="form-control" [(ngModel)]="student_report.batch" name="batch" >
+                    <div class="col-sm-4"*ngIf ="detail_type[1]">
+                      <label for="reg_input" class="req">Hostel Name</label>
+                      <select class="form-control" [(ngModel)]="student_report.hostel_name" name="hostelname" >
                         <!-- <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option> -->
-                        <option>school</option>
-                        <option>batch</option>
+                        <option>hostel1</option>
+                        <option>hostel2</option>
                       </select>
                     </div>
 
-                    <div class="col-sm-4">
+                     <div class="col-sm-4"*ngIf ="detail_type[3]">
+                      <label for="reg_input" class="req">Category</label>
+                      <select class="form-control" [(ngModel)]="student_report.category" name="bloodgroup" >
+                        <!-- <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option> -->
+                        <option>categoryA</option>
+                        <option>CategoryB</option>
+                      </select>
+                    </div>
+
+                    <div class="col-sm-4"*ngIf ="detail_type[4]">
+                      <label for="reg_input" class="req">State</label>
+                      <select class="form-control" [(ngModel)]="student_report.state" name="state" >
+                        <!-- <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option> -->
+                        <option>state1</option>
+                        <option>state2</option>
+                        <option>state2</option>
+                      </select>
+                    </div>
+
+                    <div class="col-sm-4"*ngIf ="detail_type[5]">
+                      <label for="reg_input" class="req">Gender</label>
+                      <select class="form-control" [(ngModel)]="student_report.gender" name="gender" >
+                        <!-- <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option> -->
+                        <option>male</option>
+                        <option>female</option>
+                        
+                      </select>
+                    </div>
+
+                     <div class="col-sm-4"*ngIf ="detail_type[6]">
+                      <label for="reg_input" class="req">Caste</label>
+                      <select class="form-control" [(ngModel)]="student_report.caste" name="caste" >
+                        <!-- <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option> -->
+                        <option>chhetri</option>
+                        <option>Brahmin</option>
+                        <option>Magar</option>
+                        
+                      </select>
+                    </div>
+
+                    <div class="col-sm-4"*ngIf ="detail_type[7]">
+                      <label for="reg_input" class="req">Fees</label>
+                      <select class="form-control" [(ngModel)]="student_report.fees" name="fees" >
+                        <!-- <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option> -->
+                        <option>uniform</option>
+                        <option>mothlyfee</option>
+                        <option>labfee</option>
+                        
+                      </select>
+                    </div>
+
+                     <div class="col-sm-4"*ngIf ="detail_type[8]">
+                      <label for="routecode" class="req">Route Code*</label>
+                      <select class="form-control" [(ngModel)]="student_report.route_code" name="routecode" >
+                        <!-- <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option> -->
+                        <option>route1</option>
+                        <option>route2</option>
+                        <option>route3</option>
+                        
+                      </select>
+                    </div>
+
+
+                     <div class="col-sm-4"*ngIf ="detail_type[9]">
+                      <label for="religion" class="req">Religion</label>
+                      <select class="form-control" [(ngModel)]="student_report.religion" name="religion" >
+                        <!-- <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option> -->
+                        <option>hindu</option>
+                        <option>muslim</option>
+                        <option>christian</option>
+                        
+                      </select>
+                    </div>
+
+
+                    <div class="col-sm-4" *ngIf ="detail_type[2]">
+                      <label for="reg_input" class="req">Bloodgroup</label>
+                      <select class="form-control" [(ngModel)]="student_report.bloodgroup" name="bloodgroup" >
+                        <!-- <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option> -->
+                        <option>A+</option>
+                        <option>A-</option>
+                        <option>B+</option>
+                        <option>B-</option>
+                        <option>AB+</option>
+                        <option>AB-</option>
+                         <option>O+</option>
+                        <option>O-</option>
+
+                      </select>
+                    </div>
+
+                     <div class="col-sm-4">
                       <label for="reg_input" class="req">school/batch</label>
                       <select class="form-control" [(ngModel)]="student_report.batch" name="batch" >
                         <!-- <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option> -->
@@ -50,7 +146,77 @@
                         <option>batch</option>
                       </select>
                     </div>
+                  
+
+
+                </div> 
+                 <br>
+                <div class="row clearfix">
+                  <div class= "col-sm-2">
+                 <div class="custom-control custom-checkbox">
+                 <input type="checkbox" class="custom-control-input" id="phonenumber">
+                 <label class="custom-control-label" for="phonenumber">Phone Number</label>
                 </div>
+              </div>
+                 <div class= "col-sm-2">
+                <div class="custom-control custom-checkbox">
+                 <input type="checkbox" class="custom-control-input" id="admissiondate">
+                 <label class="custom-control-label" for="admissiondate"> Admission Date</label>
+                </div>
+              </div>
+               <div class= "col-sm-2">
+                <div class="custom-control custom-checkbox">
+                 <input type="checkbox" class="custom-control-input" id="email">
+                 <label class="custom-control-label" for="email">Email</label>
+                </div>
+              </div>
+               
+               <div class= "col-sm-2">
+                <div class="custom-control custom-checkbox">
+                 <input type="checkbox" class="custom-control-input" id="presentaddress">
+                 <label class="custom-control-label" for="presentaddress"> Present Address</label>
+                </div>
+              </div>
+
+              <div class= "col-sm-2">
+                <div class="custom-control custom-checkbox">
+                 <input type="checkbox" class="custom-control-input" id="gurdiandetails">
+                 <label class="custom-control-label" for="gurdiandetails"> Gurdian Details</label>
+                </div>
+              </div>
+
+              <div class= "col-sm-2">
+                <div class="custom-control custom-checkbox">
+                 <input type="checkbox" class="custom-control-input" id="parentsdetails">
+                 <label class="custom-control-label" for="parentsdetails"> Parents Details</label>
+                </div>
+              </div>
+              </div>
+
+                <div class="row clearfix" >
+                <div class= "col-sm-2"*ngIf ="detail_type[7]">
+                <div class="custom-control custom-checkbox">
+                 <input type="checkbox" class="custom-control-input" id="feesdetails">
+                 <label class="custom-control-label" for="feesdetails"> Fees Details</label>
+                </div>
+              </div>
+              
+               <div class= "col-sm-2" *ngIf ="detail_type[8]">
+                <div class="custom-control custom-checkbox">
+                 <input type="checkbox" class="custom-control-input" id="destinationdetails">
+                 <label class="custom-control-label" for="destinationdetails"> Destination Details</label>
+                </div>
+              </div>
+                 <div class= "col-sm-2" *ngIf ="detail_type[1]">
+                <div class="custom-control custom-checkbox">
+                 <input type="checkbox" class="custom-control-input" id="hosteldetails">
+                 <label class="custom-control-label" for="hosteldetails"> Destination Details</label>
+                </div>
+              </div>
+
+             </div>
+
+
 
 
 
@@ -83,7 +249,7 @@
      </div>
     </div>
   </div>
-</div>
+
 
  <div class="col-sm-12"   *ngIf="studentreport">
         <div class="table-responsive">
@@ -160,9 +326,8 @@
 
 
 
- 
-        
-    </div>
+   </div>
+ </div>
       
       
 

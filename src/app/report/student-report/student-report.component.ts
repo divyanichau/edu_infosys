@@ -21,11 +21,35 @@ export class StudentReportComponent implements OnInit , OnDestroy{
  private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
 	studentreport= false;
-	student_report : StudentReport;
-	selected_student : number;
+	student_report : StudentReport = new StudentReport();
+	selected_student :number;
    batch: Batch[];
    selected_batch :number;
-   
+   default_detail_type={1:false , 2:false ,3:false , 4:false, 5:false, 6:false , 7:false, 8:false};
+  detail_type=this.default_detail_type;
+
+
+  onChange(newValue) {
+    this.reset_details_value();
+
+    this.detail_type[newValue] = true;
+  }
+
+  reset_details_value(){
+    this.detail_type = this.default_detail_type;
+
+    this.detail_type[1]=false;
+    this.detail_type[2]=false;
+    this.detail_type[3]=false;
+    this.detail_type[4]=false;
+    this.detail_type[5]=false;
+    this.detail_type[6]=false;
+    this.detail_type[7]=false;
+    this.detail_type[8]=false;
+  }
+
+
+
 
   constructor(
   	private _studentreportService: StudentReportService,
@@ -36,9 +60,13 @@ export class StudentReportComponent implements OnInit , OnDestroy{
    }
 
   ngOnInit() { 
-  	this.LoadBatch();
+  
+    this.reset_details_value;
+    this.detail_type[1] =true;
+    this.LoadBatch();
   	
   }
+
 
    ngOnDestroy() {
     this._utils.unsubscribeSub(this._sub);
