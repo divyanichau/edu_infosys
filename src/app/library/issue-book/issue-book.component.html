@@ -86,7 +86,7 @@
   <div class="panel-body">  
             <div class="col-sm-12">
                   <label for="user_type">User type</label>
-    <select class="form-control" (change)="onChange($event.target.value)" name="user_type">
+    <select class="form-control" (change)="onChange($event.target.value)" name="user_type" [(ngModel)]="obj_book.user_type">
 <option value="1">Select Type</option>
 <option value="2">Student</option>
 <option value="3">Employee</option>

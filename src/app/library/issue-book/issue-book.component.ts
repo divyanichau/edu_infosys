@@ -9,6 +9,7 @@ import { BatchService } from '../../core/services/batch.service';
 import { StudentService } from '../../core/services/student.service';
 import { LibraryService } from '../../core/services/library.service';
 
+//import { AddBook } from '../../core/classes/addbook';
 import { IssueBook } from '../../core/classes/issuebook';
 import { Course } from '../../core/classes/course';
 import { Batch } from '../../core/classes/batch';
@@ -32,7 +33,8 @@ export class IssueBookComponent implements OnInit , OnDestroy{
  default_detail_type = {1:false, 2:false, 3:false};
 
  detail_type = this.default_detail_type;
-
+ user :1;
+ book:"dadqygdq";
   obj_book : IssueBook = new IssueBook();
 
  _course: Course[];
@@ -45,7 +47,7 @@ export class IssueBookComponent implements OnInit , OnDestroy{
  selected_student: number;
 
  _issued_books = [];
-
+selected_user :number;
 
  onChange(newValue) {
     this.reset_details_value();
@@ -65,7 +67,7 @@ export class IssueBookComponent implements OnInit , OnDestroy{
   temp: any[] = [];
   editing = {};
 
-  url = 'http://192.168.1.87:8002/api/library/issue/search/';
+  url = 'http://suggestqueries.google.com/complete/search';
   params = {
     hl: 'en',
     ds: 'yt',
@@ -103,9 +105,12 @@ export class IssueBookComponent implements OnInit , OnDestroy{
   }
 
   onSubmit() {
+   //this.obj_book.user = this.selected_user;
+   // this.obj_book.user = this.user;
+   // this.obj_book.book= this.book;
+   console.log("gsdgsaa",this.obj_book)
     this._utils.unsubscribeSub(this._sub);
-    this.obj_book.student = this.selected_student;
-    console.log(this.obj_book);
+   // console.log(this.obj_book);
     this._sub = this._libraryService.addIssue(this.obj_book)
       .subscribe(data => {
         console.log(data);
@@ -177,9 +182,10 @@ export class IssueBookComponent implements OnInit , OnDestroy{
     this.table.offset = 0;
   }
 
-  handleResultSelected(result) {
+ handleResultSelected(result) {
     this.search = result;
   }
+
 }
 
 
