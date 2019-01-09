@@ -23,7 +23,7 @@
                 <div class="panel-body">
                   <div class="row clearfix">
                     <div class="col-sm-4">
-                      <label for="reportfor" class="req">Report For </label>
+                      <label for="reportfor" class="req">Fee Category</label>
                       <select class="form-control" (change)="onChange($event.target.value)" name="reportfor">
                         <option value ="0">Select option</option>
                         <option value ="1">hostel</option>
@@ -33,6 +33,7 @@
                         <option value ="5">gender</option>
                         <option value = "6">caste</option>
                         <option value = "7">fees</option>
+                        <option value = "8">transport</option>
 
                         <!-- <option *ngFor="let s_report of s_reports" [ngValue]="s_report.id">{{s_report.name}}</option> -->
                       </select>

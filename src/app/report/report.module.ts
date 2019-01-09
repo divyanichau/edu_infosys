@@ -12,6 +12,8 @@ import { ReportComponent } from './report.component';
 import { BatchService } from '../core/services/batch.service';
 import { UtilsService } from '../shared/services/utils.service';
 import { StudentReportService } from '../core/services/studentreport.service';
+import { DueReportComponent } from './due-report/due-report.component';
+import { DueReportService } from '../core/services/duereport.service';
 
 
 @NgModule({
@@ -28,9 +30,9 @@ import { StudentReportService } from '../core/services/studentreport.service';
 
   ReportRoutingModule
   ],
-  providers: [BatchService , UtilsService,StudentReportService],
+  providers: [BatchService , UtilsService,StudentReportService ,DueReportService],
 
-  declarations: [ ReportComponent , StudentReportComponent]
+  declarations: [ ReportComponent , StudentReportComponent, DueReportComponent]
 
 
 })
