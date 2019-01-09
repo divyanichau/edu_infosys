@@ -19,6 +19,8 @@ import { CourseService } from '../core/services/course.service';
 import { ClassService } from '../core/services/class.service';
 import { SectionService } from '../core/services/section.service';
 import { ResultPreparationComponent } from './result-preparation/result-preparation.component';
+import { MarksEntryService } from '../core/services/marks-entry.service';
+import { PrintResultComponent } from './result-preparation/print-result/print-result.component';
 
 @NgModule({
 
@@ -28,8 +30,9 @@ import { ResultPreparationComponent } from './result-preparation/result-preparat
     FormsModule,
     NgxDatatableModule
   ],
-  providers:[BatchService,UtilsService,SetTermService,SubjectService,
+  providers:[MarksEntryService,BatchService,UtilsService,SetTermService,SubjectService,
     ExamScheduleService,CourseService,ClassService,SectionService],
-  declarations: [SetTermComponent, ScheduleExamComponent, TermDetailComponent, DetailComponent, MarksEntryComponent, ResultPreparationComponent],
+
+  declarations: [SetTermComponent, ScheduleExamComponent, TermDetailComponent, DetailComponent, MarksEntryComponent, ResultPreparationComponent, PrintResultComponent],
 })
 export class ExamsModule { }

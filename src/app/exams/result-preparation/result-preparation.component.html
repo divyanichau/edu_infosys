@@ -19,8 +19,8 @@
         </select>
       </div>
       <div class="col-md-3">
-        <label for="section" [(ngModel)]="selected_section"(change)="onChange()">Select Section</label>
-        <select class="form-control" name="section">
+        <label for="section" >Select Section</label>
+        <select class="form-control" name="section" [(ngModel)]="selected_section"(change)="onChange()">
             <option *ngFor="let sec of _section" [ngValue]="sec.id"> {{sec.name}}</option>
         </select>
       </div>

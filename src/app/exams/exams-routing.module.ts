@@ -6,6 +6,7 @@ import { TermDetailComponent } from './set-term/term-detail/term-detail.componen
 import { DetailComponent } from './schedule-exam/detail/detail.component';
 import { MarksEntryComponent } from './marks-entry/marks-entry.component';
 import { ResultPreparationComponent } from './result-preparation/result-preparation.component';
+import { PrintResultComponent } from './result-preparation/print-result/print-result.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
  {
   path:'result_preperation',
   component:ResultPreparationComponent
+ },
+ {
+   path:'print_result',
+   component:PrintResultComponent
  }
 ];
 

@@ -1,0 +1,51 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h4 class="panel-title">View/Print Result</h4>
+  </div>
+  <div class="panel-body">
+    <div class="row clearfix">
+      <div class="col-md-3">
+        <label for="course">Select Course</label>
+        <select class="form-control" name="course" [(ngModel)]="selected_course" (change)="onChange()">
+          <option *ngFor="let c of _course " [ngValue]="c.id"> {{c.name}}</option>
+
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="class">Select class</label>
+        <select class="form-control" name="_class" [(ngModel)]="selected_class" (change)="onChange()">
+          <option *ngFor="let cls of class" [ngValue]="cls.id"> {{cls.name}}</option>
+
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="section">Select Section</label>
+        <select class="form-control" name="section" [(ngModel)]="selected_section" (change)="onChange()">
+          <option *ngFor="let sec of _section" [ngValue]="sec.id"> {{sec.name}}</option>
+        </select>
+      </div>
+
+      <div class="col-md-3 ">
+        <label for="exam">Select Student</label>
+        <!-- <select class="form-control" (change)="onChange()" [(ngModel)]="selected_student">
+              <option *ngFor="let term of _" [ngValue]="term.id"> {{term.name}}</option>
+             
+            </select> -->
+        <select class="form-control">
+          <option value="0"> Dinesh Kc</option>
+        </select>
+      </div>
+      <div class="col-md-6 form-top-margin-button">
+        <button class="btn btn-primary" (click)="marksEntryNext()">view</button>
+      </div>
+    </div>
+    <div *ngIf="val==true">
+      <h1>Marksheet Section</h1>
+    </div>
+  </div>
+  <div class="panel-footer" *ngIf="val==true">
+
+    <button type="button" class="btn btn-danger btn-lg">Print Result</button>
+
+  </div>
+</div>
