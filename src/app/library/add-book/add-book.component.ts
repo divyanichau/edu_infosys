@@ -24,10 +24,7 @@ export class AddBookComponent implements OnInit , OnDestroy{
   category : BookCategory[];
 
   add_book : AddBook = new AddBook();
-
-
-
-  
+ 
   constructor(
     private _libraryService: LibraryService,
     private _utils: UtilsService,
@@ -53,7 +50,7 @@ export class AddBookComponent implements OnInit , OnDestroy{
     this.add_book.category = this.selected_lib;
     this._sub = this._libraryService.addBook(this.add_book)
       .subscribe(data => {
-        console.log(data);
+        //console.log(data);
       this.toastr.success('Issue Book !', 'Success',{timeOut: 3000});
       });
   }
@@ -71,18 +68,6 @@ export class AddBookComponent implements OnInit , OnDestroy{
     );
   }
   
-  //   updateFilter(event) {
-  //   const val = event.target.value.toLowerCase();
-  //   // filter our data
-  //   const temp = this.temp.filter(function(d) {
-  //     return d.name.toLowerCase().indexOf(val) !== -1 || !val;
-  //   });
-  //   // update the rows
-  //   this.rows = temp;
-  //   // Whenever the filter changes, always go back to the first page
-  //   this.table.offset = 0;
-  // }
-
   initAddBook() {
     this._utils.unsubscribeSub(this._typeSub);
      this.add_book = new AddBook();

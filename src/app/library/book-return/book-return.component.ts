@@ -20,9 +20,24 @@ export class BookReturnComponent implements OnInit , OnDestroy{
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
 
-  return : BookReturn = new BookReturn();
-  library = [];
+  _return : BookReturn = new BookReturn();
+  library : BookReturn[];
   //selected_category: number;
+
+  default_book_return = {1:false, 2:false, 3:false};
+  book_return = this.default_book_return;
+
+  onChange(newValue) {
+    this.reset_details_value();
+    this.book_return[newValue] = true;
+  }
+
+  reset_details_value(){
+    this.book_return = this.default_book_return;
+    this.book_return[2]=false;
+    this.book_return[3]=false;
+    
+  }
 
   rows: any[] = [];
   temp: any[] = [];
@@ -40,11 +55,6 @@ export class BookReturnComponent implements OnInit , OnDestroy{
 
 
 @ViewChild(DatatableComponent) table: DatatableComponent;
-
-onChange(newValue){
-  }
-
-
   constructor(
     private _libraryService: LibraryService,
     private _utils: UtilsService,
@@ -54,7 +64,9 @@ onChange(newValue){
   
   
   ngOnInit() {
-    this.initAddCategory();
+    this.reset_details_value();
+    this.book_return[1]= true;   
+    this.initReturnBook();
     
   }
 
@@ -64,8 +76,8 @@ onChange(newValue){
 
   onSubmit() {
     this._utils.unsubscribeSub(this._sub);
-    console.log(this.return);
-    this._sub = this._libraryService.addReturn(this.return)
+    console.log(this._return);
+    this._sub = this._libraryService.addReturn(this._return)
       .subscribe(data => {
         console.log(data);
             this.toastr.success('Book Category Added !', 'Success',{timeOut: 3000});
@@ -76,7 +88,7 @@ onChange(newValue){
 
   
 
-  initAddCategory() {
+  initReturnBook() {
     this._utils.unsubscribeSub(this._typeSub);
     this._sub = this._libraryService.getReturn().subscribe(
       data => {

@@ -31,11 +31,9 @@ export class IssueBookComponent implements OnInit , OnDestroy{
  // obj : category[];
  selectedDevice = 'Student';
  default_detail_type = {1:false, 2:false, 3:false};
-
  detail_type = this.default_detail_type;
- user :1;
- book:"dadqygdq";
-  obj_book : IssueBook = new IssueBook();
+
+obj_book : IssueBook = new IssueBook();
 
  _course: Course[];
  selected_course: number;
@@ -46,12 +44,12 @@ export class IssueBookComponent implements OnInit , OnDestroy{
  _student: Student[];
  selected_student: number;
 
- _issued_books = [];
+ _issued_books : IssueBook[];
+
 selected_user :number;
 
  onChange(newValue) {
     this.reset_details_value();
-
     this.detail_type[newValue] = true;
   }
 
@@ -90,8 +88,6 @@ selected_user :number;
      private router: Router,
     private toastr: ToastrService
     ) { }
-  
-  
   
   ngOnInit() {
     this.reset_details_value();
@@ -148,8 +144,9 @@ selected_user :number;
       data => {
         isArray(data) ? this._student = data : data;
         console.log(this._student);
-        this.selected_student = this._student[0].id;
-         
+        console.log("kdskdhwhwkjehwkjehkweh")
+      //  this.selected_student = this._student[0].id;
+         this.initIssueBook();
       }
     );
 
@@ -158,11 +155,12 @@ selected_user :number;
    
 
   initIssueBook() {
+console.log("kdskdhwhwkjehwkjehkweh")
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._libraryService.getIssue().subscribe(
       data => {
         isArray(data) ? this._issued_books = data : data;
-        //console.log("issud Book",data);
+        console.log("issud Book",data);
         this.rows = this._issued_books;
         this.temp = [...this._issued_books];
         

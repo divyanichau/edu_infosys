@@ -1,28 +1,28 @@
-
- <div class="content-wrapper">
+<div class="content-wrapper">
     <div class="content">
       <div class="page-header">
          <ol class="breadcrumb breadcrumb">
               <li><a href="#"><i class="material-icons">home</i> Home</a></li>
-              <li><a href="#"><i class="material-icons">class</i>Library </a></li>
-              <li class="active"> Book Return</li>
+              <li><a href="#"><i class="material-icons">class</i>Library</a></li>
+              <li class="active"> Book Return </li>
            <ul class="breadcrumb-elements">                          
             </ul>
             <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a><a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
             </ol> 
             <br>
 
-  <form (ngSubmit)="onSubmit()" #sectionForm="ngForm">
+  <form (ngSubmit)="onSubmit()" #libraryForm="ngForm">
+    
    <div class="row">
         <div class="col-sm-6">
             <div class="panel panel-primary">
-              <div class="panel-body">
+             
               <div class="panel-heading">
-                <h4 class="panel-title">Return Book</h4>
+                <h4 class="panel-title">Book Return</h4>
               </div>
               <br> 
 
-  <div class="panel-body">
+               <div class="panel-body">
     <div class="row clearfix">
              <div class="col-sm-9">                                      
                <input class="form-control ui-autocomplete-input" placeholder="Search by Book No/ ISBN No/ Book Title/ Author" id="librarybook" type="text" value="" name="librarybook" autocomplete="off"
@@ -39,58 +39,70 @@
                                     </div>
                                   </div>
 </div>
-                                
-                              
-<div class="panel-body">
+        
+
+  <div class="panel-body">
  <div class="row-clearfix">
              <label for="reg_input_name">Return / Renewal</label>
-                                    <select class="form-control" name="Bookreturn[returnorrenewal]" id="Bookreturn_returnorrenewal">
-<option value="">Select Option</option>
-<option value="1">Return</option>
-<option value="2">Renewal</option>
-</select>            
-                 
-                                <div class="form-group" id="datedifference" style="display:none">
-                                    <div class="alert alert-success">
-                                        <b>  <label id="tick"></label></b>
-                                    </div>
-                                </div>
-                                <div class="form-group" id="duedate" style="display:none">
-                                    <label for="due_date">Due Date</label>
-                                    <input class="form-control hasDatepicker" placeholder="Enter Due Date" id="Bookreturn_due_date" name="Bookreturn[due_date]" type="text">                                    <div class="school_val_error" id="Bookreturn_bookreturn_date_em_" style="display:none"></div>                                </div>
+<select class="form-control" (change)="onChange($event.target.value)" name="return" [(ngModel)]="_return.return">
+<option value="1">Select Option</option>
+<option value="2">Return</option>
+<option value="3">Renewal</option>
+</select>                                 
+ </div>
 
-                                <div class="form-group" id="returndate" style="display:none">
-                                    <label for="reg_input_name" class="req">Return Date</label>
-                                    <input class="form-control hasDatepicker" placeholder="return date" id="Bookreturn_bookreturn_date" name="Bookreturn[bookreturn_date]" type="text">                                    <div class="school_val_error" id="Bookreturn_bookreturn_date_em_" style="display:none"></div>                                </div>
-                                <div class="form-group" id="fine" style="display:none">
-                                    <label for="Bookreturn_bookreturn_fineamount"> Fine Amount</label>                                    <input class="form-control" name="Bookreturn[bookreturn_fineamount]" id="Bookreturn_bookreturn_fineamount" type="text" maxlength="6">                                    <div class="school_val_error" id="Bookreturn_bookreturn_fineamount_em_" style="display:none"></div>                                </div>
-                                <div class="form-group" id="remarks" style="display:none">
-                                    <label>Remarks</label>
-                                    <textarea class="form-control" name="Bookreturn[bookreturn_remarks]" id="Bookreturn_bookreturn_remarks"></textarea>                                    <div class="school_val_error" id="Bookreturn_bookreturn_remarks_em_" style="display:none"></div>                                </div>
-                            </div>
-</div>
-    </div>
+<div class="row clearfix" *ngIf="book_return[2]">
+    <div class="panel-body">  
+                  <label for="name">Return Date</label>
+                <input type="text" class="form-control" [(ngModel)]="_return.return_date" name="return_date"  size="84" maxlength="45" placeholder="Enter Category Name " required>
+            </div>
 
+            <div class="panel-body">
+                  <label for="name">Fine Amount</label>
+                <input type="text" class="form-control" [(ngModel)]="_return.fine_amount" name="amount"  size="84" maxlength="45" placeholder="Enter Category Name " required>
+            </div>
 
-<div class="panel-body">
+            <div class="panel-body">   
+                  <label for="name">Remark</label>
+                <input type="text" class="form-control" [(ngModel)]="_return.remark" name="remark"  size="84" maxlength="45" placeholder="Enter Category Name " required>
+            </div>
+          </div>
+
+         <div class="row clearfix" *ngIf="book_return[3]">
+          <div class="panel-body">                                                   
+       <input class="form-control" placeholder="Enter days" [(ngModel)]="_return.day" id="days" type="text" name="days">
+        </div>
+       <div class="panel-body">
+                  <label for="name">Due Date</label>
+                <input type="date" class="form-control" [(ngModel)]="_return.due_date" name="name"  size="84" maxlength="45" placeholder="Enter Category Name " required>
+            </div>
+            </div>
+          
+        
+
+ <div class="panel-body">
+<div class="row">
     <div class="form-group">
             <button class="btn btn-info" style="background-color:#aabad8;" type="Submit"><b>Save</b></button>
         </div>
+
     </div>
   </div>
 </div>
+</div>
+</div>
 
 
-
-
-<div class="content-wrapper">           
-    <div class="content">
  <div class="form-group">
-    <div class="row">
-    <div class="col-sm-6"> 
-     <div class="panel panel-default">
-              <div class="panel-heading" >                    
-       <div class="table-responsive">                       
+  <div class="row">
+   <div class="col-sm-6"> 
+     <div class="panel panel-primary">
+       <div class="panel-heading" > 
+          <h4 class="panel-title">Return Lists</h4>
+        </div>
+
+        <div class="panel-body">                   
+          <div class="table-responsive">                       
               <div class="row">              
                 <div class="col-xs-6 col-md-6">
                   <div class="input-group">
@@ -118,26 +130,15 @@
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column> -->
-                <ngx-datatable-column name="User" prop="name">
-                  <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-                    <span
-                      title="Double click to edit"
-                      (dblclick)="editing[rowIndex + '-name'] = true"
-                      *ngIf="!editing[rowIndex + '-name']">
-                      {{value}}
-                    </span>
-                    <input
-                      autofocus
-                      (blur)="updateValue($event, 'name', rowIndex)"
-                      *ngIf="editing[rowIndex+ '-name']"
-                      type="text"
-                      [value]="value"
-                    />
-                  </ng-template>
+
+
+                <ngx-datatable-column name="User" prop="user">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
 
-                <ngx-datatable-column name="Course" prop="course">
+                 <ngx-datatable-column name="Course" prop="course">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
@@ -147,34 +148,37 @@
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Book No" prop="no">
+
+                <ngx-datatable-column name="Book No." prop="Book_no">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
-               
+
 
                 <ngx-datatable-column name="Actions" sortable="false" prop="id">
                   <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                     Manage
                   </ng-template>
                   <ng-template let-row="library" let-value="value" ngx-datatable-cell-template>
-                    <a class="glyphicon glyphicon-eye-open" title="" href="/class/add-course/{{value}}"><img src="" alt=""></a>
-                    <a class="glyphicon glyphicon-trash left-icon" title="" href="/class/add-course/delete/{{value}}"><img src="" alt=""></a>
+                    <a class="glyphicon glyphicon-eye-open" title="" href="/library/add-category/detail/{{value}}"><img src="" alt=""></a>
+                    
+                    <button class="glyphicon glyphicon-trash left-icon btn btn-danger" style="margin-left:35px;" (click)="categoryDelete(value)"></button>
                   </ng-template>
                 </ngx-datatable-column>
               </ngx-datatable>
             </div>
           </div>
         </div>
-      </div>
-    </div>
   </div>
+ </div>
+</div>
 </div>
 
 
 
-       
-   
+
+
+
 
 
 

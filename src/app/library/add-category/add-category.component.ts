@@ -52,7 +52,7 @@ export class AddCategoryComponent implements OnInit , OnDestroy{
     console.log(this.obj_category);
     this._sub = this._libraryService.add(this.obj_category)
       .subscribe(data => {
-        console.log(data);
+       // console.log(data);
             this.toastr.success('Book Category Added !', 'Success',{timeOut: 3000});
       });
   }

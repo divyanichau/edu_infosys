@@ -204,7 +204,7 @@ export class LibraryService {
     this._utils.start_progress();
   }
 
-  afterRequest(data: AddBook): void {
+  afterRequest(data : AddBook): void {
     this._utils.stop_progress();
   }
 
