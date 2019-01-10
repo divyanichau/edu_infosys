@@ -1,6 +1,6 @@
 <div class="body">
   <div class="content-wrapper">
-    <form ngNativeValidate (ngSubmit)="OnSubmitEvent()" #eventForm="ngForm">
+    <form ngNativeValidate (ngSubmit)="OnSubmitEvent()" #eventsForm="ngForm">
       <div class="col-sm-6">
         <div class="panel panel-primary">
           <div class="panel-heading">
@@ -79,7 +79,7 @@
         </div>
         <div class="panel-body">
        <div class="table-responsive">                       
-               <div class="col-xs-8">
+               <div class="col-xs-6 col-md-6">
                   <div class="input-group">
                     <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter Name" id="txtSearch" />
                     <div class="input-group-btn">
@@ -91,7 +91,7 @@
                 </div>
               </div>
          
-              <ngx-datatable class="material" [rows]="events" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+              <ngx-datatable class="material" [rows]="_events" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
                 [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
 
                 <ngx-datatable-column name="ID" prop="id">
@@ -131,8 +131,8 @@
                   <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                     Manage
                   </ng-template>
-                  <ng-template let-row="events" let-value="value" ngx-datatable-cell-template>
-                    <a class="glyphicon glyphicon-eye-open  btn btn-primary" style=" margin-left:-10px;" title="" href="/event/edit-event/{{value}}"><img src="" alt=""></a>
+                  <ng-template let-row="_events" let-value="value" ngx-datatable-cell-template>
+                    <a class="glyphicon glyphicon-eye-open  btn btn-primary" style=" margin-left:-10px;" title="" href="/events/edit-event/{{value}}"><img src="" alt=""></a>
                     <!-- <a class="glyphicon glyphicon-trash left-icon" title="" href="/academic/subject/add-subject/delete/{{value}}"><img src="" alt=""></a> -->
                      <button class="glyphicon glyphicon-trash left-icon btn btn-danger" style="margin-left:0.01px;" (click)="eventDelete(value)"></button>
                   </ng-template>

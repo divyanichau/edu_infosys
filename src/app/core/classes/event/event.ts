@@ -10,8 +10,11 @@ export class Event {
   date_start: Date;
   date_end: Date;
  // tasks: Task[] = [];
- type: number;
- // event: string;
- //teacher: number;
+   type: number;
 
+
+}
+export class EventType{
+	id:number;
+	 type: number;
 }

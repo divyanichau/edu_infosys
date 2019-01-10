@@ -4,4 +4,8 @@ export class Task {
   event: number;
   name: string;
   status: string;
+  description: string;
+  priority: string;
+  task_date: Date;
+  user_type: number;
 }

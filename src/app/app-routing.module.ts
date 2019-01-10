@@ -84,6 +84,12 @@ const routes: Routes = [
 	  	loadChildren: './events/events.module#EventsModule'
 	  },
 
+   //   {
+	  // 	path: 'task',
+	  // 	loadChildren: './task/task.module#TaskModule'
+	  // },
+
+
 	];
 
 @NgModule({

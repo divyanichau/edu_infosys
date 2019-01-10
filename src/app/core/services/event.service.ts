@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { UtilsService } from '../../shared/services/utils.service';
 import { Config } from '../../shared/classes/app';
-import { Event } from '../classes/event/event';
+import { Event,EventType } from '../classes/event/event';
 
 @Injectable()
 export class EventService {
@@ -30,11 +30,11 @@ export class EventService {
       map((res: Response) => res.json()),
       tap(
       data => this.afterGetRequest(),
-      error => { console.log(error); }
+     // error => { console.log(error); }
       ),);
   }
 
-  get(): Observable<Event[]> {
+  get(): Observable<EventType[]> {
     this.beforeRequest();
     const options = this._utils.makeOptions(this._headers);
 
@@ -102,6 +102,7 @@ export class EventService {
   }
 
   afterRequest(data: Event): void {
+   // console.log("wgfwgwu",data)
    this._utils.stop_progress();
    
   }
