@@ -10,6 +10,8 @@ import { UtilsService } from '../../shared/services/utils.service';
 import { Batch } from '../../core/classes/batch';
 import { DueReport } from '../../core/classes/due-report';
 import { DueReportService } from '../../core/services/duereport.service';
+import { Course } from '../../core/classes/course';
+import { CourseService } from '../../core/services/course.service';
 
 
 @Component({
@@ -25,8 +27,10 @@ export class DueReportComponent implements OnInit {
   duereport=false;
 
   selected_batch :number;
+  selected_course :number;
    default_detail_type={1:false ,2:false};
   detail_type=this.default_detail_type;
+  course: Course[];
 
   onChange(newValue) {
     this.reset_details_value();
@@ -45,6 +49,7 @@ export class DueReportComponent implements OnInit {
 
   constructor(	
     private _batchService: BatchService,
+    private _courseService: CourseService,
     private _duereportService: DueReportService,
   	private _utils: UtilsService,
     private router: Router,
@@ -68,6 +73,19 @@ export class DueReportComponent implements OnInit {
         console.log(this.batch);
         if(this.batch.length > 0){
          this.selected_batch = this.batch[0].id;
+         this.LoadCourse();
+        }
+      }
+    );
+  }
+  LoadCourse() {
+    this._utils.unsubscribeSub(this._sub);
+    this._sub = this._courseService.get().subscribe(
+      data => {
+        isArray(data) ? this.course = data : data;
+        console.log(this.course);
+        if(this.course.length > 0){
+         this.selected_course = this.course[0].id;
         }
       }
     );
