@@ -39,13 +39,171 @@
         <button class="btn btn-primary" (click)="marksEntryNext()">view</button>
       </div>
     </div>
-    <div *ngIf="val==true">
-      <h1>Marksheet Section</h1>
+    <div *ngIf="val==true" id="print_marks">
+      <div class="row clearfix">
+        <div class="col-md-8 col-md-offset-2">
+          <h4 class="panel-heading">Ambikeshwori campus Of Information Technology</h4>
+        </div>
+        <div class="col-md-6 col-md-offset-3 top-margin">
+          <h4 class="panel-heading">Ghorahi  11 Bharatpur Dang </h4>
+
+        </div>
+        <div class="col-md-9 col-md-offset-2 top-margin">
+          <h2 class="panel-heading">SLC Test Examination 2075 </h2>
+          
+        </div>
+
+        <div class="col-md-4">
+          <p><strong>Name:</strong> Dinesh Kc</p>
+        </div>
+
+        <div class="col-md-4">
+          <p><strong>Roll. No :</strong> 10</p>
+        </div>
+        <div class="col-md-4">
+          <p><strong>Address :</strong> Dhakadam, Salyan</p>
+        </div>
+        <div class="col-md-12">
+          <table>
+            <thead>
+              <tr>
+                <th rowspan="2" class="col-md-1">SN</th>
+                <th rowspan="2" class="col-md-2">Subjects</th>
+                <th rowspan="2" class="col-md-2">Full Marks</th>
+                <th rowspan="2" class="col-md-2">Pass Marks</th>
+                <th colspan="3" class="col-md-3">Marks Obtained</th>
+                <th rowspan="2" class="col-md-2">Remarks</th>
+              </tr>
+              <tr>
+                <th class="col-md-1">TH</th>
+                <th class="col-md-1">PR</th>
+                <th class="col-md-1">Total</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>01</td>
+                <td>Com.English</td>
+                <td>100</td>
+                <td>40</td>
+                <td>32</td>
+                <td>34</td>
+                <td>66</td>
+                <td></td>
+              </tr>
+
+              <tr>
+                <td>01</td>
+                <td>Com.Nepali</td>
+                <td>100</td>
+                <td>40</td>
+                <td>32</td>
+                <td>34</td>
+                <td>66</td>
+                <td></td>
+              </tr>
+
+              <tr>
+                <td>01</td>
+                <td>Com.Mathematics</td>
+                <td>100</td>
+                <td>40</td>
+                <td>32</td>
+                <td>34</td>
+                <td>66</td>
+                <td></td>
+              </tr>
+
+              <tr>
+                <td>01</td>
+                <td>Com.Science</td>
+                <td>100</td>
+                <td>40</td>
+                <td>32</td>
+                <td>34</td>
+                <td>66</td>
+                <td></td>
+              </tr>
+
+              <tr>
+                <td>01</td>
+                <td>Com.Social Studies</td>
+                <td>100</td>
+                <td>40</td>
+                <td>32</td>
+                <td>34</td>
+                <td>66</td>
+                <td></td>
+              </tr>
+
+              <tr>
+                <td>01</td>
+                <td>Com.Health Pop. & Env</td>
+                <td>100</td>
+                <td>40</td>
+                <td>32</td>
+                <td>34</td>
+                <td>66</td>
+                <td></td>
+              </tr>
+
+              <tr>
+                <td>01</td>
+                <td>OpI.Econimics</td>
+                <td>100</td>
+                <td>40</td>
+                <td>32</td>
+                <td>34</td>
+                <td>66</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>01</td>
+                <td>OpII.Computer Edu</td>
+                <td>100</td>
+                <td>40</td>
+                <td>32</td>
+                <td>34</td>
+                <td>66</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-3">
+            <p><strong>Total</strong>:500 </p>
+          </div>
+        <div class="col-md-3">
+          <p><strong>Result</strong>:Pass </p>
+        </div>
+        <div class="col-md-3 ">
+          <p><strong>Percentage</strong>:60% </p>
+        </div>
+        <div class="col-md-3 ">
+          <p><strong>Division</strong>:1st </p>
+        </div>
+        <div class="top-margin-sign">
+          <div class="col-md-4 top-margin-sign">
+            <h4>Prepared By</h4><br>
+            <p class="margin-sign">...........................</p>
+          </div>
+          <div class="col-md-2 top-margin-sign">
+              <h4>Checked By</h4><br>
+              <p class="margin-sign">...........................</p>
+            </div>
+            <div class="col-md-4 col-md-offset-2 top-margin-sign">
+                <h4>Principle</h4><br>
+                <p class="margin-sign">...........................</p>
+              </div>
+
+        </div>
+    </div>
     </div>
   </div>
   <div class="panel-footer" *ngIf="val==true">
 
-    <button type="button" class="btn btn-danger btn-lg">Print Result</button>
+    <button type="button" onclick="printDiv('print_marks')" class="btn btn-danger btn-lg">Print Result</button>
 
   </div>
 </div>

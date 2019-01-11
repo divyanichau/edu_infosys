@@ -30,3 +30,36 @@
     text-align: left;
     margin-left: 0px;
 }
+/* Styles for Marksheet start */
+.top-margin{
+    margin-top: -22px;
+}
+.top-margin-sign{
+    margin-top: 40px;
+}
+.margin-sign{
+    margin-top: -20px;
+}
+
+
+
+/* Styles for Marksheet end */
+
+/* Table Styles start */
+table {
+    margin-top: 43px;
+    empty-cells: show;
+    border: 1px solid #000;
+}
+
+table td,
+table th {
+    height: 40px;
+    min-width: 2em;
+    min-height: 2em;
+    text-align: center;
+    border: 1px solid #000;
+}
+/* Table Styles end */
+
+

@@ -22,6 +22,7 @@ import { ResultPreparationComponent } from './result-preparation/result-preparat
 import { MarksEntryService } from '../core/services/marks-entry.service';
 import { PrintResultComponent } from './result-preparation/print-result/print-result.component';
 
+
 @NgModule({
 
   imports: [

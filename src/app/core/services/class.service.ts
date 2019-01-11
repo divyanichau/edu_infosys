@@ -13,7 +13,9 @@ import { _class } from '../classes/class';
 @Injectable()
 export class ClassService {
   private _classUrl = `${new Config().api}/class/`;
+  private _courseClassUrl = `${new Config().api}/exam/course/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
+  //http://192.168.1.87:8002/api/exam/course/1/class/
 
   constructor(
     private _utils: UtilsService,
@@ -37,6 +39,17 @@ export class ClassService {
     const options = this._utils.makeOptions(this._headers);
 
     return this._http.get(`${this._classUrl}`, options).pipe(
+      map((res: Response) => res.json()),
+      tap(
+      data => this.afterGetRequest(),
+      error => { console.log(error); }
+      ),);
+  }
+  getWithCourse(id:number): Observable<_class[]> {
+    //this.beforeRequest();
+    const options = this._utils.makeOptions(this._headers);
+
+    return this._http.get(`${this._courseClassUrl}${id}/class/`, options).pipe(
       map((res: Response) => res.json()),
       tap(
       data => this.afterGetRequest(),
@@ -92,6 +105,7 @@ export class ClassService {
   }
 
   afterGetRequest(): void {
+
     this._utils.stop_progress();
   }
 

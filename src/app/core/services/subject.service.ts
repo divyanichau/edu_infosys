@@ -18,7 +18,9 @@ import { ElectiveSubject} from '../classes/electivesubject';
 export class SubjectService {
   private _teacherUrl = `${new Config().api}/teacher/addsubject/`;
   private _courseUrl = `${new Config().api}/course/assignsubject/`;
+  private _courseWithSectionUrl = `${new Config().api}/exam/section/`;
   private _electiveUrl = `${new Config().api}/course/electivesubject/`;
+  private _sectionWithClassUrl = `${new Config().api}/exam/class/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
 
   constructor(
@@ -51,6 +53,30 @@ export class SubjectService {
       error => { console.log(error); }
       ),);
   }
+
+  getWithSection(id:number): Observable<Subject[]> {
+    console.log("sjhd",id)
+    this.beforeRequest();
+    const options = this._utils.makeOptions(this._headers);
+
+    return this._http.get(`${this._sectionWithClassUrl}${id}/section/`, options).pipe(
+      map((res: Response) => res.json()),
+      tap(
+      data => this.afterGetRequest(),
+      error => { console.log(error); }
+      ),);
+  }
+
+  // getWithSection(id:number):Observable<Subject[]>{
+  //   const options = this._utils.makeOptions(this._headers);
+
+  //   return this._http.get(`${this._courseWithSectionUrl}${id}/subject/`, options).pipe(
+  //     map((res: Response) => res.json()),
+  //     tap(
+  //     data => this.afterGetRequest(),
+  //     error => { console.log(error); }
+  //     ),);
+  // }
 
   add(subject: Subject): Observable<Subject> {
     this.beforeRequest();

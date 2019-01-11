@@ -14,28 +14,28 @@
             </div> -->
         <div class="col-md-3">
           <label for="course">Select Course</label>
-          <select class="form-control" name="course" [(ngModel)]="selected_course" (change)="onChange()" >
-            <option *ngFor="let c of _course " [ngValue]="c.id"> {{c.name}}</option>
+          <select class="form-control" name="course" [(ngModel)]="selected_course" (change)="onCourseChange(selected_course)" >
+            <option *ngFor="let c of  courses" [ngValue]="c.id"> {{c.name}}</option>
            
           </select>
         </div>
         <div class="col-md-3">
           <label for="class">Select class</label>
-          <select class="form-control" name="class" [(ngModel)]="selected_class"(change)="onChange()">
-            <option *ngFor="let cls of class" [ngValue]="cls.id"> {{cls.name}}</option>
+          <select class="form-control" name="class" [(ngModel)]="selected_class"(change)="onClassChange(selected_class)">
+            <option *ngFor="let cls of classes" [ngValue]="cls.id"> {{cls.name}}</option>
          
           </select>
         </div>
         <div class="col-md-3">
           <label for="section">Select Section</label>
-          <select class="form-control" name="section"  [(ngModel)]="selected_section"(change)="onChange()">
-              <option *ngFor="let sec of _section" [ngValue]="sec.id"> {{sec.name}}</option>
+          <select class="form-control" name="section"  [(ngModel)]="selected_section"(change)="onSectionChange(selected_section)">
+              <option *ngFor="let sec of sections" [ngValue]="sec.id"> {{sec.name}}</option>
           </select>
         </div>
         <div class="col-md-3">
           <label for="subject">Select Subject</label>
           <select class="form-control" name="subject" [(ngModel)]="selected_subject"(change)="onChange()" >
-            <option *ngFor =" let sub of _subject" [ngValue]="sub.id"> {{sub.name}}</option>
+            <option *ngFor =" let sub of subjects" [ngValue]="sub.id"> {{sub.name}}</option>
          
           </select>
         </div>

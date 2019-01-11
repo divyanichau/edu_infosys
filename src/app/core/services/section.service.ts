@@ -13,6 +13,7 @@ import { Section } from '../classes/section';
 @Injectable()
 export class SectionService {
   private _sectionUrl = `${new Config().api}/section/`;
+  private _sectionWithClassUrl = `${new Config().api}/exam/class/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
   section = [];
   selectedClass = {};
@@ -40,6 +41,18 @@ export class SectionService {
     const options = this._utils.makeOptions(this._headers);
 
     return this._http.get(`${this._sectionUrl}`, options).pipe(
+      map((res: Response) => res.json()),
+      tap(
+      data => this.afterGetRequest(),
+      error => { console.log(error); }
+      ),);
+  }
+
+  getWithClass(id:number): Observable<Section[]> {
+    this.beforeRequest();
+    const options = this._utils.makeOptions(this._headers);
+
+    return this._http.get(`${this._sectionWithClassUrl}${id}/section/`, options).pipe(
       map((res: Response) => res.json()),
       tap(
       data => this.afterGetRequest(),

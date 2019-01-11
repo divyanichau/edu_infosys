@@ -107,14 +107,27 @@ function loadTracking() {
 //========================================================================================================
 
 
-  function printDiv(divName) {
-        var divToPrint = document.getElementById(divName);
-        var popupWin = window.open('', '', 'width=300,height=300');
-        popupWin.document.open();
-        popupWin.document.write('<html><body onload="window.print()">');
-        popupWin.document.write('<link href="/css/idcard1.css" rel="stylesheet" type="text/css" media="print"/>');
-        popupWin.document.write('<link href="/css/assets/css/minified/ccebootstrap.min.css" rel="stylesheet" type="text/css">');
-        popupWin.document.write('<link href="/css/assets/css/minified/core.min.css" rel="stylesheet" type="text/css">');
-        popupWin.document.write(divToPrint.innerHTML + '</html>');
-        popupWin.document.close();
+  function printDiv(divId) {
+      
+    var backup = document.body.innerHTML;
+    var div_content = document.getElementById(divId).innerHTML;
+    document.body.innerHTML = div_content;
+    window.print();
+    document.body.innerHTML = backup;
+        // var divToPrint = document.getElementById(divName);
+        // var popupWin = window.open('', '', 'width=300,height=300');
+        // popupWin.document.open();
+        // popupWin.document.write('<html><body onload="window.print()">');
+        // popupWin.document.write('<link href="/css/idcard1.css" rel="stylesheet" type="text/css" media="print"/>');
+        // popupWin.document.write('<link href="/css/assets/css/minified/ccebootstrap.min.css" rel="stylesheet" type="text/css">');
+        // popupWin.document.write('<link href="/css/assets/css/minified/core.min.css" rel="stylesheet" type="text/css">');
+        // popupWin.document.write(divToPrint.innerHTML + '</html>');
+        // popupWin.document.close();
     }
+    // function printAny(divId){
+    //     var backup = document.body.innerHTML;
+    //     var div_content = document.getElementById(divId).innerHTML;
+    //     document.body.innerHTML = div_content;
+    //     window.print();
+    //     document.body.innerHTML = backup;
+    // }
