@@ -7,8 +7,13 @@ import { ToastrService } from 'ngx-toastr';
 import{ DatatableComponent} from '@swimlane/ngx-datatable';
 
 import { ClassService } from '../../core/services/class.service';
-import { _class } from '../../core/classes/class';
 import { UtilsService } from '../../shared/services/utils.service';
+import { CourseService } from '../../core/services/course.service';
+import { SectionService } from '../../core/services/section.service';
+
+
+
+import { AcademicMixin } from '../../core/mixins/academic.mixin';
 
 
 declare var numeral: any;
@@ -18,31 +23,22 @@ declare var numeral: any;
   styleUrls: []
 })
   
-export class AddClassComponent implements OnInit , OnDestroy{
-  private _sub: Subscription = undefined;
-  private _typeSub: Subscription = undefined;
-  
-  obj : _class = new _class();
-  list = [];
-  objs: _class[];
-  selected_class: number;
-  //add_class : _class[];
+export class AddClassComponent extends AcademicMixin implements OnInit , OnDestroy{
 
-   rows: any[] = [];
-  temp: any[] = [];
-  editing = {};
  
  @ViewChild(DatatableComponent) table: DatatableComponent;
   constructor(
-    private _classService: ClassService,
-    private _utils: UtilsService,
-   private router: Router,
-    private toastr: ToastrService
-    ) { }
+    _utils: UtilsService,
+     _courseService: CourseService,
+     _classService: ClassService,
+     _sectionService: SectionService,
+    ) { 
+     super(_utils, _courseService, _classService, _sectionService)
+  }
 
    
   ngOnInit() {
-    this.initClass();
+    this.initCourse();
   
   }
 
@@ -52,29 +48,15 @@ export class AddClassComponent implements OnInit , OnDestroy{
 
   onSubmit() {
     this._utils.unsubscribeSub(this._sub);
-    console.log(this.obj);
-    this._sub = this._classService.add(this.obj)
+    console.log(this.__class);
+    this._sub = this._classService.add(this.selected_course, this.__class)
       .subscribe(data => {
-        console.log(data);
-         this.toastr.success('Class Added !', 'Success',{timeOut: 3000});
+        this.initClass();
       });
   }
 
 
   
-
-  initClass() {
-  this._utils.unsubscribeSub(this._sub);
-    this._sub = this._classService.get().subscribe(
-      data => {
-        isArray(data) ? this.list = data : data;
-        this.rows = this.list;
-        this.temp = [...this.list];
-
-      }
-    );
-  }
-
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
 
@@ -84,34 +66,25 @@ export class AddClassComponent implements OnInit , OnDestroy{
     });
 
     // update the rows
-    this.list = temp;
+    this.classes = temp;
     // Whenever the filter changes, always go back to the first page
     this.table.offset = 0;
-  }
-
-  updateValue(event, cell, rowIndex) {
-    console.log('inline editing rowIndex', rowIndex)
-    this.editing[rowIndex + '-' + cell] = false;
-    this.rows[rowIndex][cell] = event.target.value;
-    this.rows = [...this.rows];
-    console.log('UPDATED!', this.rows[rowIndex][cell]);
   }
 
 
  classDelete(id:number){
       console.log(id);
       if(confirm("Are You Sure Want To Delete?")){
-        this._classService.delete(id).subscribe(data => 
+        this._classService.delete(this.selected_course, id).subscribe(data => 
           {
-          //console.log(data);
-          // this.toastr.success('Vehicle Added !', 'Success', { timeOut: 3000 });
+          this.initClass();
          },(err)=>{
-           console.log(err);
-           alert(err);
+           console.log(err)
          }
          );
        }
     }
+
 }
 
 

@@ -1,13 +1,13 @@
 $(function () {
-    skinChanger();
-    activateNotificationAndTasksScroll();
+    // skinChanger();
+    // activateNotificationAndTasksScroll();
 
-    setSkinListHeightAndScroll(true);
-    setSettingListHeightAndScroll(true);
-    $(window).resize(function () {
-        setSkinListHeightAndScroll(false);
-        setSettingListHeightAndScroll(false);
-    });
+    // setSkinListHeightAndScroll(true);
+    // setSettingListHeightAndScroll(true);
+    // $(window).resize(function () {
+    //     setSkinListHeightAndScroll(false);
+    //     setSettingListHeightAndScroll(false);
+    // });
 });
 
 //Skin changer

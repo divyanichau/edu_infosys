@@ -1,25 +1,21 @@
 import { Gurdain } from './gurdain';
 import { Address } from './address';
 import { User } from './user';
-import { UserDetail } from './userdetail';
 import { Phone } from './phone';
 
 
 export class Student {
   id: number;
-  batch: number;
   course: number;
-  class: number;
+  _class: number;
   section: number;
+  registration_no: number;
   admission_date: Date;
   status: string;
   user: User = new User();
-  user_detail: UserDetail = new UserDetail();
-  phone_detail: Phone = new Phone();
-  address_detail: Address = new Address();
-  registration_no: number;
+  phone: Phone = new Phone();
+  address: Address = new Address();
   
-  description: string;
   father: Gurdain = new Gurdain();
   mother: Gurdain = new Gurdain();
 }

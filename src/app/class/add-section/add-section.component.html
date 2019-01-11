@@ -10,53 +10,66 @@
             </ul>
             <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a><a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
             </ol> 
-            <br>
+
 <div class="row">
-  <form (ngSubmit)="onSubmit()" #sectionForm="ngForm">
+  <form  ngNativeValidate (ngSubmit)="onSubmit()" #sectionForm="ngForm">
    <div class="col-sm-6">
             <div class="panel panel-primary">
               <div class="panel-heading" >
                 <h4 class="panel-title">Add Section</h4>
               </div>
-              <br> 
 
-  <div class="panel-body">
-    <div class="row clearfix">
-            <div class="col-sm-6">
-                  <label for="class">Class</label>
-                  <select class="form-control"       
-                 [(ngModel)]="selected_class" name="class">
-                  <option *ngFor="let c of _classes" [ngValue]="c.id">{{c.name}}</option>
+              <div class="panel-body">
+
+                <div class="row clearfix">
+                <div class="col-sm-6">
+                  <label for="course">Select Course</label>
+                  <select class="form-control"  (ngModelChange)="onCourseChange($event)" [(ngModel)]="selected_course" name="course" required>
+                  <option *ngFor="let c of courses" [ngValue]="c.id">{{c.name}}</option>
                   </select>
-            </div>
- 
-            <div class="col-sm-6">
-                  <label for="section_name">Section Name</label>
-                     <input type="text" class="form-control" [(ngModel)]="section.name" name="name"  size="84" maxlength="45" placeholder="Enter Section Name " required>
-            </div>
+
+                </div>
+              </div>
+
+                <div class="row clearfix">
+                        <div class="col-sm-6">
+                              <label for="class">Select Class</label>
+                              <select class="form-control"       
+                             [(ngModel)]="selected_class" (ngModelChange)="onClassChange($event)"  name="class">
+                              <option *ngFor="let c of classes" [ngValue]="c.id">{{c.name}}</option>
+                              </select>
+                        </div>
+                </div>
+
+
+                <div class="row clearfix">
+                        <div class="col-sm-6">
+                              <label for="section_name">Section Name</label>
+                                 <input type="text" class="form-control" [(ngModel)]="section.name" name="name"  placeholder="Enter Section Name " required>
+                        </div>
+                    </div>
+                    
+                <div class="form-group">
+                        <button class="btn btn-primary m-t-15"  type="Submit"><b>Add Section</b></button>
+                </div>
+
+              </div>
         </div>
-        <br>
+      </div>
 
-        
-<br>
-<br>
-    <div class="form-group">
-            <button class="btn btn-primary btn-lg"  type="Submit"><b>Add Section</b></button>
-        </div>
-
-    </div>
-  </div>
-</div>
-
+  </form>
       
-<div class="content-wrapper">           
-    <div class="content">
+
  <div class="form-group">
     <div class="row">
     <div class="col-sm-6"> 
-     <div class="panel panel-default">
-              <div class="panel-heading" >                    
-       <div class="table-responsive">                       
+     <div class="panel panel-primary">
+        <div class="panel-heading" > 
+          <h4 class="panel-title">Sections</h4>
+        </div>
+
+        <div class="panel-body">                   
+          <div class="table-responsive">                       
               <div class="row">              
                 <div class="col-xs-6 col-md-6">
                   <div class="input-group">
@@ -70,7 +83,7 @@
                 </div>
               </div>
              
-              <ngx-datatable class="material" [rows]="_section" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+              <ngx-datatable class="material" [rows]="sections" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
                 [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
 
                 <ngx-datatable-column name="ID" prop="id">
@@ -111,7 +124,7 @@
                     Manage
                   </ng-template>
                   <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                    <a class="glyphicon glyphicon-eye-open" title="" href="/class/add-section/{{value}}"><img src="" alt=""></a>
+                    
                     <button class="glyphicon glyphicon-trash left-icon btn btn-danger" style="margin-left:35px;" (click)="sectionDelete(value)"></button>
                   </ng-template>
                 </ngx-datatable-column>

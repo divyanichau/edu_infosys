@@ -98,7 +98,7 @@ export class AllocateTransportComponent implements OnInit {
   }
   loadClass() {
     this._utils.unsubscribeSub(this._sub);
-    this._sub = this._classService.get().subscribe(
+    this._sub = this._classService.get(1).subscribe(
       data => {
         isArray(data) ? this.class = data : data;
         // console.log("Total class", this.class);
@@ -109,7 +109,7 @@ export class AllocateTransportComponent implements OnInit {
   }
   loadSection() {
     this._utils.unsubscribeSub(this._sub);
-    this._sub = this._sectionService.get().subscribe(
+    this._sub = this._sectionService.get(1).subscribe(
       data => {
         isArray(data) ? this._section = data : data;
         //console.log("Total section", this._section);

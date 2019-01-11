@@ -14,12 +14,32 @@
               <div class="card">
                 <div class="header">
                   <h2>
-                    <b style="color: black;">New Student Admission</b>
+                    <b style="color: black;">Student Admission</b>
                   </h2>
                 </div>
                 <br>
 
                 <div class="panel-body">
+
+                  <div class="card">
+                    <div class="header">
+                      <h2>Admit Existing Student ?? </h2>
+                    </div>
+                    <div class="body">
+                      <div class="search-results">
+                          <input class="form-control ui-autocomplete-input" placeholder="Search by Book No/ ISBN No/ Book Title/ Author" [value]="search"
+                            ngxTypeahead
+                            [taApi]="http"
+                            [taUrl]="searchurl"
+                            [taItemTpl]="itemTpl"
+                            (taSelected)="populateStudent($event)"
+                          >
+                          <ng-template #itemTpl let-result>
+                            {{ result.result.user.first_name}} {{result.result.user.last_name}} [ {{result.result.registration_no}} ]
+                          </ng-template>
+                        </div>
+                    </div>
+                  </div>
                   <div class="card">
                     <div class="header">
                       <h2><label class="label label-info">ACADEMIC DETAILS</label></h2> 
@@ -28,51 +48,36 @@
                     <div class="body">
 
                       <div class="row clearfix">
-
                         <div class="col-sm-2">
-                          <label for="batch">Batch</label>
-                          <select class="form-control" name="batch" [(ngModel)]="student.batch" #batch="ngModel" required="">
-                            <option value="1">2070</option>
-                            <option value="4">2071</option>
-                            <option value="5">2072</option>
-                            <option value="6">2073</option>
-                            <option value="7">2074</option>
-                            <option value="8">2075</option>
-                            <option value="8">2076</option>
-                            <option value="8">2077</option>
+                          <label for="course">Select Course</label>
+                          <select class="form-control"  (ngModelChange)="onCourseChange($event)" [(ngModel)]="selected_course" name="course" required>
+                          <option *ngFor="let c of courses" [ngValue]="c.id">{{c.name}}</option>
                           </select>
-                        </div>
 
-
-
-                        <div class="col-sm-2">
-                          <label for="course">Faculty/Course</label>
-                          <select class="form-control" name="course" [(ngModel)]="student.course" #course="ngModel" required="">
-                            <option value="school">School 1- 10</option>
-                            <option value="intermediate">10+2</option>
-                            <option *ngFor="let c of courses" [ngValue]="c.id">{{c.name}}</option>
-                            
-                          </select>
                         </div>
 
                         <div class="col-sm-2">
-                          <label for="class">Class</label>
-                          <select class="form-control" name="class" [(ngModel)]="student.class" #class="ngModel"  required="">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            
-                          </select>
+                              <label for="class">Select Class</label>
+                              <select class="form-control"       
+                             [(ngModel)]="selected_class" (ngModelChange)="onClassChange($event)"  name="class">
+                              <option *ngFor="let c of classes" [ngValue]="c.id">{{c.name}}</option>
+                              </select>
                         </div>
 
                         <div class="col-sm-2">
-                          <label for="section">Section</label>
-                          <select class="form-control" name="section" [(ngModel)]="student.section" #section="ngModel" required="">
-                            <option value="1">A</option>
-                            <option value="2">B</option>
-                            
-                          </select>
+                              <label for="section">Select Secton</label>
+                              <select class="form-control"       
+                             [(ngModel)]="selected_section" name="section">
+                              <option *ngFor="let c of sections" [ngValue]="c.id">{{c.name}}</option>
+                              </select>
                         </div>
 
+
+                    </div>
+
+               
+
+                      <div class="row">
                         <div class="col-sm-2">
                           <label for="reg_no">Registration Number</label>
                           <input type="text" class="form-control" [(ngModel)]="student.registration_no" name="reg_no"
@@ -80,6 +85,8 @@
                         </div>
 
                        </div>
+
+
                       </div>
                       
 
@@ -109,7 +116,7 @@
 
                               <div class="col-sm-3">
                                 <label for="citizenship_no">Citizenship No.</label>
-                                <input type="text" class="form-control" [(ngModel)]="student.user_detail.citizenship_no" name="citizenship_no"
+                                <input type="text" class="form-control" [(ngModel)]="student.user.citizenship_no" name="citizenship_no"
                                   placeholder="Enter Citizenship Number">
                               </div>
 
@@ -118,7 +125,7 @@
                           <div class="row clearfix">
                             <div class="col-sm-3">
                               <label for="date">Date of Birth</label>
-                              <input type="date" class="form-control" [(ngModel)]="student.user_detail.date_of_birth" name="date" placeholder=""
+                              <input type="date" class="form-control" [(ngModel)]="student.user.date_of_birth" name="date" placeholder=""
                                 required>
                             </div>
                             <div class="col-sm-3">
@@ -132,7 +139,7 @@
 
                             <div class="col-sm-3">
                               <label for="blood_grp">Blood Group</label>
-                              <select class="form-control" [(ngModel)]="student.user_detail.blood_group" name="blood_grp">
+                              <select class="form-control" [(ngModel)]="student.user.blood_group" name="blood_grp">
                                 <option value="1">A+</option>
                                 <option value="2">A-</option>
                                 <option value="3">B+</option>
@@ -149,23 +156,18 @@
 
                           <div class="row clearfix">
                             
-                            <div class="col-sm-3">
-                              <label for="birth_plc">Birth Place</label>
-                              <input type="text" class="form-control" [(ngModel)]="student.user_detail.birth_place"
-                                name="birth_plc" placeholder="Enter Your Birth Place" required>
-                            </div>
+                           
                             <div class="col-sm-3">
                               <label for="nationality">Nationality</label>
-                              <select class="form-control" [(ngModel)]="student.user_detail.nationality" name="nationality">
-                                <option value="Nepalese">Nepalese</option>
-                                <option value="Bhutanese">Butanese</option>
-                                <option value="Indians">Indians</option>
-                                <option value="Americans">Americans</option>
+                              <select class="form-control" [(ngModel)]="student.user.nationality" name="nationality">
+                                <option value="1">Nepalese</option>
+                                <option value="2">Indians</option>
+                                
                               </select>
                             </div>
                             <div class="col-sm-3">
                               <label for="religion">Religion</label>
-                              <select class="form-control" [(ngModel)]="student.user_detail.religion" name="religion">
+                              <select class="form-control" [(ngModel)]="student.user.religion" name="religion">
                                 <option value="1">Hindu</option>
                                 <option value="2">Muslim</option>
                               </select>
@@ -185,7 +187,7 @@
                             <div class="row clearfix">
                               <div class="col-sm-2">
                                 <label for="district">District</label>
-                                <select class="form-control" [(ngModel)]="student.address_detail.district" name="district">
+                                <select class="form-control" [(ngModel)]="student.address.district" name="district">
                                   <option value="1">Dang</option>
                                   <option value="2">Pyuthan</option>
                                   <option value="3">Kathmandu</option>
@@ -204,17 +206,17 @@
 
                               <div class="col-sm-2">
                                 <label for="city">City</label>
-                                <input type="text" class="form-control" [(ngModel)]="student.address_detail.city" name="city"
-                                  placeholder="" required>
+                                <input type="text" class="form-control" [(ngModel)]="student.address.city" name="city"
+                                  placeholder="eg. Ghorahi" required>
                               </div>
 
                               <div class="col-sm-2">
                                 <label for="province">Province</label>
-                                <input type="text" class="form-control" [(ngModel)]="student.address_detail.province" name="province" placeholder="" required>
+                                <input type="text" class="form-control" [(ngModel)]="student.address.province" name="province" placeholder="eg. State no. 5" required>
                               </div>
                               <div class="col-sm-3">
                                 <label for="address">Address</label>
-                                <input type="text" class="form-control" [(ngModel)]="student.address_detail.address"
+                                <input type="text" class="form-control" [(ngModel)]="student.address.address"
                                   name="address" placeholder="eg. Bharatpur" required>
                               </div>
                             </div>
@@ -222,7 +224,7 @@
                             <div class="row clearfix">
                               <div class="col-sm-3">
                                 <label for="phn">Contact Number</label>
-                                <input type="number" class="form-control" [(ngModel)]="student.phone_detail.number" name="phn" placeholder="Enter Contact Number"
+                                <input type="number" class="form-control" [(ngModel)]="student.phone.number" name="phn" placeholder="Enter Contact Number"
                                   maxlength="10" required>
                               </div>
 
@@ -232,7 +234,15 @@
                                   placeholder="Enter Email Address">
                               </div>
                             </div>
-                            <br>
+                            
+                            <div class="row clearfix">
+                              <div class="col-sm-6">
+                                <label for="current_address">Current Address</label>
+                                  <textarea rows="5" cols="10" type="text" class="form-control" [(ngModel)]="student.user.current_address" name="current_address">
+                                  </textarea>
+                              </div>
+                            </div>
+
                           </div>
                         
                       </div>
@@ -287,8 +297,7 @@
                               </div>
                               <div class="col-sm-2">
                                 <label for="mobile">Mobile</label>
-                                <input type="number" class="form-control" [(ngModel)]="student.mother.mobile" name="mobile" placeholder="Enter Contact Number"
-                                  required>
+                                <input type="number" class="form-control" [(ngModel)]="student.mother.mobile" name="mobile" placeholder="Enter Contact Number">
                               </div>
 
                               <div class="col-sm-2">

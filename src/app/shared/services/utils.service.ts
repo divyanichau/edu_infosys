@@ -91,6 +91,33 @@ export class UtilsService {
     });
   }
 
+  beforeRequest(): void {
+    this.start_progress();
+  }
+
+  afterRequest(): void {
+    this.stop_progress();
+  }
+
+
+  afterDelete(): void { 
+    this.stop_progress();
+    this.notify("success", 'Deleted');
+  
+  }
+
+  afterAdd(): void {
+    this.stop_progress();
+    this.notify("success", 'Added');
+  
+  }
+
+  afterError(error): void {
+    this.stop_progress();
+    this.notify("failed",error._body);
+  
+  }
+
   notify(action: string, msg: string): void {
     switch (action) {
       case 'success':

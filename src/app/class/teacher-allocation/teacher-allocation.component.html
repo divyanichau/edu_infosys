@@ -21,44 +21,46 @@
               <div class="panel-heading" >
                 <h4 class="panel-title">Add Class Teacher Allocation</h4>
               </div>
-              <br>
-
-<div class="row clearfix">
-       <div class="panel-body">
+              
+        
+              <div class="panel-body">
     
-            <div class="col-sm-10">
-                  <label for="course">Course</label>
-                  <select class="form-control"       
-                 [(ngModel)]="selected_course" name="name">
-                  <option *ngFor="let c of _course" [ngValue]="c.id">{{c.name}}</option>
-                  </select>
-            </div>
-          </div>
+                <div class="col-sm-10">
+                      <label for="course">Course</label>
+                      <select class="form-control"       
+                     [(ngModel)]="selected_course" name="name"  (ngModelChange)="onCourseChange($event)">
+                      <option *ngFor="let c of courses" [ngValue]="c.id">{{c.name}}</option>
+                      </select>
+                </div>
+          
+              <div class="col-sm-10">
+                    <label for="class">Class/Semester</label>
+                    <select class="form-control"       
+                   [(ngModel)]="selected_class" name="name"  (ngModelChange)="onClassChange($event)">
+                    <option *ngFor="let c of classes" [ngValue]="c.id">{{c.name}}</option>
+                    </select>
+              </div>
 
-           <div class="panel-body">   
-            <div class="col-sm-10">
-                  <label for="batch">Batch</label>
+              <div class="col-sm-10">
+                    <label for="section">Section</label>
+                    <select class="form-control"       
+                   [(ngModel)]="selected_section" name="name"  (ngModelChange)="onSectionChange($event)">
+                    <option *ngFor="let c of sections" [ngValue]="c.id">{{c.name}}</option>
+                    </select>
+              </div>
+          
+              <div class="col-sm-10">
+                  <label for="teacher">Class Teacher</label>
                   <select class="form-control"       
-                 [(ngModel)]="selected_batch" name="name">
-                  <option *ngFor="let c of _batch" [ngValue]="c.id">{{c.name}}</option>
+                 [(ngModel)]="selected_teacher" name="teacher">
+                  <option *ngFor="let c of teachers" [ngValue]="c.id">{{c.user.first_name}}</option>
                   </select>
-            </div>
-          </div>
-             
-               <div class="panel-body">   
-            <div class="col-sm-10">
-                  <label for="class_teacher">Class Teacher</label>
-                  <select class="form-control"       
-                 [(ngModel)]="selected_teacher" name="name">
-                  <option *ngFor="let c of _teacher" [ngValue]="c.id">{{c.user.first_name}}</option>
-                  </select>
-            </div>
-          </div>
-           </div>
-           
-              <div class="panel-body"> 
-          <div class="form-group">
-                  <button class="btn btn-primary btn-lg"  type="Submit"><b>Save</b></button>
+              </div>
+         
+              <div class="col-sm-10">
+                <div class="form-group">
+                        <button class="btn btn-primary m-t-15"  type="Submit"><b>Save</b></button>
+                </div>
               </div>
             </div>
           </div>

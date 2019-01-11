@@ -25,9 +25,13 @@
             "styles": [
              //"node_modules/ng2-toastr/bundles/ng2-toastr.umd.min.css",
               "src/styles.css",
+              "node_modules/nepali-date-picker/dist/nepaliDatePicker.min.css",
 
             ],
             "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/nepali-date-picker/dist/jquery.nepaliDatePicker.min.js",
+              "src/assets/js/admin.js"
              //"node_modules/ng2-toastr/bundles/ng2-toastr.umd.min.js",
             
                

@@ -11,7 +11,7 @@ import { Student } from '../classes/student';
 
 @Injectable()
 export class StudentService {
-  private _admissionUrl = `${new Config().api}/admission/student/`;
+  private _admissionUrl = `${new Config().api}/student/admission/`;
   private _studentUrl = `${new Config().api}/student/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
 
@@ -46,14 +46,14 @@ export class StudentService {
   }
 
   add(student: Student): Observable<Student> {
-    this.beforeRequest();
+    this._utils.beforeRequest();
     const body = JSON.stringify(student);
 
     return this._http.post(`${this._admissionUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
-      map((res: Response) => res.json().data),
+      map((res: Response) => res.json()),
       tap(
-      data => this.afterRequest(data),
-      error => { this.showError(error) }
+      data => this._utils.afterAdd(),
+      error => { this._utils.afterError(error) }
       ),);
   }
 

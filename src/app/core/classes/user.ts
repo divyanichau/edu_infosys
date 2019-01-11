@@ -6,4 +6,10 @@ export class User {
   gender: number;
   phone : number;
   type: number;
+  blood_group: string;
+  nationality: string;
+  mother_tongue: string;
+  religion: number;
+  citizenship_no: string;
+  date_of_birth:string;
 }

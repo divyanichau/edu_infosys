@@ -12,7 +12,7 @@ import { Section } from '../classes/section';
 
 @Injectable()
 export class SectionService {
-  private _sectionUrl = `${new Config().api}/section/`;
+  private _sectionUrl = `${new Config().api}/academic/class/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
   section = [];
   selectedClass = {};
@@ -25,86 +25,64 @@ export class SectionService {
   ) { }
 
    find(id: string): Observable<Section> {
-    //this.beforeRequest();
+    this._utils.beforeRequest();
 
    return this._http.get(`${this._sectionUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
       map((res: Response) => res.json()),
       tap(
-      data => this.afterGetRequest(),
-      error => { console.log(error); }
+     data => this._utils.afterRequest(),
+      error => { this._utils.afterError(error) }
       ),);
   }
 
-  get(): Observable<Section[]> {
-    this.beforeRequest();
+  get(class_id:number): Observable<Section[]> {
+    this._utils.beforeRequest();
     const options = this._utils.makeOptions(this._headers);
 
-    return this._http.get(`${this._sectionUrl}`, options).pipe(
+    return this._http.get(`${this._sectionUrl}${class_id}/section/`, options).pipe(
       map((res: Response) => res.json()),
       tap(
-      data => this.afterGetRequest(),
-      error => { console.log(error); }
+      data => this._utils.afterRequest(),
+      error => { this._utils.afterError(error) }
       ),);
   }
 
-  add(section: Section): Observable<Section> {
-    this.beforeRequest();
+  add(class_id:number, section: Section): Observable<Section> {
+    this._utils.beforeRequest();
     const body = JSON.stringify(section);
 
-    return this._http.post(`${this._sectionUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
-      map((res: Response) => res.json().data),
+    return this._http.post(`${this._sectionUrl}${class_id}/section/`, body, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json()),
       tap(
-      data => this.afterRequest(data),
-      error => { this.showError(error) }
+      data => this._utils.afterAdd(),
+      error => { this._utils.afterError(error) }
       ),);
   }
 
-  update(section: Section): Observable<Section> {
-    this.beforeRequest();
+  update(class_id:number, section: Section): Observable<Section> {
+    this._utils.beforeRequest();
     const body = JSON.stringify(section);
 
-    return this._http.put(`${this._sectionUrl}$section.{id}/`, body, this._utils.makeOptions(this._headers)).pipe(
-      map((res: Response) => res.json().data),
+    return this._http.put(`${this._sectionUrl}${class_id}/section/$(section.id)/`, body, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json()),
       tap(
-      data => this.afterRequest(data),
-      error => { this.showError(error) }
+      data => this._utils.afterRequest(),
+      error => { this._utils.afterError(error) }
       ),);
   }
 
-  delete(id: number): Observable<Section> {
-    this.beforeRequest();
-    //const body = JSON.stringify(section);
+  delete(class_id:number, id: number): Observable<Section> {
+    this._utils.beforeRequest();
 
-    return this._http.delete(`${this._sectionUrl}${id}/`,  this._utils.makeOptions(this._headers)).pipe(
-      map((res: Response) => res.json().data),
+    return this._http.delete(`${this._sectionUrl}${class_id}/section/${id}/`,  this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json()),
       tap(
-      //data => this.afterRequest(data),
-      error => { this.showError(error) }
+      data => this._utils.afterDelete(),
+      error => { this._utils.afterError(error) }
       ),);
   }
 
 
-  selectClass(val){
-   this.selectedClass = val
- }
- 
-
-  beforeRequest(): void {
-    this._utils.start_progress();
-
-  }
-
-  afterRequest(data: Section): void {
-    this._utils.stop_progress();
-  }
-
-  afterGetRequest(): void {
-    this._utils.stop_progress();
-  }
-
-  showError(error): void {
-    console.log(error);
-  }
 
 }
 

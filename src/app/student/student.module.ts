@@ -4,6 +4,8 @@ import { FormsModule }   from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgProgressModule } from '@ngx-progressbar/core';
 
+import { NgxTypeaheadModule } from 'ngx-typeahead';
+
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -37,6 +39,7 @@ import { DetailComponent } from './detail/detail.component';
       spinnerPosition: 'left',
       color: 'red'
     }),
+    NgxTypeaheadModule,
 
     StudentRoutingModule
   ],
