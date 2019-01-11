@@ -91,19 +91,7 @@ export class DueReportComponent implements OnInit {
     );
   }
 
-  onSubmit() {
-  	console.log("dsjfkf")
-    //console.log(this.selected_course);
-     //this.student.batch=this.selected_batch;
-    this._utils.unsubscribeSub(this._sub);
-   // console.log(this.subject)
-    this._sub = this._duereportService.addDueReport(this.due_report)
-      .subscribe(data => {
-     
-        this.toastr.success('due report!', 'Success',{timeOut: 3000});
 
-      });
-  }
 
   get_report(){
     this.duereport = true;

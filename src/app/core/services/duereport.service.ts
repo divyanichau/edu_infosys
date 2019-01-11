@@ -45,43 +45,7 @@ export class DueReportService {
       ),);
   }
 
-  addDueReport(duereport : DueReport): Observable<DueReport[]> {
-    this.beforeRequest();
-    const body = JSON.stringify(duereport);
-
-    return this._http.post(`${this._duereportUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
-      map((res: Response) => res.json().data),
-      tap(
-      data => this.afterRequest(data),
-      error => { this.showError(error) }
-      ),);
-  }
-
- update(StudentReport:DueReport): Observable<DueReport> {
-    this.beforeRequest();
-    const body = JSON.stringify(StudentReport);
-
-    return this._http.put(`${this._duereportUrl}$studentreport.{id}/`, body, this._utils.makeOptions(this._headers)).pipe(
-      map((res: Response) => res.json().data),
-      tap(
-      data => this.afterRequest(data),
-      error => { this.showError(error) }
-      ),);
-  }
-
-  delete(id: number): Observable<DueReport> {
-    this.beforeRequest();
-    //const body = JSON.stringify(studentreport);
-
-    return this._http.delete(`${this._duereportUrl}${id}/`,  this._utils.makeOptions(this._headers)).pipe(
-      map((res: Response) => res.json().data),
-      tap(
-      //data => this.afterRequest(data),
-      error => { this.showError(error) }
-      ),);
-  }
-
-
+  
   
   beforeRequest(): void {
     this._utils.start_progress();

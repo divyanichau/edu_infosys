@@ -10,7 +10,7 @@
         </ol>
 
         <div class="row ">
-          <form ngNativeValidate (ngSubmit)="onSubmit()" #studentForm="ngForm">
+          <form  Z>
             <div class="col-sm-12">
               <div class="card">
 
@@ -154,7 +154,7 @@
                 <div class="row clearfix">
                   <div class= "col-sm-2">
                  <div class="custom-control custom-checkbox">
-                 <input type="checkbox" class="custom-control-input" id="phonenumber">
+                 <input type="checkbox" class="custom-control-input" id="phonenumber"(click)="get_phonenumber()">
                  <label class="custom-control-label" for="phonenumber">Phone Number</label>
                 </div>
               </div>
@@ -166,14 +166,14 @@
               </div>
                <div class= "col-sm-2">
                 <div class="custom-control custom-checkbox">
-                 <input type="checkbox" class="custom-control-input" id="email">
+                 <input type="checkbox" class="custom-control-input" id="email"(click)="get_email()">
                  <label class="custom-control-label" for="email">Email</label>
                 </div>
               </div>
                
                <div class= "col-sm-2">
                 <div class="custom-control custom-checkbox">
-                 <input type="checkbox" class="custom-control-input" id="presentaddress">
+                 <input type="checkbox" class="custom-control-input" id="presentaddress"(click)="get_address()">
                  <label class="custom-control-label" for="presentaddress"> Present Address</label>
                 </div>
               </div>
@@ -337,7 +337,7 @@
                   </ng-template>
                 </ngx-datatable-column>
 
-                 <ngx-datatable-column name="Address" prop="address">
+                 <ngx-datatable-column name="Address" prop="address"*ngIf="!address== true">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                     <span
@@ -357,7 +357,7 @@
                   </ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="contact No" prop="contactno">
+                <!-- <ngx-datatable-column name="contact No" prop="contactno">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                     <span
@@ -375,9 +375,9 @@
                   />
 
                   </ng-template>
-                </ngx-datatable-column>
+                </ngx-datatable-column> -->
 
-                <ngx-datatable-column name="Contact No" prop="contactno">
+                <ngx-datatable-column name="Contact No" prop="contactno" *ngIf ="!phonenumber">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                     <span
@@ -418,7 +418,7 @@
                   </ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Email" prop="email">
+                <ngx-datatable-column name="Email" prop="email"*ngIf="!email">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>

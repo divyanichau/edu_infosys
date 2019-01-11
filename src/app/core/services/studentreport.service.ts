@@ -13,6 +13,7 @@ import { StudentReport } from '../classes/student-report';
 @Injectable()
 export class StudentReportService {
   private _studentreportUrl = `${new Config().api}/student/report/`;
+  
   private _headers = this._utils.makeHeaders({ withToken: true });
 
   constructor(
@@ -41,42 +42,6 @@ export class StudentReportService {
       tap(
       data => this.afterGetRequest(),
       error => { console.log(error); }
-      ),);
-  }
-
-  addStudentReport(studentreport : StudentReport): Observable<StudentReport[]> {
-    this.beforeRequest();
-    const body = JSON.stringify(studentreport);
-
-    return this._http.post(`${this._studentreportUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
-      map((res: Response) => res.json().data),
-      tap(
-      data => this.afterRequest(data),
-      error => { this.showError(error) }
-      ),);
-  }
-
- update(StudentReport:StudentReport): Observable<StudentReport> {
-    this.beforeRequest();
-    const body = JSON.stringify(StudentReport);
-
-    return this._http.put(`${this._studentreportUrl}$studentreport.{id}/`, body, this._utils.makeOptions(this._headers)).pipe(
-      map((res: Response) => res.json().data),
-      tap(
-      data => this.afterRequest(data),
-      error => { this.showError(error) }
-      ),);
-  }
-
-  delete(id: number): Observable<StudentReport> {
-    this.beforeRequest();
-    //const body = JSON.stringify(studentreport);
-
-    return this._http.delete(`${this._studentreportUrl}${id}/`,  this._utils.makeOptions(this._headers)).pipe(
-      map((res: Response) => res.json().data),
-      tap(
-      //data => this.afterRequest(data),
-      error => { this.showError(error) }
       ),);
   }
 

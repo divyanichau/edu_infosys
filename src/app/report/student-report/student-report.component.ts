@@ -20,14 +20,17 @@ import { StudentReportService } from '../../core/services/studentreport.service'
 export class StudentReportComponent implements OnInit , OnDestroy{
  private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
-	studentreport= false;
+  studentreport= false;
+  studentemail = false;
 	student_report : StudentReport = new StudentReport();
 	selected_student :number;
    batch: Batch[];
    selected_batch :number;
    default_detail_type={1:false , 2:false ,3:false , 4:false, 5:false, 6:false , 7:false, 8:false};
   detail_type=this.default_detail_type;
-
+  phonenumber :boolean = true;
+  email :boolean = true;
+  address : boolean= true;
 
   onChange(newValue) {
     this.reset_details_value();
@@ -47,7 +50,7 @@ export class StudentReportComponent implements OnInit , OnDestroy{
     this.detail_type[7]=false;
     this.detail_type[8]=false;
   }
-
+  
 
 
 
@@ -86,29 +89,31 @@ export class StudentReportComponent implements OnInit , OnDestroy{
     );
   }
 
-  onSubmit() {
-  	console.log("dsjfkf")
-    //console.log(this.selected_course);
-     //this.student.batch=this.selected_batch;
-    this._utils.unsubscribeSub(this._sub);
-   // console.log(this.subject)
-    this._sub = this._studentreportService.addStudentReport(this.student_report)
-      .subscribe(data => {
-     
-        this.toastr.success('student report!', 'Success',{timeOut: 3000});
-
-      });
-  }
+ 
 
 
    get_report(){
    	this.studentreport = true;
    		 // if(this.selected_student > 0){
   
-   		 // this.studentreport = true;
-   		 // }
+        // this.studentreport = true;
+        
+        // }
+       
     }
-
-
+     
+  
+    get_email(){
+      this.email = !this.email;
+         
+     }
+     get_phonenumber(){
+       this.phonenumber = !this.phonenumber;
+     }
+     get_address(){
+       this.address = !this.address;
+      
+     }
+    
 
 }
