@@ -23,6 +23,8 @@ export class DetailComponent implements OnInit, OnDestroy {
   private _typeSub: Subscription = undefined;
   student: Student = new Student();
 
+  fileToUpload: File = null;
+
   constructor(
     private _routes: ActivatedRoute,
     private _studentService: StudentService,
@@ -70,8 +72,16 @@ export class DetailComponent implements OnInit, OnDestroy {
     this._sub = this._studentService.update(this.student)
       .subscribe(data => {
         console.log(data);
-        alert('student added');
+        //alert('student added');
       });
+  }
+
+  uploadImage(files: FileList){
+    this.fileToUpload = files.item(0);
+    this._studentService.uploadImage(this.student.id.toString(), this.fileToUpload)
+      .subscribe(data => {
+        this.initStudent();
+      })
   }
 
 

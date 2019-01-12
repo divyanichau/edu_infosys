@@ -13,7 +13,7 @@
   <div class="row clearfix">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="card">
-        <div class="header">
+        <div class="header bg-blue">
           <h2>
             Admitted Students
           </h2>
@@ -51,18 +51,18 @@
                                 (keyup)='updateFilter($event)'
                               /> -->
               <ngx-datatable class="material" [rows]="rows" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
-                [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+                [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" >
 
-                <ngx-datatable-column name="ID" prop="id">
+                <!-- <ngx-datatable-column name="ID" prop="id">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
+                </ngx-datatable-column> -->
 
                 <!-- <ngx-datatable-column name="Name" prop="user.first_name">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column> -->
-                <ngx-datatable-column name="Name" prop="user.first_name">
+                <!-- <ngx-datatable-column name="Name" prop="user.first_name">
                   <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
                     <span
                       title="Double click to edit"
@@ -78,25 +78,57 @@
                       [value]="value"
                     />
                   </ng-template>
+                </ngx-datatable-column> -->
+
+                <ngx-datatable-column name="Image" prop="user">
+                  <ng-template let-value="value" ngx-datatable-cell-template>
+                    <img src="{{_utils.media_url}}/{{value.profile_pic}}" style="max-width: 50px; max-height: 50px;">
+                  </ng-template>
+                </ngx-datatable-column>
+                
+                <ngx-datatable-column name="Registration No." prop="registration_no">
+                  <ng-template let-value="value" ngx-datatable-cell-template>
+                    <strong>{{ value}}</strong>
+                  </ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Address" prop="address_detail.address">
+                <ngx-datatable-column name="Name" prop="user">
+                  <ng-template let-value="value" ngx-datatable-cell-template>
+                    <strong>{{ value.first_name }}  {{ value.last_name }} </strong>
+                  </ng-template>
+                </ngx-datatable-column>
+
+                
+
+                <ngx-datatable-column name="Course" prop="course_name">
+                  <ng-template let-value="value" ngx-datatable-cell-template>
+                    {{ value}}
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Class" prop="class_name">
+                  <ng-template let-value="value" ngx-datatable-cell-template>
+                    {{ value}}
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Address" prop="address">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value.address}}, {{value.city}}</ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Phone" prop="phone.number">
+                <ngx-datatable-column name="Phone" prop="user.phone">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
                 <ngx-datatable-column name="Actions" sortable="false" prop="id">
                   <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-                    Manage
+                    View
                   </ng-template>
                   <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                     <a class="glyphicon glyphicon-eye-open" title="" href="/student/detail/{{value}}"><img src="" alt=""></a>
-                    <a class="glyphicon glyphicon-trash left-icon" title="" href="/student/delete/{{value}}"><img src="" alt=""></a>
+                    <!-- <a class="glyphicon glyphicon-trash left-icon" title="" href="/student/delete/{{value}}"><img src="" alt=""></a> -->
                   </ng-template>
                 </ngx-datatable-column>
               </ngx-datatable>

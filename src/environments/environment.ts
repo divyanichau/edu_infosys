@@ -10,6 +10,9 @@ export const environment = {
  // api: 'http://192.168.1.87:8002/api',
 api: 'http://127.0.0.1:8000/api',
  // api: 'http://localhost:8000/api',
+ college: {
+ 	name: 'Mount View E.B.S'
+ },
   name,
   description,
   version

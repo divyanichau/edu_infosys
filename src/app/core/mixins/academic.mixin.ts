@@ -49,6 +49,10 @@ export class AcademicMixin {
 	    this._sub = this._courseService.get().subscribe(
 	      data => {
 	        isArray(data) ? this.courses = data : data;
+          if (this.courses.length > 0) {
+              this.selected_course = this.courses[0].id;
+              this.initClass();
+          }
 	      }
 	    );
 	  }
@@ -60,6 +64,10 @@ export class AcademicMixin {
 	    this._sub = this._classService.get(this.selected_course).subscribe(
 	      data => {
 	        isArray(data) ? this.classes = data : data;
+          if (this.classes.length > 0) {
+                this.selected_class = this.classes[0].id;
+                this.initSection();
+            }
 	        this.temp = [...this.classes];
 
 	      }
@@ -71,6 +79,10 @@ export class AcademicMixin {
       this._sub = this._sectionService.get(this.selected_class).subscribe(
       data => {
         isArray(data) ? this.sections = data : data;
+        if (this.sections.length > 0) {
+            this.selected_section = this.sections[0].id;
+            //this.initSubject(this.selected_section);
+        }
         this.temp = [...this.sections];
 
       }

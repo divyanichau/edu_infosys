@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { isUndefined } from 'lodash';
 import { ToastrService } from 'ngx-toastr';
 import { NgProgress, NgProgressRef } from '@ngx-progressbar/core';
+import { Config } from '../classes/app';
 
 
 declare var $: any;
@@ -19,6 +20,8 @@ export class UtilsService {
   //_notyf = new Notyf();
   _moment = moment;
   progressRef: NgProgressRef;
+  public media_url = `${new Config().api}/media`;
+  public config = new Config();
 
   constructor(
     //private translate: TranslateService,

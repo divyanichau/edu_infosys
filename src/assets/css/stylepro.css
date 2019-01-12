@@ -33,3 +33,32 @@
 .datatable-col-id {
     width:5px !important;
 }
+
+
+/* student pic */
+.thumb-slide {
+    overflow: hidden;
+}
+.thumb-rounded, .thumb-rounded img {
+    border-radius: 50%;
+}
+.thumb-rounded {
+    width: 60%;
+    margin: 20px auto 0 auto;
+}
+.thumb {
+    position: relative;
+    display: block;
+}
+
+.thumb img:not(.media-preview) {
+    display: inline-block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+.thumbnail .caption {
+    padding: 17px;
+    padding-top: 20px;
+}

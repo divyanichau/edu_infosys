@@ -12,4 +12,5 @@ export class User {
   religion: number;
   citizenship_no: string;
   date_of_birth:string;
+  profile_pic: string;
 }

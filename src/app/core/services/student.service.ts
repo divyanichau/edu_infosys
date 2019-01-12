@@ -45,6 +45,18 @@ export class StudentService {
       ),);
   }
 
+  getBySection(section_id): Observable<Student[]> {
+    this.beforeRequest();
+    const options = this._utils.makeOptions(this._headers);
+
+    return this._http.get(`${this._studentUrl}?section_id=${section_id}`, options).pipe(
+      map((res: Response) => res.json()),
+      tap(
+      data => this.afterGetRequest(),
+      error => { console.log(error); }
+      ),);
+  }
+
   add(student: Student): Observable<Student> {
     this._utils.beforeRequest();
     const body = JSON.stringify(student);
@@ -62,8 +74,23 @@ export class StudentService {
     this.beforeRequest();
     const body = JSON.stringify(student);
 
-    return this._http.put(`${this._studentUrl}$student.{id}/`, body, this._utils.makeOptions(this._headers)).pipe(
-      map((res: Response) => res.json().data),
+    return this._http.put(`${this._studentUrl}${student.id}/`, body, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json()),
+      tap(
+      data => this.afterRequest(data),
+      error => { this.showError(error) }
+      ),);
+  }
+
+  uploadImage(id:string, filetoUpload:File){
+    console.log(filetoUpload)
+    const formData: FormData = new FormData();
+    formData.append('file', filetoUpload, filetoUpload.name);
+    formData.append('student_id', id);
+    //console.log(formData)
+    this.beforeRequest();
+     return this._http.post(`${this._studentUrl}image`, formData).pipe(
+      map((res: Response) => res.json()),
       tap(
       data => this.afterRequest(data),
       error => { this.showError(error) }

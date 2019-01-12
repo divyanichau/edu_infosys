@@ -13,10 +13,13 @@ export class Student {
   admission_date: Date;
   status: string;
   user: User = new User();
-  phone: Phone = new Phone();
   address: Address = new Address();
   
   father: Gurdain = new Gurdain();
   mother: Gurdain = new Gurdain();
+
+  course_name: string;
+  class_name: string;
+  profile_pic: string;
 }
 

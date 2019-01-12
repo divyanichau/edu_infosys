@@ -12,7 +12,7 @@
           <form ngNativeValidate (ngSubmit)="onSubmit()" #studentForm="ngForm">
             <div class="col-sm-12">
               <div class="card">
-                <div class="header">
+                <div class="header bg-blue">
                   <h2>
                     <b>Student Id Card</b>
                   </h2>
@@ -20,20 +20,44 @@
                 <br>
                 <div class="panel-body">
                   <div class="row clearfix">
-                    <div class="col-sm-4">
-                      <label for="reg_input" class="req">Course* </label>
-                      <select class="form-control" [(ngModel)]="student.course" name="course" required>
-                        <option value="">Select Course</option>
-                        <option *ngFor="let c of courses" [ngValue]="c.id">{{c.name}}</option>
-                      </select>
+                        <div class="col-sm-2">
+                          <label for="course">Select Course</label>
+                          <select class="form-control"  (ngModelChange)="onCourseChange($event)" [(ngModel)]="selected_course" name="course" required>
+                          <option *ngFor="let c of courses" [ngValue]="c.id">{{c.name}}</option>
+                          </select>
+
+                        </div>
+
+                        <div class="col-sm-2">
+                              <label for="class">Select Class</label>
+                              <select class="form-control"       
+                             [(ngModel)]="selected_class" (ngModelChange)="onClassChange($event)"  name="class">
+                              <option *ngFor="let c of classes" [ngValue]="c.id">{{c.name}}</option>
+                              </select>
+                        </div>
+
+                        <div class="col-sm-2">
+                              <label for="section">Select Secton</label>
+                              <select class="form-control"       
+                             [(ngModel)]="selected_section" (ngModelChange)="loadSectionStudent($event)" name="section">
+                              <option *ngFor="let c of sections" [ngValue]="c.id">{{c.name}}</option>
+                              </select>
+                        </div>
+
+
                     </div>
 
-                    <div class="col-sm-4">
-                      <label for="reg_input" class="req">Batch*</label>
-                      <select class="form-control" [(ngModel)]="student.batch" name="batch" required>
-                        <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option>
-                      </select>
-                    </div>
+
+                  <div class="row clearfix">
+
+                    <div class="col-sm-2">
+                              <label for="section">Select Student</label>
+                              <select class="form-control"       
+                             [(ngModel)]="selected_student" (ngModelChange)="selectStudent($event)" name="student">
+                              <option *ngFor="let c of students" [ngValue]="c.id">{{c.user.first_name}} {{c.user.last_name}}</option>
+                              </select>
+                        </div>
+                    
 
                     <div class="col-sm-4" id="type">
                       <label for="reg_input" class="req">Id Type*</label>
@@ -70,16 +94,17 @@
                             <div id="holder1">
                               <div class="box1">
                                 <div class="tie1">
-                                  <h1>Demo School</h1>
+                                  <h1>{{_utils.config.college.name}}</h1>
                                   <img src="/../assets/images/01062018114152.png" alt="">
                                 </div>
 
                                 <h1 class="id"><b>STUDENT ID CARD</b></h1>
-                                <img src="/../assets/images/user.jpg" alt="">
-                                <p class="rname" style="margin-left: 48px !important;"> NAME:John Bobby&nbsp;&nbsp;</p>
-                                <p class="postitle"> COURSE:STD I 16th
-                                  Batch&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                                <p class="postitle"> DOB:2010-07-07</p><br>
+                                <img src="{{_utils.media_url}}/{{student.user.profile_pic}}" alt="">
+                                <p class="rname" style="margin-left: 48px !important;"> NAME:{{student.user.first_name}} {{student.user.last_name}}&nbsp;&nbsp;</p>
+                                <p class="postitle"> COURSE:STD {{student.course_name}} {{student.class_name}}
+                                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                               
+                                <p class="postitle"> DOB:{{student.user.date_of_birth}}</p><br>
                               </div>
                             </div>
                           </div>

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -11,11 +10,7 @@ export class AppComponent {
   title = 'app';
 
   constructor(
-    private toastr: ToastrService
-    ) {
-  		this.toastr.info('Welcome to EduInfoSys!', 'BTech',
-    	{timeOut: 4000});
-     }
+    ) {}
 
 
 }
