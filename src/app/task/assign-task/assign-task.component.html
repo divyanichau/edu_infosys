@@ -1,7 +1,7 @@
 <div class="body">
   <div class="content-wrapper">
     <form ngNativeValidate (ngSubmit)="OnSubmitTask()" #taskForm="ngForm">
-      <div class="col-sm-6">
+      <div class="col-sm-12">
         <div class="panel panel-primary">
           <div class="panel-heading">
               <h4 class="panel-title">Assign  Task</h4>
@@ -9,19 +9,21 @@
         </div>
        <div class="body">
           <div class="row clearfix">
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <label for="task-name">Task Name</label>
-                  <input type="text" class="form-control" [(ngModel)]="_task.name" name="task-name"  placeholder="Enter Task Name" required>
+                  <input type="text" class="form-control" [(ngModel)]="task.name" name="task-name"  placeholder="Enter Task Name" required>
            </div>
    
-            <div class="col-md-6">
+            <div class="col-md-12 form-top-margin">
                    <label for="description">Description</label>
-                     <input type="text" class="form-control" [(ngModel)]="_task.description" name="description"  minlength="8" placeholder="Enter description" required>
+                     <input type="text" class="form-control" [(ngModel)]="task.description" name="description"  minlength="8" placeholder="Enter description" required>
                </div>
+             </div>
 
-           <div class="col-md-6 form-top-margin ">
+        <div class="row clearfix">
+           <div class="col-md-12 form-top-margin ">
                <label for="reg_input_name">Priority</label>
-                    <select class="form-control" [(ngModel)]="_task.priority"  name="Taskmanager[task_priority]" id="Taskmanager_task_priority">
+                    <select class="form-control" [(ngModel)]="task.priority"  name="Taskmanager[task_priority]" id="Taskmanager_task_priority">
                       <option value="">Please Select</option>
                       <option value="1">Highest Priority</option>
                       <option value="2">High Priority</option>
@@ -30,13 +32,15 @@
                      </select>
                </div>
         
-            <div class="col-md-6 form-top-margin">
+            <div class="col-md-12 form-top-margin">
                 <label for="task_date">Task Date</label>
-                 <input type="date" class="form-control" [(ngModel)]="_task.task_date"  name="task_date"   placeholder="" required>
+                 <input type="date" class="form-control" [(ngModel)]="task.task_date"  name="task_date"   placeholder="" required>
                  
             </div>
-         
-              <div class="col-md-6 form-top-margin">
+          </div>
+
+          <div class="row clearfix">
+              <div class="col-md-12 form-top-margin">
                 <label for="user_type">User type</label>
                     <select class="form-control" (change)="onChange($event.target.value)" name="user_type">
                         <option value="1">Select Type</option>
@@ -44,35 +48,36 @@
                        <option value="3">Employee</option>
                   </select> 
               </div>
-
-            <div class="col-md-6 form-top-margin"   *ngIf="detail_type[2]">   
-               <label for="student_id">Course</label>
-                  <select class="form-control"       
-                 [(ngModel)]="selected_course" name="id">
-                  <option *ngFor="let c of _course" [ngValue]="c.id">{{c.name}}</option>
-                  </select>
+          </div>
+         <div class="row clearfix" *ngIf="detail_type[2]">
+            <div class="col-md-12 form-top-margin"   >   
+               <label for="reg_input" class="req">Course* </label>
+                      <select class="form-control" [(ngModel)]="selected_course" name="course" required>
+                        <option *ngFor="let c of courses" [ngValue]="c.id">{{c.name}}</option>
+                      </select>
             </div>
 
-            <div class="col-md-6 form-top-margin">
-                  <label for="student_id">Batch</label>
-                  <select class="form-control"       
-                 [(ngModel)]="selected_batch" name="id">
-                  <option *ngFor="let c of _batch" [ngValue]="c.id">{{c.name}}</option>
-                  </select>
+            <div class="col-md-12 form-top-margin">
+              <label for="reg_input" class="req">Batch*</label>
+                <select class="form-control" [(ngModel)]="selected_batch" name="batch" required>
+                    <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option>
+                      </select>
             </div>
 
-            <div class="col-md-6 form-top-margin">
+            <div class="col-md-12 form-top-margin">
                    <label for="student_id">Student</label>
                   <select class="form-control"       
                  [(ngModel)]="selected_student" name="id">
-                  <option *ngFor="let c of _student" [ngValue]="c.id">{{c.user.first_name}}</option>
+                  <option *ngFor="let s of student" [ngValue]="s.id">{{s.user.first_name}}</option>
                   </select>
             </div>
+          </div>
          
-            <div class="col-md-6 form-top-margin">
+          <div class="row clearfix">
+            <div class="col-md-12 form-top-margin">
                 <label for="status">Status</label>
-                  <select class="form-control" [(ngModel)]="_task.status" name="status" id="Taskmanager_task_status">
-                     <option value="">Please Select</option>
+                  <select class="form-control" [(ngModel)]="task.status" name="status" id="Taskmanager_task_status">
+                     <option value>Please Select</option>
                      <option value="1">Open</option>
                      <option value="2">On hold</option>
                      <option value="3">Resolved</option>

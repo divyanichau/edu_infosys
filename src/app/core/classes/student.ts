@@ -18,6 +18,8 @@ export class Student {
   phone_detail: Phone = new Phone();
   address_detail: Address = new Address();
   registration_no: number;
+
+
   
   description: string;
   father: Gurdain = new Gurdain();

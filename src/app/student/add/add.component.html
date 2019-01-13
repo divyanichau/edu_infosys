@@ -29,6 +29,13 @@
 
                       <div class="row clearfix">
 
+                      <div class="col-sm-2">
+                          <label for="reg_no"> Type</label>
+                          <input type="text" class="form-control" [(ngModel)]="student.user.type" name="reg_no"
+                            placeholder="" required>
+                        </div>
+
+
                         <div class="col-sm-2">
                           <label for="batch">Batch</label>
                           <select class="form-control" name="batch" [(ngModel)]="student.batch" #batch="ngModel" required="">
@@ -118,9 +125,14 @@
                           <div class="row clearfix">
                             <div class="col-sm-3">
                               <label for="date">Date of Birth</label>
-                              <input type="date" class="form-control" [(ngModel)]="student.user_detail.date_of_birth" name="date" placeholder=""
-                                required>
+                              <input type="date" class="form-control" [(ngModel)]="student.user_detail.date_of_birth" name="date" placeholder="" required>
                             </div>
+
+                          <div class="col-sm-3">
+                              <label for="mother_tongue">Mother Tongue</label>
+                              <input type="text" class="form-control" [(ngModel)]="student.user_detail.mother_tongue" name="mother_tongue" placeholder="" required>
+                            </div>
+
                             <div class="col-sm-3">
                               <label for="gender">Gender</label>
                               <select class="form-control" [(ngModel)]="student.user.gender"  name="gender" >

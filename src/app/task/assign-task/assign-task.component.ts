@@ -31,10 +31,10 @@ export class AssignTaskComponent implements OnInit {
 
     detail_type = this.default_detail_type;
 
-    _task : Task = new Task() ;
-    _tasks: Task[];
+    task : Task = new Task() ;
+    tasks: Task[];
     student: Student[];
-    course: Course[];
+    courses: Course[];
     batch: Batch[];
 
     selected_student: number;
@@ -62,10 +62,10 @@ export class AssignTaskComponent implements OnInit {
  @ViewChild(DatatableComponent) table: DatatableComponent;
 
   constructor(
-    private _taskService: TaskService,
-    private studentService: StudentService,
-    private courseService: CourseService,
-    private batchService: BatchService,
+    private taskService: TaskService,
+    private _studentService: StudentService,
+    private _courseService: CourseService,
+    private _batchService: BatchService,
    	private _utils: UtilsService,
     private router: Router,
     private toastr: ToastrService
@@ -75,8 +75,9 @@ export class AssignTaskComponent implements OnInit {
   ngOnInit() {
   	this.reset_details_value();
     this.detail_type[1]= true; 
+
   	this.initTask();
-  	this.loadCourse();
+    this.loadCourses();
   }
 
   ngOnDestroy() {
@@ -85,47 +86,57 @@ export class AssignTaskComponent implements OnInit {
 
  OnSubmitTask() {
       console.log("gfgf",this.selected_task);
+      //console.log(this.selected_course);
+    this.task.batch=this.selected_batch;
+    this.task.course=this.selected_course
+    this.task.student=this.selected_student;
     this._utils.unsubscribeSub(this._sub);
-   console.log("fcrcr",this._task)
-    this._sub = this._taskService.add(this._task)
+    console.log(this.task)
+    this._sub = this.taskService.add(this.task)
       .subscribe(data => {
-        //console.log(data);
          this.toastr.success('Assign  Task !', 'Success',{timeOut: 3000});
-
+        
       });
   }
 
-  loadCourse() {
+  loadCourses() {
     this._utils.unsubscribeSub(this._sub);
-    this._sub = this.courseService.get().subscribe(
+    this._sub = this._courseService.get().subscribe(
       data => {
-        isArray(data) ? this.course = data : data;
-        console.log(this.course);
-        this.selected_course = this.course[0].id;
-         this.loadBatch();
+        isArray(data) ? this.courses = data : data;
+        this.loadBatch();
+
+         if(this.courses.length > 0){
+          this.selected_course = this.courses[0].id;
+        }
       }
     );
   }
 
-  loadBatch() {
+
+ loadBatch() {
     this._utils.unsubscribeSub(this._sub);
-    this._sub = this.batchService.get().subscribe(
+    this._sub = this._batchService.get().subscribe(
       data => {
         isArray(data) ? this.batch = data : data;
-        console.log(this.batch);
-        this.selected_batch = this.batch[0].id;
-       this.loadStudent();
+          this.loadStudent();
+
+        if(this.batch.length > 0){
+         this.selected_batch = this.batch[0].id;
+        }
       }
     );
   }
-   
+
   loadStudent() {
     this._utils.unsubscribeSub(this._sub);
-    this._sub = this.studentService.get().subscribe(
+    this._sub = this._studentService.get().subscribe(
       data => {
         isArray(data) ? this.student = data : data;
         console.log(this.student);
-        this.selected_student = this.student[0].id;
+         if(this.batch.length > 0){
+       //  this.selected_student = this.student[0].id;
+      }
          
       }
     );
@@ -134,16 +145,16 @@ export class AssignTaskComponent implements OnInit {
 
   initTask() {
     this._utils.unsubscribeSub(this._typeSub);
-      this._sub = this._taskService.get().subscribe(
+      this._sub = this.taskService.get().subscribe(
       data => {
          console.log("hfw",data)
-        isArray(data) ? this._tasks = data : data;
-        this.rows = this._tasks;
-        this.temp = [...this._tasks];
+        isArray(data) ? this.tasks = data : data;
+        this.rows = this.tasks;
+        this.temp = [...this.tasks];
       }
       
     );
-    this._task= new Task();
+    this.task= new Task();
 
   }
 

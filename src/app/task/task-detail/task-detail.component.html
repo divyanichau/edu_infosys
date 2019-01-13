@@ -1,0 +1,105 @@
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  <div class="header">
+    <div class="page-header">
+      <ol class="breadcrumb breadcrumb">
+        <li><a href=""><i class="material-icons">home</i> Home</a></li>
+        <li><a href="javascript:void(0);">Task Manager</a></li>
+        <li><a href="javascript:void(0);">Task Details</a></li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Exportable Table -->
+  <div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+        <div class="header">
+          <h2>
+            Assign Task 
+          </h2>
+          <ul class="header-dropdown m-r--5">
+            <li class="dropdown">
+              <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                aria-expanded="false">
+                <i class="material-icons">more_vert</i>
+              </a>
+              <ul class="dropdown-menu pull-right">
+                <li><a href="javascript:void(0);">Action</a></li>
+                <li><a href="javascript:void(0);">Another action</a></li>
+                <li><a href="javascript:void(0);">Something else here</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="body">
+          <div class="table-responsive">
+            <div>
+              <div class="row">
+                <label class="control-label col-sm-1">Search Task</label>
+                <div class="col-xs-6 col-md-4">
+                  <div class="input-group">
+                    <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter Name" id="txtSearch" />
+                    <div class="input-group-btn">
+                      <button class="btn btn-primary" type="submit">
+                        <span class="glyphicon glyphicon-search"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             
+              <ngx-datatable class="material" [rows]="rows" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+                [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+
+                <ngx-datatable-column name="ID" prop="id">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Name" prop="task.name">
+                  <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                    <span
+                      title="Double click to edit"
+                      (dblclick)="editing[rowIndex + '-name'] = true"
+                      *ngIf="!editing[rowIndex + '-name']">
+                      {{value}}
+                    </span>
+                    <input
+                      autofocus
+                      (blur)="updateValue($event, 'name', rowIndex)"
+                      *ngIf="editing[rowIndex+ '-name']"
+                      type="text"
+                      [value]="value"
+                    />
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Priority" prop="task.priority">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Task Date" prop="task.task_date">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Actions" sortable="false" prop="id">
+                  <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                    Manage
+                  </ng-template>
+                  <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+
+                    <a class="glyphicon glyphicon-eye-open btn btn-primary" style="margin-left:-5px;" title="" href="/task/edit_task/{{value}}"><img src="" alt=""></a>
+
+                      <button class="glyphicon glyphicon-trash left-icon btn btn-danger" style="margin-left:2px;" (click)="taskDelete(value)"></button>
+                  </ng-template>
+                </ngx-datatable-column>
+              </ngx-datatable>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
