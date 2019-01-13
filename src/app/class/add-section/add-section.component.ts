@@ -28,6 +28,7 @@ export class AddSectionComponent implements OnInit , OnDestroy{
   _section = [];
 
   section : Section = new Section();
+  
   _classes: _class[];
   selected_class: number;
 

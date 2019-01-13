@@ -7,19 +7,19 @@ import { isArray ,isObject} from 'lodash';
 
 import { UtilsService } from '../../../shared/services/utils.service';
 import { LibraryService } from '../../../core/services/library.service';
-import { BookCategory } from '../../../core/classes/bookcategory';
+import { AddBook } from '../../../core/classes/addbook';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-detail',
-  templateUrl: './detail.component.html',
+  selector: 'app-edit-book',
+  templateUrl: './edit-book.component.html',
 
 })
-export class DetailComponent implements OnInit {
+export class EditBookComponent implements OnInit {
   private _sub: Subscription = undefined;
    id: string;
-   obj_category : BookCategory = new BookCategory();
-  selected_category: number;
+   add_book : AddBook = new AddBook();
+  selected_book: number;
 
   constructor(
     private _libraryService: LibraryService,
@@ -31,10 +31,10 @@ export class DetailComponent implements OnInit {
 
 
   ngOnInit() {
-   this.initDetail();
+   this.initEdit();
    
   }
-  initDetail(){
+  initEdit(){
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._routes.paramMap.pipe(
       switchMap((params: ParamMap) => {
@@ -43,19 +43,21 @@ export class DetailComponent implements OnInit {
       }))
       .subscribe(data => {
         if (isObject(data)) {
-          this.obj_category = data;
-         console.log("echeduled Exam",this.obj_category);
+         console.log("vhgv",data);
+         //this.add_book = data;
+        console.log("Edit Book",this.add_book);
         }
       });
   }
 
  
-  onSubmitUpdate(){
+  onSubmitEditUpdate(){
+    console.log(this.id);
     this._utils.unsubscribeSub(this._sub);
-    this._sub = this._libraryService.updateCategory(this.obj_category,this.id).subscribe(
+    this._sub = this._libraryService.updateBook(this.add_book,this.id).subscribe(
       data => {
         //console.log("Updated Data",data);
-        this._router.navigate(['library/add-category']);
+        this._router.navigate(['library/add-book']);
 
       }
     );

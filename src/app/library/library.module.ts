@@ -15,6 +15,7 @@ import { LibraryRoutingModule } from './library-routing.module';
 import { LibraryComponent } from './library.component';
 
 import { AddBookComponent} from './add-book/add-book.component';
+import { EditBookComponent} from './add-book/edit-book/edit-book.component';
 import { AddCategoryComponent} from './add-category/add-category.component';
 import { IssueBookComponent} from './issue-book/issue-book.component';
 import { BookReturnComponent} from './book-return/book-return.component';
@@ -33,6 +34,6 @@ import { ReportComponent} from './report/report.component';
     LibraryRoutingModule
   ],
   providers: [LibraryService, ClassService, CourseService, BatchService, StudentService, UtilsService],
-  declarations: [LibraryComponent, ReportComponent, AddBookComponent, DetailComponent, AddCategoryComponent, BookReturnComponent, IssueBookComponent]
+  declarations: [LibraryComponent, ReportComponent, AddBookComponent, EditBookComponent, DetailComponent, AddCategoryComponent, BookReturnComponent, IssueBookComponent]
 })
 export class LibraryModule { }

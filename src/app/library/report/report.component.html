@@ -21,7 +21,7 @@
                     <div class="panel-body">  
             <div class="col-sm-3">
             <label for="user_type">Report For</label>
-    <select class="form-control" (change)="onChange($event.target.value)" name="user_type">
+    <select class="form-control" (change)="onChange($event.target.value)" name="user_type" required>
 <option value="1">Select Type</option>
 <option value="2">Available</option>
 <option value="3">Issued Book</option>
@@ -35,7 +35,7 @@
 
             <div class="col-sm-3" *ngIf="detail_type[3]">
                   <label for="user_type">Report type</label>
-    <select class="form-control" (change)="onChange($event.target.value)" name="user_type">
+    <select class="form-control" (change)="onChange($event.target.value)" name="user_type" required>
 <option value="8">Select Type</option>
 <option value="9">Date Wise</option>
 <option value="10">Batch Wise</option>
@@ -74,7 +74,7 @@
 
              <div class="col-sm-3" *ngIf="detail_type[5]">
                   <label for="user_type">Conditions</label>
-    <select class="form-control" (change)="onChange($event.target.value)" name="user_type">
+    <select class="form-control" (change)="onChange($event.target.value)" name="user_type" required>
 <option value="11">Select Options</option>
 <option value="12">As New</option>
 <option value="13">Fine</option>
@@ -91,7 +91,7 @@
              <div class="row clearfix" *ngIf="detail_type[6]">
              <div class="col-sm-3">
               <label for="section_name">Select</label>
-    <select class="form-control" (change)="onChange($event.target.value)" name="user_type">
+    <select class="form-control" (change)="onChange($event.target.value)" name="user_type" required>
 <option value="20">Select Options</option>
 <option value="21">Issued Report</option>
 <option value="22">Returned Report</option>

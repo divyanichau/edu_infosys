@@ -11,7 +11,7 @@
             </ol> 
             <br>
 
-  <form (ngSubmit)="onSubmit()" #libraryForm="ngForm">
+  <form ngNativeValidate (ngSubmit)="onSubmit()" #libraryForm="ngForm">
     
    <div class="row">
         <div class="col-sm-6">
@@ -29,7 +29,7 @@
                                             ngxTypeahead
                                             [taUrl]="url"
                                             [taParams]="params"
-                                            (taSelected)="handleResultSelected($event)">
+                                            (taSelected)="handleResultSelected($event)" required>
 
                <input id="hidden-field" name="output" type="hidden" value="">  </div>
 
@@ -44,7 +44,7 @@
   <div class="panel-body">
  <div class="row-clearfix">
              <label for="reg_input_name">Return / Renewal</label>
-<select class="form-control" (change)="onChange($event.target.value)" name="return" [(ngModel)]="_return.return">
+<select class="form-control" (change)="onChange($event.target.value)" name="return" [(ngModel)]="_return.return" required>
 <option value="1">Select Option</option>
 <option value="2">Return</option>
 <option value="3">Renewal</option>
@@ -53,28 +53,28 @@
 
 <div class="row clearfix" *ngIf="book_return[2]">
     <div class="panel-body">  
-                  <label for="name">Return Date</label>
-                <input type="text" class="form-control" [(ngModel)]="_return.return_date" name="return_date"  size="84" maxlength="45" placeholder="Enter Category Name " required>
+                  <label for="return_date">Return Date</label>
+                <input type="date" class="form-control" [(ngModel)]="_return.return_date" name="return_date"  size="84" maxlength="45" placeholder="Enter Return Date " required>
             </div>
 
             <div class="panel-body">
-                  <label for="name">Fine Amount</label>
-                <input type="text" class="form-control" [(ngModel)]="_return.fine_amount" name="amount"  size="84" maxlength="45" placeholder="Enter Category Name " required>
+                  <label for="amount">Fine Amount</label>
+                <input type="text" class="form-control" [(ngModel)]="_return.fine_amount" name="amount"  size="84" maxlength="45" placeholder="Enter Amount " required>
             </div>
 
             <div class="panel-body">   
-                  <label for="name">Remark</label>
+                  <label for="remark">Remark</label>
                 <input type="text" class="form-control" [(ngModel)]="_return.remark" name="remark"  size="84" maxlength="45" placeholder="Enter Category Name " required>
             </div>
           </div>
 
          <div class="row clearfix" *ngIf="book_return[3]">
           <div class="panel-body">                                                   
-       <input class="form-control" placeholder="Enter days" [(ngModel)]="_return.day" id="days" type="text" name="days">
+       <input class="form-control" placeholder="Enter days" [(ngModel)]="_return.day" id="days" type="text" name="days" required>
         </div>
        <div class="panel-body">
-                  <label for="name">Due Date</label>
-                <input type="date" class="form-control" [(ngModel)]="_return.due_date" name="name"  size="84" maxlength="45" placeholder="Enter Category Name " required>
+                  <label for="due_date">Due Date</label>
+                <input type="date" class="form-control" [(ngModel)]="_return.due_date" name="name"  size="84" maxlength="45" placeholder="Enter Due Date" required>
             </div>
             </div>
           
@@ -115,21 +115,14 @@
                   </div>
                 </div>
               </div>
-              <!-- <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='search with name'
-                                (keyup)='updagitteFilter($event)'
-                              /> -->
-              <ngx-datatable class="material" [rows]="library" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+             
+              <ngx-datatable class="material" [rows]="_library" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
                 [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
 
                 <ngx-datatable-column name="ID" prop="id">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
-
-                <!-- <ngx-datatable-column name="Name" prop="user.first_name">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column> -->
 
 
                 <ngx-datatable-column name="User" prop="user">
@@ -149,7 +142,7 @@
                 </ngx-datatable-column>
 
 
-                <ngx-datatable-column name="Book No." prop="Book_no">
+                <ngx-datatable-column name="Book No." prop="book_no">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
@@ -160,9 +153,7 @@
                     Manage
                   </ng-template>
                   <ng-template let-row="library" let-value="value" ngx-datatable-cell-template>
-                    <a class="glyphicon glyphicon-eye-open" title="" href="/library/add-category/detail/{{value}}"><img src="" alt=""></a>
-                    
-                    <button class="glyphicon glyphicon-trash left-icon btn btn-danger" style="margin-left:35px;" (click)="categoryDelete(value)"></button>
+                    <a class="glyphicon glyphicon-eye-open" title="" href="/library/book-return/return-detail/{{value}}"><img src="" alt=""></a>
                   </ng-template>
                 </ngx-datatable-column>
               </ngx-datatable>

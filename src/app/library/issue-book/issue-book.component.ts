@@ -46,7 +46,7 @@ obj_book : IssueBook = new IssueBook();
 
  _issued_books : IssueBook[];
 
-selected_user :number;
+   // selected_user :number;
 
  onChange(newValue) {
     this.reset_details_value();

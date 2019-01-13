@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 import { UtilsService } from '../../shared/services/utils.service';
 import { Config } from '../../shared/classes/app';
@@ -27,7 +28,8 @@ export class LibraryService {
   constructor(
     private _utils: UtilsService,
     private _http: Http,
-    private _router: Router
+    private _router: Router,
+    private toastr:ToastrService
   ) { }
 
    find(id: string): Observable<BookCategory> {
@@ -60,7 +62,7 @@ export class LibraryService {
     return this._http.post(`${this._addcategoryUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
       map((res: Response) => res.json().data),
       tap(
-      data => this.afterRequest(data),
+      data => this.afterRequest(),
       error => { console.log(error); }
       ),);
   }
@@ -81,12 +83,12 @@ export class LibraryService {
   addBook(library: AddBook): Observable<AddBook> {
     this.beforeRequest();
     const body = JSON.stringify(library);
-    console.log(body)
+    console.log("jasondata",body)
 
     return this._http.post(`${this._addbookUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
-      map((res: Response) => res.json().data),
+      map((res: Response) => res.json()),
       tap(
-      data => this.afterRequest(data),
+      data => this.afterRequest(),
       error => { console.log(error); }
       ),);
   }
@@ -112,7 +114,7 @@ export class LibraryService {
     return this._http.post(`${this._issuebookUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
       map((res: Response) => res.json().data),
       tap(
-      data => this.afterRequest(data),
+      data => this.afterRequest(),
       error => { console.log(error); }
       ),);
   }
@@ -134,11 +136,10 @@ export class LibraryService {
     this.beforeRequest();
     const body = JSON.stringify(library);
     console.log(body)
-
     return this._http.post(`${this._bookreturnUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
       map((res: Response) => res.json().data),
       tap(
-      data => this.afterRequest(data),
+      data => this.afterRequest(),
       error => { console.log(error); }
       ),);
   }
@@ -163,28 +164,37 @@ export class LibraryService {
     return this._http.post(`${this._reportUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
       map((res: Response) => res.json().data),
       tap(
-      data => this.afterRequest(data),
+      data => this.afterRequest(),
       error => { console.log(error); }
       ),);
   }
 
 
-   update(library : BookCategory,id:string): Observable<BookCategory> {
+   updateCategory(library : BookCategory,id:string): Observable<BookCategory> {
     console.log("Uhshsd",library);
     this.beforeRequest();
     const body = JSON.stringify(library);
-   
-
     return this._http.put(`${this._addcategoryUrl}${id}/`, body, this._utils.makeOptions(this._headers)).pipe(
       map((res: Response) => res.json().data),
       tap(
-      data => this.afterUpdateRequest(data),
+      data => this.afterUpdateRequest(),
       error => { this.showError(error) }
       ),);
      
   }
 
-
+updateBook(library : AddBook,id:string): Observable<AddBook> {
+    console.log("Uhshsd",library);
+    this.beforeRequest();
+    const body = JSON.stringify(library);
+    return this._http.put(`${this._addbookUrl}${id}/`, body, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json().data),
+      tap(
+      data => this.afterUpdateRequest(),
+      error => { this.showError(error) }
+      ),);
+     
+  }
 
    delete(id: number): Observable<BookCategory> {
     this.beforeRequest();
@@ -204,7 +214,7 @@ export class LibraryService {
     this._utils.start_progress();
   }
 
-  afterRequest(data : AddBook): void {
+  afterRequest(): void {
     this._utils.stop_progress();
   }
 
@@ -218,7 +228,7 @@ export class LibraryService {
   }
 
 
-   afterUpdateRequest(data: BookCategory): void {
+   afterUpdateRequest(): void {
      
     this._utils.stop_progress();
      this._utils.notify("success","Exam Term Updated!");

@@ -21,7 +21,7 @@ export class BookReturnComponent implements OnInit , OnDestroy{
   private _typeSub: Subscription = undefined;
 
   _return : BookReturn = new BookReturn();
-  library : BookReturn[];
+  _library : BookReturn[];
   //selected_category: number;
 
   default_book_return = {1:false, 2:false, 3:false};
@@ -79,22 +79,19 @@ export class BookReturnComponent implements OnInit , OnDestroy{
     console.log(this._return);
     this._sub = this._libraryService.addReturn(this._return)
       .subscribe(data => {
-        console.log(data);
+        //console.log(data);
             this.toastr.success('Book Category Added !', 'Success',{timeOut: 3000});
       });
   }
-
-  
-
-  
+ 
 
   initReturnBook() {
     this._utils.unsubscribeSub(this._typeSub);
     this._sub = this._libraryService.getReturn().subscribe(
       data => {
-        isArray(data) ? this.library = data : data;
-        this.rows = this.library;
-        this.temp = [...this.library];
+        isArray(data) ? this._library = data : data;
+        this.rows = this._library;
+        this.temp = [...this._library];
 
       }
     );
