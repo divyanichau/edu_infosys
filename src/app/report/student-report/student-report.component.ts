@@ -31,7 +31,9 @@ export class StudentReportComponent implements OnInit , OnDestroy{
   phonenumber :boolean = true;
   email :boolean = true;
   address : boolean= true;
-
+  gurdiandetail:boolean = true;
+  parentsdetail:boolean = true;
+  amount:boolean = true;
   onChange(newValue) {
     this.reset_details_value();
 
@@ -114,6 +116,16 @@ export class StudentReportComponent implements OnInit , OnDestroy{
        this.address = !this.address;
       
      }
+     get_gurdiandetail(){
+       this.gurdiandetail = !this.gurdiandetail;
+     }
+
+     get_parentsdetail(){
+       this.parentsdetail =!this.parentsdetail;
+     }
+     get_feesdetail(){
+      this.amount =!this.amount;
+    }
     
 
 }

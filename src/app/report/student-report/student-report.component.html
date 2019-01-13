@@ -180,14 +180,14 @@
 
               <div class= "col-sm-2">
                 <div class="custom-control custom-checkbox">
-                 <input type="checkbox" class="custom-control-input" id="gurdiandetails">
+                 <input type="checkbox" class="custom-control-input" id="gurdiandetails"(click)="get_gurdiandetail()">
                  <label class="custom-control-label" for="gurdiandetails"> Gurdian Details</label>
                 </div>
               </div>
 
               <div class= "col-sm-2">
                 <div class="custom-control custom-checkbox">
-                 <input type="checkbox" class="custom-control-input" id="parentsdetails">
+                 <input type="checkbox" class="custom-control-input" id="parentsdetails"(click)="get_parentsdetail()">
                  <label class="custom-control-label" for="parentsdetails"> Parents Details</label>
                 </div>
               </div>
@@ -196,7 +196,7 @@
                 <div class="row clearfix" >
                 <div class= "col-sm-2"*ngIf ="detail_type[7]">
                 <div class="custom-control custom-checkbox">
-                 <input type="checkbox" class="custom-control-input" id="feesdetails">
+                 <input type="checkbox" class="custom-control-input" id="feesdetails" (click) = "get_feesdetail()">
                  <label class="custom-control-label" for="feesdetails"> Fees Details</label>
                 </div>
               </div>
@@ -317,19 +317,19 @@
                 </ngx-datatable-column>
 
         
-                <ngx-datatable-column name="Class" prop="class">
+                <ngx-datatable-column name="Course" prop="course">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                     <span
                     title="Double click to edit"
-                    (dblclick)="editing[rowIndex + '-class'] = true"
-                    *ngIf="!editing[rowIndex + '-class']">
+                    (dblclick)="editing[rowIndex + '-course'] = true"
+                    *ngIf="!editing[rowIndex + '-course']">
                     {{value}}
                   </span>
                   <input
                     autofocus
-                    (blur)="updateValue($event, 'class', rowIndex)"
-                    *ngIf="editing[rowIndex+ '-class']"
+                    (blur)="updateValue($event, 'course', rowIndex)"
+                    *ngIf="editing[rowIndex+ '-course']"
                     type="text"
                     [value]="value"
                   />
@@ -337,19 +337,19 @@
                   </ng-template>
                 </ngx-datatable-column>
 
-                 <ngx-datatable-column name="Address" prop="address"*ngIf="!address== true">
+                <ngx-datatable-column name="Batch" prop="batch">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                     <span
                     title="Double click to edit"
-                    (dblclick)="editing[rowIndex + '-address'] = true"
-                    *ngIf="!editing[rowIndex + '-address']">
+                    (dblclick)="editing[rowIndex + '-batch'] = true"
+                    *ngIf="!editing[rowIndex + '-batch']">
                     {{value}}
                   </span>
                   <input
                     autofocus
-                    (blur)="updateValue($event, 'address', rowIndex)"
-                    *ngIf="editing[rowIndex+ '-address']"
+                    (blur)="updateValue($event, 'batch', rowIndex)"
+                    *ngIf="editing[rowIndex+ '-batch']"
                     type="text"
                     [value]="value"
                   />
@@ -357,26 +357,8 @@
                   </ng-template>
                 </ngx-datatable-column>
 
-                <!-- <ngx-datatable-column name="contact No" prop="contactno">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
-                    <span
-                    title="Double click to edit"
-                    (dblclick)="editing[rowIndex + '-contactno'] = true"
-                    *ngIf="!editing[rowIndex + '-contactno']">
-                    {{value}}
-                  </span>
-                  <input
-                    autofocus
-                    (blur)="updateValue($event, 'contactno', rowIndex)"
-                    *ngIf="editing[rowIndex+ '-contactno']"
-                    type="text"
-                    [value]="value"
-                  />
 
-                  </ng-template>
-                </ngx-datatable-column> -->
-
+                
                 <ngx-datatable-column name="Contact No" prop="contactno" *ngIf ="!phonenumber">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
@@ -417,6 +399,212 @@
 
                   </ng-template>
                 </ngx-datatable-column>
+
+                <ngx-datatable-column name="parmanent Address" prop="permanent_address" *ngIf = "!address">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                    <span
+                    title="Double click to edit"
+                    (dblclick)="editing[rowIndex + '-permanent_address'] = true"
+                    *ngIf="!editing[rowIndex + '-permanent_address']">
+                    {{value}}
+                  </span>
+                  <input
+                    autofocus
+                    (blur)="updateValue($event, 'permanent_address', rowIndex)"
+                    *ngIf="editing[rowIndex+ '-permanent_address']"
+                    type="text"
+                    [value]="value"
+                  />
+
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Temporary Address" prop="temporaryaddress" *ngIf="!address">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                    <span
+                    title="Double click to edit"
+                    (dblclick)="editing[rowIndex + '-temporary_address'] = true"
+                    *ngIf="!editing[rowIndex + '-temporary_address']">
+                    {{value}}
+                  </span>
+                  <input
+                    autofocus
+                    (blur)="updateValue($event, 'temporary_address', rowIndex)"
+                    *ngIf="editing[rowIndex+ '-temporary_address']"
+                    type="text"
+                    [value]="value"
+                  />
+
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Gurdian Name" prop="gurdian_name" *ngIf="!gurdiandetail">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                    <span
+                    title="Double click to edit"
+                    (dblclick)="editing[rowIndex + '-gurdian_name'] = true"
+                    *ngIf="!editing[rowIndex + '-gurdian_name']">
+                    {{value}}
+                  </span>
+                  <input
+                    autofocus
+                    (blur)="updateValue($event, '-gurdian_name', rowIndex)"
+                    *ngIf="editing[rowIndex+ '-gurdian_name']"
+                    type="text"
+                    [value]="value"
+                  />
+
+                  </ng-template>
+                </ngx-datatable-column>
+
+               <ngx-datatable-column name="Gurdian Address" prop="gurdian_address" *ngIf="!gurdiandetail">
+                <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                  <span
+                  title="Double click to edit"
+                  (dblclick)="editing[rowIndex + '-gurdian_address'] = true"
+                  *ngIf="!editing[rowIndex + '-gurdian_address']">
+                  {{value}}
+                </span>
+                <input
+                  autofocus
+                  (blur)="updateValue($event, 'gurdian_address', rowIndex)"
+                  *ngIf="editing[rowIndex+ '-gurdian_address']"
+                  type="text"
+                  [value]="value"
+                />
+
+                </ng-template>
+              </ngx-datatable-column>
+
+            <ngx-datatable-column name="Gurdian Contact" prop="gurdian_contact" *ngIf="!gurdiandetail">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                <span
+                title="Double click to edit"
+                (dblclick)="editing[rowIndex + '-gurdian_contact'] = true"
+                *ngIf="!editing[rowIndex + '-gurdian_address']">
+                {{value}}
+              </span>
+              <input
+                autofocus
+                (blur)="updateValue($event, 'gurdian_contact', rowIndex)"
+                *ngIf="editing[rowIndex+ '-gurdian_contact']"
+                type="text"
+                [value]="value"
+              />
+
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Father Name" prop="father_name" *ngIf="!parentsdetail">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                <span
+                title="Double click to edit"
+                (dblclick)="editing[rowIndex + '-father_name'] = true"
+                *ngIf="!editing[rowIndex + '-father_name']">
+                {{value}}
+              </span>
+              <input
+                autofocus
+                (blur)="updateValue($event, 'father_name', rowIndex)"
+                *ngIf="editing[rowIndex+ '-father_name']"
+                type="text"
+                [value]="value"
+              />
+
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Mother Name" prop="mother_name" *ngIf="!parentsdetail">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                <span
+                title="Double click to edit"
+                (dblclick)="editing[rowIndex + '-mother_name'] = true"
+                *ngIf="!editing[rowIndex + '-mother_name']">
+                {{value}}
+              </span>
+              <input
+                autofocus
+                (blur)="updateValue($event, 'mother_name', rowIndex)"
+                *ngIf="editing[rowIndex+ '-mother_name']"
+                type="text"
+                [value]="value"
+              />
+
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Parents Contact" prop="parents_contact" *ngIf="!parentsdetail">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                <span
+                title="Double click to edit"
+                (dblclick)="editing[rowIndex + '-parents_contact'] = true"
+                *ngIf="!editing[rowIndex + '-parents_address']">
+                {{value}}
+              </span>
+              <input
+                autofocus
+                (blur)="updateValue($event, 'parents_contact', rowIndex)"
+                *ngIf="editing[rowIndex+ '-parents_contact']"
+                type="text"
+                [value]="value"
+              />
+
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Parents Contact" prop="parents_contact" *ngIf="!parentsdetail">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                <span
+                title="Double click to edit"
+                (dblclick)="editing[rowIndex + '-parents_contact'] = true"
+                *ngIf="!editing[rowIndex + '-parents_address']">
+                {{value}}
+              </span>
+              <input
+                autofocus
+                (blur)="updateValue($event, 'parents_contact', rowIndex)"
+                *ngIf="editing[rowIndex+ '-parents_contact']"
+                type="text"
+                [value]="value"
+              />
+
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Amount" prop="amount" *ngIf="!amount">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                <span
+                title="Double click to edit"
+                (dblclick)="editing[rowIndex + '-amount'] = true"
+                *ngIf="!editing[rowIndex + '-amount']">
+                {{value}}
+              </span>
+              <input
+                autofocus
+                (blur)="updateValue($event, 'amount', rowIndex)"
+                *ngIf="editing[rowIndex+ '-amount']"
+                type="text"
+                [value]="value"
+              />
+
+              </ng-template>
+            </ngx-datatable-column>
+
+
+
+
+
+
 
                 <ngx-datatable-column name="Email" prop="email"*ngIf="!email">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
