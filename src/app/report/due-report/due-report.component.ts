@@ -28,9 +28,10 @@ export class DueReportComponent implements OnInit {
 
   selected_batch :number;
   selected_course :number;
-   default_detail_type={1:false ,2:false};
+   default_detail_type={0:false , 1:false ,2:false};
   detail_type=this.default_detail_type;
   course: Course[];
+  datewise :boolean =true;
 
   onChange(newValue) {
     this.reset_details_value();
@@ -40,6 +41,7 @@ export class DueReportComponent implements OnInit {
 
   reset_details_value(){
     this.detail_type = this.default_detail_type;
+    this.detail_type[0]= false;
     this.detail_type[1]=false;
     this.detail_type[2]=false;
     
@@ -57,7 +59,7 @@ export class DueReportComponent implements OnInit {
 
   ngOnInit() {
     this.reset_details_value;
-    this.detail_type[1] =true;
+    this.detail_type[0] =true;
     this.LoadBatch();
   }
 
@@ -100,6 +102,7 @@ export class DueReportComponent implements OnInit {
        // this.studentreport = true;
        // }
    }
+
 
 
 }
