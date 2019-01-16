@@ -1,41 +1,50 @@
 <div class="body">
-
-  <ul class="nav nav-tabs" role="tablist">
-      <li role="presentation" class="active">
-          <a href="#paid_report" data-toggle="tab">
-              <i class="material-icons">loyalty</i> Paid Report
+ <div class="page-header">
+      <div class="breadcrumb-line">
+        <ol class="breadcrumb">
+          <li><a href="javascript:void(0);"><i class="material-icons">home</i> Home</a></li>
+          <li><a href="javascript:void(0);">Report</a></li>
+          <li><a href="javascript:void(0);"> Feepaid Report</a></li>
+        </ol>
+        </div>
+     
+  <div class="btn btn-group bg-info">
+  <ul class="nav nav-tabs nav-tabs-highlight">
+      <li  class="active">
+          <a  class="btn btn-default" href="#paid_report" data-toggle="tab">
+              <i class="material-icons"></i> Paid Report
           </a>
       </li>
-      <li role="presentation">
-          <a href="#collective_reprt" data-toggle="tab">
-              <i class="material-icons">list</i> Collective Report
+      <li class="">
+          <a  class ="btn btn-default" href="#collective_reprt" data-toggle="tab">
+              <i class="material-icons"></i> Collective Report
           </a>
+      </li>
+      <li class ="">
+        <a class ="btn btn-default" href ="#paid_report_datewise" data-toggle ="tab">
+          <i class ="material-icons"></i> Paid Report(Datewise)
+        </a>
       </li>
    
   </ul>
-
+  
+  </div>
+ 
 
   <div class="tab-content">
-  <div role="tabpanel" class="tab-pane fade in active" id="paid_report">
+ 
+  <div role="tabpanel" class="tab-pane active" id="paid_report">
 
   <div class="content-wrapper">
     <div class="content">
-      <div class="page-header">
-        <ol class="breadcrumb breadcrumb">
-          <li><a href="javascript:void(0);"><i class="material-icons">home</i> Home</a></li>
-          <li><a href="javascript:void(0);">Student</a></li>
-          <li><a href="javascript:void(0);">Report</a></li>
-        </ol>
-
         <div class="row ">
           <form>
             <div class="col-sm-12">
               <div class="card">
-
-                <div class="header ">
-                  <h2>
+                <div class="panel-heading bg-primary">
+                  <h3 class="panel-title">
                     <b>Paid Report</b>
-                  </h2>
+                  </h3>
                 </div>
                 <br>
                 <div class="panel-body">
@@ -102,21 +111,7 @@
                   </div>
                 </div>
 
-
-
-
-
-
-
-                    <!-- <div class="col-sm-4" id="type">
-                      <label for="reg_input" class="req">Id Type*</label>
-                      <select class="form-control" name="Student[type]" id="Student_type">
-                        <option value="prompt">Select ID Template</option>
-                        <option value="horizontal">Horizontal ID Card</option>
-                        <option value="vertical">Vertical ID Card</option>
-                      </select>
-                    </div>
- -->                 <br>
+                      <br>
                   <div class ="row">
                 <div class="form-group col-sm-2">
 
@@ -133,29 +128,22 @@
          </form>
        </div>
      </div>
-    </div>
+  
   </div>
   </div>
   
   
 
-  <div role="tabpanel" class="tab-pane fade in active" id ="collective_reprt">
+  <div role="tabpanel" class="tab-pane " id ="collective_reprt">
   <div class="content-wrapper">
     <div class="content">
-      <div class="page-header">
-        <ol class="breadcrumb breadcrumb">
-          <li><a href="javascript:void(0);"><i class="material-icons">home</i> Home</a></li>
-          <li><a href="javascript:void(0);">Student</a></li>
-          <li><a href="javascript:void(0);">Report</a></li>
-        </ol>
-
         <div class="row ">
           <form>
             <div class="col-sm-12">
               <div class="card">
 
-                <div class="header ">
-                  <h2>
+                <div class="panel-heading bg-primary">
+                  <h2 class="panel-title">
                     <b>Collective Report</b>
                   </h2>
                 </div>
@@ -224,22 +212,8 @@
                   </div>
                 </div>
 
-
-
-
-
-
-
-                    <!-- <div class="col-sm-4" id="type">
-                      <label for="reg_input" class="req">Id Type*</label>
-                      <select class="form-control" name="Student[type]" id="Student_type">
-                        <option value="prompt">Select ID Template</option>
-                        <option value="horizontal">Horizontal ID Card</option>
-                        <option value="vertical">Vertical ID Card</option>
-                      </select>
-                    </div>
- -->                 <br>
-                  <div class ="row">
+                 <br>
+                <div class ="row">
                 <div class="form-group col-sm-2">
 
                         <!-- <button type="submit" class="btn btn-primary col-sm-1 " (click)="get_report()">Get report</button> -->
@@ -254,14 +228,119 @@
             </div>
          </form>
        </div>
-     </div>
     </div>
   </div>
   </div>
+  
+  <div role="tabpanel" class="tab-pane " id ="paid_report_datewise">
+    <div class="content-wrapper">
+      <div class="content">
+          <div class="row ">
+            <form>
+              <div class="col-sm-12">
+                <div class="card">
+  
+                  <div class="panel-heading bg-primary">
+                    <h2 class="panel-title">
+                      <b>Paid Report(datewise)</b>
+                    </h2>
+                  </div>
+                  <br>
+                  <div class="panel-body">
+                    <div class="row clearfix">
+                      <div class="col-sm-4">
+                        <label for="reportfor" class="req">Fee Category </label>
+                        <select class="form-control" (change)="onChange($event.target.value)" name="feecategory">
+                          <option value ="0">Select option</option>
+                          <option value ="1">Date Wise</option>
+                          <option value = "2">fees category wise</option>
+                          <option value = "3">fees subcategory wise</option>
+                           <option value ="4">Frequency</option>
+                          <!-- <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option> -->
+                        </select>
+                      </div>
+  
+                      <div class="col-sm-4">
+                          <label for="date">Due date</label>
+                          <input type="date" class="form-control" [(ngModel)]="due_report.date" name="date" placeholder=""
+                            required>
+                        </div>
+  
+  
+                       <div class="col-sm-4">
+                        <label for="batch" class="req">Batch</label>
+                        <select class="form-control" [(ngModel)]="selected_batch" name="batch" >
+                           <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option> 
+                          
+                        </select>
+                      </div>
+                     
+  
+                  </div>
+                  <br> 
+                  <div class ="row clearfix">
+  
+                      <div class="col-sm-4">
+                          <label for="course" class="req">course</label>
+                          <select class="form-control" [(ngModel)]="selected_course" name="course" >
+                             <option *ngFor="let c of course" [ngValue]="c.id">{{c.name}}</option> 
+                           
+                          </select>
+                        </div>
+  
+                     <div class="col-sm-4" *ngIf ="detail_type[2]">
+                      <label for="feescategory" class="req">Fees Category Wise</label>
+                      <select class="form-control" [(ngModel)]="due_report.fee_category" name="feescategory" >
+                        <!-- <option *ngFor="let f of fee" [ngValue]="f.id">{{f.name}}</option> -->
+                        <option>Hostel Fee</option>
+                        <option>Libary Fee</option>
+                        <option>Admission Fee</option>
+                        <option>Transport Fee</option>
+                        <option>uniform Fee</option>
+                        <option>Monthly  Fee</option>
+  
+                      </select>
+                    </div>
+                  </div>
+  
+  
+  
+  
+  
+  
+  
+                      <!-- <div class="col-sm-4" id="type">
+                        <label for="reg_input" class="req">Id Type*</label>
+                        <select class="form-control" name="Student[type]" id="Student_type">
+                          <option value="prompt">Select ID Template</option>
+                          <option value="horizontal">Horizontal ID Card</option>
+                          <option value="vertical">Vertical ID Card</option>
+                        </select>
+                      </div>
+   -->                 <br>
+                    <div class ="row">
+                  <div class="form-group col-sm-2">
+  
+                          <!-- <button type="submit" class="btn btn-primary col-sm-1 " (click)="get_report()">Get report</button> -->
+                           <button type="submit" class="btn btn-success col-sm-offset-10 " (click)="get_report()">Go</button>
+                            
+                           <button type="submit" class="btn btn-danger col-sm-offset-1  button-margin" onclick="printDiv('print')">print</button> 
+                    
+                    </div>
+                   </div>
+                  </div>
+                </div>
+              </div>
+           </form>
+         </div>
+      </div>
+    </div>
+    </div>
 
- <!--end of tab-->
-</div>
-
-  <!--body end-->
+    <!--end of tab-->
   </div>
+<!--end of pageheader-->
+ </div>
+ <!--body end-->
+ </div>
   
