@@ -74,7 +74,7 @@ export class MarksEntryComponent extends AcademicMixin implements OnInit {
     _marksEntryService: MarksEntryService,
     
   ) {
-    super(_utils, _courseService, _classService, _sectionService)
+    super(_utils, _courseService, _classService, _sectionService,_subjectService)
   }
 
   ngOnInit() {
