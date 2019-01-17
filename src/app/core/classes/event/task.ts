@@ -6,8 +6,8 @@ export class Task {
   status: string;
   description: string;
   priority: string;
-  task_date: Date;
-  user_type: number;
+  date: Date;
+  user: number;
   course: number;
   batch: number;
   student: number;

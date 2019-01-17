@@ -7,14 +7,16 @@ import { ToastrService } from 'ngx-toastr';
 import{ DatatableComponent} from '@swimlane/ngx-datatable';
 
 import { TaskService} from '../../core/services/task.service';
-import { StudentService} from '../../core/services/student.service';
+//import { StudentService} from '../../core/services/student.service';
 import { CourseService } from '../../core/services/course.service';
 import { BatchService } from '../../core/services/batch.service';
 import { UtilsService } from '../../shared/services/utils.service';
-import { Task} from '../../core/classes/event/task';
-import { Student } from '../../core/classes/student';
-import { Course } from '../../core/classes/course';
-import { Batch } from '../../core/classes/batch';
+import { EventService } from '../../core/services/event.service';
+import { Event,EventType } from '../../core/classes/event/event';
+import { Task}  from '../../core/classes/event/task';
+//import { Student} from '../../core/classes/student';
+import { Course} from '../../core/classes/course';
+import { Batch} from '../../core/classes/batch';
 
 
 @Component({
@@ -27,19 +29,20 @@ export class AssignTaskComponent implements OnInit {
     private _typeSub: Subscription = undefined;
 
     selectedDevice = 'Student';
-    default_detail_type = {1:false, 2:false};
+    default_detail_type = {1:false, 3:false};
 
     detail_type = this.default_detail_type;
 
-    task : Task = new Task() ;
+    task : Task = new Task();
     tasks: Task[];
-    student: Student[];
+    //student: Student[];
     courses: Course[];
     batch: Batch[];
-
-    selected_student: number;
+    event: Event[];
+    //selected_student: number;
+    selected_event: number;
     selected_course: number;
-    selected_batch :number;
+    selected_batch : number;
     selected_task: number;
 
    onChange(newValue) {
@@ -49,10 +52,11 @@ export class AssignTaskComponent implements OnInit {
   }
 
    reset_details_value(){
+
     this.detail_type = this.default_detail_type;
 
     this.detail_type[1]=false;
-    this.detail_type[2]=false;
+    this.detail_type[3]=false;
   }
 
    rows: any[] = [];
@@ -63,8 +67,9 @@ export class AssignTaskComponent implements OnInit {
 
   constructor(
     private taskService: TaskService,
-    private _studentService: StudentService,
+   // private _studentService: StudentService,
     private _courseService: CourseService,
+    private _eventService: EventService,
     private _batchService: BatchService,
    	private _utils: UtilsService,
     private router: Router,
@@ -78,6 +83,7 @@ export class AssignTaskComponent implements OnInit {
 
   	this.initTask();
     this.loadCourses();
+
   }
 
   ngOnDestroy() {
@@ -85,11 +91,10 @@ export class AssignTaskComponent implements OnInit {
   }
 
  OnSubmitTask() {
-      console.log("gfgf",this.selected_task);
-      //console.log(this.selected_course);
     this.task.batch=this.selected_batch;
-    this.task.course=this.selected_course
-    this.task.student=this.selected_student;
+    this.task.course=this.selected_course;
+     this.task.event=this.selected_event;
+   // this.task.student=this.selected_student;
     this._utils.unsubscribeSub(this._sub);
     console.log(this.task)
     this._sub = this.taskService.add(this.task)
@@ -119,8 +124,7 @@ export class AssignTaskComponent implements OnInit {
     this._sub = this._batchService.get().subscribe(
       data => {
         isArray(data) ? this.batch = data : data;
-          this.loadStudent();
-
+         this.loadEvents();
         if(this.batch.length > 0){
          this.selected_batch = this.batch[0].id;
         }
@@ -128,18 +132,34 @@ export class AssignTaskComponent implements OnInit {
     );
   }
 
-  loadStudent() {
-    this._utils.unsubscribeSub(this._sub);
-    this._sub = this._studentService.get().subscribe(
-      data => {
-        isArray(data) ? this.student = data : data;
-        console.log(this.student);
-         if(this.batch.length > 0){
-       //  this.selected_student = this.student[0].id;
-      }
+  // loadStudent() {
+  //   this._utils.unsubscribeSub(this._sub);
+  //   this._sub = this._studentService.get().subscribe(
+  //     data => {
+  //       isArray(data) ? this.student = data : data;
+  //       console.log(this.student);
+  //        if(this.student.length > 0){
+  //      //  this.selected_student = this.student[0].id;
+  //     }
          
-      }
-    );
+  //     }
+  //   );
+
+  // }
+
+
+  loadEvents() {
+     this._utils.unsubscribeSub(this._sub);
+     this._sub = this._eventService.getEvent().subscribe(
+       data => {
+         isArray(data) ? this.event = data : data;
+         console.log(this.event);
+          if(this.event.length > 0){
+          this.selected_event = this.event[0].id;
+       }
+         
+       }
+     );
 
   }
 
@@ -154,7 +174,7 @@ export class AssignTaskComponent implements OnInit {
       }
       
     );
-    this.task= new Task();
+    // this.task= new Task();
 
   }
 

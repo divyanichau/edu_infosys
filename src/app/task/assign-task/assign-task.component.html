@@ -9,7 +9,13 @@
         </div>
        <div class="body">
           <div class="row clearfix">
-              <div class="col-md-12">
+             <div class="col-md-12">
+                <label for="reg_input" class="req">Event </label>
+                      <select class="form-control" [(ngModel)]="selected_event" name="event" required>
+                        <option *ngFor="let e of event" [ngValue]="e.id">{{e.name}}</option>
+                      </select>
+           </div>
+              <div class="col-md-12 form-top-margin">
                 <label for="task-name">Task Name</label>
                   <input type="text" class="form-control" [(ngModel)]="task.name" name="task-name"  placeholder="Enter Task Name" required>
            </div>
@@ -33,8 +39,8 @@
                </div>
         
             <div class="col-md-12 form-top-margin">
-                <label for="task_date">Task Date</label>
-                 <input type="date" class="form-control" [(ngModel)]="task.task_date"  name="task_date"   placeholder="" required>
+                <label for="date">Task Date</label>
+                 <input type="date" class="form-control" [(ngModel)]="task.date"  name="date"   placeholder="" required>
                  
             </div>
           </div>
@@ -42,14 +48,14 @@
           <div class="row clearfix">
               <div class="col-md-12 form-top-margin">
                 <label for="user_type">User type</label>
-                    <select class="form-control" (change)="onChange($event.target.value)" name="user_type">
+                    <select class="form-control" (change)="onChange($event.target.value)" name="user" [(ngModel)]="task.user">
                         <option value="1">Select Type</option>
-                        <option value="2">Student</option>
-                       <option value="3">Employee</option>
+                        <option value="3">Student</option>
+                        <option value="4">Employee</option>
                   </select> 
               </div>
           </div>
-         <div class="row clearfix" *ngIf="detail_type[2]">
+         <div class="row clearfix" *ngIf="detail_type[3]">
             <div class="col-md-12 form-top-margin"   >   
                <label for="reg_input" class="req">Course* </label>
                       <select class="form-control" [(ngModel)]="selected_course" name="course" required>
@@ -66,10 +72,12 @@
 
             <div class="col-md-12 form-top-margin">
                    <label for="student_id">Student</label>
-                  <select class="form-control"       
-                 [(ngModel)]="selected_student" name="id">
-                  <option *ngFor="let s of student" [ngValue]="s.id">{{s.user.first_name}}</option>
-                  </select>
+                  <select class="form-control" [(ngModel)]="task.student" name="student" id="Taskmanager_task_status">
+                     <option value="1">Sonika</option>
+                     <option value="2">Dinesh</option>
+                     <option value="3">Suraj</option>
+                     <option value="4">Abhikesh</option>
+               </select>
             </div>
           </div>
          

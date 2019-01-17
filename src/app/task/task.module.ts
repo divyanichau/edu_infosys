@@ -10,10 +10,12 @@ import { TaskService} from '../core/services/task.service';
 import { StudentService} from '../core/services/student.service';
 import { CourseService } from '../core/services/course.service';
 import { BatchService } from '../core/services/batch.service';
+import { EventService } from '../core/services/event.service';
 import { UtilsService } from '../shared/services/utils.service';
 
 import { TaskRoutingModule } from './task-routing.module';
 import { TaskComponent } from './task.component';
+import { Event,EventType } from '../core/classes/event/event';
 import { Student } from '../core/classes/student';
 import { Course } from '../core/classes/course';
 import { Batch } from '../core/classes/batch';
@@ -30,7 +32,7 @@ import { TaskDetailComponent } from './task-detail/task-detail.component';
 
     TaskRoutingModule
   ],
-  providers: [ TaskService, StudentService , CourseService, BatchService, UtilsService],
+  providers: [ TaskService, StudentService , CourseService, BatchService, EventService, UtilsService],
   declarations: [TaskComponent, AssignTaskComponent, TaskDetailComponent]
 })
 export class TaskModule {}
