@@ -49,78 +49,56 @@
                 <br>
                 <div class="panel-body">
                   <div class="row clearfix">
+                   
                     <div class="col-sm-4">
-                      <label for="reportfor" class="req">Fee Category </label>
-                      <select class="form-control" (change)="onChange($event.target.value)" name="feecategory">
-                        <option value ="0">Select option</option>
-                        <option value ="1">Date Wise</option>
-                        <option value = "2">fees category wise</option>
-                        <option value = "3">fees subcategory wise</option>
-                         <option value ="4">Frequency</option>
-                        <!-- <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option> -->
-                      </select>
-                    </div>
-
-                    <div class="col-sm-4">
-                        <label for="date">Due date</label>
-                        <input type="date" class="form-control" [(ngModel)]="due_report.date" name="date" placeholder=""
-                          required>
+                        <label for="date">Paid Date</label>
+                        <input type="date"  class="form-control" [(ngModel)]="paid_date" name=" paid_date" placeholder=""
+                          >
                       </div>
+                     
+                      <div class="col-sm-4">
+                          <label for="reportfor" class="req">Mode Of Payment </label>
+                          <select class="form-control" (change)="onChange($event.target.value)" name="mode_of_payment">
+                            <option value ="0">Select option</option>
+                            <option value ="1">cash</option>
+                            <option value = "2">cheque</option>
+                            <option value = "3">Online_payment</option>
+                             <option value ="4">Frequency</option>
+                            <!-- <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option> -->
+                          </select>
+                        </div>
 
+                        <div class="col-sm-4" *ngIf ="cheque_type[2]">
+                            <label for="bank_name" class="req">Bank Name</label>
+                            <select class="form-control" [(ngModel)]="paid_report.bank_name" name="bank_name" >
+                              <!-- <option *ngFor="let bank of banks" [ngValue]="bank.id">{{bank.name}}</option> -->
+                              <option>Select bank</option>
+                              <option>parbhu</option>
+                              <option>bok</option>
+                              <option>everest</option>
+                            </select>
+                         </div>
 
-                     <div class="col-sm-4">
-                      <label for="batch" class="req">Batch</label>
-                      <select class="form-control" [(ngModel)]="selected_batch" name="batch" >
-                         <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option> 
-                        
-                      </select>
-                    </div>
-                   
-
-
-                   
-
-                   
-                  
-
-
-                </div>
-                <br> 
+                   </div> 
+                <h3 class="col-sm-offset-1"><b>OR</b></h3>
                 <div class ="row clearfix">
-
                     <div class="col-sm-4">
-                        <label for="course" class="req">course</label>
-                        <select class="form-control" [(ngModel)]="selected_course" name="course" >
-                           <option *ngFor="let c of course" [ngValue]="c.id">{{c.name}}</option> 
-                         
-                        </select>
-                      </div>
+                        <label for="search" class="req">Search</label>
+                        <input type ="text" class="form-control" [(ngModel)]="selected_course" name="search">
+                     
+                   </div>
 
-                   <div class="col-sm-4" *ngIf ="detail_type[2]">
-                    <label for="feescategory" class="req">Fees Category Wise</label>
-                    <select class="form-control" [(ngModel)]="due_report.fee_category" name="feescategory" >
-                      <!-- <option *ngFor="let f of fee" [ngValue]="f.id">{{f.name}}</option> -->
-                      <option>Hostel Fee</option>
-                      <option>Libary Fee</option>
-                      <option>Admission Fee</option>
-                      <option>Transport Fee</option>
-                      <option>uniform Fee</option>
-                      <option>Monthly  Fee</option>
-
-                    </select>
-                  </div>
                 </div>
-
-                      <br>
+                  <br>
                   <div class ="row">
-                <div class="form-group col-sm-2">
+                    <div class="form-group col-sm-2">
 
-                        <!-- <button type="submit" class="btn btn-primary col-sm-1 " (click)="get_report()">Get report</button> -->
-                         <button type="submit" class="btn btn-success col-sm-offset-10 " (click)="get_report()">Go</button>
-                          
-                         <button type="submit" class="btn btn-danger col-sm-offset-1  button-margin" onclick="printDiv('print')">print</button> 
-                  
-                  </div>
+                      <button type="submit" class="btn btn-primary col-sm-1 " (click)="get_paidreport()">Go</button>
+                       <button type="submit" class="btn btn-danger col-sm-offset-8" onclick="printDiv('print')">print report</button>
+                        
+                       <button type="submit" class="btn btn-success col-sm-offset-1 button-margin">excel</button> 
+                
+                </div>
                  </div>
                 </div>
               </div>
@@ -131,9 +109,7 @@
   
   </div>
   </div>
-  
-  
-
+ 
   <div role="tabpanel" class="tab-pane " id ="collective_reprt">
   <div class="content-wrapper">
     <div class="content">
@@ -150,76 +126,38 @@
                 <br>
                 <div class="panel-body">
                   <div class="row clearfix">
+                   
                     <div class="col-sm-4">
-                      <label for="reportfor" class="req">Fee Category </label>
-                      <select class="form-control" (change)="onChange($event.target.value)" name="feecategory">
-                        <option value ="0">Select option</option>
-                        <option value ="1">Date Wise</option>
-                        <option value = "2">fees category wise</option>
-                        <option value = "3">fees subcategory wise</option>
-                         <option value ="4">Frequency</option>
-                        <!-- <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option> -->
-                      </select>
-                    </div>
-
-                    <div class="col-sm-4">
-                        <label for="date">Due date</label>
-                        <input type="date" class="form-control" [(ngModel)]="due_report.date" name="date" placeholder=""
-                          required>
+                        <label for="from_date">From Date</label>
+                        <input type="Date" class="form-control" [(ngModel)]="from_date" name="from_date" >
                       </div>
-
+                    <div class="col-sm-4">
+                        <label for="end_date">End Date</label>
+                        <input type="Date" class="form-control" [(ngModel)]="end_date" name="end_date" >
+                    </div>
 
                      <div class="col-sm-4">
-                      <label for="batch" class="req">Batch</label>
-                      <select class="form-control" [(ngModel)]="selected_batch" name="batch" >
-                         <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option> 
-                        
+                      <label for="mode_of_pay" class="req">Mode Of Pay </label>
+                      <select class="form-control" [(ngModel)]="mode_of_pay" name="mode_of_pay">
+                        <option>Select option</option>
+                        <option>cash</option>
+                        <option>demand draft</option>
+                        <option>online payment</option>
+                         <option>all</option>
+                        <!-- <option *ngFor="let mode_pay of mode_of_pay" [ngValue]="mode_pay.id">{{mode_pay.name}}</option> -->
                       </select>
                     </div>
-                   
 
-
-                   
-
-                   
-                  
-
-
-                </div>
-                <br> 
-                <div class ="row clearfix">
-
-                    <div class="col-sm-4">
-                        <label for="course" class="req">course</label>
-                        <select class="form-control" [(ngModel)]="selected_course" name="course" >
-                           <option *ngFor="let c of course" [ngValue]="c.id">{{c.name}}</option> 
-                         
-                        </select>
-                      </div>
-
-                   <div class="col-sm-4" *ngIf ="detail_type[2]">
-                    <label for="feescategory" class="req">Fees Category Wise</label>
-                    <select class="form-control" [(ngModel)]="due_report.fee_category" name="feescategory" >
-                      <!-- <option *ngFor="let f of fee" [ngValue]="f.id">{{f.name}}</option> -->
-                      <option>Hostel Fee</option>
-                      <option>Libary Fee</option>
-                      <option>Admission Fee</option>
-                      <option>Transport Fee</option>
-                      <option>uniform Fee</option>
-                      <option>Monthly  Fee</option>
-
-                    </select>
                   </div>
-                </div>
-
+    
                  <br>
-                <div class ="row">
-                <div class="form-group col-sm-2">
+                 <div class ="row">
+                 <div class="form-group col-sm-2">
 
-                        <!-- <button type="submit" class="btn btn-primary col-sm-1 " (click)="get_report()">Get report</button> -->
-                         <button type="submit" class="btn btn-success col-sm-offset-10 " (click)="get_report()">Go</button>
-                          
-                         <button type="submit" class="btn btn-danger col-sm-offset-1  button-margin" onclick="printDiv('print')">print</button> 
+                  <button type="submit" class="btn btn-primary col-sm-1 " (click)="get_collectivereport()">Go</button>
+                  <button type="submit" class="btn btn-danger col-sm-offset-8" onclick="printDiv('print')">print report</button>
+                   
+                  <button type="submit" class="btn btn-success col-sm-offset-1 button-margin">excel</button> 
                   
                   </div>
                  </div>
@@ -237,94 +175,41 @@
       <div class="content">
           <div class="row ">
             <form>
-              <div class="col-sm-12">
+              <div class="col-sm-10">
                 <div class="card">
   
                   <div class="panel-heading bg-primary">
                     <h2 class="panel-title">
-                      <b>Paid Report(datewise)</b>
+                      <b>Monthly Report(schoolwise)</b>
                     </h2>
                   </div>
                   <br>
                   <div class="panel-body">
                     <div class="row clearfix">
+                        <div class="col-sm-4">
+                            <label for="date">Date</label>
+                            <input type="Date" class="form-control" [(ngModel)]="date" name="date" >
+                          </div>
+
                       <div class="col-sm-4">
-                        <label for="reportfor" class="req">Fee Category </label>
-                        <select class="form-control" (change)="onChange($event.target.value)" name="feecategory">
-                          <option value ="0">Select option</option>
-                          <option value ="1">Date Wise</option>
-                          <option value = "2">fees category wise</option>
-                          <option value = "3">fees subcategory wise</option>
-                           <option value ="4">Frequency</option>
+                        <label for="modeof_pay" class="req">Mode Of Pay </label>
+                        <select class="form-control" [(ngModel)] ="mode_of_pay" name="modeof_pay">
+                          <option value ="0">Select mode of pay</option>
+                          <option value ="1">Cash</option>
+                          <option value = "2">Demand Draft</option>
+                          <option value = "3">Online Payment</option>
+                           <option value ="4">all</option>
                           <!-- <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option> -->
                         </select>
                       </div>
-  
-                      <div class="col-sm-4">
-                          <label for="date">Due date</label>
-                          <input type="date" class="form-control" [(ngModel)]="due_report.date" name="date" placeholder=""
-                            required>
-                        </div>
-  
-  
-                       <div class="col-sm-4">
-                        <label for="batch" class="req">Batch</label>
-                        <select class="form-control" [(ngModel)]="selected_batch" name="batch" >
-                           <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option> 
-                          
-                        </select>
-                      </div>
-                     
-  
+
                   </div>
                   <br> 
-                  <div class ="row clearfix">
-  
-                      <div class="col-sm-4">
-                          <label for="course" class="req">course</label>
-                          <select class="form-control" [(ngModel)]="selected_course" name="course" >
-                             <option *ngFor="let c of course" [ngValue]="c.id">{{c.name}}</option> 
-                           
-                          </select>
-                        </div>
-  
-                     <div class="col-sm-4" *ngIf ="detail_type[2]">
-                      <label for="feescategory" class="req">Fees Category Wise</label>
-                      <select class="form-control" [(ngModel)]="due_report.fee_category" name="feescategory" >
-                        <!-- <option *ngFor="let f of fee" [ngValue]="f.id">{{f.name}}</option> -->
-                        <option>Hostel Fee</option>
-                        <option>Libary Fee</option>
-                        <option>Admission Fee</option>
-                        <option>Transport Fee</option>
-                        <option>uniform Fee</option>
-                        <option>Monthly  Fee</option>
-  
-                      </select>
-                    </div>
-                  </div>
-  
-  
-  
-  
-  
-  
-  
-                      <!-- <div class="col-sm-4" id="type">
-                        <label for="reg_input" class="req">Id Type*</label>
-                        <select class="form-control" name="Student[type]" id="Student_type">
-                          <option value="prompt">Select ID Template</option>
-                          <option value="horizontal">Horizontal ID Card</option>
-                          <option value="vertical">Vertical ID Card</option>
-                        </select>
-                      </div>
-   -->                 <br>
                     <div class ="row">
                   <div class="form-group col-sm-2">
-  
-                          <!-- <button type="submit" class="btn btn-primary col-sm-1 " (click)="get_report()">Get report</button> -->
-                           <button type="submit" class="btn btn-success col-sm-offset-10 " (click)="get_report()">Go</button>
+                           <button type="submit" class="btn btn-success col-sm-offset-8 " (click)="get_monthlyreport()">Go</button>
                             
-                           <button type="submit" class="btn btn-danger col-sm-offset-1  button-margin" onclick="printDiv('print')">print</button> 
+                           <button type="submit" class="btn btn-danger col-sm-offset-1  button-margin" onclick="printDiv('print')">print report</button> 
                     
                     </div>
                    </div>

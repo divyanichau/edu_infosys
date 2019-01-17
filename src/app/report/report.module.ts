@@ -16,6 +16,7 @@ import { DueReportComponent } from './due-report/due-report.component';
 import { DueReportService } from '../core/services/duereport.service';
 import { FeepaidReportComponent } from './feepaid-report/feepaid-report.component';
 import { CourseService } from '../core/services/course.service';
+import { FeepaidReportService } from '../core/services/feepaidreport.service';
 
 
 @NgModule({
@@ -32,7 +33,7 @@ import { CourseService } from '../core/services/course.service';
 
   ReportRoutingModule
   ],
-  providers: [BatchService , UtilsService,StudentReportService ,DueReportService, CourseService],
+  providers: [BatchService , UtilsService,StudentReportService , FeepaidReportService ,DueReportService, CourseService],
 
   declarations: [ ReportComponent , StudentReportComponent, DueReportComponent, FeepaidReportComponent]
 

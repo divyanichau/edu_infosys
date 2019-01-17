@@ -6,13 +6,12 @@ import { Observable } from 'rxjs';
 
 import { UtilsService } from '../../shared/services/utils.service';
 import { Config } from '../../shared/classes/app';
-import { StudentReport } from '../classes/student-report';
-
+import { FeepaidReport } from '../classes/feepaid-report';
 
 
 @Injectable()
-export class StudentReportService {
-  private _studentreportUrl = `${new Config().api}/student/report/`;
+export class FeepaidReportService {
+  private _feepaidreportUrl = `${new Config().api}/report/feepaid_report/`;
   
   private _headers = this._utils.makeHeaders({ withToken: true });
 
@@ -22,10 +21,10 @@ export class StudentReportService {
     private _router: Router
   ) { }
 
-  find(id: string): Observable<StudentReport> {
+  find(id: string): Observable<FeepaidReport> {
     //this.beforeRequest();
 
-    return this._http.get(`${this._studentreportUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
+    return this._http.get(`${this._feepaidreportUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
       map((res: Response) => res.json()),
       tap(
       data => this.afterGetRequest(),
@@ -33,11 +32,11 @@ export class StudentReportService {
       ),);
   }
 
-  get(): Observable<StudentReport[]> {
+  get(): Observable<FeepaidReport[]> {
     //this.beforeRequest();
     const options = this._utils.makeOptions(this._headers);
 
-    return this._http.get(`${this._studentreportUrl}`, options).pipe(
+    return this._http.get(`${this._feepaidreportUrl}`, options).pipe(
       map((res: Response) => res.json()),
       tap(
       data => this.afterGetRequest(),
@@ -45,13 +44,13 @@ export class StudentReportService {
       ),);
   }
 
-
+  
   
   beforeRequest(): void {
     this._utils.start_progress();
   }
 
-  afterRequest(data: StudentReport): void {
+  afterRequest(data: FeepaidReport): void {
     this._utils.stop_progress();
    
   }
