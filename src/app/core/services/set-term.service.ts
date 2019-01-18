@@ -61,7 +61,7 @@ export class SetTermService {
   }
 
   update(set_term: setTerm,id:string): Observable<setTerm> {
-    console.log("Uhshsd",set_term);
+   // console.log("Uhshsd",set_term);
     this.beforeRequest();
     const body = JSON.stringify(set_term);
    
@@ -76,16 +76,14 @@ export class SetTermService {
   }
 
   delete(id:number): Observable<setTerm> {
-   // console.log("Uhshsd",set_term);
     this.beforeRequest();
    // const body = JSON.stringify(set_term);
    
-
     return this._http.delete(`${this._exmTermUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
       map((res: Response) => res.json()),
       tap(
      // data => this.afterUpdateRequest(data),
-     // error => { this.showError(error) }
+     //error => { this.showError(error) }
       ),);
      
   }

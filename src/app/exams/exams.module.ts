@@ -22,6 +22,7 @@ import { ResultPreparationComponent } from './result-preparation/result-preparat
 import { MarksEntryService } from '../core/services/marks-entry.service';
 import { PrintResultComponent } from './result-preparation/print-result/print-result.component';
 
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
 
@@ -29,7 +30,8 @@ import { PrintResultComponent } from './result-preparation/print-result/print-re
     CommonModule,
     ExamsRoutingModule,
     FormsModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    ToastrModule.forRoot() 
   ],
   providers:[MarksEntryService,BatchService,UtilsService,SetTermService,SubjectService,
     ExamScheduleService,CourseService,ClassService,SectionService],

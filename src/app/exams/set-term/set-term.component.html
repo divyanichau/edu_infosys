@@ -1,6 +1,6 @@
 
 <div class="body">
-  <form (ngSubmit)="OnSubmitTerm()" #setTerm="ngForm">
+  <form (ngSubmit)="OnSubmitTerm()" ngNativeValidate #setTerm="ngForm">
     <div class="content-wrapper">
       <div class="col-sm-6">
         <div class="panel panel-primary">
@@ -12,27 +12,27 @@
               <div class="col-sm-6">
                 <label for="term_name" class="label-control">Term Name</label>
                 <input type="text" id="term_name" class="form-control" name="term_name" [(ngModel)]="_term.name"
-                  placeholder="Term Name">
+                  placeholder="Term Name" required>
 
               </div>
 
               <div class="col-sm-6 ">
                 <label for="start_date" class="label-control">Start Date</label>
-                <input type="date" id="start_date" class="form-control" name="start_date" [(ngModel)]="_term.start_date">
+                <input type="date" id="start_date" class="form-control" name="start_date" [(ngModel)]="_term.start_date" required>
 
               </div>
 
                 <div class="col-sm-6 form-top-margin" >
                   <label for="end_date" class="label-control">End Date</label>
-                  <input type="date" id="end_date" class="form-control" name="end_date" [(ngModel)]="_term.end_date">
+                  <input type="date" id="end_date" class="form-control" name="end_date" [(ngModel)]="_term.end_date" required>
 
                 </div>
 
                 <div class="col-md-6 form-top-margin">
                   <label for="course">Select Course</label>
   
-                  <select class="form-control" name="course" [(ngModel)]="selected_course">
-                    <option *ngFor="let course of _course" [ngValue]="course.id">{{course.name}}</option>
+                  <select class="form-control" name="course" [(ngModel)]="selected_course" (change)=onCourseChange(selected_course) required>
+                    <option *ngFor="let course of courses" [ngValue]="course.id">{{course.name}}</option>
   
                   </select>
                 </div>
@@ -40,8 +40,8 @@
               <div class="col-md-6 form-top-margin">
                 <label for="class">Select Class</label>
 
-                <select class="form-control" name="class" [(ngModel)]="selected_class">
-                  <option *ngFor="let _class of class" [ngValue]="_class.id">{{_class.name}}</option>
+                <select class="form-control" name="class" [(ngModel)]="selected_class" required>
+                  <option *ngFor="let _class of classes" [ngValue]="_class.id">{{_class.name}}</option>
 
                 </select>
               </div>
@@ -109,7 +109,7 @@
                 <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
               </ngx-datatable-column>
               
-              <ngx-datatable-column name="Batch" prop="batch">
+              <ngx-datatable-column name="Batch" prop="_class">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                </ngx-datatable-column>

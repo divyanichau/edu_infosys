@@ -25,7 +25,7 @@ import { AcademicMixin } from '../../core/mixins/academic.mixin';
   templateUrl: './marks-entry.component.html',
   styleUrls: ['./marks-entry.component.css']
 })
-export class MarksEntryComponent extends AcademicMixin implements OnInit {
+export class MarksEntryComponent implements OnInit {
 
   // rows = [
   //   { name: 'Austin', gender: 'Male', company: 'Swimlane' },
@@ -74,11 +74,11 @@ export class MarksEntryComponent extends AcademicMixin implements OnInit {
     _marksEntryService: MarksEntryService,
     
   ) {
-    super(_utils, _courseService, _classService, _sectionService,_subjectService)
+  //  super(_utils, _courseService, _classService, _sectionService,_subjectService)
   }
 
   ngOnInit() {
-    this.initCourse();
+  //  this.initCourse();
     
     this.rows = [
       
@@ -125,30 +125,30 @@ export class MarksEntryComponent extends AcademicMixin implements OnInit {
     console.log("Selected ourse", this.selected_course);
     // this._academicMixin.initClassWithCourse(this.selected_course);
 
-    this._utils.unsubscribeSub(this._sub);
-    this._sub = this._classService.getWithCourse(this.selected_course).subscribe(
+    //this._utils.unsubscribeSub(this._sub);
+    //this._sub = this._classService.getWithCourse(this.selected_course).subscribe(
       data => {
         isArray(data) ? this.class = data : data;
         console.log("Classws", this.class);
         this.selected_class = this.class[0].id;
         this.loadSection();
       }
-    );
+   // );
   }
 
   loadSection() {
-    this._utils.unsubscribeSub(this._sub);
-    this._sub = this._sectionService.get().subscribe(
+    //this._utils.unsubscribeSub(this._sub);
+    //this._sub = this._sectionService.get().subscribe(
       data => {
         isArray(data) ? this._section = data : data;
         console.log(this._section);
         this.selected_section = this._section[0].id;
         this.loadSubject();
       }
-    );
+   // );
   }
   loadSubject() {
-    this._utils.unsubscribeSub(this._sub);
+    //this._utils.unsubscribeSub(this._sub);
     //this._sub = this._subjectService.get().subscribe(
       data => {
         isArray(data) ? this._subject = data : data;
@@ -161,7 +161,7 @@ export class MarksEntryComponent extends AcademicMixin implements OnInit {
   }
 
   loadExam() {
-    this._utils.unsubscribeSub(this._sub);
+  // this._utils.unsubscribeSub(this._sub);
     //this._sub = this._termService.get().subscribe(
       data => {
         isArray(data) ? this._term = data : data;
@@ -211,7 +211,7 @@ export class MarksEntryComponent extends AcademicMixin implements OnInit {
     // this.entered_marks.student_data = this.rows
 
     // console.log(this.entered_marks);
-    this._utils.unsubscribeSub(this._sub);
+    //this._utils.unsubscribeSub(this._sub);
   ///  this._sub = this._marksEntryService.add(this.entered_marks).subscribe(
       data => {
 

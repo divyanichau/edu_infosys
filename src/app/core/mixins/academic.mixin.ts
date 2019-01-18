@@ -6,11 +6,14 @@ import { CourseService } from '../services/course.service';
 import { SectionService } from '../../core/services/section.service';
 import { ClassService } from '../../core/services/class.service';
 import { SubjectService } from '../../core/services/subject.service';
+//import { SetTermService } from '../services/set-term.service';
 
 import { Course } from '../classes/course';
 import { Section } from '../../core/classes/section';
 import { _class } from '../../core/classes/class';
 import { Subject } from '../../core/classes/subject';
+import { setTerm } from '../classes/exam/set-term';
+
 
 
 export class AcademicMixin {
@@ -21,6 +24,7 @@ export class AcademicMixin {
     classes: _class[];
     sections: Section[];
     subjects:Subject[];
+   // _seterm : setTerm[];
 
     course: Course = new Course();
     __class: _class = new _class();
@@ -41,8 +45,9 @@ export class AcademicMixin {
         public _utils: UtilsService,
         public _courseService: CourseService,
         public _classService: ClassService,
-        public _sectionService: SectionService,
-        public _subjectService:SubjectService
+       // private _setTermService:SetTermService
+       // public _sectionService: SectionService,
+        //public _subjectService:SubjectService
 
     ) {
         //console.log('initialized AcademicMixin..')
@@ -84,7 +89,7 @@ export class AcademicMixin {
     initSection() {
         console.log(this.selected_class);
         this._utils.unsubscribeSub(this._typeSub);
-        this._sub = this._sectionService.getWithClass(this.selected_class).subscribe(
+       // this._sub = this._sectionService.getWithClass(this.selected_class).subscribe(
             data => {
                 isArray(data) ? this.sections = data : data;
 
@@ -95,7 +100,7 @@ export class AcademicMixin {
                 this.temp = [...this.sections];
 
             }
-   );
+  // );
   }
    
 //   initSubject(id:number){
@@ -114,14 +119,26 @@ export class AcademicMixin {
 //     );
 //   }
 
+// loadExamTerm() {
+//     this._utils.unsubscribeSub(this._sub);
+//     this._sub = this._setTermService.get().subscribe(
+//       data => {
+//         isArray(data) ? this._seterm = data : data;
+       
+//       }
+//     );
+//   }
+
     onCourseChange(course_id) {
         this.selected_course = course_id;
         this.initClass();
+     //   this.loadExamTerm()
     }
 
     onClassChange(class_id) {
         this.selected_class = class_id;
          this.initSection();
+        // this.loadExamTerm()
     }
 
     onSectionChange(section_id) {

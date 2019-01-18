@@ -1,8 +1,8 @@
 export class setTerm{
-    id:number;
+    id?:number;
     name:string;
     start_date:Date;
     end_date:Date;
-    batch:number;
-    batch_id?:number;
+    course:number;
+    _class:number;
 }
