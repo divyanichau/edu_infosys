@@ -25,7 +25,7 @@
                     <div class="col-sm-4">
                       <label for="reportfor" class="req">Fee Category</label>
                       <select class="form-control" (change)="onChange($event.target.value)" name="reportfor">
-                        <option value ="0">Select option</option>
+                        <option value ="0">Select option</option> 
                         <option value ="1">hostel</option>
                         <option value = "2">bloodgroup</option>
                         <option value = "3">category</option>
@@ -251,25 +251,12 @@
   </div>
 
 
- <div class="col-sm-12"   *ngIf="studentreport">
-        <div class="table-responsive">
-          <br>
-            <div>
-
-              <div class="row">
-                <label class="control-label col-sm-1">Student Report</label>
-                <div class="col-xs-6 col-md-4">
-                  <div class="input-group">
-                    <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter name" id="txtSearch" />
-                    <div class="input-group-btn">
-                      <button class="btn btn-primary" type="submit">
-                        <span class="glyphicon glyphicon-search"></span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
+        <div class="table-responsive"  *ngIf="studentreport">
+            <table class ="table">
+              <div class="panel-heading bg-primary">
+               <h4 class = "text-center"> Student Report</h4>
               </div>
-
+              <br>
               <ngx-datatable class="material" [rows]="rows" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
                 [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
 
@@ -600,24 +587,15 @@
               </ng-template>
             </ngx-datatable-column>
 
-
-
-
-
-
-
                 <ngx-datatable-column name="Email" prop="email"*ngIf="!email">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
               </ngx-datatable>
-            </div>
-          </div>
+          </table>
+        </div>
 
-
-
-   </div>
  </div>
       
       

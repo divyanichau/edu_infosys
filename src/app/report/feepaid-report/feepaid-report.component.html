@@ -11,19 +11,19 @@
   <div class="btn btn-group bg-info">
   <ul class="nav nav-tabs nav-tabs-highlight">
       <li  class="active">
-          <a  class="btn btn-default" href="#paid_report" data-toggle="tab">
+          <a  class="btn btn-default" value ="1" href="#paid_report" data-toggle="tab">
               <i class="material-icons"></i> Paid Report
           </a>
       </li>
       <li class="">
-          <a  class ="btn btn-default" href="#collective_reprt" data-toggle="tab">
+          <a  class ="btn btn-default" value ="2" href="#collective_reprt" data-toggle="tab">
               <i class="material-icons"></i> Collective Report
           </a>
       </li>
       <li class ="">
-        <a class ="btn btn-default" href ="#paid_report_datewise" data-toggle ="tab">
+        <a class ="btn btn-default" value ="3" href ="#paid_report_datewise" data-toggle ="tab">
           <i class ="material-icons"></i> Paid Report(Datewise)
-        </a>
+        </a> 
       </li>
    
   </ul>
@@ -33,7 +33,7 @@
 
   <div class="tab-content">
  
-  <div role="tabpanel" class="tab-pane active" id="paid_report">
+  <div role="tabpanel" class="tab-pane active" id="paid_report" >
 
   <div class="content-wrapper">
     <div class="content">
@@ -43,7 +43,7 @@
               <div class="card">
                 <div class="panel-heading bg-primary">
                   <h3 class="panel-title">
-                    <b>Paid Report</b>
+                    <b> Fee Paid Repor(schoolwise)</b>
                   </h3>
                 </div>
                 <br>
@@ -58,33 +58,19 @@
                      
                       <div class="col-sm-4">
                           <label for="reportfor" class="req">Mode Of Payment </label>
-                          <select class="form-control" (change)="onChange($event.target.value)" name="mode_of_payment">
-                            <option value ="0">Select option</option>
-                            <option value ="1">cash</option>
-                            <option value = "2">cheque</option>
-                            <option value = "3">Online_payment</option>
-                             <option value ="4">Frequency</option>
+                          <select class="form-control" [(ngModel)]="cash" name="mode_of_payment">
+                            <option>cash</option>
+                            
                             <!-- <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option> -->
                           </select>
                         </div>
-
-                        <div class="col-sm-4" *ngIf ="cheque_type[2]">
-                            <label for="bank_name" class="req">Bank Name</label>
-                            <select class="form-control" [(ngModel)]="paid_report.bank_name" name="bank_name" >
-                              <!-- <option *ngFor="let bank of banks" [ngValue]="bank.id">{{bank.name}}</option> -->
-                              <option>Select bank</option>
-                              <option>parbhu</option>
-                              <option>bok</option>
-                              <option>everest</option>
-                            </select>
-                         </div>
 
                    </div> 
                 <h3 class="col-sm-offset-1"><b>OR</b></h3>
                 <div class ="row clearfix">
                     <div class="col-sm-4">
                         <label for="search" class="req">Search</label>
-                        <input type ="text" class="form-control" [(ngModel)]="selected_course" name="search">
+                        <input type ="text" placeholder="receipt no" class="form-control" [(ngModel)]="selected_course" name="search">
                      
                    </div>
 
@@ -108,9 +94,63 @@
      </div>
   
   </div>
+
+  <!--paid report table start-->
+  <div class="table-responsive" *ngIf ="paidreport" >
+      <br>
+        <table class ="table table-bordered">
+          <div class="row">
+          <div class="panel-heading bg-primary">
+           <h4 class="text-center"> Paid Report</h4>
+          </div>
+          </div>
+          <br>
+          <ngx-datatable class="material" [rows]="rows" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+            [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+             
+            <ngx-datatable-column name="ID" prop="id">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column name="Name" prop="name">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column name="Ad No/Course" prop="admission_no">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column name="Total Fine" prop="total_fine">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Total Discount" prop="total_discount">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column name="Receipt No" prop="receipt_no">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column name="Total due" prop="total_due">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+            
+  
+          </ngx-datatable> 
+        </table>
+      </div>
+     <!--paid report table end-->
   </div>
  
   <div role="tabpanel" class="tab-pane " id ="collective_reprt">
+
   <div class="content-wrapper">
     <div class="content">
         <div class="row ">
@@ -120,7 +160,7 @@
 
                 <div class="panel-heading bg-primary">
                   <h2 class="panel-title">
-                    <b>Collective Report</b>
+                    <b>Fee Paid Report(schoolwise)</b>
                   </h2>
                 </div>
                 <br>
@@ -139,11 +179,8 @@
                      <div class="col-sm-4">
                       <label for="mode_of_pay" class="req">Mode Of Pay </label>
                       <select class="form-control" [(ngModel)]="mode_of_pay" name="mode_of_pay">
-                        <option>Select option</option>
-                        <option>cash</option>
-                        <option>demand draft</option>
-                        <option>online payment</option>
-                         <option>all</option>
+                        <option value ="1">cash</option>
+                        
                         <!-- <option *ngFor="let mode_pay of mode_of_pay" [ngValue]="mode_pay.id">{{mode_pay.name}}</option> -->
                       </select>
                     </div>
@@ -168,6 +205,80 @@
        </div>
     </div>
   </div>
+
+  <!--collective report table start-->
+  <div class="table-responsive" *ngIf="collectivereport">
+      <br>
+        <table class ="table table-bordered">
+          <div class="row">
+          <div class="panel-heading bg-primary">
+           <h4 class="text-center"> collective Report</h4>
+          </div>
+          </div>
+          <br>
+          <ngx-datatable class="material" [rows]="rows" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+            [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+             
+            <ngx-datatable-column name="ID" prop="id">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column name="Name" prop="name">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column name="Ad No/Course" prop="admission_no">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="category" prop="fee_category">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="course" prop="course">
+                <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+              </ngx-datatable-column>
+
+              <ngx-datatable-column name="batch" prop="batch">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Adm Fee" prop="admission_fee">
+                    <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                    <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                  </ngx-datatable-column>
+  
+            <ngx-datatable-column name="Total Fine" prop="total_fine">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Total Discount" prop="total_discount">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column name="Receipt No" prop="receipt_no">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column name="Total due" prop="total_due">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+            
+  
+          </ngx-datatable> 
+        </table>
+      </div>
+  <!--collective report atable end-->
+
   </div>
   
   <div role="tabpanel" class="tab-pane " id ="paid_report_datewise">
@@ -194,11 +305,7 @@
                       <div class="col-sm-4">
                         <label for="modeof_pay" class="req">Mode Of Pay </label>
                         <select class="form-control" [(ngModel)] ="mode_of_pay" name="modeof_pay">
-                          <option value ="0">Select mode of pay</option>
-                          <option value ="1">Cash</option>
-                          <option value = "2">Demand Draft</option>
-                          <option value = "3">Online Payment</option>
-                           <option value ="4">all</option>
+                          <option value ="1">Cash</option> 
                           <!-- <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option> -->
                         </select>
                       </div>
@@ -220,12 +327,52 @@
          </div>
       </div>
     </div>
-    </div>
+   <!--paidreport date wise table start-->
 
-    <!--end of tab-->
+   <div class="table-responsive" *ngIf ="monthlyreport" >
+      <br>
+        <table class ="table table-bordered">
+          <div class="row">
+          <div class="panel-heading bg-primary">
+           <h4 class="text-center"> CONSOLIDATED FEE REPORT [ Cash ]</h4>
+          </div>
+          </div>
+          <br>
+          <ngx-datatable class="material" [rows]="rows" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+            [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+             
+            <ngx-datatable-column name="ID" prop="id">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+  
+  
+            <ngx-datatable-column name="fees category Name" prop="fee_category_name">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column name="amount" prop="amount">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+            
+  
+          </ngx-datatable> 
+        </table>
+      </div>
+
+   </div>
+
+   <!--end of tab-->
   </div>
 <!--end of pageheader-->
  </div>
+
  <!--body end-->
  </div>
+
+
+
+  
   

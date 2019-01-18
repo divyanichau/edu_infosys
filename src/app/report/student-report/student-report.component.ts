@@ -17,7 +17,7 @@ import { StudentReportService } from '../../core/services/studentreport.service'
   templateUrl: './student-report.component.html',
   styleUrls: ['./student-report.component.css']
 })
-export class StudentReportComponent implements OnInit , OnDestroy{
+export class StudentReportComponent implements OnInit{
  private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
   studentreport= false;
@@ -70,11 +70,6 @@ export class StudentReportComponent implements OnInit , OnDestroy{
     this.detail_type[1] =true;
     this.LoadBatch();
   	
-  }
-
-
-   ngOnDestroy() {
-    this._utils.unsubscribeSub(this._sub);
   }
 
 

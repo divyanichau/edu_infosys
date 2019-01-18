@@ -13,13 +13,12 @@
           <form>
             <div class="col-sm-12">
               <div class="card">
-
-                <div class="panel-heading bg-primary ">
+                 <div class="panel-heading bg-primary ">
                   <h4>
                     <b>Due Report</b>
                   </h4>
-                </div>
-                <br>
+                  </div>
+                   <br>
                 <div class="panel-body">
                   <div class="row clearfix">
                     <div class="col-sm-4">
@@ -40,7 +39,6 @@
                           required>
                       </div>
 
-
                      <div class="col-sm-4">
                       <label for="batch" class="req">Batch</label>
                       <select class="form-control" [(ngModel)]="selected_batch" name="batch" >
@@ -48,15 +46,7 @@
                         
                       </select>
                     </div>
-                   
-
-
-                   
-
-                   
-                  
-
-
+                 
                 </div>
                 <br> 
                 <div class ="row clearfix">
@@ -111,26 +101,14 @@
     </div>
   </div>
 
- 
- <div class="col-sm-12"   *ngIf="duereport">
-  <div class="table-responsive">
-    <br>
-      <div>
+ <!--table start-->
+  <div class="table-responsive" *ngIf="duereport">
+      <table class = "table table-bordered ">
 
-        <div class="row">
-          <label class="control-label col-sm-1">Fee Due Report</label>
-          <div class="col-xs-6 col-md-4">
-            <div class="input-group">
-              <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter name" id="txtSearch" />
-              <div class="input-group-btn">
-                <button class="btn btn-primary" type="submit">
-                  <span class="glyphicon glyphicon-search"></span>
-                </button>
-              </div>
-            </div>
-          </div>
+        <div class="panel-heading bg-primary">
+          <h4 class ="text-center">Due REport</h4>
         </div>
-
+         <br>
         <ngx-datatable class="material" [rows]="rows" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
           [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
 
@@ -170,10 +148,10 @@
           
 
         </ngx-datatable> 
-      </div>
+      </table>
     </div>
-</div>
 
+<!--end of table-->
 </div>
 
        

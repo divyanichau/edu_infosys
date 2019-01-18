@@ -4,5 +4,6 @@ export class FeepaidReport{
     end_date:Date;
     mode_of_pay:string;
     mode_of_payment:string;
+    cash:string;
 
 }

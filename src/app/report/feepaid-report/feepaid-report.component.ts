@@ -16,26 +16,11 @@ import { FeepaidReportService } from '../../core/services/feepaidreport.service'
 export class FeepaidReportComponent implements OnInit {
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
-  default_cheque_type = {0:false, 1:false,2:false};
-  cheque_type = this.default_cheque_type;
-
   feepaid_report: FeepaidReport = new FeepaidReport();
-  paidreport =false;
+  paidreport:boolean =false;
   collectivereport =false;
   monthlyreport =false;
-
-
-  onChange(newvalue){
-    this.reset_cheques_value();
-    this.cheque_type[newvalue] =true;
-    
-  }
-  reset_cheques_value(){
-    this.cheque_type =this.default_cheque_type;
-    this.cheque_type[0]=false;
-    this.cheque_type[1] =false;
-    this.cheque_type[2]= false;
-  }
+ 
 
   constructor( 
     private _utils: UtilsService,
@@ -44,8 +29,7 @@ export class FeepaidReportComponent implements OnInit {
     private toastr: ToastrService) { }
 
   ngOnInit() {
-    this.reset_cheques_value;
-    this.cheque_type[0] =true;
+    
   }
 
   get_paidreport(){
