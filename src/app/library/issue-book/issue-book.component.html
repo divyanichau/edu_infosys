@@ -97,7 +97,7 @@
           <div class="col-sm-12"   *ngIf="detail_type[2]">           
             <div class="panel-body">
              <div class="row clearfix">                                                                      
-        <input class="form-control ui-autocomplete-input" placeholder="Search" id="librarybook" type="text" value="" name="librarybook" autocomplete="off" required>
+        <input class="form-control ui-autocomplete-input" placeholder="Search" id="librarybook" type="text" value="" name="librarybook" autocomplete="off">
             </div>
           </div>
           
@@ -128,6 +128,9 @@
                   <select class="form-control"       
                  [(ngModel)]="selected_student" name="student">
                   <option *ngFor="let c of _student" [ngValue]="c.id">{{c.user.first_name}}</option>
+                  <option>Ram</option>
+                  <option>Shyam</option>
+                  <option>Hari</option>
                   </select>
             </div>
 </div>
@@ -151,6 +154,7 @@
                                     
               <label for="issue_date">Book Issue Date</label>
        <input type="date" class="form-control" [(ngModel)]="obj_book.issue_date" name="issue_date" placeholder="Enter Date" required>
+
                                         </div>
    </div>
 
@@ -254,7 +258,11 @@
                   <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                     Manage
                   </ng-template>
-                  
+                  <ng-template let-row="_issued_books" let-value="value" ngx-datatable-cell-template>
+                    <a class="glyphicon glyphicon-eye-open" title="" href="/library/issue-book/edit-issue/{{value}}"><img src="" alt=""></a>
+                    
+                    <button class="glyphicon glyphicon-trash left-icon btn btn-danger" style="margin-left:35px;" (click)="issueDelete(value)"></button>
+                  </ng-template>
                 </ngx-datatable-column>
               </ngx-datatable>
             </div>

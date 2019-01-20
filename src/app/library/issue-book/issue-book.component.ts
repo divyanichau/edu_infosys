@@ -91,8 +91,9 @@ obj_book : IssueBook = new IssueBook();
   
   ngOnInit() {
     this.reset_details_value();
-    this.detail_type[1]= true;   
-    this.loadCourse();  
+    this.detail_type[1]= true; 
+    this.initIssueBook();
+    
    
   }
 
@@ -106,7 +107,7 @@ obj_book : IssueBook = new IssueBook();
    // this.obj_book.book= this.book;
    console.log("gsdgsaa",this.obj_book)
     this._utils.unsubscribeSub(this._sub);
-   // console.log(this.obj_book);
+   console.log(this.obj_book);
     this._sub = this._libraryService.addIssue(this.obj_book)
       .subscribe(data => {
         console.log(data);
@@ -143,10 +144,10 @@ obj_book : IssueBook = new IssueBook();
     this._sub = this._studentService.get().subscribe(
       data => {
         isArray(data) ? this._student = data : data;
-        console.log(this._student);
+        //console.log(this._student);
         console.log("kdskdhwhwkjehwkjehkweh")
       //  this.selected_student = this._student[0].id;
-         this.initIssueBook();
+        
       }
     );
 
@@ -155,7 +156,7 @@ obj_book : IssueBook = new IssueBook();
    
 
   initIssueBook() {
-console.log("kdskdhwhwkjehwkjehkweh")
+  //console.log("kdskdhwhwkjehwkjehkweh")
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._libraryService.getIssue().subscribe(
       data => {
@@ -163,7 +164,7 @@ console.log("kdskdhwhwkjehwkjehkweh")
         console.log("issud Book",data);
         this.rows = this._issued_books;
         this.temp = [...this._issued_books];
-        
+        this.loadCourse(); 
       }
     );
   }
@@ -172,7 +173,7 @@ console.log("kdskdhwhwkjehwkjehkweh")
     const val = event.target.value.toLowerCase();
     // filter our data
     const temp = this.temp.filter(function(d) {
-      return d.name.toLowerCase().indexOf(val) !== -1 || !val;
+      return d.title.toLowerCase().indexOf(val) !== -1 || !val;
     });
     // update the rows
     this._issued_books= temp;
@@ -183,6 +184,22 @@ console.log("kdskdhwhwkjehwkjehkweh")
  handleResultSelected(result) {
     this.search = result;
   }
+
+
+  issueDelete(id:number){
+      console.log(id);
+      if(confirm("Are You Sure Want To Delete?")){
+        this._libraryService.deleteIssue(id).subscribe(data => 
+          {
+          //console.log(data);
+          // this.toastr.success('Vehicle Added !', 'Success', { timeOut: 3000 });
+         },(err)=>{
+           console.log(err);
+           alert(err);
+         }
+         );
+       }
+    }
 
 }
 

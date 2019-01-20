@@ -24,7 +24,7 @@ export class AddBookComponent implements OnInit , OnDestroy{
   selected_lib : number;
   category : BookCategory[];
    
-   _library = [];
+   _library : AddBook[];
    add_book : AddBook = new AddBook();
 
   rows: any[] = [];
@@ -42,9 +42,9 @@ export class AddBookComponent implements OnInit , OnDestroy{
   
   
   ngOnInit() {
+
     this.initAddBook();
-    this.loadCategory(); 
-   
+     
   }
 
   ngOnDestroy() {
@@ -78,15 +78,45 @@ export class AddBookComponent implements OnInit , OnDestroy{
   
   initAddBook() {
     this._utils.unsubscribeSub(this._typeSub);
-    this._sub = this._libraryService.get().subscribe(
+    this._sub = this._libraryService.getBook().subscribe(
       data => {
         isArray(data) ? this._library = data : data;
         this.rows = this._library;
         this.temp = [...this._library];
-
+         this.loadCategory(); 
       }
     );
   }
+
+    updateFilter(event) {
+    const val = event.target.value.toLowerCase();
+
+    // filter our data
+    const temp = this.temp.filter(function(d) {
+      return d.title.toLowerCase().indexOf(val) !== -1 || !val;
+    });
+
+    // update the rows
+    this._library = temp;
+    // Whenever the filter changes, always go back to the first page
+    this.table.offset = 0;
+  }
+
+  bookDelete(id:number){
+      console.log(id);
+      if(confirm("Are You Sure Want To Delete?")){
+        this._libraryService.deleteBook(id).subscribe(data => 
+          {
+          //console.log(data);
+          // this.toastr.success('Vehicle Added !', 'Success', { timeOut: 3000 });
+         },(err)=>{
+           console.log(err);
+           alert(err);
+         }
+         );
+       }
+    }
+
   }
 
  

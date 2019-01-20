@@ -7,19 +7,19 @@ import { isArray ,isObject} from 'lodash';
 
 import { UtilsService } from '../../../shared/services/utils.service';
 import { LibraryService } from '../../../core/services/library.service';
-import { AddBook } from '../../../core/classes/addbook';
+import { IssueBook } from '../../../core/classes/issuebook';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-edit-book',
-  templateUrl: './edit-book.component.html',
+  selector: 'app-edit-issue',
+  templateUrl: './edit-issue.component.html',
 
 })
-export class EditBookComponent implements OnInit {
+export class EditIssueComponent implements OnInit {
   private _sub: Subscription = undefined;
    id: string;
-   add_book : AddBook = new AddBook();
-  selected_book: number;
+  _obj_book : IssueBook = new IssueBook();
+  selected_category: number;
 
   constructor(
     private _libraryService: LibraryService,
@@ -39,25 +39,23 @@ export class EditBookComponent implements OnInit {
     this._sub = this._routes.paramMap.pipe(
       switchMap((params: ParamMap) => {
         this.id = params.get('id');
-        return this._libraryService.findBook(this.id);
+        return this._libraryService.findIssue(this.id);
       }))
       .subscribe(data => {
         if (isObject(data)) {
-         console.log("vhgv",data);
-         this.add_book = data;
-        console.log("Edit Book",this.add_book);
+         this._obj_book = data;
+         console.log("echeduled Exam",this._obj_book );
         }
       });
   }
 
  
   onSubmitEditUpdate(){
-    console.log(this.id);
     this._utils.unsubscribeSub(this._sub);
-    this._sub = this._libraryService.updateBook(this.add_book,this.id).subscribe(
+    this._sub = this._libraryService.updateIssue(this._obj_book ,this.id).subscribe(
       data => {
-        console.log("Updated Data",data);
-        this._router.navigate(['library/add-book']);
+        //console.log("Updated Data",data);
+        this._router.navigate(['library/issue-book']);
 
       }
     );

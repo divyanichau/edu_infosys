@@ -108,7 +108,7 @@ export class AddCategoryComponent implements OnInit , OnDestroy{
   categoryDelete(id:number){
       console.log(id);
       if(confirm("Are You Sure Want To Delete?")){
-        this._libraryService.delete(id).subscribe(data => 
+        this._libraryService.deleteCategory(id).subscribe(data => 
           {
           //console.log(data);
           // this.toastr.success('Vehicle Added !', 'Success', { timeOut: 3000 });

@@ -44,7 +44,7 @@
   <div class="panel-body">
  <div class="row-clearfix">
              <label for="reg_input_name">Return / Renewal</label>
-<select class="form-control" (change)="onChange($event.target.value)" name="return" [(ngModel)]="_return.return" required>
+<select class="form-control" (change)="onChange($event.target.value)" name="return" required>
 <option value="1">Select Option</option>
 <option value="2">Return</option>
 <option value="3">Renewal</option>
@@ -54,7 +54,7 @@
 <div class="row clearfix" *ngIf="book_return[2]">
     <div class="panel-body">  
                   <label for="return_date">Return Date</label>
-                <input type="date" class="form-control" [(ngModel)]="_return.return_date" name="return_date"  size="84" maxlength="45" placeholder="Enter Return Date " required>
+                <input type="date" class="form-control" [(ngModel)]="_return.returned_date" name="return_date"  size="84" maxlength="45" placeholder="Enter Return Date " required>
             </div>
 
             <div class="panel-body">
@@ -64,7 +64,7 @@
 
             <div class="panel-body">   
                   <label for="remark">Remark</label>
-                <input type="text" class="form-control" [(ngModel)]="_return.remark" name="remark"  size="84" maxlength="45" placeholder="Enter Category Name " required>
+                <input type="text" class="form-control" [(ngModel)]="_return.remarks" name="remark"  size="84" maxlength="45" placeholder="Enter Category Name " required>
             </div>
           </div>
 

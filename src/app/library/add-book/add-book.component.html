@@ -190,10 +190,27 @@
 
 
  <div role="tabpanel" class="tab-pane fade" id="book_list">  
- <div class="panel panel-default">
-       <div class="panel-heading" >                    
+ <div class="form-group">
+  <div class="row">
+   <div class="col-sm-12"> 
+     <div class="panel panel-primary">
+       <div class="panel-heading" > 
+          <h4 class="panel-title">Book List</h4>
+        </div>
+
+        <div class="panel-body">                   
           <div class="table-responsive">                       
               <div class="row">              
+                <div class="col-xs-6 col-md-6">
+                  <div class="input-group">
+                    <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter Name" id="txtSearch" />
+                    <div class="input-group-btn">
+                      <button class="btn btn-primary" type="submit">
+                        <span class="glyphicon glyphicon-search"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
               <ngx-datatable class="material" [rows]="_library" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
                 [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
@@ -202,13 +219,18 @@
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
-
-                <ngx-datatable-column name="ISBN NO." prop="isbn_no">
+                 
+                 <ngx-datatable-column name="ISBN No." prop="book_isbn_no">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Title" prop="title">
+                <ngx-datatable-column name="Book No." prop="book_no">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+                 <ngx-datatable-column name="Title" prop="title">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
@@ -228,12 +250,7 @@
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
-                 <ngx-datatable-column name="Book Cost" prop="book_cost">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-
-                 <ngx-datatable-column name="Actions" sortable="false" prop="id">
+                <ngx-datatable-column name="Actions" sortable="false" prop="id">
                   <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                     Manage
                   </ng-template>
@@ -247,4 +264,7 @@
             </div>
           </div>
         </div>
-      </div>
+  </div>
+ </div>
+</div>
+</div>

@@ -43,6 +43,18 @@ export class LibraryService {
       ),);
   }
 
+   add(library: BookCategory): Observable<BookCategory> {
+    this.beforeRequest();
+    const body = JSON.stringify(library);
+
+    return this._http.post(`${this._addcategoryUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json().data),
+      tap(
+      data => this.afterRequest(),
+      error => { console.log(error); }
+      ),);
+  }
+
   get(): Observable<BookCategory[]> {
     //this.beforeRequest();
     const options = this._utils.makeOptions(this._headers);
@@ -55,18 +67,45 @@ export class LibraryService {
   }
 
 
-  add(library: BookCategory): Observable<BookCategory> {
+ 
+
+   deleteCategory(id: number): Observable<BookCategory> {
+    this.beforeRequest();
+    //const body = JSON.stringify(bookcategory);
+
+    return this._http.delete(`${this._addcategoryUrl}${id}/`,  this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json().data),
+      tap(
+      //data => this.afterRequest(data),
+      error => { this.showError(error) }
+      ),);
+  }
+
+  updateCategory(library : BookCategory,id:string): Observable<BookCategory> {
+    console.log("Uhshsd",library);
     this.beforeRequest();
     const body = JSON.stringify(library);
-
-    return this._http.post(`${this._addcategoryUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
+    return this._http.put(`${this._addcategoryUrl}${id}/`, body, this._utils.makeOptions(this._headers)).pipe(
       map((res: Response) => res.json().data),
+      tap(
+      data => this.afterUpdateRequest(),
+      error => { this.showError(error) }
+      ),);
+     
+  }
+
+addBook(library: AddBook): Observable<AddBook> {
+    this.beforeRequest();
+    const body = JSON.stringify(library);
+    console.log("jasondata",body)
+
+    return this._http.post(`${this._addbookUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json()),
       tap(
       data => this.afterRequest(),
       error => { console.log(error); }
       ),);
   }
-
 
    getBook(): Observable<AddBook[]> {
     //this.beforeRequest();
@@ -80,13 +119,53 @@ export class LibraryService {
   }
 
 
-  addBook(library: AddBook): Observable<AddBook> {
+  
+   findBook(id: string): Observable<AddBook> {
+    //this.beforeRequest();
+
+   return this._http.get(`${this._addbookUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json()),
+      tap(
+      data => this.afterGetRequest(),
+      error => { console.log(error); }
+      ),);
+  }
+
+   
+
+updateBook(library : AddBook,id:string): Observable<AddBook> {
+    console.log("Uhshsd",library);
     this.beforeRequest();
     const body = JSON.stringify(library);
-    console.log("jasondata",body)
+    return this._http.put(`${this._addbookUrl}${id}/`, body, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json().data),
+      tap(
+      data => this.afterUpdateRequest(),
+      error => { this.showError(error) }
+      ),);
+     
+  }
 
-    return this._http.post(`${this._addbookUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
-      map((res: Response) => res.json()),
+  deleteBook(id: number): Observable<AddBook> {
+    this.beforeRequest();
+    // const body = JSON.stringify(addbook);
+
+    return this._http.delete(`${this._addbookUrl}${id}/`,  this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json().data),
+      tap(
+      //data => this.afterRequest(data),
+      error => { this.showError(error) }
+      ),);
+  }
+
+
+addIssue(library : IssueBook): Observable<IssueBook> {
+    this.beforeRequest();
+    const body = JSON.stringify(library);
+    console.log(body)
+
+    return this._http.post(`${this._issuebookUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json().data),
       tap(
       data => this.afterRequest(),
       error => { console.log(error); }
@@ -106,16 +185,40 @@ export class LibraryService {
   }
 
 
-  addIssue(library : IssueBook): Observable<IssueBook> {
+  
+   findIssue(id: string): Observable<IssueBook> {
+    //this.beforeRequest();
+
+   return this._http.get(`${this._issuebookUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json()),
+      tap(
+      data => this.afterGetRequest(),
+      error => { console.log(error); }
+      ),);
+  }
+
+   updateIssue(library : IssueBook,id:string): Observable<IssueBook> {
+    console.log("Uhshsd",library);
     this.beforeRequest();
     const body = JSON.stringify(library);
-    console.log(body)
-
-    return this._http.post(`${this._issuebookUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
+    return this._http.put(`${this._issuebookUrl}${id}/`, body, this._utils.makeOptions(this._headers)).pipe(
       map((res: Response) => res.json().data),
       tap(
-      data => this.afterRequest(),
-      error => { console.log(error); }
+      data => this.afterUpdateRequest(),
+      error => { this.showError(error) }
+      ),);
+     
+  }
+
+   deleteIssue(id: number): Observable<IssueBook> {
+    this.beforeRequest();
+    // const body = JSON.stringify(Issuebook);
+
+    return this._http.delete(`${this._issuebookUrl}${id}/`,  this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json().data),
+      tap(
+      //data => this.afterRequest(data),
+      error => { this.showError(error) }
       ),);
   }
 
@@ -168,47 +271,6 @@ export class LibraryService {
       error => { console.log(error); }
       ),);
   }
-
-
-   updateCategory(library : BookCategory,id:string): Observable<BookCategory> {
-    console.log("Uhshsd",library);
-    this.beforeRequest();
-    const body = JSON.stringify(library);
-    return this._http.put(`${this._addcategoryUrl}${id}/`, body, this._utils.makeOptions(this._headers)).pipe(
-      map((res: Response) => res.json().data),
-      tap(
-      data => this.afterUpdateRequest(),
-      error => { this.showError(error) }
-      ),);
-     
-  }
-
-updateBook(library : AddBook,id:string): Observable<AddBook> {
-    console.log("Uhshsd",library);
-    this.beforeRequest();
-    const body = JSON.stringify(library);
-    return this._http.put(`${this._addbookUrl}${id}/`, body, this._utils.makeOptions(this._headers)).pipe(
-      map((res: Response) => res.json().data),
-      tap(
-      data => this.afterUpdateRequest(),
-      error => { this.showError(error) }
-      ),);
-     
-  }
-
-   delete(id: number): Observable<BookCategory> {
-    this.beforeRequest();
-    //const body = JSON.stringify(bookcategory);
-
-    return this._http.delete(`${this._addcategoryUrl}${id}/`,  this._utils.makeOptions(this._headers)).pipe(
-      map((res: Response) => res.json().data),
-      tap(
-      //data => this.afterRequest(data),
-      error => { this.showError(error) }
-      ),);
-  }
-
-
   
   beforeRequest(): void {
     this._utils.start_progress();

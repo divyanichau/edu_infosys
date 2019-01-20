@@ -6,6 +6,7 @@ import { AddBookComponent } from './add-book/add-book.component';
 import { EditBookComponent} from './add-book/edit-book/edit-book.component';
 import { AddCategoryComponent} from './add-category/add-category.component';
 import { IssueBookComponent} from './issue-book/issue-book.component';
+import { EditIssueComponent} from './issue-book/edit-issue/edit-issue.component';
 import { BookReturnComponent} from './book-return/book-return.component';
 import { DetailComponent} from './add-category/detail/detail.component';
 import { ReportComponent} from './report/report.component';
@@ -41,6 +42,11 @@ const routes: Routes = [
 	   {
 	    path: "issue-book",
 	    component:IssueBookComponent	    
+	  },
+
+	  {
+	    path: "issue-book/edit-issue/:id",
+	    component:EditIssueComponent	   	    
 	  },
 
 	   {
