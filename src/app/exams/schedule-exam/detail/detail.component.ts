@@ -91,8 +91,8 @@ export class DetailComponent implements OnInit {
 
   onSubmitUpdateSchedule(){
 
-    this.scheduleExm.subject=this.selected_subject;
-    this.scheduleExm.term=this.selected_term;
+    // this.scheduleExm.subject=this.selected_subject;
+    // this.scheduleExm.term=this.selected_term;
 
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._examScheduleService.update(this.scheduleExm,this.id).subscribe(

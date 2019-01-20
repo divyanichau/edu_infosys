@@ -131,6 +131,7 @@ export class AcademicMixin {
 
     onCourseChange(course_id) {
         this.selected_course = course_id;
+        console.log(this.selected_course)
         this.initClass();
      //   this.loadExamTerm()
     }

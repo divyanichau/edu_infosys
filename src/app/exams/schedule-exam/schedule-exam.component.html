@@ -1,163 +1,130 @@
 <div class="body">
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-      <li role="presentation" class="active">
-          <a href="#addSchedule_with_icon_title" data-toggle="tab">
-              <i class="material-icons">loyalty</i> Schedule Subject
-          </a>
-      </li>
-      <li role="presentation">
-          <a href="#listSchedule_with_icon_title" data-toggle="tab">
-              <i class="material-icons">list</i> Schedule List
-          </a>
-      </li>
-   
-  </ul>
 
-  <!-- Tab panes -->
-  <div class="tab-content">
-      <div role="tabpanel" class="tab-pane fade in active" id="addSchedule_with_icon_title">
-        <div class="body">
-          <form (ngSubmit)="onSubmitSchedule()" #scheduleExam="ngForm">
-            <div class="content-wrapper">
-              <div class="col-sm-6">
-                <div class="panel panel-primary">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">Schedule Exam</h4>
-                  </div>
-                  <div class="panel-body">
-                    <div class="row clearfix">
-                      <div class="col-md-6 ">
-                        <label for="subject">Select Subject</label>
-                        <select class="form-control" name="subject" [(ngModel)]="selected_subject">
-                          <option *ngFor="let sub of totlSub" [ngValue]="sub.id">{{sub.name}}</option>
-                        </select>
-                      </div>
-                      <div class="col-md-6 ">
-                        <label for="term">Select Term</label>
-        
-                        <select class="form-control" name="term" [(ngModel)]="selected_term">
-                          <option *ngFor="let term of totlTerm" [ngValue]="term.id">{{term.name}}</option>
-                        </select>
-                      </div>
-                      <div class="col-sm-6 form-top-margin">
-                        <label for="date" class="label-control">Date</label>
-                        <input type="date" id="date" class="form-control" name="date" [(ngModel)]="scheduleExm.date">
-                      </div>
-                      <div class="col-sm-6 form-top-margin">
-                        <label for="start_time" class="label-control">Start Time</label>
-                        <input type="time" id="start_time" class="form-control" name="start_time" [(ngModel)]="scheduleExm.start_time">
-                      </div>
-                      <div class="col-sm-6 form-top-margin">
-                        <label for="end_time" class="label-control">End Time</label>
-                        <input type="time" id="end_time" class="form-control" name="end_time" [(ngModel)]="scheduleExm.end_time"
-                          placeholder="Term Name">
-                      </div>
-                    </div>
-                    <div class="panel-footer">
-                      <button class="btn btn-primary" type="Submit">Schedule Exam</button>
-                    </div>
-                  </div>
+
+  <div class="col-md-6">
+    <form (ngSubmit)="onSubmitSchedule()" #scheduleExam="ngForm">
+
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h4 class="panel-title">Schedule Exam</h4>
+            </div>
+            <div class="panel-body">
+              <div class="row clearfix">
+                <div class="col-md-6 ">
+                  <label for="course">Select Course</label>
+                  <select class="form-control" name="course" [(ngModel)]="selected_course" (change)="onCourseChange(selected_course)">
+                    <option *ngFor="let course of courses" [ngValue]="course.id">{{course.name}}</option>
+                  </select>
                 </div>
+
+                <div class="col-md-6 ">
+                  <label for="course">Select Class</label>
+                  <select class="form-control" name="class" [(ngModel)]="selected_class">
+                    <option *ngFor="let class of classes" [ngValue]="class.id">{{class.name}}</option>
+                  </select>
+                </div>
+
+                <div class="col-md-6  form-top-margin ">
+                  <label for="term">Select Term</label>
+
+                  <select class="form-control" name="term" [(ngModel)]="selected_term">
+                    <option *ngFor="let term of totlTerm" [ngValue]="term.id">{{term.name}}</option>
+                  </select>
+                </div>
+                <div class="col-sm-6 form-top-margin">
+                  <label for="date" class="label-control">Date</label>
+                  <input type="date" id="date" class="form-control" name="date" [(ngModel)]="scheduleExm.date">
+                </div>
+                <div class="col-sm-6 form-top-margin">
+                  <label for="start_time" class="label-control">Start Time</label>
+                  <input type="time" id="start_time" class="form-control" name="start_time" [(ngModel)]="scheduleExm.start_time">
+                </div>
+                <div class="col-sm-6 form-top-margin">
+                  <label for="end_time" class="label-control">End Time</label>
+                  <input type="time" id="end_time" class="form-control" name="end_time" [(ngModel)]="scheduleExm.end_time"
+                    placeholder="Term Name">
+                </div>
+              </div>
+              <div class="panel-footer">
+                <button class="btn btn-primary" type="Submit">Schedule Exam</button>
               </div>
             </div>
-          </form>
-        </div>
-      </div>
-      <div role="tabpanel" class="tab-pane fade" id="listSchedule_with_icon_title">
-   
-<div class="body">
-
-  <div class="content-wrapper">
-    <div class="col-sm-12">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <h4 class="panel-title">Schedule List</h4>
-        </div>
-        <div class="panel-body">
-
-
-          <div class="table-responsive">
-            <!-- <div class="row">
-              <div class="col-xs-6 col-md-6">
-                <div class="input-group">
-                  <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter Name" id="txtSearch" />
-                  <div class="input-group-btn">
-                    <button class="btn btn-primary" type="submit">
-                      <span class="glyphicon glyphicon-search"></span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-            <!-- <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='search with name'
-                                (keyup)='updagitteFilter($event)'
-                              /> -->
-            <ngx-datatable class="material" [rows]="totlSchedule" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
-              [footerHeight]="50" [rowHeight]="'auto'" [limit]="5">
-
-
-              <ngx-datatable-column name="ID" prop="id" >
-                <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-              </ngx-datatable-column>
-
-           
-
-              <ngx-datatable-column name="Subject" prop="subject" >
-                <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-              </ngx-datatable-column>
-
-              <ngx-datatable-column name="Subject Type" prop="type" >
-                <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-              </ngx-datatable-column>
-              
-           
-               <ngx-datatable-column name="Time" prop="start_time">
-                <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-             </ngx-datatable-column>
-             <ngx-datatable-column name="Batch" prop="batch">
-              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-           </ngx-datatable-column>
-
-              <ngx-datatable-column name="Actions" sortable="false" prop="id">
-                <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-                  Manage
-                </ng-template>
-
-                <ng-template let-row="list" let-value="value" ngx-datatable-cell-template>
-                  <a class="glyphicon glyphicon-eye-open btn btn-primary" title="" href="/exam/schedule_exam/edit/{{value}}"><img src="" alt=""></a>
-                  <!-- <a class="glyphicon glyphicon-trash left-icon" title="" href="#"><img
-                      src="" alt=""></a> -->
-                      <!-- <button class="glyphicon glyphicon-trash left-icon btn btn-danger" style="margin-left:2px;" (click)="exmTermDelete(value)"></button> -->
-                </ng-template>
-              </ngx-datatable-column>
-            </ngx-datatable>
           </div>
+
+    </form>
+  </div>
+
+
+  <div class="col-md-6">
+
+    <div class="content-wrapper">
+      <div class="col-sm-12">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h4 class="panel-title">Schedule List</h4>
+          </div>
+          <div class="panel-body">
+
+
+            <div class="table-responsive">
+              <ngx-datatable class="material" [rows]="totlSchedule" [sortType]="'multi'" [columnMode]="'force'"
+                [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="5">
+
+
+                <ngx-datatable-column name="ID" prop="id">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+
+
+                <ngx-datatable-column name="Subject" prop="subject">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Subject Type" prop="type">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+
+                <ngx-datatable-column name="Time" prop="start_time">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Batch" prop="batch">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Actions" sortable="false" prop="id">
+                  <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                    Manage
+                  </ng-template>
+
+                  <ng-template let-row="list" let-value="value" ngx-datatable-cell-template>
+                    <a class="glyphicon glyphicon-eye-open btn btn-primary" title="" href="/exam/schedule_exam/edit/{{value}}"><img
+                        src="" alt=""></a>
+                    <!-- <a class="glyphicon glyphicon-trash left-icon" title="" href="#"><img
+                      src="" alt=""></a> -->
+                    <!-- <button class="glyphicon glyphicon-trash left-icon btn btn-danger" style="margin-left:2px;" (click)="exmTermDelete(value)"></button> -->
+                  </ng-template>
+                </ngx-datatable-column>
+              </ngx-datatable>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <button class="btn btn-danger">Print list</button>
+          </div>
+
+
         </div>
-
-
       </div>
+
+
     </div>
 
-
   </div>
 
 </div>
-      </div>
- 
- 
-  </div>
-</div>
-
-<!----fkhkhkfshfj-->
-
-
-
-<!--Hello View Section-->
-<!-- 
-View Section End -->
