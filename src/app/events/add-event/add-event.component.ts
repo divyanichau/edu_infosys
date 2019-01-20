@@ -109,6 +109,21 @@ export class AddEventComponent implements OnInit , OnDestroy{
     this._event= new Event();
 
   }
+
+ deleteEvent(id:number){
+    if(confirm("Are You Sure Want To Delete?")){
+      this._eventService.deleteEvent(id).subscribe(data => 
+        {
+        //console.log(data);
+        alert("Deleted");
+        //this.toastr.success('Vehicle Added !', 'Success', { timeOut: 3000 });
+       },(errr)=>{
+         console.log(errr);
+       }
+       );
+     }
+  }
+  
 }
 
 

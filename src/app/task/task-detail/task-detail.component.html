@@ -48,7 +48,7 @@
                 </div>
               </div>
              
-              <ngx-datatable class="material" [rows]="rows" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+              <ngx-datatable class="material" [rows]="tasks" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
                 [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
 
                 <ngx-datatable-column name="ID" prop="id">
@@ -56,7 +56,7 @@
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Name" prop="task.name">
+                <ngx-datatable-column name="Name" prop="name">
                   <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
                     <span
                       title="Double click to edit"
@@ -74,12 +74,12 @@
                   </ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Priority" prop="task.priority">
+                <ngx-datatable-column name="Priority" prop="priority">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Task Date" prop="task.task_date">
+                <ngx-datatable-column name="Task Date" prop="date">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
@@ -88,7 +88,7 @@
                   <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                     Manage
                   </ng-template>
-                  <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                  <ng-template let-row="tasks" let-value="value" ngx-datatable-cell-template>
 
                     <a class="glyphicon glyphicon-eye-open btn btn-primary" style="margin-left:-5px;" title="" href="/task/edit_task/{{value}}"><img src="" alt=""></a>
 

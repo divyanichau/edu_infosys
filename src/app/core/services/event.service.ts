@@ -58,6 +58,16 @@ export class EventService {
       ),);
   }
 
+  findEvent(id: string): Observable<Event> {
+    //this.beforeRequest();
+
+    return this._http.get(`${this._addeventUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json()),
+      tap(
+      data => this.afterGetRequest(),
+     // error => { console.log(error); }
+      ),);
+  }
 
   getEvent(): Observable<Event[]> {
     //this.beforeRequest();
@@ -94,6 +104,22 @@ export class EventService {
       data => this.afterUpdateRequest(data),
       error => { this.showError(error) }
       ),);
+  }
+
+
+   deleteEvent(id:number): Observable<Event> {
+   // console.log("Uhshsd",event);
+    this.beforeRequest();
+   // const body = JSON.stringify(set_term);
+   
+
+    return this._http.delete(`${this._addeventUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json()),
+      tap(
+     // data => this.afterUpdateRequest(data),
+     // error => { this.showError(error) }
+      ),);
+     
   }
 
 

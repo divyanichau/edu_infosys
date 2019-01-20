@@ -54,7 +54,7 @@ export class EventDetailComponent implements OnInit {
     this._sub = this._routes.paramMap.pipe(
       switchMap((params: ParamMap) => {
         this.id = params.get('id');
-        return this._eventService.find(this.id);
+        return this._eventService.findEvent(this.id);
       }))
       .subscribe(data => {
         if (isObject(data)) {
@@ -99,7 +99,7 @@ export class EventDetailComponent implements OnInit {
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._eventService.updateEvent(this._event,this.id)
       .subscribe(data => {
-       this._router.navigate(['/event/add-event']);
+       this._router.navigate(['/events/add-event']);
       });
  }
 

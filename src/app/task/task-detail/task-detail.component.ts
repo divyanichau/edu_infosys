@@ -46,28 +46,28 @@ export class TaskDetailComponent implements OnInit, OnDestroy{
     this._utils.unsubscribeSub(this._sub);
   }
 
-  OnSubmitTask() {
-    this._utils.unsubscribeSub(this._sub);
-    console.log(this.task)
-    this._sub = this.taskService.add(this.task)
-      .subscribe(data => {
-        console.log(data);
-         this.toastr.success(' Assign Task !', 'Success',{timeOut: 3000});
+  // OnSubmitTask() {
+  //   this._utils.unsubscribeSub(this._sub);
+  //   console.log(this.task)
+  //   this._sub = this.taskService.add(this.task)
+  //     .subscribe(data => {
+  //       console.log(data);
+  //        this.toastr.success(' Assign Task !', 'Success',{timeOut: 3000});
 
-      });
-  }
+  //     });
+  // }
 
 
-   loadTasks() {
-    this._utils.unsubscribeSub(this._sub);
-    this._sub = this.taskService.get().subscribe(
-      data => {
-        isArray(data) ? this.tasks = data : data;
-        console.log(this.tasks)
+  //  loadTasks() {
+  //   this._utils.unsubscribeSub(this._sub);
+  //   this._sub = this.taskService.get().subscribe(
+  //     data => {
+  //       isArray(data) ? this.tasks = data : data;
+  //       console.log(this.tasks)
 
-      }
-    );
-  }
+  //     }
+  //   );
+  // }
 
   initTask() {
     this._utils.unsubscribeSub(this._typeSub);
@@ -79,24 +79,24 @@ export class TaskDetailComponent implements OnInit, OnDestroy{
       }
       
     );
-    this.task= new Task();
+       this.task= new Task();
 
   }
 
-  taskDelete(id:number){
-      console.log(id);
-      if(confirm("Are You Sure Want To Delete?")){
-        this.taskService.delete(id).subscribe(data => 
-          {
-          //console.log(data);
-          // this.toastr.success('Assign Task !', 'Success', { timeOut: 3000 });
-         },(err)=>{
-           console.log(err);
-           alert(err);
-         }
-         );
-       }
-    }
+  // taskDelete(id:number){
+  //     console.log(id);
+  //     if(confirm("Are You Sure Want To Delete?")){
+  //       this.taskService.delete(id).subscribe(data => 
+  //         {
+  //         //console.log(data);
+  //         // this.toastr.success('Assign Task !', 'Success', { timeOut: 3000 });
+  //        },(err)=>{
+  //          console.log(err);
+  //          alert(err);
+  //        }
+  //        );
+  //      }
+  //   }
    
 
    updateFilter(event) {
