@@ -5,6 +5,7 @@ import { StudentReportComponent } from './student-report/student-report.componen
 import {ReportComponent } from './report.component';
 import { DueReportComponent } from './due-report/due-report.component';
 import { FeepaidReportComponent } from './feepaid-report/feepaid-report.component';
+import { AbsentReportComponent } from './absent-report/absent-report.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,11 @@ const routes: Routes = [
     path: 'feepaid-report',
     component: FeepaidReportComponent,
   },
+
+  {
+    path: 'absent-report',
+    component: AbsentReportComponent,
+  }
 
   
 ];
