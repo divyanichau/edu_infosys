@@ -1,0 +1,146 @@
+<div class="body">
+ <div class="content-wrapper">
+    <div class="content">
+      <div class="page-header">
+         <ol class="breadcrumb breadcrumb" >
+              <li><a href="#"><i class="material-icons">home</i> Home</a></li>
+              <li><a href="#"><i class="material-icons">class</i>Class </a></li>
+              <li class="active"> Add Class</li>
+           <ul class="breadcrumb-elements">                          
+            </ul>
+            <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a><a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+            </ol> 
+            </div>
+          </div>
+          
+  <div class="row">
+      <form (ngSubmit)="onSubmit()" #classForm="ngForm">
+        <div class="col-sm-6">
+            <div class="panel panel-primary">
+              <div class="panel-heading" >
+                <h4 class="panel-title">Fee Category</h4>
+              </div>
+              <br> 
+
+        <div class="panel-body">
+          <div class="row clearfix">
+                  <div class="col-sm-12">
+                        <label for="fee_category">Fee Category</label>
+                    <input type= "text" class="form-control" [(ngModel)]= "obj.fee_category"  [ngModelOptions]="{standalone: true}" placeholder="Enter Fee Category" >
+                            
+                  </div>
+                </div>
+              </div>
+            
+       <div class="panel-body">
+                  <div class="row clearfix">
+                  <div class="col-sm-12">
+                        <label for="receipt_no">Receipt No. Prefix</label>
+                           <input type="text" class="form-control" [(ngModel)]="obj.receipt_no"  [ngModelOptions]="{standalone: true}"name="zip_code" placeholder="Enter Receipt Number" required>
+                  </div>
+              </div>
+             </div>
+             <div class="panel-body">
+                  <div class="row clearfix">
+                  <div class="col-sm-12">
+                        <label for="description">Description</label>
+                           <input type="text" class="form-control" [(ngModel)]="obj.description"  [ngModelOptions]="{standalone: true}"name="deccription" placeholder="Enter Description" required>
+                  </div>
+              </div>
+             </div>
+            
+             
+         <div class="panel-body">
+          <div class="form-group">
+                  <button class="btn btn-primary btn-lg"  type="Submit"><b>Add Class</b></button>
+              </div>
+           </div>
+          </div>
+        </div>
+       
+
+
+
+      
+<div class="content-wrapper">           
+    <div class="content">
+ <div class="form-group">
+    <div class="row">
+    <div class="col-sm-6"> 
+     <div class="panel panel-default">
+              <div class="panel-heading" >                    
+       <div class="table-responsive">                       
+              <div class="row">              
+                <div class="col-xs-6 col-md-6">
+                  <div class="input-group">
+                    <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter Name" id="txtSearch" />
+                    <div class="input-group-btn">
+                      <button class="btn btn-primary" type="submit">
+                        <span class="glyphicon glyphicon-search"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='search with name'
+                                (keyup)='updagitteFilter($event)'
+                              /> -->
+              <ngx-datatable class="material" [rows]="list" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+                [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+
+                <ngx-datatable-column name="ID" prop="id">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+
+                <ngx-datatable-column name="Fee Category" prop="name">
+                  <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                    <span
+                      title="Double click to edit"
+                      (dblclick)="editing[rowIndex + '-name'] = true"
+                      *ngIf="!editing[rowIndex + '-name']">
+                      {{value}}
+                    </span>
+                    <input
+                      autofocus
+                      (blur)="updateValue($event, 'name', rowIndex)"
+                      *ngIf="editing[rowIndex+ '-name']"
+                      type="text"
+                      [value]="value"
+                    />
+                  </ng-template>
+                </ngx-datatable-column>
+                 
+
+                  <ngx-datatable-column name="Receipt No." prop="receipt_no">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Description" prop="description">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Actions" sortable="false" prop="id">
+                  <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                    Manage
+                  </ng-template>
+                  <ng-template let-row="list" let-value="value" ngx-datatable-cell-template>
+                    <a class="glyphicon glyphicon-eye-open" style="margin-left:0.2px;" title="" href="/accounting/fee-category/{{value}}"><img src="" alt=""></a>
+                    <button class="glyphicon glyphicon-trash left-icon btn btn-danger" style="margin-left:0.2px;" (click)="feeDelete(value)"></button>
+                  </ng-template>
+                </ngx-datatable-column>
+              </ngx-datatable>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

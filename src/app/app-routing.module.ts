@@ -56,10 +56,10 @@ const routes: Routes = [
 	   },
 
 
-       // {
-       // 	path: 'accounting',
-       // 	loadChildren: './accounting/accounting.module#AccountingModule'
-       // },
+       {
+       	path: 'accounting',
+       	loadChildren: './accounting/accounting.module#AccountingModule'
+       },
 
        {
 	  	path: 'library',
