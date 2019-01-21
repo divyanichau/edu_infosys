@@ -82,7 +82,7 @@ export class AssignTaskComponent implements OnInit {
     this.detail_type[1]= true; 
 
   	this.initTask();
-    this.loadCourses();
+    
 
   }
 
@@ -171,11 +171,25 @@ export class AssignTaskComponent implements OnInit {
         isArray(data) ? this.tasks = data : data;
         this.rows = this.tasks;
         this.temp = [...this.tasks];
+        this.loadCourses();
       }
       
     );
-    // this.task= new Task();
+     this.task= new Task();
 
+  }
+
+  deleteTask(id:number){
+    if(confirm("Are You Sure Want To Delete?")){
+      this.taskService.delete(id).subscribe(data => 
+        {
+        //console.log(data);
+        alert("Deleted");
+       },(errr)=>{
+         console.log(errr);
+       }
+       );
+     }
   }
 
 }

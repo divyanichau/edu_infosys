@@ -20,7 +20,8 @@ import { Student } from '../core/classes/student';
 import { Course } from '../core/classes/course';
 import { Batch } from '../core/classes/batch';
 import { AssignTaskComponent } from './assign-task/assign-task.component';
-import { TaskDetailComponent } from './task-detail/task-detail.component';
+import { TaskDetailComponent } from './assign-task/task-detail/task-detail.component';
+
 
 @NgModule({
   imports: [

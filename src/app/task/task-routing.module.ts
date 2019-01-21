@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { TaskComponent } from './task.component';
 import { AssignTaskComponent } from './assign-task/assign-task.component';
-import { TaskDetailComponent } from './task-detail/task-detail.component';
+import { TaskDetailComponent } from './assign-task/task-detail/task-detail.component';
 
 const routes: Routes = [
   {
@@ -19,7 +19,7 @@ const routes: Routes = [
   },
 
 {
-    path: 'task-detail',
+    path: 'edit-task/:id',
     component: TaskDetailComponent
     
   },

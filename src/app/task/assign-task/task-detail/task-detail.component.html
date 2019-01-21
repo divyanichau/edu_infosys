@@ -1,6 +1,6 @@
 <div class="body">
   <div class="content-wrapper">
-    <form ngNativeValidate (ngSubmit)="OnSubmitTask()" #taskForm="ngForm">
+    <form ngNativeValidate (ngSubmit)="OnSubmitTaskUpdate()" #taskForm="ngForm">
       <div class="col-sm-6">
         <div class="panel panel-primary">
           <div class="panel-heading">
@@ -79,10 +79,11 @@
                      <option value="4">Abhikesh</option>
                </select>
             </div>
-          </div> 
+          </div>
+          <!-- </div> -->
          
-          <div class="row clearfix form-top-margin">
-            <div class="col-md-6">
+         <div class="row clearfix">
+            <div class="col-md-6 form-top-margin">
                 <label for="status">Status</label>
                   <select class="form-control" [(ngModel)]="task.status" name="status" id="Taskmanager_task_status">
                      <option value>Please Select</option>
@@ -92,92 +93,11 @@
                      <option value="4">Closed</option>
                </select>
             </div>
-          </div>
-        
+        </div>
        
           <div class="panel-footer">
-            <button class="btn btn-primary btn-lg" type="Submit"><b>Save</b></button>
+            <button class="btn btn-primary btn-lg" type="Submit"><b>Update</b></button>
       </div>
-   </div>
   </div>
+</div>
 </form>
-  
-
-
-  <div class="body">
-       <div class="content-wrapper"> 
-          <div class="col-sm-6">           
-            <div class="panel panel-primary">
-              <div class="panel-heading">    
-                 <h4 class="panel-title">Search Event</h4> 
-              </div>
-          <div class="panel-body">
-            <div class="table-responsive">
-                <div class="col-xs-6 col-md-6">
-                  <div class="input-group">
-                    <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter Name" id="txtSearch" />
-                    <div class="input-group-btn">
-                      <button class="btn btn-primary" type="submit">
-                        <span class="glyphicon glyphicon-search"></span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-             
-              <ngx-datatable class="material" [rows]="tasks" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
-                [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
-
-                <ngx-datatable-column name="ID" prop="id">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Name" prop="name">
-                  <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-                    <span
-                      title="Double click to edit"
-                      (dblclick)="editing[rowIndex + '-name'] = true"
-                      *ngIf="!editing[rowIndex + '-name']">
-                      {{value}}
-                    </span>
-                    <input
-                      autofocus
-                      (blur)="updateValue($event, 'name', rowIndex)"
-                      *ngIf="editing[rowIndex+ '-name']"
-                      type="text"
-                      [value]="value"
-                    />
-                  </ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Priority" prop="priority">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Task Date" prop="date">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Actions" sortable="false" prop="id">
-                  <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-                    Manage
-                  </ng-template>
-                  <ng-template let-row="tasks" let-value="value" ngx-datatable-cell-template>
-
-                    <a class="glyphicon glyphicon-eye-open btn btn-primary" style="margin-left:-10px;" title="" href="/task/edit-task/{{value}}"><img src="" alt=""></a>
-
-                      <button class="glyphicon glyphicon-trash left-icon btn btn-danger" style="margin-left:0.01px;" (click)="deleteTask(value)"></button>
-                  </ng-template>
-                </ngx-datatable-column>
-              </ngx-datatable>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-

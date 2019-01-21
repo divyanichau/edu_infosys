@@ -59,8 +59,6 @@ export class TaskService {
     console.log("Uhshsd",task);
     this.beforeRequest();
     const body = JSON.stringify(task);
-   
-
     return this._http.put(`${this._taskUrl}${id}/`, body, this._utils.makeOptions(this._headers)).pipe(
       map((res: Response) => res.json().data),
       tap(
