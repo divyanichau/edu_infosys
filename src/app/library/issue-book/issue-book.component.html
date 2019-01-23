@@ -47,9 +47,14 @@
        <div class="search-results">
          <input class="form-control ui-autocomplete-input" placeholder="Search by Book No/ ISBN No/ Book Title/ Author" [value]="search"
              ngxTypeahead
-             [taUrl]="url"
-             [taParams]="params"
-             (taSelected)="handleResultSelected($event)" required>
+             [taApi]="http"
+             [taUrl]="searchurl"
+             [taItemTpl]="itemTpl"
+             (taSelected)=" bookSearch($event)" required>
+
+              <ng-template #itemTpl let-result>
+                            {{result.result.book_no}} {{result.result.book_isbn_no}} [ {{result.result.title}} ]
+                          </ng-template>
        </div>
       </div>
  

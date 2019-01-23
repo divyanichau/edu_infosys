@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, Output, EventEmitter, ViewChild } from '@
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 import { isArray } from 'lodash';
+import { Config } from '../../shared/classes/app';
 
 import{ DatatableComponent} from '@swimlane/ngx-datatable';
 import { CourseService } from '../../core/services/course.service';
@@ -65,15 +66,16 @@ obj_book : IssueBook = new IssueBook();
   temp: any[] = [];
   editing = {};
 
-  url = 'http://suggestqueries.google.com/complete/search';
-  params = {
-    hl: 'en',
-    ds: 'yt',
-    xhr: 't',
-    client: 'youtube'
-  };
+  searchurl = `${new Config().api}/library/search/`;
+  params = {};
   query = '';
   search = '';
+
+  bookSearch(result) {
+    console.log(result)
+    this.search = result.book_no + result.book_isbn_no + '[ '+result.title +' ]';
+    this.obj_book = result;
+  }
 
   
 
@@ -102,9 +104,7 @@ obj_book : IssueBook = new IssueBook();
   }
 
   onSubmit() {
-   //this.obj_book.user = this.selected_user;
-   // this.obj_book.user = this.user;
-   // this.obj_book.book= this.book;
+    
    console.log("gsdgsaa",this.obj_book)
     this._utils.unsubscribeSub(this._sub);
    console.log(this.obj_book);
@@ -181,10 +181,7 @@ obj_book : IssueBook = new IssueBook();
     this.table.offset = 0;
   }
 
- handleResultSelected(result) {
-    this.search = result;
-  }
-
+ 
 
   issueDelete(id:number){
       console.log(id);
