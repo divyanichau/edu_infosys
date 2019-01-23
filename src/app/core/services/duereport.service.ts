@@ -33,11 +33,11 @@ export class DueReportService {
       ),);
   }
 
-  get(): Observable<DueReport[]> {
+  get(due_report:DueReport): Observable<DueReport[]> {
     //this.beforeRequest();
     const options = this._utils.makeOptions(this._headers);
 
-    return this._http.get(`${this._duereportUrl}`, options).pipe(
+    return this._http.get(`${this._duereportUrl}`+ 'report_type='+due_report.feecategory+'&date'+due_report.date+'&report_value='+due_report.fee_category, options).pipe(
       map((res: Response) => res.json()),
       tap(
       data => this.afterGetRequest(),

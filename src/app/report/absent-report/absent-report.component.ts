@@ -24,6 +24,7 @@ export class AbsentReportComponent implements OnInit {
   absent_report :AbsentReport = new AbsentReport;
 
   student_absent_report = false;
+  teacher_absent_report = false;
   selected_class: number;
   classes: _class[];
   section :Section[];
@@ -67,8 +68,11 @@ export class AbsentReportComponent implements OnInit {
     );
   }
 
-  get_absentreport(){
+  get_studentabsentreport(){
     this.student_absent_report =true;
+  }
+  get_teacherabsentreport(){
+    this.teacher_absent_report= true;
   }
 
 }

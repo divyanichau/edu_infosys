@@ -28,7 +28,7 @@
 
 <div class="tab-content">
 
-<div role="tabpanel" class="tab-pane active" id ="studentabsent_report">
+<div role="tabpanel" class="tab-pane active" id = "studentabsent_report">
   <div class="content-wrapper">
     <div class="content">
         <div class="row ">
@@ -38,7 +38,7 @@
 
                 <div class="panel-heading bg-primary">
                   <h2 class="panel-title">
-                    <b>tudent Absent Report</b>
+                    <b>Student Absent Report</b>
                   </h2>
                 </div>
                 <br>
@@ -54,29 +54,22 @@
                         <input type="Date" class="form-control" [(ngModel)]="to_date" name="end_date" >
                     </div>
 
-                     <div class="col-sm-4">
-                      <label for="mode_of_pay" class="req"> Card Holder Type </label>
-                      <select class="form-control" [(ngModel)]="cardholder_type" name="card_holder_type">
-                        <option>student</option>
+                    <div class="col-sm-4">
+                      <label for="select_class" class="req">  Select Class </label>
+                      <select class="form-control" [(ngModel)]="selected_class" name="select_class">
+                        <!-- <option>class-1</option>
+                        <option>class-2</option>
+                        <option>class-3</option> -->
                         
-                        <!-- <option *ngFor="let cardholder of cardholder_type" [ngValue]="cardholder.id">{{cardholder.name}}</option> -->
+                         <option *ngFor="let c of classes" [ngValue]="c.id">{{c.name}}</option> 
                       </select>
-                    </div>
+                  </div>
 
                   </div>
                   <br>
                   <div class ="row clearfix">
 
-                      <div class="col-sm-4">
-                          <label for="select_class" class="req">  Select Class </label>
-                          <select class="form-control" [(ngModel)]="selected_class" name="select_class">
-                            <!-- <option>class-1</option>
-                            <option>class-2</option>
-                            <option>class-3</option> -->
-                            
-                             <option *ngFor="let c of classes" [ngValue]="c.id">{{c.name}}</option> 
-                          </select>
-                      </div>
+                     
 
                       <div class="col-sm-4">
                           <label for="select_section" class="req">Select Section</label>
@@ -91,7 +84,7 @@
                  <div class ="row">
                  <div class="form-group col-sm-2">
 
-                  <button type="submit" class="btn btn-primary col-sm-1 " (click)="get_absentreport()">view</button>
+                  <button type="submit" class="btn btn-primary col-sm-1 " (click)="get_studentabsentreport()">view</button>
                   <button type="submit" class="btn btn-danger col-sm-offset-8" onclick="printDiv('print')">print report</button>
                    
                   <button type="submit" class="btn btn-success col-sm-offset-1 button-margin">excel</button> 
@@ -112,7 +105,7 @@
         <table class ="table table-bordered">
           <div class="row">
           <div class="panel-heading bg-primary">
-           <h4 class="text-center"> Absent Report</h4>
+           <h4 class="text-center">  Student Absent Report</h4>
           </div>
           </div>
           <br>
@@ -166,11 +159,104 @@
 
   </div>
 
+  <div role="tabpanel" class="tab-pane" id ="teacherabsent_report">
+    <div class="content-wrapper">
+      <div class="content">
+          <div class="row ">
+            <form>
+              <div class="col-sm-10">
+                <div class="card">
+  
+                  <div class="panel-heading bg-primary">
+                    <h2 class="panel-title">
+                      <b>Teacher Absent Report</b>
+                    </h2>
+                  </div>
+                  <br>
+                  <div class="panel-body">
+                    <div class="row clearfix">
+                     
+                      <div class="col-sm-4">
+                          <label for="from_date">From Date</label>
+                          <input type="Date" class="form-control" [(ngModel)]="from_date" name="from_date" >
+                        </div>
+                      <div class="col-sm-4">
+                          <label for="to_date"> To Date</label>
+                          <input type="Date" class="form-control" [(ngModel)]="to_date" name="end_date" >
+                      </div>
+
+                    </div>
+                    <br>
+                    
+                   <div class ="row">
+                   <div class="form-group col-sm-2">
+  
+                    <button type="submit" class="btn btn-primary col-sm-1 " (click)="get_teacherabsentreport()">view</button>
+                    <button type="submit" class="btn btn-danger col-sm-offset-8" onclick="printDiv('print')">print report</button>
+                     
+                    <button type="submit" class="btn btn-success col-sm-offset-1 button-margin">excel</button> 
+                    
+                    </div>
+                   </div>
+                  </div>
+                </div>
+              </div>
+           </form>
+         </div>
+      </div>
+    </div>
+  
+    <!--teacher report table start-->
+    <div class="table-responsive" *ngIf="teacher_absent_report">
+        <br>
+          <table class ="table table-bordered">
+            <div class="row">
+            <div class="panel-heading bg-primary">
+             <h4 class="text-center">  Teacher Absent Report</h4>
+            </div>
+            </div>
+            <br>
+            <ngx-datatable class="material" [rows]="rows" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+              [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+               
+              <ngx-datatable-column name="ID" prop="id">
+                <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+              </ngx-datatable-column>
+    
+              <ngx-datatable-column name="Date" prop="date">
+                <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+              </ngx-datatable-column>
+    
+              <ngx-datatable-column name="Name" prop="name">
+                <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+              </ngx-datatable-column>
+  
+  
+                <ngx-datatable-column name="Status" prop="status">
+                    <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                    <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                  </ngx-datatable-column>
+    
+              <ngx-datatable-column name=" Contact" prop="contact">
+                <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+              </ngx-datatable-column>
+            
+            </ngx-datatable> 
+          </table>
+        </div>
+    <!--teacherabsent report a table end-->
+  
+    </div>
+  
 
 
 
 </div>
-  <!--end of tab content-->
+ <!--end of tab content-->
 
   </div>
 <!--end of body-->

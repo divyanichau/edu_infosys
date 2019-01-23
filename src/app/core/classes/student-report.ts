@@ -12,6 +12,8 @@ export class StudentReport {
   caste:string;
   gender:string;
   state:string;
+  report_type:string;
+  report_value:string;
 
  
 }

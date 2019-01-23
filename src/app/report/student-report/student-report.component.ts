@@ -22,7 +22,7 @@ export class StudentReportComponent implements OnInit{
   private _typeSub: Subscription = undefined;
   studentreport= false;
   studentemail = false;
-	student_report : StudentReport = new StudentReport();
+	student_report: StudentReport = new StudentReport();
 	selected_student :number;
    batch: Batch[];
    selected_batch :number;
@@ -39,6 +39,7 @@ export class StudentReportComponent implements OnInit{
 
     this.detail_type[newValue] = true;
   }
+
 
   reset_details_value(){
     this.detail_type = this.default_detail_type;
@@ -73,6 +74,18 @@ export class StudentReportComponent implements OnInit{
   }
 
 
+  onSubmit() {
+    console.log(this.student_report)
+    this._utils.unsubscribeSub(this._sub);
+    this._sub = this._studentreportService.get(this.student_report)
+     .subscribe(data => {
+        console.log(data);
+       
+      });
+    
+  }
+
+
    LoadBatch() {
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._batchService.get().subscribe(
@@ -96,8 +109,10 @@ export class StudentReportComponent implements OnInit{
         // this.studentreport = true;
         
         // }
+      
        
     }
+    
      
   
     get_email(){

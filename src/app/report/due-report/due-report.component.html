@@ -10,7 +10,7 @@
         </ol>
 
         <div class="row ">
-          <form>
+          <form (ngSubmit) ="onSubmit()" #dueReport ="ngForm">
             <div class="col-sm-12">
               <div class="card">
                  <div class="panel-heading bg-primary ">
@@ -23,7 +23,7 @@
                   <div class="row clearfix">
                     <div class="col-sm-4">
                       <label for="reportfor" class="req">Fee Category </label>
-                      <select class="form-control" (change)="onChange($event.target.value)" name="feecategory">
+                      <select class="form-control" [(ngModel)]="due_report.feecategory"(change)="onChange($event.target.value)" name="feecategory">
                         <option value ="0">Select option</option>
                         <option value ="1">Date Wise</option>
                         <option value = "2">fees category wise</option>
@@ -41,7 +41,7 @@
 
                      <div class="col-sm-4">
                       <label for="batch" class="req">Batch</label>
-                      <select class="form-control" [(ngModel)]="selected_batch" name="batch" >
+                      <select class="form-control" [(ngModel)]="due_report.batchs" name="batch" >
                          <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option> 
                         
                       </select>

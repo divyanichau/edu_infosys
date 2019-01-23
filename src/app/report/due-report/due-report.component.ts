@@ -22,10 +22,11 @@ import { CourseService } from '../../core/services/course.service';
 export class DueReportComponent implements OnInit {
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
-  batch: Batch[];
+
   due_report: DueReport = new DueReport();
   duereport=false;
-
+  batch: Batch[];
+  batchs:number;
   selected_batch :number;
   selected_course :number;
    default_detail_type={0:false , 1:false ,2:false};
@@ -65,6 +66,18 @@ export class DueReportComponent implements OnInit {
 
   ngOnDestroy() {
     this._utils.unsubscribeSub(this._sub);
+  }
+  onSubmit() {
+    alert('yes opened')
+    this.due_report.batchs = this.selected_batch;
+    console.log(this.due_report)
+    this._utils.unsubscribeSub(this._sub);
+    this._sub = this._duereportService.get(this.due_report)
+     .subscribe(data => {
+        console.log(data);
+       
+      });
+    
   }
 
   LoadBatch() {
