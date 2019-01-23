@@ -11,4 +11,5 @@ export class Task {
   course: number;
   batch: number;
   student: number;
+  user_type: number;
 }
