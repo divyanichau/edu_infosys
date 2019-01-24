@@ -58,8 +58,7 @@ export class SubjectAllocationComponent implements OnInit {
 
   ngOnInit() {
      this.init_subject();
-     this.loadBatch();
-  
+    
 
   }
 
@@ -132,20 +131,20 @@ export class SubjectAllocationComponent implements OnInit {
   }
 
   init_subject(){
- 
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._subjectAllocationService.get().subscribe(
       data => {
         //console.log(data)
         isArray(data) ? this.teacher_allocation = data : data;
-         this.rows = this.teacher_allocation;
+        this.rows = this.teacher_allocation;
         this.temp = [...this.teacher_allocation];
-
+        this.loadBatch();
+  
       }
     );
   }
 
-  subjectDelete(id:number){
+  subjectallocationDelete(id:number){
       console.log(id);
       if(confirm("Are You Sure Want To Delete?")){
         this._subjectAllocationService.delete(id).subscribe(data => 

@@ -8,8 +8,8 @@ export class subject_allocation {
 }
 export class subject_allocationGet{
     id:number;
-    batch:string;
-    course:string;
-    teacher:string;
-    subject:string;
+    batch:number;
+    course:number;
+    teacher:number;
+    subject:number;
 }

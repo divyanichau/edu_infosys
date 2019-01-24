@@ -78,7 +78,7 @@
                   </div>
                    <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='search with name' (keyup)='updateFilter($event)'/> 
 
-                  <ngx-datatable class="material" [rows]="allocated_student" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+                  <ngx-datatable class="material" [rows]="teacher_allocation" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
                     [footerHeight]="50" [rowHeight]="'auto'" [limit]="3">
     
                     <ngx-datatable-column name="ID" prop="id">
@@ -107,10 +107,9 @@
                       <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                         Manage
                       </ng-template>
-                      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                        <a class="glyphicon glyphicon-eye-open" title="" href="/teacher/detail/{{value}}"><img src="" alt=""></a>
-                        <a class="glyphicon glyphicon-trash left-icon" title="" href="/teacher/delete/{{value}}"><img src=""
-                            alt=""></a>
+                      <ng-template let-row="list" let-value="value" ngx-datatable-cell-template>
+                        <a class="glyphicon glyphicon-eye-open btn btn-primary" style="margin-left:-10px; "title="" href="/academic/subject/edit-subject-allocation/{{value}}"><img src="" alt=""></a>
+                        <button class="glyphicon glyphicon-trash left-icon btn btn-danger" style="margin-left:0.01px;" (click)="subjectallocationDelete(value)"></button>
                       </ng-template>
                     </ngx-datatable-column>
                   </ngx-datatable>
@@ -119,7 +118,6 @@
             </div>
       </div>
   </div>
-
 </div>
 
 

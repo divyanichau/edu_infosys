@@ -21,7 +21,8 @@ import { AssignSubjectComponent } from './assign-subject/assign-subject.componen
 import { ElectiveSubjectComponent } from './elective-subject/elective-subject.component';
 import { SubjectAllocationComponent } from './subject-allocation/subject-allocation.component';
 import { SubjectDetailComponent } from './add-subject/subject-detail/subject-detail.component';
-
+import { SubjectAllocationDetailComponent } from './subject-allocation/subject-allocation-detail/subject-allocation-detail.component';
+import { AssignSubjectDetailComponent } from './assign-subject/assign-subject-detail/assign-subject-detail.component';
 
 
 @NgModule({
@@ -35,6 +36,6 @@ import { SubjectDetailComponent } from './add-subject/subject-detail/subject-det
     SubjectRoutingModule
   ],
   providers: [SubjectService, CourseService, BatchService, StudentService, TeacherService, SubjectAllocationService, UtilsService],
-  declarations: [SubjectComponent, AddSubjectComponent, AssignSubjectComponent, ElectiveSubjectComponent, SubjectAllocationComponent, SubjectDetailComponent]
+  declarations: [SubjectComponent, AddSubjectComponent, AssignSubjectComponent, ElectiveSubjectComponent, SubjectAllocationComponent, SubjectDetailComponent, SubjectAllocationDetailComponent, AssignSubjectDetailComponent]
 })
 export class SubjectModule { }

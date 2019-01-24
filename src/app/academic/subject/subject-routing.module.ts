@@ -7,6 +7,9 @@ import { AssignSubjectComponent} from './assign-subject/assign-subject.component
 import { ElectiveSubjectComponent} from './elective-subject/elective-subject.component';
 import { SubjectAllocationComponent} from './subject-allocation/subject-allocation.component';
 import { SubjectDetailComponent} from './add-subject/subject-detail/subject-detail.component';
+import { SubjectAllocationDetailComponent} from './subject-allocation/subject-allocation-detail/subject-allocation-detail.component';
+import { AssignSubjectDetailComponent } from './assign-subject/assign-subject-detail/assign-subject-detail.component';
+
 
 const routes: Routes = [
 
@@ -32,6 +35,12 @@ const routes: Routes = [
     component: AssignSubjectComponent
   },
 
+  {
+     path: 'edit-assign-subject/:id',
+     component: AssignSubjectDetailComponent
+   },
+
+
  {
     path: 'elective-subject',
     component: ElectiveSubjectComponent
@@ -40,7 +49,13 @@ const routes: Routes = [
   {
     path: 'subject-allocation',
     component: SubjectAllocationComponent
-  }
+  },
+
+   {
+     path: 'edit-subject-allocation/:id',
+     component: SubjectAllocationDetailComponent
+   }
+
 
 
 

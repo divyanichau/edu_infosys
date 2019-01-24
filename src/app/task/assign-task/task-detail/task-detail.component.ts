@@ -33,9 +33,9 @@ export class TaskDetailComponent implements OnInit, OnDestroy{
    tasks: Task[];
    //courses: Course[];
    //batch: Batch[];
-   event: Event[];
+   events: Event[];
 
- //  selected_event: number;
+ selected_event: number;
  // // selected_course: number;
  //  //selected_batch : number;
   selected_task:number;
@@ -105,21 +105,35 @@ export class TaskDetailComponent implements OnInit, OnDestroy{
   //   );
   // }
 
- // loadEvents() {
+ loadEvents() {
+     this._utils.unsubscribeSub(this._sub);
+     this._sub = this._eventService.getEvent().subscribe(
+       data => {
+         isArray(data) ? this.events = data : data;
+         console.log("events",this.events);
+       //    if(this.event.length > 0){
+       //    this.selected_event = this.event[0].id;
+       // }
+         
+       }
+     );
+
+  }
+
+ // initTask() {
  //     this._utils.unsubscribeSub(this._sub);
- //     this._sub = this._eventService.getEvent().subscribe(
+ //     this._sub = this.taskService.get().subscribe(
  //       data => {
- //         isArray(data) ? this.event = data : data;
- //         console.log(this.event);
- //          if(this.event.length > 0){
- //          this.selected_event = this.event[0].id;
+ //         isArray(data) ? this.task = data : data;
+ //         //console.log(this.event);
+ //          if(this.task.length > 0){
+ //          this.selected_task = this.task[0].id;
  //       }
          
  //       }
  //     );
 
  //  }
-
   initTask() {
     this._utils.unsubscribeSub(this._typeSub);
     this._sub = this._routes.paramMap.pipe(
@@ -130,13 +144,13 @@ export class TaskDetailComponent implements OnInit, OnDestroy{
       .subscribe(data => {
         if (isObject(data)) {
         this.task = data;
-         // this.loadEvents();
+         this.loadEvents();
       }
      });
   }
 
     
-  }
+ }
 
 
  

@@ -110,9 +110,9 @@
                     Manage
                   </ng-template>
                   <ng-template let-row="_subjects" let-value="value" ngx-datatable-cell-template>
-                    <a class="glyphicon glyphicon-eye-open" title="" href="/academic/subject/assign-subject{{value}}"><img src="" alt=""></a>
+                    <a class="glyphicon glyphicon-eye-open  btn btn-primary" style=" margin-left:-10px;" title="" href="/academic/subject/edit-assign-subject/{{value}}"><img src="" alt=""></a>
                    <!--  <a class="glyphicon glyphicon-trash left-icon" title="" href="/academic/subject/assign-subject/delete/{{value}}"><img src="" alt=""></a> -->
-                   <button class="glyphicon glyphicon-trash left-icon btn btn-danger" style="margin-left:15px;" (click)="subjectDelete(value)">
+                   <button class="glyphicon glyphicon-trash left-icon btn btn-danger" style="margin-left:0.01px;" (click)="subjectDelete(value)">
                    </button>
                   </ng-template>
                 </ngx-datatable-column>

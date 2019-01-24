@@ -94,8 +94,16 @@ export class SubjectService {
       ),);
   }
 
+  findSubject(id: string): Observable<AssignSubject> {
+    //this.beforeRequest();
 
-
+    return this._http.get(`${this._courseUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json()),
+      tap(
+      data => this.afterGetRequest(),
+      error => { console.log(error); }
+      ),);
+  }
 
   getSubject(): Observable<AssignSubject[]> {
     //this.beforeRequest();
@@ -120,6 +128,20 @@ export class SubjectService {
       error => { this.showError(error) }
       ),);
   }
+
+ updateSubject(subject:AssignSubject, id:string): Observable<AssignSubject> {
+    console.log(subject);
+    this.beforeRequest();
+    const body = JSON.stringify(subject);
+
+    return this._http.put(`${this._courseUrl}${id}/`, body, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json().data),
+      tap(
+      data => this.afterUpdateRequest(data),
+      error => { this.showError(error) }
+      ),);
+  }
+
 
 
   getElective(): Observable<ElectiveSubject[]> {
@@ -159,6 +181,12 @@ export class SubjectService {
     this.toastr.success('Done','Subject Updated',{timeOut: 3000});
 
   }
+
+  // afterUpdateRequest(data: AssignSubject): void {
+  //   this._utils.stop_progress();
+  //   this.toastr.success('Done','Assign Subject Updated',{timeOut: 3000});
+
+  // }
 
   afterDeteleRequestRequest(){
     this._utils.stop_progress();

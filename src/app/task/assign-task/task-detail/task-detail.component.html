@@ -1,6 +1,6 @@
 <div class="body">
   <div class="content-wrapper">
-    <form ngNativeValidate (ngSubmit)="OnSubmitTaskUpdate()" #taskForm="ngForm">
+    <form ngNativeValidate (ngSubmit)="OnSubmitTaskUpdate()" #taskForm1="ngForm">
       <div class="col-sm-6">
         <div class="panel panel-primary">
           <div class="panel-heading">
@@ -9,12 +9,13 @@
         </div>
        <div class="body">
           <div class="row clearfix">
-             <div class="col-md-6">
+            <div class="col-md-6">
                 <label for="reg_input" class="req">Event </label>
                       <select class="form-control" [(ngModel)]="selected_event" name="event" required>
-                        <option *ngFor="let e of event" [ngValue]="e.id">{{e.name}}</option>
+                        <option *ngFor="let event of events" [ngValue]="event.id">{{event.name}}</option>
                       </select>
            </div>
+
 
               <div class="col-md-6 ">
                 <label for="task-name">Task Name</label>
@@ -85,7 +86,7 @@
          <div class="row clearfix">
             <div class="col-md-6 form-top-margin">
                 <label for="status">Status</label>
-                  <select class="form-control" [(ngModel)]="task.status" name="status" id="Taskmanager_task_status">
+                  <select class="form-control" name="Taskmanager[status]" name="status" id="Taskmanager_task_status">
                      <option value>Please Select</option>
                      <option value="1">Open</option>
                      <option value="2">On hold</option>

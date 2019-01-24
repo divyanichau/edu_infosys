@@ -64,13 +64,27 @@ export class SubjectAllocationService {
       ),);
   }
 
+  update(_subject_allocation:subject_allocation, id:string): Observable<subject_allocation> {
+    console.log(_subject_allocation);
+    this.beforeRequest();
+    const body = JSON.stringify(_subject_allocation);
+
+    return this._http.put(`${this._allocationUrl}${id}/`, body, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json().data),
+      tap(
+      data => this.afterUpdateRequest(data),
+      error => { this.showError(error) }
+      ),);
+  }
+
+
 
   delete(id:number): Observable<subject_allocation> {
     this.beforeRequest();
    // const body = JSON.stringify(subject);
 
     return this._http.delete(`${this._allocationUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
-      map((res: Response) => res.json().data),
+      map((res: Response) => res.json()),
       tap(
     //  data => this.afterDeteleRequestRequest(),
       error => { this.showError(error) }
@@ -87,15 +101,23 @@ export class SubjectAllocationService {
     this.toastr.success('Done','Subject Allocated',{timeOut: 3000});
   }
 
+   afterUpdateRequest(data: subject_allocation): void {
+    this._utils.stop_progress();
+    this.toastr.success('Done','Subject allocated Updated',{timeOut: 3000});
+
+  }
+
+
   afterDeteleRequestRequest(){
     this._utils.stop_progress();
     this.toastr.warning('Done','Subject Allocated Deleted',{timeOut: 3000});
   }
 
   showError(error): void {
-    this.toastr.error('Error',error._body,{timeOut: 3000});
-
+     this._utils.stop_progress();
+    this._utils.notify("failed",error._body);
   }
+
  afterGetRequest(): void {
    // this._utils.stop_progress();
   }
