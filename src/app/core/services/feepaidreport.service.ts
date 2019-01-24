@@ -32,10 +32,10 @@ export class FeepaidReportService {
       ),);
   }
 
-  get(): Observable<FeepaidReport[]> {
+  get(feepaid_report:FeepaidReport): Observable<FeepaidReport[]> {
     //this.beforeRequest();
-    const options = this._utils.makeOptions(this._headers);
 
+    const options = this._utils.makeOptions(this._headers);
     return this._http.get(`${this._feepaidreportUrl}`, options).pipe(
       map((res: Response) => res.json()),
       tap(

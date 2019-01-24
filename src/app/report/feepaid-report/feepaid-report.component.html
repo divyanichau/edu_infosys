@@ -12,17 +12,17 @@
   <ul class="nav nav-tabs nav-tabs-highlight">
       <li  class="active">
           <a  class="btn btn-default" value ="1" href="#paid_report" data-toggle="tab">
-              <i class="material-icons"></i> Paid Report
+              Paid Report
           </a>
       </li>
-      <li class="">
+      <li class="presentation">
           <a  class ="btn btn-default" value ="2" href="#collective_reprt" data-toggle="tab">
-              <i class="material-icons"></i> Collective Report
+               Collective Report
           </a>
       </li>
-      <li class ="">
+      <li class ="presentation">
         <a class ="btn btn-default" value ="3" href ="#paid_report_datewise" data-toggle ="tab">
-          <i class ="material-icons"></i> Paid Report(Datewise)
+          Paid Report(Datewise)
         </a> 
       </li>
    
@@ -38,7 +38,7 @@
   <div class="content-wrapper">
     <div class="content">
         <div class="row ">
-          <form>
+          <form (ngSubmit) ="onSubmit()" #dueReport ="ngForm">
             <div class="col-sm-12">
               <div class="card">
                 <div class="panel-heading bg-primary">
@@ -51,26 +51,26 @@
                   <div class="row clearfix">
                    
                     <div class="col-sm-4">
-                        <label for="date">Paid Date</label>
-                        <input type="date"  class="form-control" [(ngModel)]="paid_date" name=" paid_date" placeholder=""
+                        <label for="paid_date">Paid Date</label>
+                        <input type="date"  class="form-control" [(ngModel)]="feepaid_report.paid_date" name=" paid_date" placeholder=""
                           >
                       </div>
-                     
                       <div class="col-sm-4">
-                          <label for="reportfor" class="req">Mode Of Payment </label>
-                          <select class="form-control" [(ngModel)]="cash" name="mode_of_payment">
-                            <option>cash</option>
-                            
-                            <!-- <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option> -->
-                          </select>
-                        </div>
+                        <label for="reportfor" class="req">Class </label>
+                        <select class="form-control" [(ngModel)]="feepaid_report.classes" name="class">
+                          <option>class12</option>
+                          
+                           <option *ngFor="let c of classes" [ngValue]="c.id">{{c.name}}</option> 
+                        </select>
+                      </div>
 
+                  
                    </div> 
                 <h3 class="col-sm-offset-1"><b>OR</b></h3>
                 <div class ="row clearfix">
                     <div class="col-sm-4">
-                        <label for="search" class="req">Search</label>
-                        <input type ="text" placeholder="receipt no" class="form-control" [(ngModel)]="selected_course" name="search">
+                        <label for="search" class="req">Receipt no</label>
+                        <input type ="text" placeholder=" Enter receipt no" class="form-control" [(ngModel)]="feepaid_report.receipt_no" name="receiptno">
                      
                    </div>
 
@@ -154,13 +154,13 @@
   <div class="content-wrapper">
     <div class="content">
         <div class="row ">
-          <form>
+          <form (ngSubmit) ="onSubmit()" #dueReport ="ngForm">
             <div class="col-sm-12">
               <div class="card">
 
                 <div class="panel-heading bg-primary">
                   <h2 class="panel-title">
-                    <b>Fee Paid Report(schoolwise)</b>
+                    <b>Fee Paid Report(specific Interval)</b>
                   </h2>
                 </div>
                 <br>
@@ -169,19 +169,19 @@
                    
                     <div class="col-sm-4">
                         <label for="from_date">From Date</label>
-                        <input type="Date" class="form-control" [(ngModel)]="from_date" name="from_date" >
+                        <input type="Date" class="form-control" [(ngModel)]="feepaid_report.from_date" name="from_date" >
                       </div>
                     <div class="col-sm-4">
                         <label for="end_date">End Date</label>
-                        <input type="Date" class="form-control" [(ngModel)]="end_date" name="end_date" >
+                        <input type="Date" class="form-control" [(ngModel)]="feepaid_report.end_date" name="end_date" >
                     </div>
 
                      <div class="col-sm-4">
-                      <label for="mode_of_pay" class="req">Mode Of Pay </label>
-                      <select class="form-control" [(ngModel)]="mode_of_pay" name="mode_of_pay">
-                        <option value ="1">cash</option>
+                      <label for="class" class="req">Select Class</label>
+                      <select class="form-control" [(ngModel)]="feepaid_report.classes" name="class">
+                        <option value ="1">coded class 1</option>
                         
-                        <!-- <option *ngFor="let mode_pay of mode_of_pay" [ngValue]="mode_pay.id">{{mode_pay.name}}</option> -->
+                        <option *ngFor="let c of classes" [ngValue]="c.id">{{c.name}}</option> -->
                       </select>
                     </div>
 

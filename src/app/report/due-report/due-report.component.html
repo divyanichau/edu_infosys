@@ -41,9 +41,9 @@
 
                      <div class="col-sm-4">
                       <label for="batch" class="req">Batch</label>
-                      <select class="form-control" [(ngModel)]="due_report.batchs" name="batch" >
-                         <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option> 
-                        
+                      <select class="form-control" [(ngModel)]="due_report.batch" name="batch" >
+                        <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option> 
+                        <option value="1">2073</option>
                       </select>
                     </div>
                  
@@ -53,9 +53,9 @@
 
                     <div class="col-sm-4">
                         <label for="course" class="req">course</label>
-                        <select class="form-control" [(ngModel)]="selected_course" name="course" >
+                        <select class="form-control" [(ngModel)]="due_report.course" name="course" >
                            <option *ngFor="let c of course" [ngValue]="c.id">{{c.name}}</option> 
-                         
+                           <option value ="1">msc csit</option>
                         </select>
                       </div>
 

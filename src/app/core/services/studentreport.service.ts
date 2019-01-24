@@ -38,7 +38,7 @@ export class StudentReportService {
    get(student_report:StudentReport):Observable<StudentReport[]> {
      //this.beforeRequest();
      const options = this._utils.makeOptions(this._headers);
-     return this._http.get(`${this._studentreportUrl}?`+ 'report_type='+student_report.report_type+'&report_value='+student_report.report_value, options).pipe(
+     return this._http.get(`${this._studentreportUrl}?`+ 'report_type='+student_report.report_type+'&report_value='+student_report.report_value +'&batch='+student_report._batch, options).pipe(
        map((res: Response) => res.json()),
        tap(
        data => this.afterGetRequest(),

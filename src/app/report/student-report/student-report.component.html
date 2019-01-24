@@ -139,8 +139,9 @@
 
                      <div class="col-sm-4">
                       <label for="reg_input" class="req">school/batch</label>
-                      <select class="form-control" [(ngModel)]="selected_batch" name="batch" >
+                      <select class="form-control" [(ngModel)]="student_report._batch" name="batch" >
                         <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option>
+                        <option>2071 coded</option>
                       </select>
                     </div>
 

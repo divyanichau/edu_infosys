@@ -2,7 +2,8 @@
 export class StudentReport {
   id: number;
   report:string;
-  batch: number;
+  batch: string;
+  _batch:string;
   category:string;
 
   religion: number;

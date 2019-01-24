@@ -37,7 +37,7 @@ export class DueReportService {
     //this.beforeRequest();
     const options = this._utils.makeOptions(this._headers);
 
-    return this._http.get(`${this._duereportUrl}`+ 'report_type='+due_report.feecategory+'&date'+due_report.date+'&report_value='+due_report.fee_category, options).pipe(
+    return this._http.get(`${this._duereportUrl}`+ 'report_type='+due_report.feecategory+'&date'+due_report.date+'&report_value='+due_report.fee_category+'&batch='+due_report.batch+'&course='+due_report.course, options).pipe(
       map((res: Response) => res.json()),
       tap(
       data => this.afterGetRequest(),
