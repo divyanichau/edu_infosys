@@ -29,17 +29,38 @@ export class TaskDetailComponent implements OnInit, OnDestroy{
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
 
+  selectedDevice = 'Student';
+  default_detail_type = {1:false, 3:false};
+
+  detail_type =  {1:false, 3:false};
+
+
    task : Task = new Task() ;
    tasks: Task[];
    //courses: Course[];
    //batch: Batch[];
-   events: Event[];
+   event: Event[];
 
  selected_event: number;
  // // selected_course: number;
  //  //selected_batch : number;
   selected_task:number;
   id:string;
+
+  onChange(newValue) {
+    this.reset_details_value();
+
+    this.detail_type[newValue] = true;
+  }
+
+   reset_details_value(){
+
+    this.detail_type = this.default_detail_type;
+
+    this.detail_type[1]=false;
+    this.detail_type[3]=false;
+  }
+
 
   rows: any[] = [];
   temp: any[] = [];
@@ -60,6 +81,9 @@ export class TaskDetailComponent implements OnInit, OnDestroy{
     ) { }
   
   ngOnInit() {
+    this.reset_details_value();
+    this.detail_type[1]= true; 
+
 
     this.initTask();
   }
@@ -105,35 +129,21 @@ export class TaskDetailComponent implements OnInit, OnDestroy{
   //   );
   // }
 
- loadEvents() {
+ loadEvent() {
      this._utils.unsubscribeSub(this._sub);
      this._sub = this._eventService.getEvent().subscribe(
        data => {
-         isArray(data) ? this.events = data : data;
-         console.log("events",this.events);
-       //    if(this.event.length > 0){
-       //    this.selected_event = this.event[0].id;
-       // }
+         isArray(data) ? this.event = data : data;
+         console.log("events",this.event);
+          if(this.event.length > 0){
+          this.selected_event = this.event[0].id;
+        }
          
        }
      );
 
   }
 
- // initTask() {
- //     this._utils.unsubscribeSub(this._sub);
- //     this._sub = this.taskService.get().subscribe(
- //       data => {
- //         isArray(data) ? this.task = data : data;
- //         //console.log(this.event);
- //          if(this.task.length > 0){
- //          this.selected_task = this.task[0].id;
- //       }
-         
- //       }
- //     );
-
- //  }
   initTask() {
     this._utils.unsubscribeSub(this._typeSub);
     this._sub = this._routes.paramMap.pipe(
@@ -144,7 +154,7 @@ export class TaskDetailComponent implements OnInit, OnDestroy{
       .subscribe(data => {
         if (isObject(data)) {
         this.task = data;
-         this.loadEvents();
+         this.loadEvent();
       }
      });
   }

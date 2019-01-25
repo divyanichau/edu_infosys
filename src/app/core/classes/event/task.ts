@@ -10,6 +10,6 @@ export class Task {
   user: number;
   course: number;
   batch: number;
-  student: number;
+  student: string;
   user_type: number;
 }

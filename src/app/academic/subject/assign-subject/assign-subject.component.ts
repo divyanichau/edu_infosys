@@ -159,6 +159,21 @@ export class AssignSubjectComponent implements OnInit , OnDestroy{
  );
 }
 
+  updateFilter(event) {
+     const val = event.target.value.toLowerCase();
+
+    // filter our data
+    const temp = this.temp.filter(function(d) {
+     // console.log(d.student.toLowerCase(), val)
+      return d.subject.toLowerCase().indexOf(val) !== -1 || !val;
+    });
+
+    // update the rows
+    this._subjects = temp;
+    // Whenever the filter changes, always go back to the first page
+    // this.table.offset = 0;
+  }
+
 subjectDelete(id:number){
       console.log(id);
       if(confirm("Are You Sure Want To Delete?")){

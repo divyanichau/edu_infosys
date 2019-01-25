@@ -57,7 +57,7 @@
          <div class="table-responsive">                       
                <div class="col-xs-6 col-md-6">
                   <div class="input-group">
-                    <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter Name" id="txtSearch" />
+                    <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter  Subject Name" id="txtSearch" />
                     <div class="input-group-btn">
                       <button class="btn btn-primary" type="submit">
                         <span class="glyphicon glyphicon-search"></span>
@@ -75,21 +75,9 @@
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Batch" prop="batch">
-                  <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-                    <span
-                      title="Double click to edit"
-                      (dblclick)="editing[rowIndex + '-batch'] = true"
-                      *ngIf="!editing[rowIndex + '-batch']">
-                      {{value}}
-                    </span>
-                    <input
-                      autofocus
-                      (blur)="updateValue($event, 'batch', rowIndex)"
-                      *ngIf="editing[rowIndex+ '-batch']"
-                      type="text"
-                      [value]="value"
-                    />
+                <ngx-datatable-column name="Batch " prop="batch">
+                 <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}
                   </ng-template>
                 </ngx-datatable-column>
 
@@ -100,8 +88,21 @@
 
 
                 <ngx-datatable-column name="Subjects" prop="subject">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                    <span
+                      title="Double click to edit"
+                      (dblclick)="editing[rowIndex + '-subject'] = true"
+                      *ngIf="!editing[rowIndex + '-subject']">
+                      {{value}}
+                    </span>
+                    <input
+                      autofocus
+                      (blur)="updateValue($event, 'subject', rowIndex)"
+                      *ngIf="editing[rowIndex+ '-subject']"
+                      type="text"
+                      [value]="value"
+                    />
+                 </ng-template>
                 </ngx-datatable-column>
 
 

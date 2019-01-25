@@ -65,7 +65,7 @@
         </div>
            <div class="panel-body">
               <div class="table-responsive">
-                    <!-- <div class="col-xs-7 col-md-6">
+                     <div class="col-xs-7 col-md-6">
                       <div class="input-group">
                         <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter Name" id="txtSearch" /> 
                         <div class="input-group-btn">
@@ -74,9 +74,8 @@
                           </button>
                         </div>
                       </div>
-                    </div> -->
+                    </div> 
                   </div>
-                   <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='search with name' (keyup)='updateFilter($event)'/> 
 
                   <ngx-datatable class="material" [rows]="teacher_allocation" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
                     [footerHeight]="50" [rowHeight]="'auto'" [limit]="3">
@@ -95,18 +94,17 @@
                       <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                       <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                     </ngx-datatable-column>
-    
 
                     <ngx-datatable-column name="Course" prop="course">
                       <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                       <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                     </ngx-datatable-column>
     
-
                     <ngx-datatable-column name="Actions" sortable="false" prop="id">
                       <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                         Manage
                       </ng-template>
+                      
                       <ng-template let-row="list" let-value="value" ngx-datatable-cell-template>
                         <a class="glyphicon glyphicon-eye-open btn btn-primary" style="margin-left:-10px; "title="" href="/academic/subject/edit-subject-allocation/{{value}}"><img src="" alt=""></a>
                         <button class="glyphicon glyphicon-trash left-icon btn btn-danger" style="margin-left:0.01px;" (click)="subjectallocationDelete(value)"></button>

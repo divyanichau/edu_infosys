@@ -12,10 +12,9 @@
             <div class="col-md-6">
                 <label for="reg_input" class="req">Event </label>
                       <select class="form-control" [(ngModel)]="selected_event" name="event" required>
-                        <option *ngFor="let event of events" [ngValue]="event.id">{{event.name}}</option>
+                        <option *ngFor="let e of event" [ngValue]="e.id">{{e.name}}</option>
                       </select>
            </div>
-
 
               <div class="col-md-6 ">
                 <label for="task-name">Task Name</label>
@@ -25,9 +24,7 @@
             <div class="col-md-6 form-top-margin">
                    <label for="description">Description</label>
                      <input type="text" class="form-control" [(ngModel)]="task.description" name="description"  minlength="8" placeholder="Enter description" required>
-               </div>
-         
-
+            </div>
    
            <div class="col-md-6 form-top-margin ">
                <label for="reg_input_name">Priority</label>
@@ -46,34 +43,34 @@
                  
             </div>
 
-          <!-- <div class="row clearfix"> -->
-              <div class="col-md-6 form-top-margin">
+           <!--    <div class="col-md-6 form-top-margin">
                 <label for="user_type">User type</label>
                     <select class="form-control" (change)="onChange($event.target.value)" name="user" [(ngModel)]="task.user">
                         <option value="1">Select Type</option>
                         <option value="3">Student</option>
-                        <option value="4">Employee</option>
+                        <option value="4">Employee</option> 
                   </select> 
-              </div>
-          </div>
-         <div class="row clearfix" *ngIf="detail_type[3]">
-            <div class="col-md-6 form-top-margin"   >   
+              </div> -->
+         <!--  </div>
+
+         <div class="row clearfix" *ngIf="detail_type[3]"> -->
+           <!--  <div class="col-md-6 form-top-margin"   >   
                <label for="reg_input" class="req">Course* </label>
                       <select class="form-control" [(ngModel)]="selected_course" name="course" required>
                         <option *ngFor="let c of courses" [ngValue]="c.id">{{c.name}}</option>
                       </select>
             </div>
-
-            <div class="col-md-6 form-top-margin">
+ -->
+          <!--   <div class="col-md-6 form-top-margin">
               <label for="reg_input" class="req">Batch*</label>
                 <select class="form-control" [(ngModel)]="selected_batch" name="batch" required>
                     <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option>
                       </select>
-            </div>
+            </div> -->
 
             <div class="col-md-6 form-top-margin">
-                   <label for="student_id">Student</label>
-                  <select class="form-control" [(ngModel)]="task.student" name="student" id="Taskmanager_task_status">
+                   <label for="student">Student</label>
+                  <select class="form-control" [(ngModel)]="task.student" name="student">
                      <option value="1">Sonika</option>
                      <option value="2">Dinesh</option>
                      <option value="3">Suraj</option>
@@ -81,12 +78,12 @@
                </select>
             </div>
           </div>
-          <!-- </div> -->
+        
          
          <div class="row clearfix">
             <div class="col-md-6 form-top-margin">
                 <label for="status">Status</label>
-                  <select class="form-control" name="Taskmanager[status]" name="status" id="Taskmanager_task_status">
+                  <select class="form-control" [(ngModel)]="task.status" name="status" >
                      <option value>Please Select</option>
                      <option value="1">Open</option>
                      <option value="2">On hold</option>
@@ -98,7 +95,7 @@
        
           <div class="panel-footer">
             <button class="btn btn-primary btn-lg" type="Submit"><b>Update</b></button>
-      </div>
+          </div>
+     </div>
   </div>
-</div>
 </form>

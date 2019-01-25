@@ -25,13 +25,13 @@ import { Batch} from '../../core/classes/batch';
   styleUrls: []
 })
 export class AssignTaskComponent implements OnInit {
-	private _sub: Subscription = undefined;
+	  private _sub: Subscription = undefined;
     private _typeSub: Subscription = undefined;
 
     selectedDevice = 'Student';
     default_detail_type = {1:false, 3:false};
 
-    detail_type = this.default_detail_type;
+    detail_type =  {1:false, 3:false};
 
     task : Task = new Task();
     tasks: Task[];
@@ -82,8 +82,6 @@ export class AssignTaskComponent implements OnInit {
     this.detail_type[1]= true; 
 
   	this.initTask();
-    
-
   }
 
   ngOnDestroy() {
@@ -190,6 +188,15 @@ export class AssignTaskComponent implements OnInit {
        }
        );
      }
+  }
+
+  updateFilter(event) {
+    const val = event.target.value.toLowerCase();
+    const temp = this.temp.filter(function(d) {
+      return d.name.toLowerCase().indexOf(val) !== -1 || !val;
+    });
+    this.tasks = temp;
+    this.table.offset = 0;
   }
 
 }

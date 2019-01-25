@@ -124,6 +124,22 @@ export class AddEventComponent implements OnInit , OnDestroy{
      }
   }
   
+
+   updateFilter(event) {
+     const val = event.target.value.toLowerCase();
+
+    // filter our data
+    const temp = this.temp.filter(function(d) {
+     // console.log(d.student.toLowerCase(), val)
+      return d.name.toLowerCase().indexOf(val) !== -1 || !val;
+    });
+
+    // update the rows
+    this._events = temp;
+    // Whenever the filter changes, always go back to the first page
+    this.table.offset = 0;
+  }
+
 }
 
 

@@ -117,6 +117,10 @@ export class SubjectAllocationDetailComponent implements OnInit {
 
 
   subjectAllocationUpdate() {
+    this._subject_allocation.batch=this.selected_batch;
+    this._subject_allocation.course=this.selected_course;
+    this._subject_allocation.teacher=this.selected_teacher;
+    this._subject_allocation.subject=this.selected_subject;
      console.log("Data To Be Updated",this._subject_allocation);
     console.log(this.id);
     this._utils.unsubscribeSub(this._sub);
