@@ -21,7 +21,7 @@ import {Section} from '../../core/classes/section';
 export class AbsentReportComponent implements OnInit {
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
-  absent_report :AbsentReport = new AbsentReport;
+  absent_report :AbsentReport = new AbsentReport();
 
   student_absent_report = false;
   teacher_absent_report = false;
@@ -41,6 +41,17 @@ export class AbsentReportComponent implements OnInit {
   ngOnInit() {
     this.LoadClass()
   }
+  onSubmit() {
+    console.log(this.absent_report)
+    this._utils.unsubscribeSub(this._sub);
+    this._sub = this._absentreportService.get(this.absent_report)
+     .subscribe(data => {
+        console.log(data);
+       
+      });
+    
+  }
+
   LoadClass() {
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._classService.get().subscribe(

@@ -23,15 +23,15 @@
                 <div class="panel-body">
                   <div class="row clearfix">
                     <div class="col-sm-4">
-                      <label for="reportfor" class="req">Fee Category</label>
-                      <select class="form-control"[(ngModel)]="student_report.report_type" (change)="onChange($event.target.value)" name="reportfor">
+                      <label for="category" class="req"> Select Category</label>
+                      <select class="form-control"[(ngModel)]="student_report.report_type" (change)="onChange($event.target.value)" name="category">
                         <option value ="0">Select option</option> 
                         <option value ="1">hostel</option>
                         <option value = "2">bloodgroup</option>
                         <option value = "3">category</option>
                          <option value ="4">State</option>
                         <option value ="5">gender</option>
-                        <option value = "6">caste</option>
+                        <option value = "6">religion</option>
                         <option value = "7">fees</option>
                         <option value = "8">transport</option>
 
@@ -77,12 +77,12 @@
                     </div>
 
                      <div class="col-sm-4"*ngIf ="detail_type[6]">
-                      <label for="reg_input" class="req">Caste</label>
+                      <label for="reg_input" class="req">Religion</label>
                       <select class="form-control" [(ngModel)]="student_report.report_value" name="caste" >
                         <!-- <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option> -->
-                        <option value ="1">chhetri</option>
-                        <option value="2">Brahmin</option>
-                        <option value="3">Magar</option>
+                        <option value ="1">Hindu</option>
+                        <option value="2">muslim</option>
+                        <option value="3">christian</option>
                         
                       </select>
                     </div>
@@ -152,12 +152,6 @@
                  <div class="custom-control custom-checkbox">
                  <input type="checkbox" class="custom-control-input" id="phonenumber"(click)="get_phonenumber()">
                  <label class="custom-control-label" for="phonenumber">Phone Number</label>
-                </div>
-              </div>
-                 <div class= "col-sm-2">
-                <div class="custom-control custom-checkbox">
-                 <input type="checkbox" class="custom-control-input" id="admissiondate">
-                 <label class="custom-control-label" for="admissiondate"> Admission Date</label>
                 </div>
               </div>
                <div class= "col-sm-2">
@@ -348,19 +342,19 @@
                 </ngx-datatable-column>
 
 
-                <ngx-datatable-column name="Mother Name" prop="mothername">
+                <ngx-datatable-column name="Class" prop="class">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                     <span
                     title="Double click to edit"
-                    (dblclick)="editing[rowIndex + '-mothername'] = true"
-                    *ngIf="!editing[rowIndex + '-mothername']">
+                    (dblclick)="editing[rowIndex + '-class'] = true"
+                    *ngIf="!editing[rowIndex + '-class']">
                     {{value}}
                   </span>
                   <input
                     autofocus
-                    (blur)="updateValue($event, 'mothername', rowIndex)"
-                    *ngIf="editing[rowIndex+ '-mothername']"
+                    (blur)="updateValue($event, 'class', rowIndex)"
+                    *ngIf="editing[rowIndex+ '-class']"
                     type="text"
                     [value]="value"
                   />

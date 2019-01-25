@@ -31,11 +31,11 @@ export class AbsentReportService {
       ),);
   }
 
-  get(): Observable<AbsentReport[]> {
+  get(absent_report:AbsentReport): Observable<AbsentReport[]> {
     //this.beforeRequest();
     const options = this._utils.makeOptions(this._headers);
 
-    return this._http.get(`${this._absentreportUrl}`, options).pipe(
+    return this._http.get(`${this._absentreportUrl}`+'&from+date='+absent_report.from_date+'&to_date='+absent_report.from_date + '&class='+absent_report.class +'section='+absent_report.section , options).pipe(
       map((res: Response) => res.json()),
       tap(
       data => this.afterGetRequest(),

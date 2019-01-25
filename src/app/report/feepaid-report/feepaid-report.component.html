@@ -51,15 +51,14 @@
                   <div class="row clearfix">
                    
                     <div class="col-sm-4">
-                        <label for="paid_date">Paid Date</label>
-                        <input type="date"  class="form-control" [(ngModel)]="feepaid_report.paid_date" name=" paid_date" placeholder=""
-                          >
+                        <label for="paiddate">Paid Date</label>
+                        <input type="date"  class="form-control" [(ngModel)]="feepaid_report.paid_date" name= "paiddate" >
                       </div>
                       <div class="col-sm-4">
                         <label for="reportfor" class="req">Class </label>
                         <select class="form-control" [(ngModel)]="feepaid_report.classes" name="class">
                           <option>class12</option>
-                          
+                      
                            <option *ngFor="let c of classes" [ngValue]="c.id">{{c.name}}</option> 
                         </select>
                       </div>
@@ -148,7 +147,9 @@
       </div>
      <!--paid report table end-->
   </div>
- 
+
+
+
   <div role="tabpanel" class="tab-pane " id ="collective_reprt">
 
   <div class="content-wrapper">
@@ -281,17 +282,18 @@
 
   </div>
   
+ 
   <div role="tabpanel" class="tab-pane " id ="paid_report_datewise">
     <div class="content-wrapper">
       <div class="content">
           <div class="row ">
-            <form>
+            <form (ngSubmit) ="onSubmit()" #dueReport ="ngForm">
               <div class="col-sm-10">
                 <div class="card">
   
                   <div class="panel-heading bg-primary">
                     <h2 class="panel-title">
-                      <b>Monthly Report(schoolwise)</b>
+                      <b>Monthly Report</b>
                     </h2>
                   </div>
                   <br>
@@ -299,16 +301,8 @@
                     <div class="row clearfix">
                         <div class="col-sm-4">
                             <label for="date">Date</label>
-                            <input type="Date" class="form-control" [(ngModel)]="date" name="date" >
+                            <input type="Date" class="form-control" [(ngModel)]="feepaid_report.date" name="date" >
                           </div>
-
-                      <div class="col-sm-4">
-                        <label for="modeof_pay" class="req">Mode Of Pay </label>
-                        <select class="form-control" [(ngModel)] ="mode_of_pay" name="modeof_pay">
-                          <option value ="1">Cash</option> 
-                          <!-- <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option> -->
-                        </select>
-                      </div>
 
                   </div>
                   <br> 
@@ -363,6 +357,7 @@
       </div>
 
    </div>
+ 
 
    <!--end of tab-->
   </div>

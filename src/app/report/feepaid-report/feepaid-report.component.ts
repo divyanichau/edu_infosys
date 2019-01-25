@@ -24,26 +24,7 @@ export class FeepaidReportComponent implements OnInit {
   monthlyreport =false;
   classes: _class[];
   selected_class :number;
-  default_detail_type={1:false , 2:false ,3:false };
-  detail_type=this.default_detail_type;
-
-
-  onChange(newValue) {
-    this.reset_details_value();
-
-    this.detail_type[newValue] = true;
-  }
-
-
-  reset_details_value(){
-    this.detail_type = this.default_detail_type;
-
-    this.detail_type[1]=false;
-    this.detail_type[2]=false;
-    this.detail_type[3]=false;
-   
-  }
-
+ 
  
 
   constructor( 
@@ -54,15 +35,12 @@ export class FeepaidReportComponent implements OnInit {
     private toastr: ToastrService) { }
 
   ngOnInit() {
-    this.reset_details_value;
-    this.detail_type[1]=true;
-    this.LoadClass()
-    
+    this.LoadClass();
+
   }
 
   onSubmit() {
-    alert('yes opened')
-    console.log(this.feepaid_report)
+    console.log(this.feepaid_report);
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._feepaidreportService.get(this.feepaid_report)
      .subscribe(data => {
@@ -89,7 +67,7 @@ export class FeepaidReportComponent implements OnInit {
   }
 
   get_paidreport(){
-    alert('yes opened');
+   
     this.paidreport = true;
   }
   get_collectivereport(){

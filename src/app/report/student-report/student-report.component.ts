@@ -34,6 +34,7 @@ export class StudentReportComponent implements OnInit{
   gurdiandetail:boolean = true;
   parentsdetail:boolean = true;
   amount:boolean = true;
+  rows=[];
   onChange(newValue) {
     this.reset_details_value();
 
@@ -70,6 +71,13 @@ export class StudentReportComponent implements OnInit{
     this.reset_details_value;
     this.detail_type[1] =true;
     this.LoadBatch();
+
+    this.rows = [
+    	{'id':'1', 'admission_no':'1234', 'name':'suraj' ,'course': 'msc csit', 'batch': '2071'},
+    	
+    	
+
+    ];
   	
   }
 
