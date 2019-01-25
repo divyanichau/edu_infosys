@@ -13,6 +13,7 @@ import { setTerm } from '../classes/exam/set-term';
 @Injectable()
 export class SetTermService {
   private _exmTermUrl = `${new Config().api}/exam/term/`;
+  private _examWithClassUrl =  `${new Config().api}/academic/class/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
   setTerm = [];
 //   selectedClass = {};
@@ -41,6 +42,18 @@ export class SetTermService {
     const options = this._utils.makeOptions(this._headers);
 
     return this._http.get(`${this._exmTermUrl}`, options).pipe(
+      map((res: Response) => res.json()),
+      tap(
+      data => this.afterGetRequest(),
+      error => { this.showError(error) }
+      ),);
+  }
+  
+  getWithClass(id:number): Observable<setTerm[]> {
+    this.beforeRequest();
+    const options = this._utils.makeOptions(this._headers);
+
+    return this._http.get(`${this._examWithClassUrl}${id}/term/`, options).pipe(
       map((res: Response) => res.json()),
       tap(
       data => this.afterGetRequest(),

@@ -22,7 +22,7 @@ declare var numeral: any;
 export class AddComponent implements OnInit , OnDestroy{
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
-  student : Student;
+  student : [];
   courses: Course[];
 
 
@@ -45,13 +45,14 @@ export class AddComponent implements OnInit , OnDestroy{
   }
 
   onSubmit() {
+    console.log(this.student)
     this._utils.unsubscribeSub(this._sub);
-    this._sub = this._studentService.add(this.student)
-      .subscribe(data => {
-        console.log(data);
-        this.toastr.success('Student Added !', 'Success',{timeOut: 3000});
+   // this._sub = this._studentService.add(this.student)
+      // .subscribe(data => {
+      //   console.log(data);
+      //   this.toastr.success('Student Added !', 'Success',{timeOut: 3000});
 
-      });
+      // });
   }
 
   loadCourses() {
@@ -67,7 +68,7 @@ export class AddComponent implements OnInit , OnDestroy{
 
   initStudent() {
     this._utils.unsubscribeSub(this._typeSub);
-    this.student = new Student();
+   // this.student = new Student();
     //this.student.batch = 0;
     
     

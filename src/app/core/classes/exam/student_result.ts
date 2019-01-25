@@ -3,4 +3,6 @@ export class Student_Result{
     name:string;
     theory:number;
     practical:number;
+    total:number;
+    result:string;
 }

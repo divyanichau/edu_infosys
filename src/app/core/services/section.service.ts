@@ -13,7 +13,7 @@ import { Section } from '../classes/section';
 @Injectable()
 export class SectionService {
   private _sectionUrl = `${new Config().api}/section/`;
-  private _sectionWithClassUrl = `${new Config().api}/exam/class/`;
+  private _sectionWithClassUrl = `${new Config().api}/academic/class/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
   section = [];
   selectedClass = {};

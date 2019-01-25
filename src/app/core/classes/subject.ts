@@ -5,6 +5,5 @@ export class Subject {
   course: string;
   batch: string;
   description: string;
-  subject: string;
   student: string;
 }

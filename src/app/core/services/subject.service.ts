@@ -17,6 +17,7 @@ import { ElectiveSubject} from '../classes/electivesubject';
 @Injectable()
 export class SubjectService {
   private _teacherUrl = `${new Config().api}/teacher/addsubject/`;
+  private _subjectUrl = `${new Config().api}/exam/subject/`;
   private _courseUrl = `${new Config().api}/course/assignsubject/`;
   private _courseWithSectionUrl = `${new Config().api}/exam/section/`;
   private _electiveUrl = `${new Config().api}/course/electivesubject/`;
@@ -46,7 +47,7 @@ export class SubjectService {
     //this.beforeRequest();
     const options = this._utils.makeOptions(this._headers);
 
-    return this._http.get(`${this._teacherUrl}`, options).pipe(
+    return this._http.get(`${this._subjectUrl}`, options).pipe(
       map((res: Response) => res.json()),
       tap(
       data => this.afterGetRequest(),

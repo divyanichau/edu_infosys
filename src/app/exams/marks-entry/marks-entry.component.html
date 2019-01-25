@@ -1,98 +1,99 @@
 <div class="body">
   <form (ngSubmit)="OnSubmitMarks()" #enteredMarks="ngForm">
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h1 class="panel-title">Marks Entry</h1>
-    </div>
-    <div class="panel-body">
-      <div class="row clearfix">
-        <!-- <div class="col-sm-6">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h1 class="panel-title">Marks Entry</h1>
+      </div>
+      <div class="panel-body">
+        <div class="row clearfix">
+          <!-- <div class="col-sm-6">
               <label for="term_name" class="label-control">Term Name</label>
               <input type="text" id="term_name" class="form-control" name="term_name" [(ngModel)]="_term.name"
                 placeholder="Term Name">
 
             </div> -->
-        <div class="col-md-3">
-          <label for="course">Select Course</label>
-          <select class="form-control" name="course" [(ngModel)]="selected_course" (change)="onCourseChange(selected_course)" >
-            <option *ngFor="let c of  courses" [ngValue]="c.id"> {{c.name}}</option>
-           
-          </select>
-        </div>
-        <div class="col-md-3">
-          <label for="class">Select class</label>
-          <select class="form-control" name="class" [(ngModel)]="selected_class"(change)="onClassChange(selected_class)">
-            <option *ngFor="let cls of classes" [ngValue]="cls.id"> {{cls.name}}</option>
-         
-          </select>
-        </div>
-        <div class="col-md-3">
-          <label for="section">Select Section</label>
-          <select class="form-control" name="section"  [(ngModel)]="selected_section"(change)="onSectionChange(selected_section)">
-              <option *ngFor="let sec of sections" [ngValue]="sec.id"> {{sec.name}}</option>
-          </select>
-        </div>
-        <div class="col-md-3">
-          <label for="subject">Select Subject</label>
-          <select class="form-control" name="subject" [(ngModel)]="selected_subject"(change)="onChange()" >
-            <option *ngFor =" let sub of subjects" [ngValue]="sub.id"> {{sub.name}}</option>
-         
-          </select>
-        </div>
-        <div class="col-md-3 form-top-margin">
-          <label for="exam">Select Exam</label>
-          <select class="form-control" name="subject" [(ngModel)]="selected_term"(change)="onChange()" >
-            <option *ngFor =" let term of _term" [ngValue]="term.id"> {{term.name}}</option>
-            </select>
-        </div>
-        <div class="col-md-6 form-top-margin-button">
-            <button type="button" class="btn btn-primary" (click)="marksEntryNext()">Next</button>
-        </div>
-        <div *ngIf="val==true">
-          <div class="col-md-12">
-           
-              <div class="marks-entry">
-                  <div class="col-md-3">
-                      <label for="fm">Full Marks</label>
-                     <input type="number" class="form-control" id="fm" name="full_marks"  [(ngModel)]="entered_marks.marks_type.full_marks">
-                    </div>
+          <div class="col-md-3">
+            <label for="course">Select Course</label>
+            <select class="form-control" name="course" [(ngModel)]="selected_course" (change)="onCourseChange(selected_course)">
+              <option *ngFor="let c of  courses" [ngValue]="c.id"> {{c.name}}</option>
 
-                    <div class="col-md-3">
-                        <label for="fmt">Full Marks(T.H)</label>
-                       <input type="number" class="form-control" id="fmt" name="fm_th" [(ngModel)]="entered_marks.marks_type.full_marks_th">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="fmp">Full Marks(P.R)</label>
-                       <input type="number" class="form-control" id="fmp" name="fm_pr" [(ngModel)]="entered_marks.marks_type.full_marks_pr">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="pm">Pass Marks</label>
-                       <input type="number" class="form-control" id="pm" name="pm" [(ngModel)]="entered_marks.marks_type.pass_marks">
-                    </div>
-                  
-                    <div class="col-md-3 form-top-margin">
-                        <label for="pmt">Pass Marks(T.H)</label>
-                       <input type="number" class="form-control" id="pmt"name="pm_th" [(ngModel)]="entered_marks.marks_type.pass_marks_th">
-                    </div>
-                       
-                    <div class="col-md-3 form-top-margin">
-                        <label for="pmp">Pass Marks(P.R)</label>
-                       <input type="number" class="form-control" id="pmp" name="pm_pr" [(ngModel)]="entered_marks.marks_type.pass_marks_pr">
-                    </div>
-                    <div class="col-md-3 form-top-margin-button">
-                        <button type="button" class="btn btn-primary" (click)="loadBodyData()">Display</button>
-                    </div>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label for="class">Select class</label>
+            <select class="form-control" name="class" [(ngModel)]="selected_class" (change)="onClassChange(selected_class)">
+              <option *ngFor="let cls of classes" [ngValue]="cls.id"> {{cls.name}}</option>
+
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label for="section">Select Section</label>
+            <select class="form-control" name="section" [(ngModel)]="selected_section" (change)="onSectionChange(selected_section)">
+              <option *ngFor="let sec of sections" [ngValue]="sec.id"> {{sec.name}}</option>
+            </select>
+          </div>
+          <div class="col-md-3 ">
+            <label for="exam">Select Exam</label>
+            <select class="form-control" name="subject" [(ngModel)]="selected_term" (change)="onChange()">
+              <option *ngFor=" let term of terms" [ngValue]="term.id"> {{term.name}}</option>
+            </select>
+          </div>
+          <div class="col-md-3 form-top-margin">
+            <label for="subject">Select Subject</label>
+            <select class="form-control" name="subject" [(ngModel)]="selected_subject" (change)="onChange()">
+              <option *ngFor=" let sub of subjects" [ngValue]="sub.id"> {{sub.name}}</option>
+
+            </select>
+          </div>
+
+          <div class="col-md-6 form-top-margin-button">
+            <button type="button" class="btn btn-primary" (click)="marksEntryNext()">Next</button>
+          </div>
+          <div *ngIf="val==true">
+            <div class="col-md-12">
+
+              <div class="marks-entry">
+                <div class="col-md-3">
+                  <label for="fm">Full Marks</label>
+                  <input type="number" class="form-control" id="fm" name="full_marks" [(ngModel)]="entered_marks.marks_type.full_marks">
+                </div>
+
+                <div class="col-md-3">
+                  <label for="fmt">Full Marks(T.H)</label>
+                  <input type="number" class="form-control" id="fmt" name="fm_th" [(ngModel)]="entered_marks.marks_type.full_marks_th">
+                </div>
+                <div class="col-md-3">
+                  <label for="fmp">Full Marks(P.R)</label>
+                  <input type="number" class="form-control" id="fmp" name="fm_pr" [(ngModel)]="entered_marks.marks_type.full_marks_pr">
+                </div>
+                <div class="col-md-3">
+                  <label for="pm">Pass Marks</label>
+                  <input type="number" class="form-control" id="pm" name="pm" [(ngModel)]="entered_marks.marks_type.pass_marks">
+                </div>
+
+                <div class="col-md-3 form-top-margin">
+                  <label for="pmt">Pass Marks(T.H)</label>
+                  <input type="number" class="form-control" id="pmt" name="pm_th" [(ngModel)]="entered_marks.marks_type.pass_marks_th">
+                </div>
+
+                <div class="col-md-3 form-top-margin">
+                  <label for="pmp">Pass Marks(P.R)</label>
+                  <input type="number" class="form-control" id="pmp" name="pm_pr" [(ngModel)]="entered_marks.marks_type.pass_marks_pr">
+                </div>
+                <div class="col-md-3 form-top-margin-button">
+                  <button type="button" class="btn btn-primary" (click)="loadBodyData()">Display</button>
+                </div>
               </div>
 
-            
+
+            </div>
           </div>
         </div>
-      </div>
-      <div *ngIf="val1==true">
-        <div class="body form-top-margin">
-          <div class="table-responsive">
-            <div>
-              <!-- <div class="row">
+        <div *ngIf="val1==true">
+          <div class="body form-top-margin">
+            <div class="table-responsive">
+              <div>
+                <!-- <div class="row">
                 <label class="control-label col-sm-1">Search Student</label>
                 <div class="col-xs-6 col-md-4">
                   <div class="input-group">
@@ -105,74 +106,57 @@
                   </div>
                 </div>
               </div> -->
-              <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='search with name'
-                                (keyup)='updateFilter($event)'
-                              />
-              <ngx-datatable class="material" [rows]="rows" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
-                [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+                <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='search with name'
+                  (keyup)='updateFilter($event)' />
+                <ngx-datatable class="material" [rows]="students" [sortType]="'multi'" [columnMode]="'force'"
+                  [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" (page)="onChange1($event)">
 
-                <ngx-datatable-column name="ID" prop="id">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
+                  <ngx-datatable-column name="ID" prop="id" resizeable=true>
+                    <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                    <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                  </ngx-datatable-column>
 
-                <ngx-datatable-column name="Name" prop="name">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column> 
+                  <ngx-datatable-column name="Name" prop="name">
+                    <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                    <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                  </ngx-datatable-column>
 
-                <ngx-datatable-column name="TH" prop="theory">
-                  <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-                    <span
-                      title="Double click to edit"
-                      (dblclick)="editing[rowIndex + '-theory'] = true"
-                      *ngIf="!editing[rowIndex + '-theory']">
-                      {{value}}
-                    </span>
-                    <input
-                      autofocus
-                      (blur)="updateValue($event, 'theory', rowIndex)"
-                      *ngIf="editing[rowIndex+ '-theory']"
-                      type="text"
-                      [value]="value"
-                    />
-                  </ng-template>
-                </ngx-datatable-column>
+                  <ngx-datatable-column name="TH" prop="theory">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                      <span title="Double click to edit" (click)="editing[rowIndex + '-theory'] = true" *ngIf="!editing[rowIndex + '-theory']">
+                        {{value}}
+                      </span>
+                      <input autofocus (blur)="updateValue($event, 'theory', rowIndex)" *ngIf="editing[rowIndex+ '-theory']"
+                        type="text" [value]="value" />
+                    </ng-template>
+                  </ngx-datatable-column>
 
-              <!-- <ngx-datatable-column name="TH" prop="th">
+                  <!-- <ngx-datatable-column name="TH" prop="th">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column> -->
 
-                <ngx-datatable-column name="PR" prop="practical">
-                  <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-                    <span
-                      title="Double click to edit"
-                      (dblclick)="editing[rowIndex + '-practical'] = true"
-                      *ngIf="!editing[rowIndex + '-practical']">
-                      {{value}}
-                    </span>
-                    <input
-                      autofocus
-                      (blur)="updateValue($event, 'practical', rowIndex)"
-                      *ngIf="editing[rowIndex+ '-practical']"
-                      type="text"
-                      [value]="value"
-                    />
-                  </ng-template>
-                </ngx-datatable-column>
+                  <ngx-datatable-column name="PR" prop="practical">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                      <span title="Double click to edit" (click)="editing[rowIndex + '-practical'] = true" *ngIf="!editing[rowIndex + '-practical']">
+                        {{value}}
+                      </span>
+                      <input autofocus (blur)="updateValue($event, 'practical', rowIndex)" *ngIf="editing[rowIndex+ '-practical']"
+                        type="text" [value]="value" />
+                    </ng-template>
+                  </ngx-datatable-column>
 
-                <ngx-datatable-column name="Total" prop="total">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-                
-                <ngx-datatable-column name="Result" prop="result">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
+                  <ngx-datatable-column name="Total" prop="total">
+                    <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                    <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                  </ngx-datatable-column>
 
-                <!-- <ngx-datatable-column name="Actions" sortable="false" prop="id">
+                  <ngx-datatable-column name="Result" prop="result">
+                    <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                    <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                  </ngx-datatable-column>
+
+                  <!-- <ngx-datatable-column name="Actions" sortable="false" prop="id">
                   <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                     Manage
                   </ng-template>
@@ -181,15 +165,15 @@
                     <a class="glyphicon glyphicon-trash left-icon" title="" href="/student/delete/{{value}}"><img src="" alt=""></a>
                   </ng-template>
                 </ngx-datatable-column>  -->
-              </ngx-datatable>
+                </ngx-datatable>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="panel-footer">
+        <button type="submit" class="btn btn-primary">Save Marks</button>
+      </div>
     </div>
-    <div class="panel-footer">
-      <button type="submit" class="btn btn-primary">Save Marks</button>
-    </div>
-  </div>
-</form>
+  </form>
 </div>

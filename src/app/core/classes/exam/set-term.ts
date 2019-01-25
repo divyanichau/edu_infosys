@@ -5,4 +5,5 @@ export class setTerm{
     end_date:Date;
     course:number;
     _class:number;
+    subject:number;
 }

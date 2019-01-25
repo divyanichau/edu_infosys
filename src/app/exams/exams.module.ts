@@ -23,6 +23,7 @@ import { MarksEntryService } from '../core/services/marks-entry.service';
 import { PrintResultComponent } from './result-preparation/print-result/print-result.component';
 
 import { ToastrModule } from 'ngx-toastr';
+import { StudentService } from '../core/services/student.service';
 
 @NgModule({
 
@@ -34,7 +35,7 @@ import { ToastrModule } from 'ngx-toastr';
     ToastrModule.forRoot() 
   ],
   providers:[MarksEntryService,BatchService,UtilsService,SetTermService,SubjectService,
-    ExamScheduleService,CourseService,ClassService,SectionService],
+    ExamScheduleService,CourseService,ClassService,SectionService,StudentService],
 
   declarations: [SetTermComponent, ScheduleExamComponent, TermDetailComponent, DetailComponent, MarksEntryComponent, ResultPreparationComponent, PrintResultComponent],
 })

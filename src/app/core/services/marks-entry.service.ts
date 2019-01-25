@@ -11,7 +11,7 @@ import { MarksEntry } from '../classes/exam/marks-entry';
 
 @Injectable()
 export class MarksEntryService {
-  private _marksEntryUrl = `${new Config().api}/marks/entry`;
+  private _marksEntryUrl = `${new Config().api}/exam/marks-entry/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
 
   constructor(
@@ -24,7 +24,7 @@ export class MarksEntryService {
     const body = JSON.stringify(entered_marks);
 
     return this._http.post(`${this._marksEntryUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
-      map((res: Response) => res.json().data),
+      map((res: Response) => res.json()),
       tap(
       data => this.afterRequest(data),
       error => { this.showError(error) }
@@ -41,7 +41,8 @@ export class MarksEntryService {
   }
   
   showError(error): void {
-    console.log(error);
+    this._utils.stop_progress();
+    this._utils.notify("failed",error._body);
   
   }
 

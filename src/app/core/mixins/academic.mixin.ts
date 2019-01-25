@@ -77,8 +77,9 @@ export class AcademicMixin {
                 isArray(data) ? this.classes = data : data;
                 if (this.classes.length > 0) {
                     this.selected_class = this.classes[0].id;
-                    this.initSection();
+                    // this.initSection();
                 }
+     
 
                 this.temp = [...this.classes];
 

@@ -8,6 +8,5 @@ section:number;
 subject:number;
 exam:number;
 marks_type: MarksType = new MarksType();
-student_data:Student_Result = new Student_Result()
-
+student_data:Student_Result[];
 }

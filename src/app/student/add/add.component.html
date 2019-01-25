@@ -48,8 +48,8 @@
                         <div class="col-sm-2">
                           <label for="course">Faculty/Course</label>
                           <select class="form-control" name="course" [(ngModel)]="student.course" #course="ngModel" required="">
-                            <option value="school">School 1- 10</option>
-                            <option value="intermediate">10+2</option>
+                            <option value="school" value="1">School 1- 10</option>
+                            <option value="intermediate" value="2">10+2</option>
                             <option *ngFor="let c of courses" [ngValue]="c.id">{{c.name}}</option>
                             
                           </select>
