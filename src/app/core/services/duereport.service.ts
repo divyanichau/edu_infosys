@@ -34,11 +34,22 @@ export class DueReportService {
   }
 
   get(due_report:DueReport): Observable<DueReport[]> {
-    console.log(due_report)
+    //console.log(due_report)
+
+    var url = `${this._duereportUrl}/?`
+    for(var key in due_report){
+ 
+       var val = due_report[key];
+       if (typeof(val) !== 'undefined'){
+         url = url + key + '=' + val + '&'
+       }
+ 
+     }
+     console.log(url)
     //this.beforeRequest();
     const options = this._utils.makeOptions(this._headers);
 
-     return this._http.get(`${this._duereportUrl}`+ 'report_type='+due_report.feecategory+'&date'+due_report.date+'&report_value='+due_report.fee_category+'&batch='+due_report.batch+'&course='+due_report.course, options).pipe(
+     return this._http.get(url , options).pipe(
      
       
     map((res: Response) => res.json()),

@@ -11,21 +11,20 @@
   <div class="btn btn-group bg-info">
   <ul class="nav nav-tabs nav-tabs-highlight">
       <li  class="active">
-          <a  class="btn btn-default" value ="1" href="#paid_report" data-toggle="tab">
-              Paid Report
+          <a  class="btn btn-default"  value ="1" href="#paid_report" data-toggle="tab">
+              <b> Paid Report</b> 
           </a>
       </li>
       <li class="presentation">
-          <a  class ="btn btn-default" value ="2" href="#collective_reprt" data-toggle="tab">
-               Collective Report
+          <a class ="btn btn-default" value ="2"  href="#collective_report" data-toggle="tab">
+               <b> Collective Report</b> 
           </a>
       </li>
       <li class ="presentation">
         <a class ="btn btn-default" value ="3" href ="#paid_report_datewise" data-toggle ="tab">
-          Paid Report(Datewise)
+          <b>Paid Report(Datewise)</b>
         </a> 
       </li>
-   
   </ul>
   
   </div>
@@ -38,7 +37,7 @@
   <div class="content-wrapper">
     <div class="content">
         <div class="row ">
-          <form (ngSubmit) ="onSubmit()" #dueReport ="ngForm">
+          <form (ngSubmit) ="onSubmit(feepaidReport)" #feepaidReport ="ngForm">
             <div class="col-sm-12">
               <div class="card">
                 <div class="panel-heading bg-primary">
@@ -52,11 +51,11 @@
                    
                     <div class="col-sm-4">
                         <label for="paiddate">Paid Date</label>
-                        <input type="date"  class="form-control" [(ngModel)]="feepaid_report.paid_date" name= "paiddate" >
+                        <input type="date"  class="form-control clearable"[(ngModel)]="feepaid_report.paid_date" name= "paiddate" >
                       </div>
                       <div class="col-sm-4">
                         <label for="reportfor" class="req">Class </label>
-                        <select class="form-control" [(ngModel)]="feepaid_report.classes" name="class">
+                        <select class="form-control clearable" [(ngModel)]="feepaid_report.classes" name="class">
                           <option>class12</option>
                       
                            <option *ngFor="let c of classes" [ngValue]="c.id">{{c.name}}</option> 
@@ -69,7 +68,7 @@
                 <div class ="row clearfix">
                     <div class="col-sm-4">
                         <label for="search" class="req">Receipt no</label>
-                        <input type ="text" placeholder=" Enter receipt no" class="form-control" [(ngModel)]="feepaid_report.receipt_no" name="receiptno">
+                        <input type ="text" placeholder=" Enter receipt no" class="form-control clearable" [(ngModel)]="feepaid_report.receipt_no" name="receiptno">
                      
                    </div>
 
@@ -78,7 +77,7 @@
                   <div class ="row">
                     <div class="form-group col-sm-2">
 
-                      <button type="submit" class="btn btn-primary col-sm-1 " (click)="get_paidreport()">Go</button>
+                      <button type="submit" class="btn btn-primary col-sm-1 " (click)="get_paidreport() ; dueReport.reset()" >Go</button>
                        <button type="submit" class="btn btn-danger col-sm-offset-8" onclick="printDiv('print')">print report</button>
                         
                        <button type="submit" class="btn btn-success col-sm-offset-1 button-margin">excel</button> 
@@ -150,12 +149,12 @@
 
 
 
-  <div role="tabpanel" class="tab-pane " id ="collective_reprt">
+  <div role="tabpanel" class="tab-pane " id ="collective_report">
 
   <div class="content-wrapper">
     <div class="content">
         <div class="row ">
-          <form (ngSubmit) ="onSubmit()" #dueReport ="ngForm">
+          <form (ngSubmit) ="onSubmit(feepaidReport)" #feepaidReport ="ngForm">
             <div class="col-sm-12">
               <div class="card">
 
@@ -287,7 +286,7 @@
     <div class="content-wrapper">
       <div class="content">
           <div class="row ">
-            <form (ngSubmit) ="onSubmit()" #dueReport ="ngForm">
+            <form (ngSubmit) ="onSubmit(feepaidReport)" #feepaidReport ="ngForm">
               <div class="col-sm-10">
                 <div class="card">
   

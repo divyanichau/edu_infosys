@@ -33,9 +33,20 @@ export class AbsentReportService {
 
   get(absent_report:AbsentReport): Observable<AbsentReport[]> {
     //this.beforeRequest();
+
+    var url = `${this._absentreportUrl}/?`
+    for(var key in absent_report){
+ 
+       var val = absent_report[key];
+       if (typeof(val) !== 'undefined'){
+         url = url + key + '=' + val + '&';
+       }
+ 
+     }
+     console.log(url)
     const options = this._utils.makeOptions(this._headers);
 
-    return this._http.get(`${this._absentreportUrl}`+'&from+date='+absent_report.from_date+'&to_date='+absent_report.from_date + '&class='+absent_report.class +'section='+absent_report.section , options).pipe(
+    return this._http.get(url , options).pipe(
       map((res: Response) => res.json()),
       tap(
       data => this.afterGetRequest(),

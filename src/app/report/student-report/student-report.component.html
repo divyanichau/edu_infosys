@@ -24,7 +24,7 @@
                   <div class="row clearfix">
                     <div class="col-sm-4">
                       <label for="category" class="req"> Select Category</label>
-                      <select class="form-control"[(ngModel)]="student_report.report_type" (change)="onChange($event.target.value)" name="category">
+                      <select class="form-control" (change)="onChange($event.target.value)" name="category">
                         <option value ="0">Select option</option> 
                         <option value ="1">hostel</option>
                         <option value = "2">bloodgroup</option>
@@ -49,7 +49,7 @@
 
                      <div class="col-sm-4"*ngIf ="detail_type[3]">
                       <label for="reg_input" class="req">Category</label>
-                      <select class="form-control" [(ngModel)]="student_report.report_value" name="bloodgroup" >
+                      <select class="form-control" [(ngModel)]="student_report.blood_group" name="bloodgroup" >
                         <!-- <option *ngFor="let c of category" [ngValue]="b.id">{{b.name}}</option> -->
                         <option value ="1">General</option>
                         <option value ="2">other</option>
@@ -124,7 +124,7 @@
 
                     <div class="col-sm-4" *ngIf ="detail_type[2]">
                       <label for="bloodgroup" class="req">Bloodgroup</label>
-                      <select class="form-control" [(ngModel)]="student_report.report_value" name="bloodgroup" >
+                      <select class="form-control" [(ngModel)]="student_report.blood_group" name="bloodgroup" >
                         <!-- <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option> -->
                         <option value="1">A+</option>
                         <option value="2">A-</option>
@@ -139,7 +139,7 @@
 
                      <div class="col-sm-4">
                       <label for="reg_input" class="req">school/batch</label>
-                      <select class="form-control" [(ngModel)]="student_report._batch" name="batch" >
+                      <select class="form-control" [(ngModel)]="student_report.batch" name="batch" >
                         <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option>
                         <option>2071 coded</option>
                       </select>

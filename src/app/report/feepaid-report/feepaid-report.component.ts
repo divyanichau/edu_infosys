@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { isArray } from 'lodash';
@@ -9,6 +9,7 @@ import { FeepaidReport } from '../../core/classes/feepaid-report';
 import { FeepaidReportService } from '../../core/services/feepaidreport.service';
 import { ClassService } from 'src/app/core/services/class.service';
 import { _class } from 'src/app/core/classes/class';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-feepaid-report',
@@ -24,8 +25,8 @@ export class FeepaidReportComponent implements OnInit {
   monthlyreport =false;
   classes: _class[];
   selected_class :number;
- 
- 
+
+@ViewChild('feepaidReport') public feepaidreport:NgForm;
 
   constructor( 
     private _utils: UtilsService,
@@ -40,15 +41,22 @@ export class FeepaidReportComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.feepaid_report);
+    //console.log(this.feepaid_report);
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._feepaidreportService.get(this.feepaid_report)
      .subscribe(data => {
-        console.log(data);
-       
+       console.log(data);
+      
       });
-    
+      this.feepaidreport.reset();
+     
+     // feeForm.reset();
+   // console.log(feeForm);
   }
+ 
+
+
+    
  
   LoadClass() {
    // console.log(this.feepaid_report);
@@ -76,7 +84,6 @@ export class FeepaidReportComponent implements OnInit {
   get_monthlyreport(){
     this.monthlyreport = true;
   }
-
  
 
 }

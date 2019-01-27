@@ -14,7 +14,7 @@ import { StudentReport } from '../classes/student-report';
 
 @Injectable()
 export class StudentReportService {
-  private _studentreportUrl = `${new Config().api}/report/student/`;
+  private _studentreportUrl = `${new Config().api}/report/`;
   
   private _headers = this._utils.makeHeaders({ withToken: true });
 
@@ -26,6 +26,7 @@ export class StudentReportService {
 
   find(id: string): Observable<StudentReport> {
     //this.beforeRequest();
+    
 
     return this._http.get(`${this._studentreportUrl}${id}`, this._utils.makeOptions(this._headers)).pipe(
       map((res: Response) => res.json()),
@@ -37,8 +38,19 @@ export class StudentReportService {
 
    get(student_report:StudentReport):Observable<StudentReport[]> {
      //this.beforeRequest();
+
+     var url = `${this._studentreportUrl}/?`
+     for(var key in student_report){
+  
+        var val = student_report[key];
+        if (typeof(val) !== 'undefined'){
+          url = url + key + '=' + val + '&'
+        }
+  
+      }
+
      const options = this._utils.makeOptions(this._headers);
-     return this._http.get(`${this._studentreportUrl}?`+ 'report_type='+student_report.report_type+'&report_value='+student_report.report_value +'&batch='+student_report._batch, options).pipe(
+     return this._http.get(url, options).pipe(
        map((res: Response) => res.json()),
        tap(
        data => this.afterGetRequest(),
