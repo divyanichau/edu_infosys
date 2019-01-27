@@ -1,7 +1,10 @@
 import { Component, OnInit, OnDestroy, Output, EventEmitter, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import { isArray } from 'lodash';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { isArray, isObject } from 'lodash';
+import { switchMap } from 'rxjs/operators';
+
 
 import { DatatableComponent} from '@swimlane/ngx-datatable';
 import { LibraryService } from '../../core/services/library.service';
@@ -21,6 +24,7 @@ export class AddBookComponent implements OnInit , OnDestroy{
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
 
+id: string;
   selected_lib : number;
   category : BookCategory[];
    
@@ -35,6 +39,7 @@ export class AddBookComponent implements OnInit , OnDestroy{
   constructor(
     private _libraryService: LibraryService,
     private _utils: UtilsService,
+         private _routes:ActivatedRoute,
     private router: Router,
     private toastr: ToastrService
     ) { }
@@ -44,7 +49,7 @@ export class AddBookComponent implements OnInit , OnDestroy{
   ngOnInit() {
 
     this.initAddBook();
-     
+    
   }
 
   ngOnDestroy() {
@@ -60,10 +65,34 @@ export class AddBookComponent implements OnInit , OnDestroy{
       .subscribe(data => {
         console.log("add book",data);
          this.toastr.success('Issue Book !', 'Success',{timeOut: 3000});
+ 
       });
   }
 
-  loadCategory() {
+  
+
+ 
+  
+  initAddBook(){
+    this._utils.unsubscribeSub(this._sub);
+    this._sub = this._routes.paramMap.pipe(
+      switchMap((params: ParamMap) => {
+        this.id = params.get('id');
+        return this._libraryService.findBook(this.id);
+      }))
+      .subscribe(data => {
+        if (isObject(data)) {
+         console.log("vhgv",data);
+         this.add_book = data;
+        console.log("Edit Book",this.add_book);
+          this.loadlist();
+          this.loadCategory();
+        
+        }
+      });
+  }
+
+   loadCategory() {
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._libraryService.get().subscribe(
       data => {
@@ -71,19 +100,19 @@ export class AddBookComponent implements OnInit , OnDestroy{
         //console.log(this.category);
         this.selected_lib = this.category[0].id;
       //console.log(this.add_book);
-      
+      this.loadlist();
       }
     );
   }
-  
-  initAddBook() {
+
+
+  loadlist() {
     this._utils.unsubscribeSub(this._typeSub);
-    this._sub = this._libraryService.getBook().subscribe(
+      this._sub = this._libraryService.getBook().subscribe(
       data => {
         isArray(data) ? this._library = data : data;
         this.rows = this._library;
         this.temp = [...this._library];
-         this.loadCategory(); 
       }
     );
   }

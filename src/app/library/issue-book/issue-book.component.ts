@@ -6,14 +6,14 @@ import { Config } from '../../shared/classes/app';
 
 import{ DatatableComponent} from '@swimlane/ngx-datatable';
 import { CourseService } from '../../core/services/course.service';
-import { BatchService } from '../../core/services/batch.service';
+import { ClassService } from '../../core/services/class.service';
 import { StudentService } from '../../core/services/student.service';
 import { LibraryService } from '../../core/services/library.service';
 
 //import { AddBook } from '../../core/classes/addbook';
 import { IssueBook } from '../../core/classes/issuebook';
 import { Course } from '../../core/classes/course';
-import { Batch } from '../../core/classes/batch';
+import { _class } from '../../core/classes/class';
 import { Student } from '../../core/classes/student';
 import { UtilsService } from '../../shared/services/utils.service';
 
@@ -39,8 +39,8 @@ obj_book : IssueBook = new IssueBook();
  _course: Course[];
  selected_course: number;
 
- _batch: Batch[];
- selected_batch :number;
+ _classes: _class[];
+ selected_class :number;
 
  _student: Student[];
  selected_student: number;
@@ -84,7 +84,7 @@ obj_book : IssueBook = new IssueBook();
   constructor(
     private _libraryService: LibraryService,
     private _courseService: CourseService,
-    private _batchService: BatchService,
+    private _classService: ClassService,
     private _studentService: StudentService,
     private _utils: UtilsService,
      private router: Router,
@@ -122,18 +122,18 @@ obj_book : IssueBook = new IssueBook();
         isArray(data) ? this._course = data : data;
         console.log(this._course);
         this.selected_course = this._course[0].id;
-         this.loadBatch();
+         this.loadClass();
       }
     );
   }
 
-   loadBatch() {
+   loadClass() {
     this._utils.unsubscribeSub(this._sub);
-    this._sub = this._batchService.get().subscribe(
+    this._sub = this._classService.get().subscribe(
       data => {
-        isArray(data) ? this._batch = data : data;
-        console.log(this._batch);
-        this.selected_batch = this._batch[0].id;
+        isArray(data) ? this._classes = data : data;
+        console.log(this._classes);
+        this.selected_class = this._classes[0].id;
        this.loadStudent();
       }
     );
@@ -144,8 +144,8 @@ obj_book : IssueBook = new IssueBook();
     this._sub = this._studentService.get().subscribe(
       data => {
         isArray(data) ? this._student = data : data;
-        //console.log(this._student);
-        console.log("kdskdhwhwkjehwkjehkweh")
+        console.log(this._student);
+        this.selected_student = this._student[0].id;
       //  this.selected_student = this._student[0].id;
         
       }
@@ -180,23 +180,6 @@ obj_book : IssueBook = new IssueBook();
     // Whenever the filter changes, always go back to the first page
     this.table.offset = 0;
   }
-
- 
-
-  issueDelete(id:number){
-      console.log(id);
-      if(confirm("Are You Sure Want To Delete?")){
-        this._libraryService.deleteIssue(id).subscribe(data => 
-          {
-          //console.log(data);
-          // this.toastr.success('Vehicle Added !', 'Success', { timeOut: 3000 });
-         },(err)=>{
-           console.log(err);
-           alert(err);
-         }
-         );
-       }
-    }
 
 }
 

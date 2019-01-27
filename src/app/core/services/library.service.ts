@@ -159,11 +159,10 @@ updateBook(library : AddBook,id:string): Observable<AddBook> {
   }
 
 
-addIssue(library : IssueBook): Observable<IssueBook> {
+ addIssue(library: IssueBook): Observable<IssueBook> {
     this.beforeRequest();
     const body = JSON.stringify(library);
     console.log(body)
-
     return this._http.post(`${this._issuebookUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
       map((res: Response) => res.json().data),
       tap(
@@ -171,7 +170,6 @@ addIssue(library : IssueBook): Observable<IssueBook> {
       error => { console.log(error); }
       ),);
   }
-
 
    getIssue(): Observable<IssueBook[]> {
     //this.beforeRequest();
@@ -184,43 +182,6 @@ addIssue(library : IssueBook): Observable<IssueBook> {
       ),);
   }
 
-
-  
-   findIssue(id: string): Observable<IssueBook> {
-    //this.beforeRequest();
-
-   return this._http.get(`${this._issuebookUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
-      map((res: Response) => res.json()),
-      tap(
-      data => this.afterGetRequest(),
-      error => { console.log(error); }
-      ),);
-  }
-
-   updateIssue(library : IssueBook,id:string): Observable<IssueBook> {
-    console.log("Uhshsd",library);
-    this.beforeRequest();
-    const body = JSON.stringify(library);
-    return this._http.put(`${this._issuebookUrl}${id}/`, body, this._utils.makeOptions(this._headers)).pipe(
-      map((res: Response) => res.json().data),
-      tap(
-      data => this.afterUpdateRequest(),
-      error => { this.showError(error) }
-      ),);
-     
-  }
-
-   deleteIssue(id: number): Observable<IssueBook> {
-    this.beforeRequest();
-    // const body = JSON.stringify(Issuebook);
-
-    return this._http.delete(`${this._issuebookUrl}${id}/`,  this._utils.makeOptions(this._headers)).pipe(
-      map((res: Response) => res.json().data),
-      tap(
-      //data => this.afterRequest(data),
-      error => { this.showError(error) }
-      ),);
-  }
 
 
   getReturn(): Observable<BookReturn[]> {
@@ -247,6 +208,32 @@ addIssue(library : IssueBook): Observable<IssueBook> {
       ),);
   }
 
+  findReturn(id: string): Observable<BookReturn> {
+    //this.beforeRequest();
+
+   return this._http.get(`${this._bookreturnUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json()),
+      tap(
+      data => this.afterGetRequest(),
+      error => { console.log(error); }
+      ),);
+  }
+
+   
+
+updateReturn(library : BookReturn,id:string): Observable<BookReturn> {
+    console.log("Uhshsd",library);
+    this.beforeRequest();
+    const body = JSON.stringify(library);
+    return this._http.put(`${this._bookreturnUrl}${id}/`, body, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json().data),
+      tap(
+      data => this.afterUpdateRequest(),
+      error => { this.showError(error) }
+      ),);
+     
+  }
+
 
   getReport(): Observable<Report[]> {
     //this.beforeRequest();
@@ -259,18 +246,6 @@ addIssue(library : IssueBook): Observable<IssueBook> {
       ),);
   }
 
-
-  addReport(library: Report): Observable<Report> {
-    this.beforeRequest();
-    const body = JSON.stringify(library);
-
-    return this._http.post(`${this._reportUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
-      map((res: Response) => res.json().data),
-      tap(
-      data => this.afterRequest(),
-      error => { console.log(error); }
-      ),);
-  }
   
   beforeRequest(): void {
     this._utils.start_progress();

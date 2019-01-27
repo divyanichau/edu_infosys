@@ -120,10 +120,10 @@
         
 
         <div class="col-sm-4">
-                  <label for="student_id">Batch</label>
+                  <label for="student_id">Class</label>
                   <select class="form-control"       
-                 [(ngModel)]="selected_batch" name="batch">
-                  <option *ngFor="let c of _batch" [ngValue]="c.id">{{c.name}}</option>
+                 [(ngModel)]="selected_class" name="batch">
+                  <option *ngFor="let c of _classes" [ngValue]="c.id">{{c.name}}</option>
                   </select>
             </div>
       
@@ -133,9 +133,7 @@
                   <select class="form-control"       
                  [(ngModel)]="selected_student" name="student">
                   <option *ngFor="let c of _student" [ngValue]="c.id">{{c.user.first_name}}</option>
-                  <option>Ram</option>
-                  <option>Shyam</option>
-                  <option>Hari</option>
+                 
                   </select>
             </div>
 </div>
@@ -239,7 +237,7 @@
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
-                 <ngx-datatable-column name="Book No" prop="book_no">
+                 <ngx-datatable-column name="ISBN No" prop="book_isbn_no">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
@@ -257,17 +255,6 @@
                  <ngx-datatable-column name="Book Due Date" prop="due_date">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Actions" sortable="false" prop="id">
-                  <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-                    Manage
-                  </ng-template>
-                  <ng-template let-row="_issued_books" let-value="value" ngx-datatable-cell-template>
-                    <a class="glyphicon glyphicon-eye-open" title="" href="/library/issue-book/edit-issue/{{value}}"><img src="" alt=""></a>
-                    
-                    <button class="glyphicon glyphicon-trash left-icon btn btn-danger" style="margin-left:35px;" (click)="issueDelete(value)"></button>
-                  </ng-template>
                 </ngx-datatable-column>
               </ngx-datatable>
             </div>

@@ -235,29 +235,25 @@
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
-                 <ngx-datatable-column name="Author" prop="author">
+                 <ngx-datatable-column name="Status" prop="author">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
-                 <ngx-datatable-column name="Edition" prop="edition">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-
-                 <ngx-datatable-column name="Category" prop="category">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-
+                
                 <ngx-datatable-column name="Actions" sortable="false" prop="id">
                   <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                     Manage
                   </ng-template>
                   <ng-template let-row="_library" let-value="value" ngx-datatable-cell-template>
-                    <a class="glyphicon glyphicon-eye-open" title="" href="/library/add-book/edit-book/{{value}}"><img src="" alt=""></a>
+
+                    <a class="glyphicon glyphicon-pencil" title="" href="/library/add-book/{{value}}"><img src="" alt=""></a>
+
+                    <a class="glyphicon glyphicon-eye-open" title="" href="/library/add-book/{{value}}"><img src="" alt=""></a>
+
+                    <a class="glyphicon glyphicon-remove" title="" (click)="bookDelete(value)"><img src="" alt=""></a>
                     
-                    <button class="glyphicon glyphicon-trash left-icon btn btn-danger" style="margin-left:35px;" (click)="bookDelete(value)"></button>
+                   <!--  <button class="glyphicon glyphicon-trash left-icon btn btn-danger" style="margin-left:35px;" (click)="bookDelete(value)"></button> -->
                   </ng-template>
                 </ngx-datatable-column>
               </ngx-datatable>

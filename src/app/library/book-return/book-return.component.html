@@ -95,7 +95,7 @@
 
  <div class="form-group">
   <div class="row">
-   <div class="col-sm-6"> 
+   <div class="col-sm-6 table-margin"> 
      <div class="panel panel-primary">
        <div class="panel-heading" > 
           <h4 class="panel-title">Return Lists</h4>
@@ -131,29 +131,22 @@
                 </ngx-datatable-column>
 
 
-                 <ngx-datatable-column name="Course" prop="course">
+                 <ngx-datatable-column name="Title" prop="title">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Batch" prop="batch">
+                <ngx-datatable-column name="ISBN No." prop="book_isbn_no">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
-
-
-                <ngx-datatable-column name="Book No." prop="book_no">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-
 
                 <ngx-datatable-column name="Actions" sortable="false" prop="id">
                   <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                     Manage
                   </ng-template>
                   <ng-template let-row="library" let-value="value" ngx-datatable-cell-template>
-                    <a class="glyphicon glyphicon-eye-open" title="" href="/library/book-return/return-detail/{{value}}"><img src="" alt=""></a>
+                    <a class="glyphicon glyphicon-eye-open" title="" href="/library/book-return/view-return/{{value}}"><img src="" alt=""></a>
                   </ng-template>
                 </ngx-datatable-column>
               </ngx-datatable>

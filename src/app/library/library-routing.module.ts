@@ -4,13 +4,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { LibraryComponent } from './library.component';
 import { AddBookComponent } from './add-book/add-book.component';
 import { EditBookComponent} from './add-book/edit-book/edit-book.component';
+import { ViewBookComponent} from './add-book/view-book/view-book.component';
 import { AddCategoryComponent} from './add-category/add-category.component';
 import { IssueBookComponent} from './issue-book/issue-book.component';
-import { EditIssueComponent} from './issue-book/edit-issue/edit-issue.component';
 import { BookReturnComponent} from './book-return/book-return.component';
 import { DetailComponent} from './add-category/detail/detail.component';
 import { ReportComponent} from './report/report.component';
-
+import { ViewReturnComponent} from './book-return/view-return/view-return.component';
 
 const routes: Routes = [
 
@@ -25,8 +25,13 @@ const routes: Routes = [
 	  },
 
 	   {
-	    path: "add-book/edit-book/:id",
-	    component:EditBookComponent	   	    
+	    path: "add-book/:id",
+	    component:AddBookComponent	   	    
+	  },
+
+	   {
+	    path: "add-book/view-book/:id",
+	    component:ViewBookComponent	   	    
 	  },
 
 	   {
@@ -44,14 +49,16 @@ const routes: Routes = [
 	    component:IssueBookComponent	    
 	  },
 
-	  {
-	    path: "issue-book/edit-issue/:id",
-	    component:EditIssueComponent	   	    
-	  },
+	 
 
 	   {
 	    path: "book-return",
 	    component:BookReturnComponent	    
+	  },
+
+	  {
+	    path: "book-return/view-return/:id",
+	    component:ViewReturnComponent	   	    
 	  },
 
 	   {

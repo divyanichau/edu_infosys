@@ -127,7 +127,7 @@
 
 
 
- <div class="col-sm-12" *ngIf="detail_type[2]"> 
+ <div class="col-sm-12"> 
  <div class="row" id="available">  
      <div class="panel panel-default">
        <div class="panel-heading" >                    
@@ -142,7 +142,12 @@
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="ISBN NO." prop="isbn_no">
+                <ngx-datatable-column name="ISBN NO." prop="book_isbn_no">
+                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Book NO." prop="book_no">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
@@ -172,280 +177,52 @@
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
-              </ngx-datatable>
-            </div>
-          </div>
-        </div>
-  </div>
- </div>
-
-<div class="col-sm-12" *ngIf="detail_type[4]"> 
- <div class="row" id="detail_type[20]">  
-     <div class="panel panel-default">
-       <div class="panel-heading" >                    
-          <div class="table-responsive">                       
-              <div class="row">              
-              </div>
-              <ngx-datatable class="material" [rows]="library" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
-                [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
-
-                <ngx-datatable-column name="ID" prop="id">
+                <ngx-datatable-column name="User Type" prop="user_type" *ngIf="detail_type[4]">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="ISBN No." prop="isbn_no">
+                <ngx-datatable-column name="User" prop="user" *ngIf="detail_type[4]">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Title" prop="title">
+                 <ngx-datatable-column name="Issue Date" prop="issue_date" *ngIf="detail_type[6]">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="User Type" prop="user_type">
+                 <ngx-datatable-column name="Due Date" prop="due_date" *ngIf="detail_type[6]">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="User" prop="user">
+                 <ngx-datatable-column name="Course" prop="course" *ngIf="detail_type[4]">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Course" prop="course">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-                  
-                  <ngx-datatable-column name="Class" prop="_class">
+                 <ngx-datatable-column name="Class" prop="_class" *ngIf="detail_type[4]">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Issue Date" prop="issue_date">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-                <ngx-datatable-column name="Due Date" prop="due_date">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-              
-              </ngx-datatable>
-            </div>
-          </div>
-        </div>
-  </div>
- </div>
-
- <div class="col-sm-12" *ngIf="detail_type[12]"> 
- <div class="row" id="detail_type[20]">  
-     <div class="panel panel-default">
-       <div class="panel-heading" >                    
-          <div class="table-responsive">                       
-              <div class="row">              
-              </div>
-              <ngx-datatable class="material" [rows]="library" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
-                [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
-
-                <ngx-datatable-column name="ID" prop="id">
+                 <ngx-datatable-column name="Return Date" prop="returned_date" *ngIf="detail_type[3]">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="ISBN No." prop="isbn_no">
+                 <ngx-datatable-column name="Fine" prop="fine_amount" *ngIf="detail_type[3]">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Book No." prop="book_no">
+                <ngx-datatable-column name="Remark" prop="remarks" *ngIf="detail_type[3]">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
-                  <ngx-datatable-column name="Title" prop="title">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-                 
 
-                  <ngx-datatable-column name="Author" prop="author">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Edition" prop="edition">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-                   
-                    <ngx-datatable-column name="Category" prop="category">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-                   
-                    <ngx-datatable-column name="Language" prop="language">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-              </ngx-datatable>
-            </div>
-          </div>
-        </div>
-  </div>
- </div>
-
- <div class="col-sm-12" *ngIf="detail_type[13]"> 
- <div class="row" id="detail_type[20]">  
-     <div class="panel panel-default">
-       <div class="panel-heading" >                    
-          <div class="table-responsive">                       
-              <div class="row">              
-              </div>
-              <ngx-datatable class="material" [rows]="library" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
-                [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
-
-                <ngx-datatable-column name="ID" prop="id">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Book Category" prop="name">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Section Code" prop="section_code">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Actions" sortable="false" prop="id">
-                  <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-                    Manage
-                  </ng-template>
-                  <ng-template let-row="library" let-value="value" ngx-datatable-cell-template>
-                  </ng-template>
-                </ngx-datatable-column>
-              </ngx-datatable>
-            </div>
-          </div>
-        </div>
-  </div>
- </div>
-
-<div class="col-sm-12" *ngIf="detail_type[21]"> 
- <div class="row" id="detail_type[20]">  
-     <div class="panel panel-default">
-       <div class="panel-heading" >                    
-          <div class="table-responsive">                       
-              <div class="row">              
-              </div>
-              <ngx-datatable class="material" [rows]="library" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
-                [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
-
-                <ngx-datatable-column name="ID" prop="id">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Book Category" prop="name">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Section Code" prop="section_code">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Actions" sortable="false" prop="id">
-                  <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-                    Manage
-                  </ng-template>
-                  <ng-template let-row="library" let-value="value" ngx-datatable-cell-template>
-                  </ng-template>
-                </ngx-datatable-column>
-              </ngx-datatable>
-            </div>
-          </div>
-        </div>
-  </div>
- </div>
-
- <div class="col-sm-12" *ngIf="detail_type[22]"> 
- <div class="row" id="detail_type[20]">  
-     <div class="panel panel-default">
-       <div class="panel-heading" >                    
-          <div class="table-responsive">                       
-              <div class="row">              
-              </div>
-              <ngx-datatable class="material" [rows]="library" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
-                [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
-
-                <ngx-datatable-column name="ID" prop="id">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Book Category" prop="name">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Section Code" prop="section_code">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Actions" sortable="false" prop="id">
-                  <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-                    Manage
-                  </ng-template>
-                  <ng-template let-row="library" let-value="value" ngx-datatable-cell-template>
-                  </ng-template>
-                </ngx-datatable-column>
-              </ngx-datatable>
-            </div>
-          </div>
-        </div>
-  </div>
- </div>
-
- <div class="col-sm-12" *ngIf="detail_type[23]"> 
- <div class="row" id="detail_type[20]">  
-     <div class="panel panel-default">
-       <div class="panel-heading" >                    
-          <div class="table-responsive">                       
-              <div class="row">              
-              </div>
-              <ngx-datatable class="material" [rows]="library" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
-                [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
-
-                <ngx-datatable-column name="ID" prop="id">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Book Category" prop="name">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Section Code" prop="section_code">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Actions" sortable="false" prop="id">
-                  <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-                    Manage
-                  </ng-template>
-                  <ng-template let-row="library" let-value="value" ngx-datatable-cell-template>
-                  </ng-template>
-                </ngx-datatable-column>
               </ngx-datatable>
             </div>
           </div>
@@ -454,84 +231,6 @@
  </div>
 
 
-<div class="col-sm-12" *ngIf="detail_type[24]"> 
- <div class="row" id="detail_type[20]">  
-     <div class="panel panel-default">
-       <div class="panel-heading" >                    
-          <div class="table-responsive">                       
-              <div class="row">              
-              </div>
-              <ngx-datatable class="material" [rows]="library" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
-                [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
-
-                <ngx-datatable-column name="ID" prop="id">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Book Category" prop="name">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Section Code" prop="section_code">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Actions" sortable="false" prop="id">
-                  <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-                    Manage
-                  </ng-template>
-                  <ng-template let-row="library" let-value="value" ngx-datatable-cell-template>
-                  </ng-template>
-                </ngx-datatable-column>
-              </ngx-datatable>
-            </div>
-          </div>
-        </div>
-  </div>
- </div>
-
-
-<div class="col-sm-12" *ngIf="detail_type[25]"> 
- <div class="row" id="detail_type[20]">  
-     <div class="panel panel-default">
-       <div class="panel-heading" >                    
-          <div class="table-responsive">                       
-              <div class="row">              
-              </div>
-              <ngx-datatable class="material" [rows]="library" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
-                [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
-
-                <ngx-datatable-column name="ID" prop="id">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Book Category" prop="name">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Section Code" prop="section_code">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Actions" sortable="false" prop="id">
-                  <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-                    Manage
-                  </ng-template>
-                  <ng-template let-row="library" let-value="value" ngx-datatable-cell-template>
-                  </ng-template>
-                </ngx-datatable-column>
-              </ngx-datatable>
-            </div>
-          </div>
-        </div>
-  </div>
- </div>
 
 
 

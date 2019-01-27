@@ -97,45 +97,13 @@ export class ReportComponent implements OnInit , OnDestroy{
   ngOnInit() {
    this.reset_details_value();
     this.detail_type[1]= true;   
-    this.loadCourse();  
+    
   }
 
   ngOnDestroy() {
     this._utils.unsubscribeSub(this._sub);
   }
 
-  onSubmit() {
-    this._utils.unsubscribeSub(this._sub);
-    this._sub = this._libraryService.addReport(this.report)
-      .subscribe(data => {
-        console.log(data);
-        alert('student added');
-      });
-  }
-
-  loadCourse() {
-    this._utils.unsubscribeSub(this._sub);
-    this._sub = this._courseService.get().subscribe(
-      data => {
-        isArray(data) ? this._course = data : data;
-        console.log(this._course);
-        this.selected_course = this._course[0].id;
-         this.loadClass();
-      }
-    );
-  }
-
-  loadClass() {
-    this._utils.unsubscribeSub(this._sub);
-    this._sub = this._classService.get().subscribe(
-      data => {
-        isArray(data) ? this._classes = data : data;
-        console.log(this._classes);
-        this.selected_class = this._classes[0].id;
-
-      }
-    );
-  }
   
   initReport() {
    this._utils.unsubscribeSub(this._typeSub);

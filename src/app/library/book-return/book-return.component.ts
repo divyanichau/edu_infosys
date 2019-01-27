@@ -80,7 +80,7 @@ export class BookReturnComponent implements OnInit , OnDestroy{
     this._sub = this._libraryService.addReturn(this._return)
       .subscribe(data => {
         //console.log(data);
-            this.toastr.success('Book Category Added !', 'Success',{timeOut: 3000});
+            this.toastr.success('Return Book !', 'Success',{timeOut: 3000});
       });
   }
  

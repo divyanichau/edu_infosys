@@ -1,0 +1,108 @@
+ 
+ <div class="content-wrapper">
+    <div class="content">
+      <div class="panel-heading">
+         <ol class="breadcrumb breadcrumb">
+              <li><a href="#"><i class="material-icons">home</i> Home</a></li>
+              <li><a href="#"><i class="material-icons">class</i>Library</a></li>
+              <li class="active">Book Return</li>
+           <ul class="breadcrumb-elements">                          
+            </ul>
+            <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a><a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+            </ol> 
+            <br>
+
+  <form ngNativeValidate (ngSubmit)="onSubmitDetail()" #libraryForm="ngForm">     
+
+  <div class="card">                        
+<div class="row-clearfix">
+                  <div class="panel panel-primary">
+                  <div class="panel-heading">
+                <h4 class="panel-title">Book Return Details</h4>
+              </div>
+            </div>
+</div>
+
+                        <div class="panel-body">
+                          
+                                
+                <div class="row clearfix">
+                                <div class=" control-label text-muted col-sm-6">
+                                    
+              <label for="user_type">User Type</label>
+       <input type="text" class="form-control" [(ngModel)]="_return.user_type" name="user_type">
+                                        </div>
+                                    
+                                <div class=" control-label text-muted col-sm-6">
+                                    
+                                           <label for="title">Book Title</label>
+                                            <input type="text" class="form-control" [(ngModel)]="_return.title" name="title">
+                                        </div>
+                                    </div>
+                               <br>
+                         
+                                       
+                <div class="row clearfix">
+                                <div class=" control-label text-muted col-sm-6">
+                                
+                                       
+                                           <label for="user">User</label>
+                                            <input type="text" class="form-control" [(ngModel)]="_return.user" name="user">
+                                        
+                                    
+                                </div>
+                                
+                                <div class=" control-label text-muted col-sm-6">
+                                   
+                                           <label for="author">Author</label>
+                                            <input type="text" class="form-control" [(ngModel)]="_return.author" name="author">
+                                        </div>
+                                    </div>
+                               <br>
+                       
+                                         
+ <div class="row clearfix">
+  <div class="control-label text-muted col-sm-6">
+      <label for="course">Course</label>
+       <input type="text" class="form-control" [(ngModel)]="_return.course" name="course">
+        </div>
+                                    
+               <div class=" control-label text-muted col-sm-6">                                    
+                 <label for="author">Class</label>
+                   <input type="text" class="form-control" [(ngModel)]="_return._class" name="class">
+                                        </div>
+                                    </div>
+                              
+           <br>
+
+  <div class="row clearfix">
+  <div class="control-label text-muted col-sm-6">
+      <label for="book_no">ISBN No.</label>
+       <input type="text" class="form-control" [(ngModel)]="_return.book_isbn_no" name="book_no">
+        </div>
+              
+                                    
+                               <div class="control-label text-muted col-sm-6">                                    
+                 <label for="returned_date">Return Date</label>
+                   <input type="date" class="form-control" [(ngModel)]="_return.returned_date" name="returned_date">
+                                        </div>
+                                    </div>
+      <br>
+          
+       <div class="row clearfix">
+                                <div class=" control-label text-muted col-sm-6">
+                                   
+                                           <label for="fine">Fine</label>
+                                            <input type="text" class="form-control" [(ngModel)]="_return.fine_amount" name="fine">
+                                        </div>
+                                   
+                                <div class="control-label text-muted col-sm-6">
+                                   
+                                           <label  for="remark">Remark</label>
+                                            <input type="text" class="form-control" [(ngModel)]="_return.remarks" name="remark">
+                                        </div>
+                                    </div>
+                                  </div>
+                            
+            
+                       
