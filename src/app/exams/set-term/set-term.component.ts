@@ -75,6 +75,7 @@ export class SetTermComponent extends AcademicMixin implements OnInit {
 
         }
       );
+      //this.loadExamTerm()
     }
 
     else {

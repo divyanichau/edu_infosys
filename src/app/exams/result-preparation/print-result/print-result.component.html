@@ -6,37 +6,37 @@
     <div class="row clearfix">
       <div class="col-md-3">
         <label for="course">Select Course</label>
-        <select class="form-control" name="course" [(ngModel)]="selected_course" (change)="onChange()">
-          <option *ngFor="let c of _course " [ngValue]="c.id"> {{c.name}}</option>
+        <select class="form-control" name="courses" [(ngModel)]="selected_course" (change)="onCourseChange(selected_course)">
+          <option *ngFor="let c of courses " [ngValue]="c.id"> {{c.name}}</option>
 
         </select>
       </div>
       <div class="col-md-3">
         <label for="class">Select class</label>
         <select class="form-control" name="_class" [(ngModel)]="selected_class" (change)="onChange()">
-          <option *ngFor="let cls of class" [ngValue]="cls.id"> {{cls.name}}</option>
+          <option *ngFor="let cls of classes" [ngValue]="cls.id"> {{cls.name}}</option>
 
         </select>
       </div>
       <div class="col-md-3">
         <label for="section">Select Section</label>
         <select class="form-control" name="section" [(ngModel)]="selected_section" (change)="onChange()">
-          <option *ngFor="let sec of _section" [ngValue]="sec.id"> {{sec.name}}</option>
+          <option *ngFor="let sec of sections" [ngValue]="sec.id"> {{sec.name}}</option>
         </select>
       </div>
 
       <div class="col-md-3 ">
         <label for="exam">Select Student</label>
-        <!-- <select class="form-control" (change)="onChange()" [(ngModel)]="selected_student">
-              <option *ngFor="let term of _" [ngValue]="term.id"> {{term.name}}</option>
-             
-            </select> -->
-        <select class="form-control">
-          <option value="0"> Dinesh Kc</option>
+        <select class="form-control" (change)="onChange()" [(ngModel)]="selected_student">
+          <option *ngFor="let std of students" [ngValue]="std.id"> {{std.name}}</option>
+
         </select>
+        <!-- <select class="form-control">
+          <option value="0"> Dinesh Kc</option>
+        </select> -->
       </div>
       <div class="col-md-6 form-top-margin-button">
-        <button class="btn btn-primary" (click)="marksEntryNext()">view</button>
+        <button class="btn btn-primary" (click)="OnViewMarksClick()">view</button>
       </div>
     </div>
     <div *ngIf="val==true" id="print_marks">
@@ -45,16 +45,16 @@
           <h4 class="panel-heading">Ambikeshwori campus Of Information Technology</h4>
         </div>
         <div class="col-md-6 col-md-offset-3 top-margin">
-          <h4 class="panel-heading">Ghorahi  11 Bharatpur Dang </h4>
+          <h4 class="panel-heading">Ghorahi 11 Bharatpur Dang </h4>
 
         </div>
         <div class="col-md-9 col-md-offset-2 top-margin">
           <h2 class="panel-heading">SLC Test Examination 2075 </h2>
-          
+
         </div>
 
         <div class="col-md-4">
-          <p><strong>Name:</strong> Dinesh Kc</p>
+          <p><strong>Name:</strong> {{result.name}}</p>
         </div>
 
         <div class="col-md-4">
@@ -63,117 +63,44 @@
         <div class="col-md-4">
           <p><strong>Address :</strong> Dhakadam, Salyan</p>
         </div>
-        <div class="col-md-12">
-          <table>
-            <thead>
-              <tr>
-                <th rowspan="2" class="col-md-1">SN</th>
-                <th rowspan="2" class="col-md-2">Subjects</th>
-                <th rowspan="2" class="col-md-2">Full Marks</th>
-                <th rowspan="2" class="col-md-2">Pass Marks</th>
-                <th colspan="3" class="col-md-3">Marks Obtained</th>
-                <th rowspan="2" class="col-md-2">Remarks</th>
-              </tr>
-              <tr>
-                <th class="col-md-1">TH</th>
-                <th class="col-md-1">PR</th>
-                <th class="col-md-1">Total</th>
+      
+          <div class="col-md-12" >
+            <table >
+              <thead>
+                <tr>
+                  <th rowspan="2" class="col-md-1">SN</th>
+                  <th rowspan="2" class="col-md-2">Subjects</th>
+                  <th rowspan="2" class="col-md-2">Full Marks</th>
+                  <th rowspan="2" class="col-md-2">Pass Marks</th>
+                  <th colspan="3" class="col-md-3">Marks Obtained</th>
+                  <th rowspan="2" class="col-md-2">Remarks</th>
+                </tr>
+                <tr>
+                  <th class="col-md-1">TH</th>
+                  <th class="col-md-1">PR</th>
+                  <th class="col-md-1">Total</th>
 
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>01</td>
-                <td>Com.English</td>
-                <td>100</td>
-                <td>40</td>
-                <td>32</td>
-                <td>34</td>
-                <td>66</td>
-                <td></td>
-              </tr>
+                </tr>
+              </thead>
+              <tbody>
 
-              <tr>
-                <td>01</td>
-                <td>Com.Nepali</td>
-                <td>100</td>
-                <td>40</td>
-                <td>32</td>
-                <td>34</td>
-                <td>66</td>
-                <td></td>
-              </tr>
-
-              <tr>
-                <td>01</td>
-                <td>Com.Mathematics</td>
-                <td>100</td>
-                <td>40</td>
-                <td>32</td>
-                <td>34</td>
-                <td>66</td>
-                <td></td>
-              </tr>
-
-              <tr>
-                <td>01</td>
-                <td>Com.Science</td>
-                <td>100</td>
-                <td>40</td>
-                <td>32</td>
-                <td>34</td>
-                <td>66</td>
-                <td></td>
-              </tr>
-
-              <tr>
-                <td>01</td>
-                <td>Com.Social Studies</td>
-                <td>100</td>
-                <td>40</td>
-                <td>32</td>
-                <td>34</td>
-                <td>66</td>
-                <td></td>
-              </tr>
-
-              <tr>
-                <td>01</td>
-                <td>Com.Health Pop. & Env</td>
-                <td>100</td>
-                <td>40</td>
-                <td>32</td>
-                <td>34</td>
-                <td>66</td>
-                <td></td>
-              </tr>
-
-              <tr>
-                <td>01</td>
-                <td>OpI.Econimics</td>
-                <td>100</td>
-                <td>40</td>
-                <td>32</td>
-                <td>34</td>
-                <td>66</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>01</td>
-                <td>OpII.Computer Edu</td>
-                <td>100</td>
-                <td>40</td>
-                <td>32</td>
-                <td>34</td>
-                <td>66</td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="col-md-3">
-            <p><strong>Total</strong>:500 </p>
+                <tr *ngFor = "let mark of result.markdetail ; let i=mark">
+                  <td>{{i}}</td>
+                  <td>{{mark.subject}}</td>
+                  <td>{{mark.full_mark}}</td>
+                  <td>{{mark.pass_mark}}</td>
+                  <td>{{mark.theory}}</td>
+                  <td>{{mark.practical}}</td>
+                  <td>{{mark.total_in_sub}}</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
+       
+        <div class="col-md-3">
+          <p><strong>Total</strong>{{result.total_mark}} </p>
+        </div>
         <div class="col-md-3">
           <p><strong>Result</strong>:Pass </p>
         </div>
@@ -189,16 +116,16 @@
             <p class="margin-sign">...........................</p>
           </div>
           <div class="col-md-2 top-margin-sign">
-              <h4>Checked By</h4><br>
-              <p class="margin-sign">...........................</p>
-            </div>
-            <div class="col-md-4 col-md-offset-2 top-margin-sign">
-                <h4>Principle</h4><br>
-                <p class="margin-sign">...........................</p>
-              </div>
+            <h4>Checked By</h4><br>
+            <p class="margin-sign">...........................</p>
+          </div>
+          <div class="col-md-4 col-md-offset-2 top-margin-sign">
+            <h4>Principle</h4><br>
+            <p class="margin-sign">...........................</p>
+          </div>
 
         </div>
-    </div>
+      </div>
     </div>
   </div>
   <div class="panel-footer" *ngIf="val==true">

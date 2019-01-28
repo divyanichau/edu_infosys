@@ -19,10 +19,10 @@ import { setTerm } from '../../core/classes/exam/set-term';
 })
 export class ResultPreparationComponent implements OnInit {
   private _sub: Subscription = undefined;
-  _course:Course[]
-  class : _class[]
-  _section:Section[]
-  _term:setTerm[]
+  courses:Course[]
+  classes : _class[]
+  sections:Section[]
+  terms:setTerm[]
 
   
   selected_course: number;
@@ -39,39 +39,42 @@ export class ResultPreparationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loadCourse();
+    this.initCourse();
   }
 
-  loadCourse(){
+  initCourse(){
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._courseService.get().subscribe(
       data => {
-        isArray(data) ? this._course = data : data;
+        isArray(data) ? this.courses = data : data;
       // console.log(this._course);
-        this.selected_course=this._course[0].id;
-        this.loadClass(); 
+        this.selected_course=this.courses[0].id;
+        this.initClass(); 
       }
     );
     }
-    loadClass(){
+    initClass() {
       this._utils.unsubscribeSub(this._sub);
-      this._sub = this._classService.get().subscribe(
+      this._sub = this._classService.getWithCourse(this.selected_course).subscribe(
         data => {
-          isArray(data) ? this.class = data : data;
-        // console.log(this.class);
-          this.selected_class=this.class[0].id;
-          this.loadSection();
+          isArray(data) ? this.classes = data : data;
+          if (this.classes.length > 0) {
+            this.selected_class = this.classes[0].id;
+            this.initSection();
+          }
+  
         }
       );
     }
-    loadSection(){
+  
+    initSection() {
       this._utils.unsubscribeSub(this._sub);
-      this._sub = this._sectionService.get().subscribe(
+      this._sub = this._sectionService.getWithClass(this.selected_class).subscribe(
         data => {
-          isArray(data) ? this._section = data : data;
-         //console.log(this._section);
-          this.selected_section=this._section[0].id;
-         this.loadExam();
+          isArray(data) ? this.sections = data : data;
+          //console.log(this._section);
+          this.selected_section = this.sections[0].id;
+          this.loadExam();
         }
       );
     }
@@ -79,12 +82,22 @@ export class ResultPreparationComponent implements OnInit {
       this._utils.unsubscribeSub(this._sub);
       this._sub = this._termsService.get().subscribe(
         data => {
-          isArray(data) ? this._term = data : data;
+          isArray(data) ? this.terms = data : data;
         // console.log(this._term);
-          this.selected_term=this._term[0].id;
+          this.selected_term=this.terms[0].id;
          //this.loadExam();
         }
       );
+    }
+
+    onCourseChange(course_id) {
+      this.selected_course = course_id;
+      this.initClass();
+    }
+  
+    onClassChange(class_id) {
+      this.selected_class = class_id;
+      this.initSection()
     }
     marksEntryNext() {
       //console.log(this.selected_course);
