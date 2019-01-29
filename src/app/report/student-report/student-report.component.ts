@@ -34,7 +34,9 @@ export class StudentReportComponent implements OnInit{
   gurdiandetail:boolean = true;
   parentsdetail:boolean = true;
   amount:boolean = true;
-  rows=[];
+  rows: any[] = [];
+
+
   onChange(newValue) {
     this.reset_details_value();
 
@@ -59,7 +61,8 @@ export class StudentReportComponent implements OnInit{
 
 
   constructor(
-  	private _studentreportService: StudentReportService,
+    private _studentreportService: StudentReportService,
+    private studentreportService:StudentReportService,
   	private _batchService: BatchService,
   	private _utils: UtilsService,
     private router: Router,
@@ -72,12 +75,7 @@ export class StudentReportComponent implements OnInit{
     this.detail_type[1] =true;
     this.LoadBatch();
 
-    this.rows = [
-    	{'id':'1', 'admission_no':'1234', 'name':'suraj' ,'course': 'msc csit', 'batch': '2071'},
-    	
-    	
-
-    ];
+ //  this.onSubmit(); 
   	
   }
 
@@ -87,11 +85,18 @@ export class StudentReportComponent implements OnInit{
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._studentreportService.get(this.student_report)
      .subscribe(data => {
-        console.log(data);
+       console.log('RETURNED DATA',data)
+        this.rows =  data;
+         console.log(this.rows);
        
       });
     
   }
+
+ 
+ 
+ 
+
 
 
    LoadBatch() {
@@ -106,7 +111,7 @@ export class StudentReportComponent implements OnInit{
       }
     );
   }
-
+ 
  
 
 

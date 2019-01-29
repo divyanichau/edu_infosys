@@ -23,28 +23,18 @@ value:any;
     private _router: Router
   ) { }
 
-  find(id: string): Observable<FeepaidReport> {
-    //this.beforeRequest();
-
-    return this._http.get(`${this._feepaidreportUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
-      map((res: Response) => res.json()),
-      tap(
-        data => this.afterGetRequest(),
-        error => { console.log(error); }
-      ));
-  }
 
   get(feepaid_report: FeepaidReport): Observable<FeepaidReport[]> {
     //this.beforeRequest();
 
-     console.log(feepaid_report)
+     //console.log(feepaid_report)
     
   var url = `${this._feepaidreportUrl}/?`
    for(var key in feepaid_report){
          // console.log(key);
         // console.log(feepaid_report)
       var val = feepaid_report[key];
-      if (typeof(val) !=='undefined' && val !== ''){
+      if (typeof(val) !=='undefined'){
         url = url + key + '=' + val + '&'
       }
      
