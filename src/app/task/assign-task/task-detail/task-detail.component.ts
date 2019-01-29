@@ -9,9 +9,11 @@ import { ToastrService } from 'ngx-toastr';
 import{ DatatableComponent} from '@swimlane/ngx-datatable';
 //import { CourseService } from '../../../core/services/course.service';
 //import { BatchService } from '../../../core/services/batch.service';
+import { Student} from '../../../core/classes/student';
 import { TaskService } from '../../../core/services/task.service';
 import { UtilsService } from '../../../shared/services/utils.service';
 import { EventService } from '../../../core/services/event.service';
+import { StudentService} from '../../../core/services/student.service';
 import { Task} from '../../../core/classes/event/task';
 import { Event,EventType } from '../../../core/classes/event/event';
 //import { Course} from '../../../core/classes/course';
@@ -40,9 +42,10 @@ export class TaskDetailComponent implements OnInit, OnDestroy{
    //courses: Course[];
    //batch: Batch[];
    event: Event[];
+   student: Student[];
 
- selected_event: number;
- // // selected_course: number;
+  selected_event: number;
+  selected_student: number;
  //  //selected_batch : number;
   selected_task:number;
   id:string;
@@ -71,7 +74,7 @@ export class TaskDetailComponent implements OnInit, OnDestroy{
   constructor(
     private taskService: TaskService,
     private _eventService: EventService,
-   // private _courseService: CourseService,
+    private _studentService: StudentService,
     //private _batchService: BatchService,
     private _utils: UtilsService,
     private _routes:ActivatedRoute,
@@ -95,6 +98,8 @@ export class TaskDetailComponent implements OnInit, OnDestroy{
  OnSubmitTaskUpdate(){
     console.log("Data To Be Updated",this.selected_task);
     //console.log(this.id);
+    this.task.event=this.selected_event;
+    this.task.student=this.selected_student;
     this._utils.unsubscribeSub(this._sub);
     this._sub = this.taskService.update(this.task,this.id)
       .subscribe(data => {
@@ -129,6 +134,23 @@ export class TaskDetailComponent implements OnInit, OnDestroy{
   //   );
   // }
 
+
+  loadStudent() {
+    this._utils.unsubscribeSub(this._sub);
+    this._sub = this._studentService.get().subscribe(
+       data => {
+        isArray(data) ? this.student = data : data;
+       console.log(this.student);
+        this.loadEvent();
+        if(this.student.length > 0){
+         this.selected_student = this.student[0].id;
+      }
+         
+     }
+    );
+
+   }
+
  loadEvent() {
      this._utils.unsubscribeSub(this._sub);
      this._sub = this._eventService.getEvent().subscribe(
@@ -154,7 +176,7 @@ export class TaskDetailComponent implements OnInit, OnDestroy{
       .subscribe(data => {
         if (isObject(data)) {
         this.task = data;
-         this.loadEvent();
+         this.loadStudent();
       }
      });
   }

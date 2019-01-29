@@ -7,14 +7,14 @@ import { ToastrService } from 'ngx-toastr';
 import{ DatatableComponent} from '@swimlane/ngx-datatable';
 
 import { TaskService} from '../../core/services/task.service';
-//import { StudentService} from '../../core/services/student.service';
+import { StudentService} from '../../core/services/student.service';
 import { CourseService } from '../../core/services/course.service';
 import { BatchService } from '../../core/services/batch.service';
 import { UtilsService } from '../../shared/services/utils.service';
 import { EventService } from '../../core/services/event.service';
 import { Event,EventType } from '../../core/classes/event/event';
 import { Task}  from '../../core/classes/event/task';
-//import { Student} from '../../core/classes/student';
+import { Student} from '../../core/classes/student';
 import { Course} from '../../core/classes/course';
 import { Batch} from '../../core/classes/batch';
 
@@ -35,11 +35,11 @@ export class AssignTaskComponent implements OnInit {
 
     task : Task = new Task();
     tasks: Task[];
-    //student: Student[];
+    student: Student[];
     courses: Course[];
     batch: Batch[];
     event: Event[];
-    //selected_student: number;
+    selected_student: number;
     selected_event: number;
     selected_course: number;
     selected_batch : number;
@@ -67,7 +67,7 @@ export class AssignTaskComponent implements OnInit {
 
   constructor(
     private taskService: TaskService,
-   // private _studentService: StudentService,
+    private _studentService: StudentService,
     private _courseService: CourseService,
     private _eventService: EventService,
     private _batchService: BatchService,
@@ -92,7 +92,7 @@ export class AssignTaskComponent implements OnInit {
     this.task.batch=this.selected_batch;
     this.task.course=this.selected_course;
      this.task.event=this.selected_event;
-   // this.task.student=this.selected_student;
+    this.task.student=this.selected_student;
     this._utils.unsubscribeSub(this._sub);
     console.log(this.task)
     this._sub = this.taskService.add(this.task)
@@ -122,7 +122,7 @@ export class AssignTaskComponent implements OnInit {
     this._sub = this._batchService.get().subscribe(
       data => {
         isArray(data) ? this.batch = data : data;
-         this.loadEvents();
+         this.loadStudent();
         if(this.batch.length > 0){
          this.selected_batch = this.batch[0].id;
         }
@@ -130,20 +130,21 @@ export class AssignTaskComponent implements OnInit {
     );
   }
 
-  // loadStudent() {
-  //   this._utils.unsubscribeSub(this._sub);
-  //   this._sub = this._studentService.get().subscribe(
-  //     data => {
-  //       isArray(data) ? this.student = data : data;
-  //       console.log(this.student);
-  //        if(this.student.length > 0){
-  //      //  this.selected_student = this.student[0].id;
-  //     }
+  loadStudent() {
+    this._utils.unsubscribeSub(this._sub);
+    this._sub = this._studentService.get().subscribe(
+       data => {
+        isArray(data) ? this.student = data : data;
+       console.log(this.student);
+        this.loadEvents();
+        if(this.student.length > 0){
+         this.selected_student = this.student[0].id;
+      }
          
-  //     }
-  //   );
+     }
+    );
 
-  // }
+   }
 
 
   loadEvents() {

@@ -12,7 +12,7 @@ import { Student } from '../classes/student';
 @Injectable()
 export class StudentService {
   private _admissionUrl = `${new Config().api}/admission/student/`;
-  private _studentUrl = `${new Config().api}/student/`;
+  private _studentUrl = `${new Config().api}/student/get/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
 
   constructor(
