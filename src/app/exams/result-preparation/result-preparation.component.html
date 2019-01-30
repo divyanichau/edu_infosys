@@ -32,6 +32,14 @@
          
         </select>
       </div>
+
+      <div class="col-md-3 form-top-margin ">
+        <label for="subject">Select Subject</label>
+        <select class="form-control" (change)="onChange()" [(ngModel)]="selected_subject">
+          <option *ngFor="let sub of totlSub" [ngValue]="sub.id"> {{sub.name}}</option>
+         
+        </select>
+      </div>
       <div class="col-md-6 form-top-margin-button">
         <button class="btn btn-primary" (click)="marksEntryNext()">Next</button>
     </div>
@@ -40,95 +48,50 @@
       <div class="body form-top-margin">
         <div class="table-responsive">
           <div>
-            <!-- <div class="row">
-              <label class="control-label col-sm-1">Search Student</label>
-              <div class="col-xs-6 col-md-4">
-                <div class="input-group">
-                  <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter Name" id="txtSearch" />
-                  <div class="input-group-btn">
-                    <button class="btn btn-primary" type="submit">
-                      <span class="glyphicon glyphicon-search"></span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-            <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='search with name'
-                              (keyup)='updateFilter($event)'
-                            />
-            <ngx-datatable class="material" [rows]="rows" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+            <ngx-datatable class="material" [rows]="_resultPreparationObject" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
               [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
 
-              <ngx-datatable-column name="ID" prop="id">
+              <ngx-datatable-column name="ID" prop="student_id">
                 <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                 <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
               </ngx-datatable-column>
 
-              <ngx-datatable-column name="Name" prop="name">
+              <ngx-datatable-column name="Name" prop="student_name">
                 <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                 <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
               </ngx-datatable-column> 
-
-              <ngx-datatable-column name="TH" prop="th">
-                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-                  <span
-                    title="Double click to edit"
-                    (dblclick)="editing[rowIndex + '-th'] = true"
-                    *ngIf="!editing[rowIndex + '-th']">
-                    {{value}}
-                  </span>
-                  <input
-                    autofocus
-                    (blur)="updateValue($event, 'th', rowIndex)"
-                    *ngIf="editing[rowIndex+ '-th']"
-                    type="text"
-                    [value]="value"
-                  />
-                </ng-template>
-              </ngx-datatable-column>
-
-            <!-- <ngx-datatable-column name="TH" prop="th">
-                <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-              </ngx-datatable-column> -->
-
-              <ngx-datatable-column name="PR" prop="pr">
-                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-                  <span
-                    title="Double click to edit"
-                    (dblclick)="editing[rowIndex + '-pr'] = true"
-                    *ngIf="!editing[rowIndex + '-pr']">
-                    {{value}}
-                  </span>
-                  <input
-                    autofocus
-                    (blur)="updateValue($event, 'pr', rowIndex)"
-                    *ngIf="editing[rowIndex+ '-pr']"
-                    type="text"
-                    [value]="value"
-                  />
-                </ng-template>
-              </ngx-datatable-column>
 
               <ngx-datatable-column name="Total" prop="total">
                 <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                 <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
               </ngx-datatable-column>
-              
+
+
+            <ngx-datatable-column name="Discipline" prop="discipline">
+              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex"
+               let-value="value" let-row="row">
+                <span title="Double click to edit"
+                 (click)="editing[rowIndex + '-discipline'] = true"
+                  *ngIf="!editing[rowIndex + '-discipline']">
+                  {{value}}
+                </span>
+                <input autofocus (blur)="updateValue($event, 'discipline', rowIndex)" 
+                *ngIf="editing[rowIndex+ '-discipline']"
+                  type="text" [value]="value" />
+              </ng-template>
+            </ngx-datatable-column>
+
+           
               <ngx-datatable-column name="Result" prop="result">
                 <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                 <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
               </ngx-datatable-column>
 
-              <!-- <ngx-datatable-column name="Actions" sortable="false" prop="id">
-                <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-                  Manage
-                </ng-template>
-                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                  <a class="glyphicon glyphicon-eye-open" title="" href="/student/detail/{{value}}"><img src="" alt=""></a>
-                  <a class="glyphicon glyphicon-trash left-icon" title="" href="/student/delete/{{value}}"><img src="" alt=""></a>
-                </ng-template>
-              </ngx-datatable-column>  -->
+              <ngx-datatable-column name="Position" prop="position">
+                <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+              </ngx-datatable-column>
+              
             </ngx-datatable>
           </div>
         </div>
@@ -136,6 +99,6 @@
     </div>
   </div>
   <div class="panel-footer">
-    <button class="btn btn-primary">Save Result</button>
+    <button class="btn btn-primary" (click)="UpdateStudentResult()">Save Result</button>
   </div>
 </div>

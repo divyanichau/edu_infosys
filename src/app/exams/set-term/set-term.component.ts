@@ -58,7 +58,8 @@ export class SetTermComponent extends AcademicMixin implements OnInit {
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._setTermService.get().subscribe(
       data => {
-        isArray(data) ? this.totlTerm = data : data;
+        this.totlTerm = data;
+       
         this.initCourse()
       }
     );

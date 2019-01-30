@@ -41,6 +41,8 @@ export class ScheduleExamComponent implements OnInit {
   selected_class: number;
 
   temp: any[] = [];
+  start_date: Date;
+  end_date: Date;
   constructor(
     private  _utils:UtilsService,
     private _setTermService:SetTermService,
@@ -111,11 +113,20 @@ initClass() {
     this._sub = this._setTermService.getWithClass(this.selected_class).subscribe(
       data => {
         isArray(data) ? this.totlTerm = data : data;
-       //console.log(" Totoal term",this.totlTerm);
+      //  console.log(" Totoal term",this.totlTerm);
        this.selected_term=this.totlTerm[0].id;
-       //console.log("selcetd term",this.selected_term)
- 
-       this.loadSubject();
+      //  console.log("selcetd term",this.selected_term)
+      this.loadSubject();
+      
+      for (let term of this.totlTerm ){
+
+        if (term.id = this.selected_term){
+        console.log("terms matched_date",term.start_date)
+        this.start_date = term.start_date
+        this.end_date = term.end_date
+         
+      }
+      }
 
       }
      

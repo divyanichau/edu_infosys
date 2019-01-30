@@ -7,11 +7,18 @@ import { CourseService } from '../../core/services/course.service';
 import { ClassService } from '../../core/services/class.service';
 import { SectionService } from '../../core/services/section.service';
 import { SetTermService } from '../../core/services/set-term.service';
+import { SubjectService } from 'src/app/core/services/subject.service';
 
 import { Course } from '../../core/classes/course';
 import { _class } from '../../core/classes/class';
 import { Section } from '../../core/classes/section';
 import { setTerm } from '../../core/classes/exam/set-term';
+import { Subject } from 'src/app/core/classes/subject';
+import { ResultPreparation,ResultPreparationUpdate } from '../../core/classes/exam/result_preparation';
+import { ResultService } from 'src/app/core/services/results.service';
+import { subject_allocation } from 'src/app/core/classes/subject-allocation';
+
+
 @Component({
   selector: 'app-result-preparation',
   templateUrl: './result-preparation.component.html',
@@ -19,10 +26,20 @@ import { setTerm } from '../../core/classes/exam/set-term';
 })
 export class ResultPreparationComponent implements OnInit {
   private _sub: Subscription = undefined;
+  rows: any[] = [];
+
+  temp: any[] = [];
+  editing = {};
+
+  totlSub:Subject[];
   courses:Course[]
   classes : _class[]
   sections:Section[]
   terms:setTerm[]
+  _resultPreparation : ResultPreparation = new ResultPreparation()
+  _resultPreparationObject :ResultPreparation[]
+  _resultPreparationUpdate:ResultPreparationUpdate = new ResultPreparationUpdate()
+  
 
   
   selected_course: number;
@@ -30,12 +47,15 @@ export class ResultPreparationComponent implements OnInit {
   selected_section: number;
   selected_term: number;
   val: boolean;
+  selected_subject: number;
   constructor(
     private _utils:UtilsService,
     private _courseService:CourseService,
     private _classService:ClassService,
     private _sectionService:SectionService,
-    private _termsService:SetTermService
+    private _termsService:SetTermService,
+    private _subjectService:SubjectService,
+    private _resultService:ResultService
   ) { }
 
   ngOnInit() {
@@ -85,10 +105,24 @@ export class ResultPreparationComponent implements OnInit {
           isArray(data) ? this.terms = data : data;
         // console.log(this._term);
           this.selected_term=this.terms[0].id;
-         //this.loadExam();
+         this.loadSubject();
         }
       );
     }
+    loadSubject(){
+        this._utils.unsubscribeSub(this._sub);
+        this._sub = this._subjectService.get().subscribe(
+          data => {
+            isArray(data) ? this.totlSub = data : data;
+          //console.log(" Totoal term",this.totlTerm);
+          this.selected_subject=this.totlSub[0].id;
+          //this.loadExamTerm();
+          
+    
+          }
+        );
+      }
+  
 
     onCourseChange(course_id) {
       this.selected_course = course_id;
@@ -100,10 +134,47 @@ export class ResultPreparationComponent implements OnInit {
       this.initSection()
     }
     marksEntryNext() {
-      //console.log(this.selected_course);
       this.val=true;
+      this._resultPreparation.section = this.selected_section
+      this._resultPreparation.subject = this.selected_subject
+      this._resultPreparation.exam = this.selected_term
+
+      this._utils.unsubscribeSub(this._sub);
+        this._sub = this._resultService.get(this._resultPreparation).subscribe(
+          data => {
+            this._resultPreparationObject = data
+           // console.log(this._resultPreparationObject)
+            this.rows = this._resultPreparationObject
+    
+          }
+        );
+      
   }
   onChange(){
     this.val=false;
   }
+
+
+  updateValue(event, cell, rowIndex) {
+    // console.log('inline editing rowIndex', rowIndex)
+     this.editing[rowIndex + '-' + cell] = false;
+     this._resultPreparationObject[rowIndex][cell] = event.target.value;
+     this._resultPreparationObject = [...this._resultPreparationObject];
+    //  console.log('UPDATED!', this._resultPreparationObject[rowIndex][cell]);
+   }
+
+   UpdateStudentResult(){
+    this._resultPreparationUpdate.section = this.selected_section
+    this._resultPreparationUpdate.subject = this.selected_subject
+    this._resultPreparationUpdate.exam = this.selected_term
+    this._resultPreparationUpdate.result_preparation = this._resultPreparationObject
+
+    this._utils.unsubscribeSub(this._sub);
+     this._sub = this._resultService.add(this._resultPreparationUpdate).subscribe(
+       data => {
+       
+       }
+     );
+
+   }
 }
