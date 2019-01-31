@@ -89,6 +89,7 @@ export class ResultService {
 
   afterRequest(data: ResultPreparation): void {
     this._utils.stop_progress();
+    this._utils.notify("success","Marks Added");
   
   }
   

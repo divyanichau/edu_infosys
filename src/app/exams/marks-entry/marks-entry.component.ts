@@ -207,7 +207,7 @@ export class MarksEntryComponent implements OnInit {
     this.entered_marks.exam = this.selected_term;
     this.entered_marks.student_data = [...this.rows]
 
-    console.log(this.entered_marks);
+    //console.log(this.entered_marks);
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._marksEntryService.add(this.entered_marks).subscribe(
     data => {
