@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter,ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { isArray } from 'lodash';
@@ -10,6 +10,9 @@ import { UtilsService } from '../../shared/services/utils.service';
 import { Batch } from '../../core/classes/batch';
 import { StudentReport } from '../../core/classes/student-report';
 import { StudentReportService } from '../../core/services/studentreport.service';
+import { NgForm } from '@angular/forms';
+import { DatatableComponent, TableColumn } from "@swimlane/ngx-datatable";
+import { Angular7Csv } from 'angular7-csv';
 
 
 @Component({
@@ -18,6 +21,7 @@ import { StudentReportService } from '../../core/services/studentreport.service'
   styleUrls: ['./student-report.component.css']
 })
 export class StudentReportComponent implements OnInit{
+
  private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
   studentreport= false;
@@ -36,11 +40,16 @@ export class StudentReportComponent implements OnInit{
   amount:boolean = true;
   rows: any[] = [];
 
+  @ViewChild('studentReport1') public studentReport:NgForm;
+  @ViewChild('dataTable')  public dataTable: DatatableComponent;
 
   onChange(newValue) {
     this.reset_details_value();
 
     this.detail_type[newValue] = true;
+
+    this.studentReport.reset();
+    
   }
 
 
@@ -55,6 +64,7 @@ export class StudentReportComponent implements OnInit{
     this.detail_type[6]=false;
     this.detail_type[7]=false;
     this.detail_type[8]=false;
+
   }
   
 
@@ -74,11 +84,11 @@ export class StudentReportComponent implements OnInit{
     this.reset_details_value;
     this.detail_type[1] =true;
     this.LoadBatch();
+   ;
 
- //  this.onSubmit(); 
   	
   }
-
+  
 
   onSubmit() {
     console.log(this.student_report)
@@ -87,10 +97,11 @@ export class StudentReportComponent implements OnInit{
      .subscribe(data => {
        console.log('RETURNED DATA',data)
         this.rows =  data;
+        this.rows = [...this.rows];
          console.log(this.rows);
        
       });
-    
+     
   }
 
  
@@ -149,6 +160,62 @@ export class StudentReportComponent implements OnInit{
      get_feesdetail(){
       this.amount =!this.amount;
     }
-    
 
+
+    
+    
+   
+     
+
+
+
+
+exportAsCSV(dataTable: DatatableComponent) {
+  const columns: TableColumn[] = dataTable.columns || dataTable._internalColumns;
+  const headers =
+      columns
+          .map((column: TableColumn) => column.name)
+          .filter((e) => e);  // remove column without name (i.e. falsy value)
+
+  const rows: any[] = dataTable.rows.map((row) => {
+      let r = {};
+      columns.forEach((column) => {
+          if (!column.name) { return; }   // ignore column without name
+          if (column.prop) {
+              let prop = column.prop.toString();
+              let value = this.getNestedPropertyValue(row, prop);
+              
+              r[prop] = (typeof value === 'boolean') ? (value ? 'Yes' : 'No') : value;
+          } else {
+              // special cases handled here
+          }
+      })
+      return r;
+  });
+
+  const options = {
+      fieldSeparator  : ',',
+      quoteStrings    : '"',
+      decimalseparator: '.',
+      showLabels      : true,
+      headers         : headers,
+      showTitle       : false,
+      title           : 'Report',
+      useBom          : true
+  };
+
+  return new Angular7Csv(rows, 'report', options);
+}
+
+getNestedPropertyValue(object: any, nestedPropertyName: string) {
+    var dotIndex = nestedPropertyName.indexOf(".");
+    if (dotIndex == -1) {
+        return object[nestedPropertyName];
+    } else {
+        var propertyName = nestedPropertyName.substring(0, dotIndex);
+        var nestedPropertyNames = nestedPropertyName.substring(dotIndex + 1);
+
+        return this.getNestedPropertyValue(object[propertyName], nestedPropertyNames);
+    }
+}
 }

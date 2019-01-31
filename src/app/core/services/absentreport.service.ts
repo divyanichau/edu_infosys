@@ -38,7 +38,7 @@ export class AbsentReportService {
     for(var key in absent_report){
  
        var val = absent_report[key];
-       if (typeof(val) !== 'undefined'){
+       if (typeof(val) !== 'undefined'&& val !== null){
          url = url + key + '=' + val + '&';
        }
  

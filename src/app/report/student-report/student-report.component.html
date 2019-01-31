@@ -10,7 +10,7 @@
         </ol>
 
         <div class="row ">
-          <form (ngSubmit) = "onSubmit()" #studentReport1 ="ngForm">
+          <form (ngSubmit) ="onSubmit(studentReport1)" #studentReport1 ="ngForm">
             <div class="col-sm-12">
               <div class="card">
 
@@ -24,7 +24,7 @@
                   <div class="row clearfix">
                     <div class="col-sm-4">
                       <label for="category" class="req"> Select Category</label>
-                      <select class="form-control" (change)="onChange($event.target.value)" name="category">
+                      <select class="form-control"  (change)="onChange($event.target.value)" name=" selectcategory">
                         <option value ="0">Select option</option> 
                         <option value ="1">hostel</option>
                         <option value = "2">bloodgroup</option>
@@ -40,7 +40,7 @@
 
                     <div class="col-sm-4"*ngIf ="detail_type[1]">
                       <label for="reg_input" class="req">Hostel Name</label>
-                      <select class="form-control" [(ngModel)]="student_report.report_value" name="hostelname" >
+                      <select class="form-control" [(ngModel)]="student_report.hostelname" name="hostelname" >
                         <!-- <option *ngFor="let h of hostel" [ngValue]="h.id">{{h.name}}</option> -->
                         <option value ="1">boys apartment</option>
                         <option value ="2">girls apartment</option>
@@ -199,7 +199,7 @@
                 <button type="submit" class="btn btn-primary col-sm-1 " (click)="get_report()" >Get report</button>
                 <button type="button" class="btn btn-danger col-sm-offset-8" onclick="printDiv('print')">print report</button>
                   
-                <button type="button" class="btn btn-success col-sm-offset-1 button-margin">excel</button>  
+                <button type="button" class="btn btn-success col-sm-offset-1 button-margin"  (click) ="exportAsCSV(dataTable)">excel</button>  
           
                   </div>
                  </div>
@@ -219,8 +219,8 @@
                <h4 class = "text-center"> Student Report</h4>
               </div>
               <br>
-              <ngx-datatable class="material" [rows]="rows" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
-                [footerHeight]="50" [rowHeight]="'auto'" [limit]="15">
+              <ngx-datatable #dataTable class="material expandable" [rows]="rows" expanded="expanded" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+                [footerHeight]="50" [rowHeight]="'auto'">
 
                 <ngx-datatable-column name="ID" prop="id">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>

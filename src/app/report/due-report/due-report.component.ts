@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter ,ViewChild} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { isArray } from 'lodash';
@@ -12,6 +12,7 @@ import { DueReport } from '../../core/classes/due-report';
 import { DueReportService } from '../../core/services/duereport.service';
 import { Course } from '../../core/classes/course';
 import { CourseService } from '../../core/services/course.service';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -32,11 +33,15 @@ export class DueReportComponent implements OnInit {
   detail_type=this.default_detail_type;
   course: Course[];
   datewise :boolean =true;
+  rows: any[] = [];
+
+  @ViewChild('dueReport') public dueReport:NgForm;
 
   onChange(newValue) {
     this.reset_details_value();
 
     this.detail_type[newValue] = true;
+    this.dueReport.reset();
   }
 
   reset_details_value(){
@@ -67,12 +72,15 @@ export class DueReportComponent implements OnInit {
     this._utils.unsubscribeSub(this._sub);
   }
   onSubmit() {
-    alert('yes opened')
+    
     console.log(this.due_report)
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._duereportService.get(this.due_report)
+    
      .subscribe(data => {
         console.log(data);
+        this.rows = data;
+        this.rows = [...this.rows];
        
       });
     

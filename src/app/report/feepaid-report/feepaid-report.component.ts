@@ -3,7 +3,6 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { isArray } from 'lodash';
 import { ToastrService } from 'ngx-toastr';
-
 import { UtilsService } from '../../shared/services/utils.service';
 import { FeepaidReport } from '../../core/classes/feepaid-report';
 import { FeepaidReportService } from '../../core/services/feepaidreport.service';
@@ -25,8 +24,11 @@ export class FeepaidReportComponent implements OnInit {
   monthlyreport =false;
   classes: _class[];
   selected_class :number;
+  rows:any[]= [];
 
-@ViewChild('feepaidReport') public feepaidreport:NgForm;
+@ViewChild('feepaidReport') public paid_report:NgForm;
+@ViewChild('collectiveReport') public collective_report:NgForm;
+@ViewChild('monthlyReport') public monthly_report:NgForm
 
   constructor( 
     private _utils: UtilsService,
@@ -40,18 +42,30 @@ export class FeepaidReportComponent implements OnInit {
 
   }
 
-  onSubmit() {
-    //console.log(this.feepaid_report);
+  onSubmit(type) {
+    console.log(type);
+    if( type === this.paid_report){ 
+      this.collective_report.reset();
+      this.monthly_report.reset();
+      console.log(this.feepaid_report)
+    }else if(type === this.collective_report){
+      this.paid_report.reset();
+      this.monthly_report.reset();
+    } else if( type === this.monthly_report){
+      this.paid_report.reset();
+      this.collective_report.reset();
+    }
+
+    console.log(this.feepaid_report);
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._feepaidreportService.get(this.feepaid_report)
      .subscribe(data => {
        console.log(data);
-      
+       this.rows = data;
+       this.rows = [...this.rows];
       });
-      this.feepaidreport.reset();
      
-     // feeForm.reset();
-   // console.log(feeForm);
+     
   }
  
 
@@ -59,13 +73,11 @@ export class FeepaidReportComponent implements OnInit {
     
  
   LoadClass() {
-   // console.log(this.feepaid_report);
-
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._classService.get().subscribe(
       data => {
         isArray(data) ? this.classes = data : data;
-        console.log(this.classes);
+       // console.log(this.classes);
         if(this.classes.length > 0){
          this.selected_class = this.classes[0].id;
        

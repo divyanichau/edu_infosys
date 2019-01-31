@@ -1,4 +1,4 @@
-import {map, tap} from 'rxjs/operators';
+import {map, tap, skipUntil} from 'rxjs/operators';
 import { Injectable, Input } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Router } from '@angular/router';
@@ -29,10 +29,14 @@ export class StudentReportService {
 
      var url = `${this._studentreportUrl}/?`
      for(var key in student_report){
-  
+        
         var val = student_report[key];
-        if (typeof(val) !== 'undefined'){
-          url = url + key + '=' + val + '&' ;
+
+        if (typeof(val) !== 'undefined'&& val !== null){
+            
+            url = url + key + '=' + val + '&' ;
+          
+           console.log( key +"="+val);
         }
   
       }

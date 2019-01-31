@@ -40,7 +40,7 @@ export class DueReportService {
     for(var key in due_report){
  
        var val = due_report[key];
-       if (typeof(val) !== 'undefined'){
+       if (typeof(val) !== 'undefined'&& val !== null){
          url = url + key + '=' + val + '&'
        }
  

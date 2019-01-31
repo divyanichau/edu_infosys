@@ -34,7 +34,7 @@ value:any;
          // console.log(key);
         // console.log(feepaid_report)
       var val = feepaid_report[key];
-      if (typeof(val) !=='undefined'){
+      if (typeof(val) !=='undefined'&& val !== null){
         url = url + key + '=' + val + '&'
       }
      

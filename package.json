@@ -32,6 +32,8 @@
     "@swimlane/ngx-datatable": "^13.1.0",
     "angular-translate": "^2.18.1",
     "angular-ui-grid": "^4.6.6",
+    "angular5-csv": "^0.2.11",
+    "angular7-csv": "^0.2.12",
     "bootstrap": "^4.2.1",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",

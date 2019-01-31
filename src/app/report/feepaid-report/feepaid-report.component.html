@@ -8,8 +8,8 @@
         </ol>
         </div>
      
-  <div class="btn btn-group bg-info">
-  <ul class="nav nav-tabs nav-tabs-highlight">
+  <div class="btn btn-group bg-info" >
+  <ul class="nav nav-tabs nav-tabs-highlight" (change)="onChange($event.target.value)" >
       <li  class="active">
           <a  class="btn btn-default"  value ="1" href="#paid_report" data-toggle="tab">
               <b> Paid Report</b> 
@@ -37,7 +37,7 @@
   <div class="content-wrapper">
     <div class="content">
         <div class="row ">
-          <form (ngSubmit) ="onSubmit(feepaidReport)" #feepaidReport ="ngForm">
+          <form (ngSubmit) ="onSubmit('feepaidReport')" #feepaidReport ="ngForm">
             <div class="col-sm-12">
               <div class="card">
                 <div class="panel-heading bg-primary">
@@ -77,7 +77,7 @@
                   <div class ="row">
                     <div class="form-group col-sm-2">
 
-                      <button type="submit" class="btn btn-primary col-sm-1 " (click)="get_paidreport() ; dueReport.reset()" >Go</button>
+                      <button type="submit" class="btn btn-primary col-sm-1 " (click)="get_paidreport()" >Go</button>
                        <button type="submit" class="btn btn-danger col-sm-offset-8" onclick="printDiv('print')">print report</button>
                         
                        <button type="submit" class="btn btn-success col-sm-offset-1 button-margin">excel</button> 
@@ -154,7 +154,7 @@
   <div class="content-wrapper">
     <div class="content">
         <div class="row ">
-          <form (ngSubmit) ="onSubmit(feepaidReport)" #feepaidReport ="ngForm">
+          <form (ngSubmit) ="onSubmit('collectiveReport')" #collectiveReport ="ngForm">
             <div class="col-sm-12">
               <div class="card">
 
@@ -166,20 +166,22 @@
                 <br>
                 <div class="panel-body">
                   <div class="row clearfix">
-                   
+                    
                     <div class="col-sm-4">
-                        <label for="from_date">From Date</label>
-                        <input type="Date" class="form-control" [(ngModel)]="feepaid_report.from_date" name="from_date" >
-                      </div>
+                      <label for="enddate">End Date</label>
+                      <input type="date" id = "reset" class="form-control clearable" [(ngModel)]="feepaid_report.end_date" name="enddate" >
+                  </div>
+
                     <div class="col-sm-4">
-                        <label for="end_date">End Date</label>
-                        <input type="Date" class="form-control" [(ngModel)]="feepaid_report.end_date" name="end_date" >
+                      <label for="paiddate">From Date</label>
+                      <input type="date"  id = "reset" class="form-control clearable"[(ngModel)]="feepaid_report.from_date" name= "paiddate" >
                     </div>
+                   
 
                      <div class="col-sm-4">
                       <label for="class" class="req">Select Class</label>
-                      <select class="form-control" [(ngModel)]="feepaid_report.classes" name="class">
-                        <option value ="1">coded class 1</option>
+                      <select class="form-control" id ="reset" [(ngModel)]="feepaid_report.classes" name="class">
+                        <option>coded class 1</option>
                         
                         <option *ngFor="let c of classes" [ngValue]="c.id">{{c.name}}</option> -->
                       </select>
@@ -286,7 +288,7 @@
     <div class="content-wrapper">
       <div class="content">
           <div class="row ">
-            <form (ngSubmit) ="onSubmit(feepaidReport)" #feepaidReport ="ngForm">
+            <form (ngSubmit) ="onSubmit('monthlyReport')" #monthlyReport ="ngForm">
               <div class="col-sm-10">
                 <div class="card">
   
@@ -300,7 +302,7 @@
                     <div class="row clearfix">
                         <div class="col-sm-4">
                             <label for="date">Date</label>
-                            <input type="Date" class="form-control" [(ngModel)]="feepaid_report.date" name="date" >
+                            <input type="date" id = "Date"  value ="1" class="form-control clearable" [(ngModel)]="feepaid_report.date" name="date" >
                           </div>
 
                   </div>
