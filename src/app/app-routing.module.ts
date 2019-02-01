@@ -76,6 +76,10 @@ const routes: Routes = [
 	  {
 	    path: "report",
 	    loadChildren: './report/report.module#ReportModule'
+		},
+		{
+	    path: "accounting",
+	    loadChildren: './accounting/accounting.module#AccountingModule'
 	  },
 
 	];

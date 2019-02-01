@@ -132,66 +132,40 @@
             <i class="material-icons">how_to_reg</i>
             <span>Academic</span>
           </a>
-
-
-
-
-
-
-          <ul class="ml-menu">
-            
-        <!-- <li>
-          <a class="menu-toggle">
-            <i class="material-icons">people</i>
-            <span>Guardian</span>
-          </a>
           <ul class="ml-menu">
             <li>
-              <a routerLink="/guardian/add">
-                <span>Add</span>
+              <a class="menu-toggle">
+                <i class="material-icons">class</i>
+                <span>Course & Class/Batch</span>
               </a>
-            </li>
-            <li>
-              <a routerLink="/guardian/list">
-                <span>List</span>
-              </a>
-            </li>
-          </ul>
-        </li> -->
+              <ul class="ml-menu">
 
-        <li>
-          <a class="menu-toggle">
-            <i class="material-icons">class</i>
-            <span>Course & Class/Batch</span>
-          </a>
-          <ul class="ml-menu">
+                <li>
+                  <a routerLink="/class/add-course">
+                    <span>Add Course</span>
+                  </a>
+                </li>
 
-             <li>
-              <a routerLink="/class/add-course">
-                <span>Add Course</span>
-              </a>
-            </li>
+                <li>
+                  <a routerLink="/class/add-class">
+                    <span>Add Class/Semester</span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink="/class/add-section">
+                    <span>Add Section</span>
+                  </a>
+                </li>
 
-            <li>
-              <a routerLink="/class/add-class">
-                <span>Add Class/Semester</span>
-              </a>
-            </li>
-            <li>
-              <a routerLink="/class/add-section">
-                <span>Add Section</span>
-              </a>
-            </li>
-           
 
-            <li>
-              <a routerLink="/class/teacher-allocation">
-                <span>Class Teacher Allocation</span>
-              </a>
-            </li>
+                <li>
+                  <a routerLink="/class/teacher-allocation">
+                    <span>Class Teacher Allocation</span>
+                  </a>
+                </li>
 
-          </ul>
-        </li>
+              </ul>
+            </li>
 
             <li>
               <a routerLink="/academic/certification">
@@ -233,9 +207,9 @@
                   </a>
                 </li>
                 <li>
-                     <a routerLink = "/academic/subject/subject-allocation">Subject Allocation
-                      </a>
-                  </li>
+                  <a routerLink="/academic/subject/subject-allocation">Subject Allocation
+                  </a>
+                </li>
 
 
               </ul>
@@ -274,12 +248,52 @@
 
           </ul>
 
-
         <li>
           <a class="menu-toggle">
             <i class="material-icons">account_balance</i>
             <span>Accounting</span>
+
           </a>
+          <ul class="ml-menu">
+            <li>
+              <a class="menu-toggle">
+                <span>Expenses</span>
+              </a>
+              <ul class="ml-menu">
+                <li>
+                  <a routerLink="/accounting/expense-type">
+                    <span>Expense Type</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a routerLink="/accounting/expense-type">
+                    <span>Daily Expenses</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a class="menu-toggle">
+                <span>Expenses Report</span>
+              </a>
+              <ul class="ml-menu">
+                <li>
+                  <a routerLink="/accounting/expense-type">
+                    <span>Expense Report</span>
+                  </a>
+                </li>
+
+
+              </ul>
+            </li>
+          </ul>
+
+
+
+
+
         </li>
 
         <li>
@@ -353,14 +367,14 @@
         <!---Transport End-->
 
 
-        
+
         <li>
           <a class="menu-toggle">
             <i class="material-icons">report</i>
             <span>Reports</span>
           </a>
 
-           <ul class="ml-menu">
+          <ul class="ml-menu">
             <li>
               <a routerLink="/report/student-report/">
                 <span>Student Report</span>
@@ -390,17 +404,17 @@
           </ul>
         </li>
 
-    
-    </ul>
 
-  </div>
-  <div class="legal">
+      </ul>
+
+    </div>
+    <div class="legal">
       <div class="copyright">
-          © 2075 - 2076 <a href="http://btechnologies.org">BTechnologies</a>.
+        © 2075 - 2076 <a href="http://btechnologies.org">BTechnologies</a>.
       </div>
       <div class="version">
-          <b>Version: </b> 1.0.1
+        <b>Version: </b> 1.0.1
       </div>
-  </div>
-</aside>
+    </div>
+  </aside>
 </section>

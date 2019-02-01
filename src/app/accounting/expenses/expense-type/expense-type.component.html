@@ -1,0 +1,162 @@
+<div class="content-wrapper">
+  <div class="content">
+    <div class="page-header">
+      <ol class="breadcrumb breadcrumb">
+        <li><a href="#"><i class="material-icons">home</i> Home</a></li>
+        <li><a href="#"><i class="material-icons">class</i>Expenses</a></li>
+        <li class="active"> Expense-Type </li>
+        <button class="btn btn-primary btn-sm expense-btn" data-toggle="modal" data-target="#myModal">Add New</button>
+      </ol>
+    </div>
+   
+    <div class="panel panel-primary  expense-table">
+      <div class="panel-heading">
+        <h1 class="panel-title">Total Expense Type</h1>
+      </div>
+      <div class="panel-body">
+       
+        <div class="table-responsive">
+          <!-- <div class="row">
+                              <div class="col-xs-6 col-md-6">
+                                <div class="input-group">
+                                  <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter Name" id="txtSearch" />
+                                  <div class="input-group-btn">
+                                    <button class="btn btn-primary" type="submit">
+                                      <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div> -->
+          <!-- <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='search with name'
+                                                (keyup)='updagitteFilter($event)'
+                                              /> -->
+          <ngx-datatable class="material" [rows]="_expenseCategories" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+            [footerHeight]="50" [rowHeight]="'auto'" [limit]="4">
+
+            <ngx-datatable-column name="ID" prop="id">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+
+
+
+            <ngx-datatable-column name="Vehicle No" prop="name">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Driver" prop="description">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Actions" sortable="false" prop="id">
+              <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                Manage
+              </ng-template>
+
+              <ng-template let-row="list" let-value="value" ngx-datatable-cell-template>
+                <!-- <a class="glyphicon glyphicon-eye-open" title="" href="#"><img src="" alt=""></a> -->
+                <!-- <a class="glyphicon glyphicon-trash left-icon" title="" href="#"><img
+                                      src="" alt=""></a> -->
+               
+                  <button class="btn btn-primary btn-sm " data-toggle="modal" data-target="#myModal1" (click)="OnRowClick(value)">
+                      <i class="fa fa-edit">
+                        
+                          </i>
+                        update</button>
+                
+               
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+      </div>
+    </div>
+
+    <!-- modal start -->
+    <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                    <form ngNativeValidate (ngSubmit)="onSubmitExpenseType()" #Expensetype_Form="ngForm">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h4 class="modal-title" id="smallModalLabel">Add ExpenseType</h4>
+                              </div>
+                              <div class="modal-body">
+                                <div class="panel-body">
+                                  <div class="row clearfix">
+                      
+                                    <div class="col-md-6">
+                                      <label for="name"> name</label>
+                                      <input type="text" name="name" id="name" class="form-control" [(ngModel)]="_expenseType.name" placeholder="name">
+                      
+                                    </div>
+                                    <div class="col-md-6 ">
+                                      <label for="description"> Description</label>
+                                      <input type="text" name="description" class="form-control" placeholder="Description"
+                                        [(ngModel)]="_expenseType.description">
+                                    </div>
+                              
+                                  </div>
+                      
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary waves-effect">Save</button>
+                                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CLOSE</button>
+                              </div>
+                            </div>
+                          </form>
+                      
+              </div>
+          
+          </div>
+          <!-- modal end -->
+
+          <!-- modal start -->
+    <div class="modal fade" id="myModal1" role="dialog">
+        <div class="modal-dialog">
+                <form ngNativeValidate (ngSubmit)="ExpenseTypeUpdate(ExpensetypeUpdate_Form)" #ExpensetypeUpdate_Form="ngForm">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="smallModalLabel">Add ExpenseType</h4>
+                          </div>
+                          <div class="modal-body">
+                            <div class="panel-body">
+                        
+                              <div class="row clearfix">
+                                  <!-- <div class="col-md-6">
+                                      <label for="name"> Id</label>
+                                      <input type="text" name="id" id="id" class="form-control" [(ngModel)]="_expenseCategories1.id" disabled>
+                      
+                                  </div> -->
+                                <div class="col-md-6">
+                                  <label for="name"> name</label>
+                                  <input type="text" name="name" id="name" class="form-control" [(ngModel)]="_expenseCategories1.name" placeholder="name">
+                  
+                                </div>
+                                <div class="col-md-6 ">
+                                  <label for="description"> Description</label>
+                                  <input type="text" name="description" class="form-control" placeholder="Description"
+                                    [(ngModel)]="_expenseCategories1.description">
+                                </div>
+                          
+                              </div>
+                  
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary waves-effect" >Update</button>
+                            <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CLOSE</button>
+                          </div>
+                        </div>
+                      </form>
+                  
+          </div>
+      
+      </div>
+      <!-- modal end -->
+  </div>
+
+</div>
