@@ -80,7 +80,7 @@
                       <button type="submit" class="btn btn-primary col-sm-1 " (click)="get_paidreport()" >Go</button>
                        <button type="submit" class="btn btn-danger col-sm-offset-8" onclick="printDiv('print')">print report</button>
                         
-                       <button type="submit" class="btn btn-success col-sm-offset-1 button-margin">excel</button> 
+                       <button type="submit" class="btn btn-success col-sm-offset-1 button-margin" (click)="exportAsCSV('feepaidReport')">excel</button> 
                 
                 </div>
                  </div>
@@ -196,7 +196,7 @@
                   <button type="submit" class="btn btn-primary col-sm-1 " (click)="get_collectivereport()">Go</button>
                   <button type="submit" class="btn btn-danger col-sm-offset-8" onclick="printDiv('print')">print report</button>
                    
-                  <button type="submit" class="btn btn-success col-sm-offset-1 button-margin">excel</button> 
+                  <button type="submit" class="btn btn-success col-sm-offset-1 button-margin" (click)="exportAsCSV('collectiveReport')">excel</button> 
                   
                   </div>
                  </div>

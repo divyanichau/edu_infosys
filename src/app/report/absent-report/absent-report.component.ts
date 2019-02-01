@@ -1,10 +1,9 @@
-import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { AngularCsv } from 'angular7-csv';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { isArray } from 'lodash';
 import { ToastrService } from 'ngx-toastr';
-
-
 import { UtilsService } from '../../shared/services/utils.service';
 import { AbsentReport } from '../../core/classes/absent-report';
 import { AbsentReportService } from '../../core/services/absentreport.service';
@@ -12,7 +11,6 @@ import {ClassService} from '../../core/services/class.service';
 import {_class} from '../../core/classes/class';
 import {SectionService} from '../../core/services/section.service';
 import {Section} from '../../core/classes/section';
-
 @Component({
   selector: 'app-absent-report',
   templateUrl: './absent-report.component.html',
@@ -29,6 +27,7 @@ export class AbsentReportComponent implements OnInit {
   classes: _class[];
   section :Section[];
   selected_section :number;
+  rows:any[]=[];
 
   constructor( 
     private _absentreportService: AbsentReportService,
@@ -41,13 +40,14 @@ export class AbsentReportComponent implements OnInit {
   ngOnInit() {
     this.LoadClass()
   }
+
   onSubmit() {
     console.log(this.absent_report)
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._absentreportService.get(this.absent_report)
      .subscribe(data => {
         console.log(data);
-       
+       this.rows = data;
       });
     
   }
@@ -82,8 +82,26 @@ export class AbsentReportComponent implements OnInit {
   get_studentabsentreport(){
     this.student_absent_report =true;
   }
+
   get_teacherabsentreport(){
     this.teacher_absent_report= true;
+  }
+
+  exportAsCSV() {
+    const headers = ['id'];//Object.keys(this.rows[0]);
+  
+    const options = {
+        fieldSeparator  : ',',
+        quoteStrings    : '"',
+        decimalseparator: '.',
+        showLabels      : true,
+        headers         : headers,
+        showTitle       : false,
+        title           : 'Report',
+        useBom          : true
+    };
+  
+    return new AngularCsv(this.rows, 'absent report', options);
   }
 
 }

@@ -10,6 +10,10 @@ import { ClassService } from 'src/app/core/services/class.service';
 import { _class } from 'src/app/core/classes/class';
 import { NgForm } from '@angular/forms';
 
+import { DatatableComponent, TableColumn } from "@swimlane/ngx-datatable";
+import { AngularCsv } from 'angular7-csv';
+
+
 @Component({
   selector: 'app-feepaid-report',
   templateUrl: './feepaid-report.component.html',
@@ -67,10 +71,7 @@ export class FeepaidReportComponent implements OnInit {
      
      
   }
- 
-
-
-    
+  
  
   LoadClass() {
     this._utils.unsubscribeSub(this._sub);
@@ -96,6 +97,29 @@ export class FeepaidReportComponent implements OnInit {
   get_monthlyreport(){
     this.monthlyreport = true;
   }
+
+
+
+  exportAsCSV() {
+    //console.log(Object.keys(this.rows[0]));
+
+    const headers = ['id'];//Object.keys(this.rows[0]);
+  
+    const options = {
+        fieldSeparator  : ',',
+        quoteStrings    : '"',
+        decimalseparator: '.',
+        showLabels      : true,
+        headers         : headers,
+        showTitle       : false,
+        title           : 'Report',
+        useBom          : true
+    };
+  
+    return new AngularCsv(this.rows, 'feepaid report', options);
+  }
+  
+ 
  
 
 }

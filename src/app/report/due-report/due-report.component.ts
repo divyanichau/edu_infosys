@@ -1,10 +1,10 @@
-import { Component, OnInit, Output, EventEmitter ,ViewChild} from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit,ViewChild} from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AngularCsv } from 'angular7-csv';
+import { Subscription } from 'rxjs';
 import { isArray } from 'lodash';
 import { ToastrService } from 'ngx-toastr';
-
-
 import { BatchService } from '../../core/services/batch.service';
 import { UtilsService } from '../../shared/services/utils.service';
 import { Batch } from '../../core/classes/batch';
@@ -12,8 +12,6 @@ import { DueReport } from '../../core/classes/due-report';
 import { DueReportService } from '../../core/services/duereport.service';
 import { Course } from '../../core/classes/course';
 import { CourseService } from '../../core/services/course.service';
-import { NgForm } from '@angular/forms';
-
 
 @Component({
   selector: 'app-due-report',
@@ -23,7 +21,6 @@ import { NgForm } from '@angular/forms';
 export class DueReportComponent implements OnInit {
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
-
   due_report: DueReport = new DueReport();
   duereport=false;
   batch: Batch[];
@@ -39,7 +36,6 @@ export class DueReportComponent implements OnInit {
 
   onChange(newValue) {
     this.reset_details_value();
-
     this.detail_type[newValue] = true;
     this.dueReport.reset();
   }
@@ -51,8 +47,6 @@ export class DueReportComponent implements OnInit {
     this.detail_type[2]=false;
     
   }
-
-  
 
   constructor(	
     private _batchService: BatchService,
@@ -71,8 +65,8 @@ export class DueReportComponent implements OnInit {
   ngOnDestroy() {
     this._utils.unsubscribeSub(this._sub);
   }
+
   onSubmit() {
-    
     console.log(this.due_report)
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._duereportService.get(this.due_report)
@@ -99,6 +93,7 @@ export class DueReportComponent implements OnInit {
       }
     );
   }
+
   LoadCourse() {
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._courseService.get().subscribe(
@@ -112,15 +107,28 @@ export class DueReportComponent implements OnInit {
     );
   }
 
-
-
   get_report(){
     this.duereport = true;
-       // if(this.selected_student > 0){
- 
-       // this.studentreport = true;
-       // }
+
    }
+
+   exportAsCSV() {
+   
+    const headers = ['id'];//Object.keys(this.rows[0]);
+  
+    const options = {
+        fieldSeparator  : ',',
+        quoteStrings    : '"',
+        decimalseparator: '.',
+        showLabels      : true,
+        headers         : headers,
+        showTitle       : false,
+        title           : 'Report',
+        useBom          : true
+    };
+  
+    return new AngularCsv(this.rows, 'duereport', options);
+  }
 
 
 

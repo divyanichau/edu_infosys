@@ -1,18 +1,16 @@
-import { Component, OnInit, OnDestroy, Output, EventEmitter,ViewChild } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit,ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AngularCsv } from 'angular7-csv';
+import { Subscription } from 'rxjs';
 import { isArray } from 'lodash';
 import { ToastrService } from 'ngx-toastr';
-
-
+import { DatatableComponent} from "@swimlane/ngx-datatable";
 import { BatchService } from '../../core/services/batch.service';
 import { UtilsService } from '../../shared/services/utils.service';
 import { Batch } from '../../core/classes/batch';
 import { StudentReport } from '../../core/classes/student-report';
 import { StudentReportService } from '../../core/services/studentreport.service';
-import { NgForm } from '@angular/forms';
-import { DatatableComponent, TableColumn } from "@swimlane/ngx-datatable";
-import { Angular7Csv } from 'angular7-csv';
 
 
 @Component({
@@ -66,10 +64,7 @@ export class StudentReportComponent implements OnInit{
     this.detail_type[8]=false;
 
   }
-  
-
-
-
+ 
   constructor(
     private _studentreportService: StudentReportService,
     private studentreportService:StudentReportService,
@@ -84,33 +79,21 @@ export class StudentReportComponent implements OnInit{
     this.reset_details_value;
     this.detail_type[1] =true;
     this.LoadBatch();
-   ;
-
-  	
   }
   
-
   onSubmit() {
-    console.log(this.student_report)
+    //console.log(this.student_report)
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._studentreportService.get(this.student_report)
      .subscribe(data => {
-       console.log('RETURNED DATA',data)
+       //console.log('RETURNED DATA',data)
         this.rows =  data;
         this.rows = [...this.rows];
-         console.log(this.rows);
-       
       });
      
   }
 
- 
- 
- 
-
-
-
-   LoadBatch() {
+  LoadBatch() {
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._batchService.get().subscribe(
       data => {
@@ -121,101 +104,52 @@ export class StudentReportComponent implements OnInit{
         }
       }
     );
-  }
+   } 
  
- 
-
-
-   get_report(){
-   	this.studentreport = true;
-   		 // if(this.selected_student > 0){
-  
-        // this.studentreport = true;
+  get_report(){
+   this.studentreport = true;
         
-        // }
-      
-       
-    }
+  }
     
-     
-  
-    get_email(){
-      this.email = !this.email;
-         
-     }
-     get_phonenumber(){
-       this.phonenumber = !this.phonenumber;
-     }
-     get_address(){
-       this.address = !this.address;
-      
-     }
-     get_gurdiandetail(){
-       this.gurdiandetail = !this.gurdiandetail;
-     }
+  get_email(){
+   this.email = !this.email;
+          
+  }
+  get_phonenumber(){
+    this.phonenumber = !this.phonenumber;
+  }
+  get_address(){
+    this.address = !this.address;
+        
+  }
+  get_gurdiandetail(){
+    this.gurdiandetail = !this.gurdiandetail;
+  }
 
-     get_parentsdetail(){
-       this.parentsdetail =!this.parentsdetail;
-     }
-     get_feesdetail(){
-      this.amount =!this.amount;
-    }
+  get_parentsdetail(){
+    this.parentsdetail =!this.parentsdetail;
+  }
 
-
-    
-    
-   
-     
+  get_feesdetail(){
+    this.amount =!this.amount;
+  }
 
 
+  exportAsCSV() {
+    const headers = ['id'];//Object.keys(this.rows[0]);
+    const options = {
+        fieldSeparator  : ',',
+        quoteStrings    : '"',
+        decimalseparator: '.',
+        showLabels      : true,
+        headers         : headers,
+        showTitle       : false,
+        title           : 'Report',
+        useBom          : true
+    };
+
+    return new AngularCsv(this.rows, 'report', options);
+  }
 
 
-exportAsCSV(dataTable: DatatableComponent) {
-  const columns: TableColumn[] = dataTable.columns || dataTable._internalColumns;
-  const headers =
-      columns
-          .map((column: TableColumn) => column.name)
-          .filter((e) => e);  // remove column without name (i.e. falsy value)
-
-  const rows: any[] = dataTable.rows.map((row) => {
-      let r = {};
-      columns.forEach((column) => {
-          if (!column.name) { return; }   // ignore column without name
-          if (column.prop) {
-              let prop = column.prop.toString();
-              let value = this.getNestedPropertyValue(row, prop);
-              
-              r[prop] = (typeof value === 'boolean') ? (value ? 'Yes' : 'No') : value;
-          } else {
-              // special cases handled here
-          }
-      })
-      return r;
-  });
-
-  const options = {
-      fieldSeparator  : ',',
-      quoteStrings    : '"',
-      decimalseparator: '.',
-      showLabels      : true,
-      headers         : headers,
-      showTitle       : false,
-      title           : 'Report',
-      useBom          : true
-  };
-
-  return new Angular7Csv(rows, 'report', options);
-}
-
-getNestedPropertyValue(object: any, nestedPropertyName: string) {
-    var dotIndex = nestedPropertyName.indexOf(".");
-    if (dotIndex == -1) {
-        return object[nestedPropertyName];
-    } else {
-        var propertyName = nestedPropertyName.substring(0, dotIndex);
-        var nestedPropertyNames = nestedPropertyName.substring(dotIndex + 1);
-
-        return this.getNestedPropertyValue(object[propertyName], nestedPropertyNames);
-    }
-}
 }
