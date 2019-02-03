@@ -3,21 +3,19 @@
   <div class="content-wrapper">
     <div class="content">
       <div class="page-header">
-        <ol class="breadcrumb breadcrumb">
-          <li><a href="javascript:void(0);"><i class="material-icons">home</i> Home</a></li>
-          <li><a href="javascript:void(0);">Student</a></li>
-          <li><a href="javascript:void(0);">Report</a></li>
-        </ol>
-
+        <div class ="col-sm-12 bg-info">
+        <ul class="page-breadcrumb breadcrumb">
+          <li><a routerLink="/"><i class="material-icons">home</i> Home</a></li>
+          <li><a routerLink="/report/">Report</a></li>
+          <li><a> Due Report</a></li>
+        </ul>
+      </div>
         <div class="row ">
           <form (ngSubmit) ="onSubmit()" #dueReport ="ngForm">
             <div class="col-sm-12">
               <div class="card">
-                 <div class="panel-heading bg-primary ">
-                  <h4>
-                    <b>Due Report</b>
-                  </h4>
-                  </div>
+                  <h3 class="panel-heading text-center bg-primary ">
+                    <b>Due Report</b> </h3>
                    <br>
                 <div class="panel-body">
                   <div class="row clearfix">

@@ -1,50 +1,46 @@
 <div class="body">
  <div class="page-header">
-      <div class="breadcrumb-line">
-        <ol class="breadcrumb">
-          <li><a href="javascript:void(0);"><i class="material-icons">home</i> Home</a></li>
-          <li><a href="javascript:void(0);">Report</a></li>
-          <li><a href="javascript:void(0);"> Feepaid Report</a></li>
-        </ol>
-        </div>
+       <div class ="col-sm-12 bg-info">
+        <ul class="page-breadcrumb breadcrumb">
+          <li><a routerLink="/"><i class="material-icons">home</i>Home</a></li>
+          <li><a routerLink="/report/">Report</a></li>
+          <li><a> Feepaid Report</a></li>
+        </ul>
+      </div> 
      
-  <div class="btn btn-group bg-info" >
-  <ul class="nav nav-tabs nav-tabs-highlight" (change)="onChange($event.target.value)" >
-      <li  class="active">
-          <a  class="btn btn-default"  value ="1" href="#paid_report" data-toggle="tab">
-              <b> Paid Report</b> 
-          </a>
-      </li>
-      <li class="presentation">
-          <a class ="btn btn-default" value ="2"  href="#collective_report" data-toggle="tab">
-               <b> Collective Report</b> 
-          </a>
-      </li>
-      <li class ="presentation">
-        <a class ="btn btn-default" value ="3" href ="#paid_report_datewise" data-toggle ="tab">
-          <b>Paid Report(Datewise)</b>
-        </a> 
-      </li>
-  </ul>
-  
-  </div>
- 
+        <div class="btn btn-group bg-info" >
+          <ul class="nav nav-tabs nav-tabs-highlight" (change)="onChange($event.target.value)" >
+              <li  class="active">
+                  <a  class="btn btn-default"  value ="1" href="#paid_report" data-toggle="tab">
+                      <b> Paid Report(class wise)</b> 
+                  </a>
+              </li>
+              <li class="presentation">
+                  <a class ="btn btn-default" value ="2"  href="#collective_report" data-toggle="tab">
+                       <b> Paid Report(specific interval)</b> 
+                  </a>
+              </li>
+              <li class ="presentation">
+                <a class ="btn btn-default" value ="3" href ="#paid_report_datewise" data-toggle ="tab">
+                  <b> Paid Report(date wise)</b>
+                </a> 
+              </li>
+          </ul>
+          
+        </div>
+         
 
   <div class="tab-content">
- 
   <div role="tabpanel" class="tab-pane active" id="paid_report" >
-
   <div class="content-wrapper">
     <div class="content">
         <div class="row ">
           <form (ngSubmit) ="onSubmit('feepaidReport')" #feepaidReport ="ngForm">
             <div class="col-sm-12">
               <div class="card">
-                <div class="panel-heading bg-primary">
-                  <h3 class="panel-title">
-                    <b> Fee Paid Report(schoolwise)</b>
+                  <h3 class=" panel-heading text-center bg-primary">
+                    <b> Fee Paid Report</b>
                   </h3>
-                </div>
                 <br>
                 <div class="panel-body">
                   <div class="row clearfix">
@@ -157,12 +153,9 @@
           <form (ngSubmit) ="onSubmit('collectiveReport')" #collectiveReport ="ngForm">
             <div class="col-sm-12">
               <div class="card">
-
-                <div class="panel-heading bg-primary">
-                  <h2 class="panel-title">
-                    <b>Fee Paid Report(specific Interval)</b>
-                  </h2>
-                </div>
+                  <h3 class="panel-heading  text-center bg-primary">
+                    <b>collective Report</b>
+                  </h3>
                 <br>
                 <div class="panel-body">
                   <div class="row clearfix">
@@ -291,12 +284,9 @@
             <form (ngSubmit) ="onSubmit('monthlyReport')" #monthlyReport ="ngForm">
               <div class="col-sm-10">
                 <div class="card">
-  
-                  <div class="panel-heading bg-primary">
-                    <h2 class="panel-title">
-                      <b>Monthly Report</b>
-                    </h2>
-                  </div>
+                    <h3 class="panel-heading text-center bg-primary">
+                      <b>Feepaid Report</b>
+                    </h3>
                   <br>
                   <div class="panel-body">
                     <div class="row clearfix">

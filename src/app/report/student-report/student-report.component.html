@@ -3,22 +3,20 @@
   <div class="content-wrapper">
     <div class="content">
       <div class="page-header">
-        <ol class="breadcrumb breadcrumb">
-          <li><a href="javascript:void(0);"><i class="material-icons">home</i> Home</a></li>
-          <li><a href="javascript:void(0);">Student</a></li>
-          <li><a href="javascript:void(0);">Report</a></li>
-        </ol>
-
+         <div class ="col-sm-12 bg-info">
+           <ul class="page-breadcrumb breadcrumb">
+              <li><a routerLink ="/"><i class="material-icons">home</i> Home</a></li>
+              <li><a routerLink="/report/">Report</a></li>
+              <li><a>Student Report</a></li>
+           </ul>
+         </div>
         <div class="row ">
           <form (ngSubmit) ="onSubmit(studentReport1)" #studentReport1 ="ngForm">
             <div class="col-sm-12">
               <div class="card">
-
-                <div class="panel-heading bg-primary ">
-                  <h4>
+                  <h3 class ="panel-heading text-center bg-primary">
                     <b>Student Report</b>
-                  </h4>
-                </div>
+                  </h3>
                 <br>
                 <div class="panel-body">
                   <div class="row clearfix">
@@ -200,7 +198,6 @@
                 <button type="button" class="btn btn-danger col-sm-offset-8" onclick="printDiv('print')">print report</button>
                   
                 <button type="button" class="btn btn-success col-sm-offset-1 button-margin"  (click) ="exportAsCSV(dataTable)">excel</button>  
-          
                   </div>
                  </div>
                 </div>
