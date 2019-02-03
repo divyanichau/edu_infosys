@@ -41,6 +41,7 @@ export class ExpenseTypeComponent implements OnInit {
          this._expenseCategories = data;
        });
   }
+  
   onSubmitExpenseType(){
     //console.log(this._expenseType)
       this._utils.unsubscribeSub(this._sub);

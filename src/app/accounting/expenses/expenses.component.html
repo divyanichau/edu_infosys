@@ -1,3 +1,171 @@
-<p>
-  expenses works!
-</p>
+<div class="content-wrapper">
+  <div class="content">
+    <div class="page-header">
+      <ol class="breadcrumb breadcrumb">
+        <li><a href="#"><i class="material-icons">home</i> Home</a></li>
+        <li  class="active"><a href="#"><i class="material-icons">class</i>Expenses</a></li>
+
+        <button class="btn btn-primary btn-sm expense-btn" data-toggle="modal" data-target="#myModal">Add New</button>
+      </ol>
+    </div>
+   
+    <div class="panel panel-primary  expense-table">
+      <div class="panel-heading">
+        <h1 class="panel-title">DailyExpense Report</h1>
+      </div>
+      <div class="panel-body">
+       
+        <div class="table-responsive">
+          <ngx-datatable class="material" [rows]="_dailyExpenses" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+            [footerHeight]="50" [rowHeight]="'auto'" [limit]="4">
+
+            <ngx-datatable-column name="Expense Category" prop="expense_type">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+
+
+
+            <ngx-datatable-column name="Amount" prop="amount">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Date" prop="expense_date">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Actions" sortable="false" prop="id">
+              <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                Manage
+              </ng-template>
+
+              <ng-template let-row="list" let-value="value" ngx-datatable-cell-template>
+                  <button class="btn btn-primary btn-sm " data-toggle="modal" data-target="#myModal1" (click)="OnRowClick(value)">
+                      <i class="fa fa-edit">
+                        
+                          </i>
+                        update</button>     
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+      </div>
+    </div>
+
+    <!-- modal start -->
+    <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                    <form ngNativeValidate (ngSubmit)="onSubmitExpense()" #Expense_Form="ngForm">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h4 class="modal-title" id="smallModalLabel">Add Daily Expense</h4>
+                              </div>
+                              <div class="modal-body">
+                                <div class="panel-body">
+                                  <div class="row clearfix">
+                                    <div class="col-md-6">
+                                        <label > Expense Category</label>
+                                      <select class="form-control" name="selected_expenseCategory" [(ngModel)]="selected_expenseCategory" >
+                                          <option *ngFor="let expensecategory of _expenseCategories" [ngValue]="expensecategory.id">{{expensecategory.name}}</option>
+                                      </select>
+
+                                    </div>
+                      
+                                    <div class="col-md-6">
+                                      <label for="expd"> Expense Detail</label>
+                                      <input type="text" name="expd" id="expd" class="form-control" [(ngModel)]="_dailyExpense.expense_detail" placeholder="expense detail" required>
+                      
+                                    </div>
+                                    <div class="col-md-6  form-top-margin">
+                                      <label for="amount"> Amount</label>
+                                      <input type="number" id="amount" name="amount" class="form-control" placeholder="amount"
+                                        [(ngModel)]="_dailyExpense.amount" required>
+                                    </div>
+
+                                    <div class="col-md-6 form-top-margin ">
+                                        <label for="exp_date"> Expense Date</label>
+                                        <input type="date" id="exp_date" name="exp_date" class="form-control"  [(ngModel)]="_dailyExpense.expense_date" required>
+                                    </div>
+
+                                    <div class="col-md-6 form-top-margin ">
+                                        <label for="recpt_no"> Receipt Number(if any)</label>
+                                        <input type="number" id="recpt_no" name="recpt_no" class="form-control" [(ngModel)]="_dailyExpense.receipt_number">
+                                    </div>
+
+                                  </div>
+                      
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary waves-effect">Save</button>
+                                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CLOSE</button>
+                              </div>
+                            </div>
+                          </form>
+                      
+              </div>
+          
+          </div>
+          <!-- modal end -->
+    
+   <!-- modal start -->
+   <div class="modal fade" id="myModal1" role="dialog">
+      <div class="modal-dialog">
+              <form ngNativeValidate (ngSubmit)="onSubmitExpenseUpdate()" #Expense_Form="ngForm">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title" id="smallModalLabel">Add Daily Expense</h4>
+                        </div>
+                        <div class="modal-body">
+                          <div class="panel-body">
+                            <div class="row clearfix">
+                              <div class="col-md-6">
+                                  <label > Expense Category</label>
+                                <select class="form-control" name="selected_expenseCategory" [(ngModel)]="selected_expenseCategory" >
+                                    <option *ngFor="let expensecategory of _expenseCategories" [ngValue]="expensecategory.id">{{expensecategory.name}}</option>
+                                </select>
+
+                              </div>
+                
+                              <div class="col-md-6">
+                                <label for="expd"> Expense Detail</label>
+                                <input type="text" name="expd" id="expd" class="form-control" [(ngModel)]="_dailyExpense1.expense_detail" placeholder="expense detail" required>
+                
+                              </div>
+                              <div class="col-md-6  form-top-margin">
+                                <label for="amount"> Amount</label>
+                                <input type="number" id="amount" name="amount" class="form-control" placeholder="amount"
+                                  [(ngModel)]="_dailyExpense1.amount" required>
+                              </div>
+
+                              <div class="col-md-6 form-top-margin ">
+                                  <label for="exp_date"> Expense Date</label>
+                                  <input type="date" id="exp_date" name="exp_date" class="form-control"  [(ngModel)]="_dailyExpense1.expense_date" required>
+                              </div>
+
+                              <div class="col-md-6 form-top-margin ">
+                                  <label for="recpt_no"> Receipt Number(if any)</label>
+                                  <input type="number" id="recpt_no" name="recpt_no" class="form-control" [(ngModel)]="_dailyExpense1.receipt_number">
+                              </div>
+
+                            </div>
+                
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="submit" class="btn btn-primary waves-effect">Save</button>
+                          <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CLOSE</button>
+                        </div>
+                      </div>
+                    </form>
+                
+        </div>
+    
+    </div>
+    <!-- modal end -->
+
+  </div>
+
+</div>

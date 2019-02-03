@@ -8,13 +8,14 @@ import { ToastrService } from 'ngx-toastr';
 
 import { UtilsService } from '../../../shared/services/utils.service';
 import { Config } from '../../../shared/classes/app';
-import { ExpenseType,ExpenseTypeUpdate } from '../../classes/Accounting/expenses';
+import { ExpenseType,ExpenseTypeUpdate,DailyExpense } from '../../classes/Accounting/expenses';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExpenseService{
   private _expenseTypeUrl = `${new Config().api}/accounting/expense-category/`;
+  private _dailyExpenseUrl = `${new Config().api}/accounting/daily-expense/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
   Route = [];
  
@@ -76,26 +77,72 @@ export class ExpenseService{
       ),);
   }
 
-//   delete(id:number): Observable<_Route> {
-//     this.beforeRequest();
-//    // const body = JSON.stringify(_route);
+  AddDailyExpense(_dailyExpense: DailyExpense): Observable<DailyExpense> {
+    this.beforeRequest();
+    const body = JSON.stringify(_dailyExpense);
 
-//     return this._http.delete(`${this._routeUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
-//       map((res: Response) => res.json().data),
-//       tap(
-//     //  data => this.afterDeteleRequestRequest(),
-//       error => { this.showError(error) }
-//       ),);
-//   }
+    return this._http.post(`${this._dailyExpenseUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json()),
+      tap(
+      data => this.afterAddDailyExpenseRequest(),
+      error => { this.showError(error) }
+      ),);
+  }
 
+  findDailyExpense(id: number): Observable<DailyExpense> {
+    this.beforeRequest();
+
+    return this._http.get(`${this._dailyExpenseUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json()),
+      tap(
+      data => this.afterGetRequest(),
+      error => { console.log(error); }
+      ),);
+  }
+
+  updateDailyExpense(_dailyExpense: DailyExpense,id:number): Observable<DailyExpense> {
+    this.beforeRequest();
+    const body = JSON.stringify(_dailyExpense);
+
+    return this._http.put(`${this._dailyExpenseUrl}${id}/`, body, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json()),
+      tap(
+      data => this.afterDailyExpenseUpdateRequest(),
+      error => { this.showError(error) }
+      ),);
+  }
+
+  getDailyExpense(): Observable<DailyExpense[]> {
+    //this.beforeRequest();
+    const options = this._utils.makeOptions(this._headers);
+
+    return this._http.get(`${this._dailyExpenseUrl}`, options).pipe(
+      map((res: Response) => res.json()),
+      tap(
+      data => this.afterGetRequest(),
+      error => { console.log(error); }
+      ),);
+  }
   beforeRequest(): void {
     this._utils.start_progress();
 
   }
 
+  afterAddDailyExpenseRequest(): void {
+    this._utils.stop_progress();
+    this.toastr.success('Done','Expense Registered',{timeOut: 3000});
+
+  }
+
+  afterDailyExpenseUpdateRequest(): void {
+    this._utils.stop_progress();
+    this.toastr.success('Done','Expense Content Updated',{timeOut: 3000});
+
+  }
+
   afterRequest(): void {
     this._utils.stop_progress();
-    this.toastr.success('Done','Maintainance Category Added',{timeOut: 3000});
+    this.toastr.success('Done','Expense Category Added',{timeOut: 3000});
 
   }
   afterUpdateRequest(): void {
