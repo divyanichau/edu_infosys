@@ -1,0 +1,146 @@
+<div class="content-wrapper">
+  <div class="content">
+    <div class="page-header">
+      <ol class="breadcrumb breadcrumb">
+        <li><a href="#"><i class="material-icons">home</i> Home</a></li>
+        <li  class="active"><a href="#"><i class="material-icons">class</i>fee-category</a></li>
+
+        <button class="btn btn-primary btn-sm expense-btn" data-toggle="modal" data-target="#myModal">Add New</button>
+      </ol>
+    </div>
+   
+    <div class="panel panel-primary  expense-table">
+      <div class="panel-heading">
+        <h1 class="panel-title">Fee Category Report</h1>
+      </div>
+      <div class="panel-body">
+       
+        <div class="table-responsive">
+          <ngx-datatable class="material" [rows]="_feeCategories" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+            [footerHeight]="50" [rowHeight]="'auto'" [limit]="4">
+
+            <ngx-datatable-column name="ID" prop="id">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+
+
+
+            <ngx-datatable-column name="Name" prop="name">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Description" prop="description">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Actions" sortable="false" prop="id">
+              <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                Manage
+              </ng-template>
+
+              <ng-template let-row="list" let-value="value" ngx-datatable-cell-template>
+                  <button class="btn btn-primary btn-sm " data-toggle="modal" data-target="#myModal1" (click)="OnRowClick(value)">
+                      <i class="fa fa-edit">
+                        
+                          </i>
+                        update</button>     
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+      </div>
+    </div>
+
+    <!-- modal start -->
+    <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                    <form ngNativeValidate (ngSubmit)="onSubmitFeeCategory()" #Feecategory_Form="ngForm">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h4 class="modal-title" id="smallModalLabel">Add Fee Category</h4>
+                              </div>
+                              <div class="modal-body">
+                                <div class="panel-body">
+                                  <div class="row clearfix">
+               
+                      
+                                    <div class="col-md-6">
+                                      <label for="name">Name</label>
+                                      <input type="text" name="name" id="name" class="form-control" [(ngModel)]="_feeCategory.name" placeholder="name" required>
+                      
+                                    </div>
+                            
+                                 
+                                    <div class="col-md-6">
+                                      <label for="description">Description</label>
+                                      <input type="text" name="description" id="description" class="form-control" [(ngModel)]="_feeCategory.description" placeholder="description" required>
+                      
+                                    </div>
+                            
+                                 
+
+                                  </div>
+                      
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary waves-effect">Save</button>
+                                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CLOSE</button>
+                              </div>
+                            </div>
+                          </form>
+                      
+              </div>
+          
+          </div>
+          <!-- modal end -->
+    
+   <!-- modal start -->
+   <div class="modal fade" id="myModal1" role="dialog">
+      <div class="modal-dialog">
+              <form ngNativeValidate (ngSubmit)="onSubmitFeeCategoryUpdate()" #FeeCategoryUpdate_Form="ngForm">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title" id="smallModalLabel">Add Daily Expense</h4>
+                        </div>
+                        <div class="modal-body">
+                          <div class="panel-body">
+                            <div class="row clearfix">
+               
+                      
+                              <div class="col-md-6">
+                                <label for="name">Name</label>
+                                <input type="text" name="name" id="name" class="form-control" [(ngModel)]="_feeCategories1.name" placeholder="name" required>
+                
+                              </div>
+                      
+                           
+                              <div class="col-md-6">
+                                <label for="description">Description</label>
+                                <input type="text" name="description" id="description" class="form-control" [(ngModel)]="_feeCategories1.description" placeholder="description" required>
+                
+                              </div>
+                      
+                           
+
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="submit" class="btn btn-primary waves-effect">Save</button>
+                          <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CLOSE</button>
+                        </div>
+                      </div>
+                    </form>
+                
+        </div>
+    
+    </div>
+    <!-- modal end -->
+
+  </div>
+
+</div>

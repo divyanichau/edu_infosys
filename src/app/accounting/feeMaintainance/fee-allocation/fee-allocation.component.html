@@ -1,0 +1,131 @@
+<div class="content-wrapper">
+  <div class="content">
+    <div class="page-header">
+      <ol class="breadcrumb breadcrumb">
+        <li><a href="#"><i class="material-icons">home</i> Home</a></li>
+        <li  class="active"><a href="#"><i class="material-icons">class</i>fee-allocation</a></li>
+
+        <button class="btn btn-primary btn-sm expense-btn" data-toggle="modal" data-target="#myModal">Allocate New</button>
+      </ol>
+    </div>
+   
+    <div class="panel panel-primary  expense-table">
+      <div class="panel-heading">
+        <h1 class="panel-title">Allocated Fees</h1>
+      </div>
+      <div class="panel-body">
+       
+        <div class="table-responsive">
+          <ngx-datatable class="material" [rows]="_feeCategories" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+            [footerHeight]="50" [rowHeight]="'auto'" [limit]="4">
+
+            <ngx-datatable-column name="ID" prop="id">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+
+
+
+            <ngx-datatable-column name="Name" prop="name">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Description" prop="description">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Actions" sortable="false" prop="id">
+              <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                Manage
+              </ng-template>
+
+              <ng-template let-row="list" let-value="value" ngx-datatable-cell-template>
+                  <button class="btn btn-primary btn-sm " data-toggle="modal" data-target="#myModal1" (click)="OnRowClick(value)">
+                      <i class="fa fa-edit">
+                        
+                          </i>
+                        update</button>     
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+      </div>
+    </div>
+
+    <!-- modal start -->
+    <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                    <form ngNativeValidate (ngSubmit)="allocateFees()" #Feecategory_Form="ngForm">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h4 class="modal-title" id="smallModalLabel">Allocate Fees</h4>
+                              </div>
+                              <div class="modal-body">
+                                <div class="panel-body">
+                                  <div class="row clearfix">
+               
+                      
+                                    <div class="col-md-6">
+                                      <label>Fee For</label>
+                                      <select name="fee-for" class="form-control" (change)="OnChangeFeeeFor($event.target.value)" [(ngModel)]="_feeAlloation.fee_for" required>
+                                          <option  value="1" selected="selected">All Class</option>
+                                          <option value="2" >Selected Class</option>
+                                      </select>
+                                    </div>
+                                    
+                                    <div *ngIf="bool">
+                                        <div class="col-md-6">
+                                          <label>Course</label>
+                                          <select name="course" class="form-control" [(ngModel)] = "selected_course" (change)="onCourseChange(selected_course)" required>
+                                              <option  *ngFor = "let course of courses" [ngValue] = "course.id">{{course.name}}</option>
+                                             
+                                          </select>
+                                        </div>
+
+                                        <div class="col-md-6 form-top-margin">
+                                            <label>Class</label>
+                                            <select name="class" class="form-control" [(ngModel)] = "selected_class" required>
+                                                <option *ngFor = "let class of classes" [ngValue]="class.id">{{class.name}}</option>
+                                                
+                                            </select>
+                                          </div>
+    
+                                    </div>
+                                 
+                                 
+                                    <div class="col-md-6 " [class.form-top-margin]="bool">
+                                      <label>Fee Category</label>
+                                          <select name="fee-category" class="form-control" [(ngModel)] = "selected_category" required>
+                                            <option *ngFor = "let category of _feeCategories" [ngValue] ="category.id"> {{category.name}}</option>
+                                            <!-- <option >Selected Class</option> -->
+                                        </select>
+                                    </div>
+
+                            
+                                    <div class="col-md-6 form-top-margin " >
+                                        <label for="amount">Total Amount</label>
+                                          <input type="number" name="total_amount" class="form-control" [(ngModel)]="_feeAlloation.total_amount"  required>
+                                      </div>
+
+                                  </div>
+                      
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary waves-effect">Save</button>
+                                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CLOSE</button>
+                              </div>
+                            </div>
+                          </form>
+                      
+              </div>
+          
+          </div>
+          <!-- modal end -->
+    
+  
+  </div>
+
+</div>
