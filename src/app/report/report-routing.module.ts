@@ -6,7 +6,7 @@ import {ReportComponent } from './report.component';
 import { DueReportComponent } from './due-report/due-report.component';
 import { FeepaidReportComponent } from './feepaid-report/feepaid-report.component';
 import { AbsentReportComponent } from './absent-report/absent-report.component';
-
+import{ExpenseReportComponent} from './expense-report/expense-report.component';
 
 const routes: Routes = [
 
@@ -32,6 +32,11 @@ const routes: Routes = [
   {
     path: 'absent-report',
     component: AbsentReportComponent,
+  },
+  
+  {
+    path: 'expense-report',
+    component: ExpenseReportComponent,
   }
 
   

@@ -5,8 +5,8 @@ import { AngularCsv } from 'angular7-csv';
 import { Subscription } from 'rxjs';
 import { isArray } from 'lodash';
 import { ToastrService } from 'ngx-toastr';
-import { BatchService } from '../../core/services/batch.service';
 import { UtilsService } from '../../shared/services/utils.service';
+import { BatchService } from '../../core/services/batch.service';
 import { Batch } from '../../core/classes/batch';
 import { DueReport } from '../../core/classes/due-report';
 import { DueReportService } from '../../core/services/duereport.service';
@@ -18,6 +18,7 @@ import { CourseService } from '../../core/services/course.service';
   templateUrl: './due-report.component.html',
   styleUrls: ['./due-report.component.css']
 })
+
 export class DueReportComponent implements OnInit {
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;

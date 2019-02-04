@@ -14,8 +14,8 @@
           <form (ngSubmit) ="onSubmit()" #dueReport ="ngForm">
             <div class="col-sm-12">
               <div class="card">
-                  <h3 class="panel-heading text-center bg-primary ">
-                    <b>Due Report</b> </h3>
+                  <h4 class="panel-heading bg-primary ">
+                    Due Report</h4>
                    <br>
                 <div class="panel-body">
                   <div class="row clearfix">
@@ -67,21 +67,10 @@
                       <option>Transport Fee</option>
                       <option>uniform Fee</option>
                       <option>Monthly  Fee</option>
-
                     </select>
                   </div>
                 </div>
-
-
-                    <!-- <div class="col-sm-4" id="type">
-                      <label for="reg_input" class="req">Id Type*</label>
-                      <select class="form-control" name="Student[type]" id="Student_type">
-                        <option value="prompt">Select ID Template</option>
-                        <option value="horizontal">Horizontal ID Card</option>
-                        <option value="vertical">Vertical ID Card</option>
-                      </select>
-                    </div>
- -->                 <br>
+                 <br>
                   <div class ="row">
                 <div class="form-group cols-sm-2">
                          <button type="submit" class="btn btn-success col-sm-offset-10 " (click)="get_report()">Go</button>
@@ -102,10 +91,7 @@
  <!--table start-->
   <div class="table-responsive" *ngIf="duereport">
       <table class = "table table-bordered ">
-
-        <div class="panel-heading bg-primary">
-          <h4 class ="text-center">Due REport</h4>
-        </div>
+          <h3 class ="text-center panel-heading bg-primary">Due Report</h3>
          <br>
         <ngx-datatable class="material" [rows]="rows" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
           [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">

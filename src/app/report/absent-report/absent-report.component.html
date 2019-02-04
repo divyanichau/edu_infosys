@@ -13,9 +13,9 @@
                 <form (ngSubmit) ="onSubmit()"#dueReport ="ngForm">
                   <div class="col-sm-12">
                     <div class="card">
-                        <h3 class="panel-heading text-center bg-primary">
-                          <b>Student Absent Report</b>
-                        </h3>
+                        <h4 class="panel-heading bg-primary">
+                          Student Absent Report
+                        </h4>
                       <br>
                       <div class="panel-body">
                         <div class="row clearfix">
@@ -73,11 +73,7 @@
       <div class="table-responsive" *ngIf="student_absent_report">
             <br>
               <table class ="table table-bordered">
-                <div class="row">
-                <div class="panel-heading bg-primary">
-                <h4 class="text-center">  Student Absent Report</h4>
-                </div>
-                </div>
+                <h3 class="text-center panel-heading bg-primary">  Student Absent Report</h3>
                 <br>
                 <ngx-datatable class="material" [rows]="rows" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
                   [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">

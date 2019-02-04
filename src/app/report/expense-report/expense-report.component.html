@@ -1,0 +1,109 @@
+
+<div class="body">
+  <div class="content-wrapper">
+    <div class="content">
+      <div class="page-header">
+        <div class ="col-sm-12 bg-info">
+        <ul class="page-breadcrumb breadcrumb">
+          <li><a routerLink="/"><i class="material-icons">home</i> Home</a></li>
+          <li><a routerLink="/report/">Report</a></li>
+          <li><a> Expense Report</a></li>
+        </ul>
+      </div>
+        <div class="row ">
+          <form (ngSubmit) ="onSubmit()" #expenseReport ="ngForm">
+            <div class="col-sm-12">
+              <div class="card">
+                  <h4 class="panel-heading bg-primary ">
+                    Expense Report </h4>
+                   <br>
+                <div class="panel-body">
+                  <div class="row clearfix">
+                    <div class="col-sm-4">
+                      <label for="reportfor" class="req">Expense Category </label>
+                      <select class="form-control" [(ngModel)] ="expense_report.category" name="expensecategory">
+                        <option value ="0">Select option</option>
+                        <option value ="1">maintainance</option>
+                        <option value = "2">construction</option>
+                        <option value = "3">employee payment</option>
+                         <option value ="4">donate</option>
+                        <!-- <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option> -->
+                      </select>
+                    </div>
+
+                      <div class="col-sm-4">
+                        <label for="fromdate">From date</label>
+                        <input type="date" class="form-control" [(ngModel)]="expense_report.from_date" name="fromdate"
+                          required>
+                      </div>
+
+                      <div class="col-sm-4">
+                        <label for="todate">To date</label>
+                        <input type="date" class="form-control" [(ngModel)]="expense_report.to_date" name="todate" placeholder=""
+                          required>
+                      </div>
+                 
+                  </div>
+                  <br> 
+                  <div class ="row">
+                    <div class="form-group cols-sm-2">
+                         <button type="submit" class="btn btn-success col-sm-offset-8 " (click)="get_expensereport()">view report</button>
+                            
+                         <button type="submit" class="btn btn-danger col-sm-offset-1  button-margin" onclick="printDiv('print')">print report</button> 
+                  
+                    </div>
+                 </div>
+                </div>
+              </div>
+            </div>
+         </form>
+       </div>
+     </div>
+    </div>
+  </div>
+
+ <!--table start-->
+  <div class="table-responsive" *ngIf="expensereport">
+      <table class = "table table-bordered ">
+          <h3 class="panel-heading text-center bg-primary "><b>Expense Report</b></h3>
+         <br>
+        <ngx-datatable class="material" [rows]="rows" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+          [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+
+          <ngx-datatable-column name="ID" prop="id">
+            <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+            <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Date" prop="date">
+            <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+            <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Expense name" prop="expense_name">
+            <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+            <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+          </ngx-datatable-column>
+
+
+          <ngx-datatable-column name="Amount" prop="expense_amount">
+            <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+            <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="payment status" prop="payment_status">
+            <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+            <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable> 
+      </table>
+    </div>
+
+<!--table end-->
+</div>
+
+       
+      
+
+
+             
+

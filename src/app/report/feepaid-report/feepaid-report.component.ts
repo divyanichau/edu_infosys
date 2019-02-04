@@ -9,10 +9,7 @@ import { FeepaidReportService } from '../../core/services/feepaidreport.service'
 import { ClassService } from 'src/app/core/services/class.service';
 import { _class } from 'src/app/core/classes/class';
 import { NgForm } from '@angular/forms';
-
-import { DatatableComponent, TableColumn } from "@swimlane/ngx-datatable";
 import { AngularCsv } from 'angular7-csv';
-
 
 @Component({
   selector: 'app-feepaid-report',

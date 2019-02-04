@@ -21,7 +21,8 @@ import { AbsentReportComponent } from './absent-report/absent-report.component';
 import {AbsentReportService} from '../core/services/absentreport.service';
 import { ClassService } from '../core/services/class.service';
 import { SectionService } from '../core/services/section.service';
-
+import { ExpenseReportComponent } from './expense-report/expense-report.component';
+import {ExpenseReportService} from '../core/services/expensereport.service';
 
 @NgModule({
   imports: [
@@ -37,9 +38,9 @@ import { SectionService } from '../core/services/section.service';
 
   ReportRoutingModule
   ],
-  providers: [BatchService , UtilsService,StudentReportService, ClassService, SectionService, AbsentReportService , FeepaidReportService ,DueReportService, CourseService],
+  providers: [BatchService , UtilsService,StudentReportService,ExpenseReportService, ClassService, SectionService, AbsentReportService , FeepaidReportService ,DueReportService, CourseService],
 
-  declarations: [ ReportComponent , StudentReportComponent, DueReportComponent, FeepaidReportComponent, AbsentReportComponent]
+  declarations: [ ReportComponent , StudentReportComponent, DueReportComponent, FeepaidReportComponent, AbsentReportComponent, ExpenseReportComponent]
 
 
 })

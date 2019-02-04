@@ -12,7 +12,6 @@ import { Batch } from '../../core/classes/batch';
 import { StudentReport } from '../../core/classes/student-report';
 import { StudentReportService } from '../../core/services/studentreport.service';
 
-
 @Component({
   selector: 'app-student-report',
   templateUrl: './student-report.component.html',
@@ -50,7 +49,6 @@ export class StudentReportComponent implements OnInit{
     
   }
 
-
   reset_details_value(){
     this.detail_type = this.default_detail_type;
 
@@ -64,7 +62,7 @@ export class StudentReportComponent implements OnInit{
     this.detail_type[8]=false;
 
   }
- 
+  
   constructor(
     private _studentreportService: StudentReportService,
     private studentreportService:StudentReportService,
@@ -150,6 +148,17 @@ export class StudentReportComponent implements OnInit{
 
     return new AngularCsv(this.rows, 'report', options);
   }
+
+  print(id) {
+    let printContents = document.getElementById(id).innerHTML;
+    let originalContents = document.body.innerHTML;
+
+    document.body.innerHTML = printContents;
+
+    window.print();
+
+    document.body.innerHTML = originalContents;
+}
 
 
 }
