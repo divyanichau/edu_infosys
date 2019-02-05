@@ -42,9 +42,7 @@ export class StudentReportComponent implements OnInit{
 
   onChange(newValue) {
     this.reset_details_value();
-
     this.detail_type[newValue] = true;
-
     this.studentReport.reset();
     
   }
@@ -85,7 +83,7 @@ export class StudentReportComponent implements OnInit{
     this._sub = this._studentreportService.get(this.student_report)
      .subscribe(data => {
        //console.log('RETURNED DATA',data)
-        this.rows =  data;
+        this.rows = data;
         this.rows = [...this.rows];
       });
      
@@ -105,6 +103,7 @@ export class StudentReportComponent implements OnInit{
    } 
  
   get_report(){
+   
    this.studentreport = true;
         
   }
@@ -148,17 +147,24 @@ export class StudentReportComponent implements OnInit{
 
     return new AngularCsv(this.rows, 'report', options);
   }
+    
+ 
 
-  print(id) {
-    let printContents = document.getElementById(id).innerHTML;
-    let originalContents = document.body.innerHTML;
-
-    document.body.innerHTML = printContents;
-
-    window.print();
-
-    document.body.innerHTML = originalContents;
-}
+  print(id) {   
+    console.log(id);
+    if(document.getElementById(id) != null){
+      var printContents = document.getElementById(id).innerHTML;
+      var originalContents = document.body.innerHTML;
+      document.body.innerHTML = printContents;
+      // var newWin = window.open("");  
+      // newWin.document.write(printContents.outerHTML);
+      window.print();
+      document.body.innerHTML = originalContents;
+    }
+    window.close(); 
+ 
+   
+  }
 
 
 }

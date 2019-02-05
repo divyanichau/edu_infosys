@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit,ViewChild} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -17,8 +17,18 @@ export class ExpenseReportComponent implements OnInit {
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
   expense_report: ExpenseReport = new ExpenseReport();
+  default_detail_type={1:false , 2:false};
+  detail_type=this.default_detail_type;
   expensereport= false;
   rows:any[]=[];
+  @ViewChild('expenseReport') public expenseReport:NgForm;
+
+  reset_details_value(){
+    this.detail_type = this.default_detail_type;
+    this.detail_type[1]=false;
+    this.detail_type[2]=false;
+  }
+
   constructor(
     private _expensereportService:ExpenseReportService,
     private _utils: UtilsService,
@@ -40,7 +50,16 @@ export class ExpenseReportComponent implements OnInit {
 
   }
 
+  onChange(newValue) {
+    this.reset_details_value();
+
+    this.detail_type[newValue] = true;
+   this.expenseReport.reset();
+    
+  }
+
   get_expensereport(){
+   
     this.expensereport = true;
   }
 

@@ -195,7 +195,7 @@
                 <div class="form-group col-sm-2">
 
                 <button type="submit" class="btn btn-primary col-sm-1 " (click)="get_report()" >Get report</button>
-                <button type="button" class="btn btn-danger col-sm-offset-8" (click)="print(dataTable)">print report</button>
+                <button type="button" class="btn btn-danger col-sm-offset-8" (click)="print('dataTable')">print report</button>
                   
                 <button type="button" class="btn btn-success col-sm-offset-1 button-margin"  (click) ="exportAsCSV(dataTable)">excel</button>  
                   </div>
@@ -210,11 +210,11 @@
   </div>
 
 
-        <div class="table-responsive"  *ngIf="studentreport">
-            <table class ="table">
+        <div class="table-responsive col-sm-12" id ="dataTable" *ngIf="studentreport">
+            <table class ="table" >
                <h3 class = "text-center panel-heading bg-primary"> Student Report</h3>
               <br>
-              <ngx-datatable #dataTable class="material expandable" [rows]="rows" expanded="expanded" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+              <ngx-datatable  class="material expandable" [rows]="rows" expanded="expanded" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
                 [footerHeight]="50" [rowHeight]="'auto'">
 
                 <ngx-datatable-column name="ID" prop="id">

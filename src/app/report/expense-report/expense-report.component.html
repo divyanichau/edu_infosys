@@ -19,25 +19,36 @@
                    <br>
                 <div class="panel-body">
                   <div class="row clearfix">
-                    <div class="col-sm-4">
+
+                      <div class="col-sm-4">
+                          <label for="reportfor" class="req">Report By</label>
+                          <select class="form-control" (change)="onChange($event.target.value)" name="reportby">
+                            <option value ="0">Select option</option>
+                            <option value ="1">category</option>
+                            <option value ="2">Datewise</option>
+                            <!-- <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option> -->
+                          </select>
+                        </div>
+
+                    <div class="col-sm-4" *ngIf ="detail_type[1]">
                       <label for="reportfor" class="req">Expense Category </label>
-                      <select class="form-control" [(ngModel)] ="expense_report.category" name="expensecategory">
-                        <option value ="0">Select option</option>
-                        <option value ="1">maintainance</option>
-                        <option value = "2">construction</option>
-                        <option value = "3">employee payment</option>
-                         <option value ="4">donate</option>
+                      <select class="form-control" [(ngModel)] ="expense_report.category" name="expensecategory" required>
+                        <option>Select option</option>
+                        <option>maintainance</option>
+                        <option>construction</option>
+                        <option>employee payment</option>
+                         <option>donate</option>
                         <!-- <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option> -->
                       </select>
                     </div>
 
-                      <div class="col-sm-4">
+                      <div class="col-sm-4" *ngIf ="detail_type[2]">
                         <label for="fromdate">From date</label>
                         <input type="date" class="form-control" [(ngModel)]="expense_report.from_date" name="fromdate"
                           required>
                       </div>
 
-                      <div class="col-sm-4">
+                      <div class="col-sm-4"*ngIf ="detail_type[2]">
                         <label for="todate">To date</label>
                         <input type="date" class="form-control" [(ngModel)]="expense_report.to_date" name="todate" placeholder=""
                           required>
