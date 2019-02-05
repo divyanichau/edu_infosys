@@ -55,17 +55,17 @@ export class FeeAllocateService{
       ),);
   }
 
-//   getExpenseCategy(): Observable<ExpenseType[]> {
-//     //this.beforeRequest();
-//     const options = this._utils.makeOptions(this._headers);
+  getFeeAllocation(): Observable<AllocateFees[]> {
+    //this.beforeRequest();
+    const options = this._utils.makeOptions(this._headers);
 
-//     return this._http.get(`${this._expenseTypeUrl}`, options).pipe(
-//       map((res: Response) => res.json()),
-//       tap(
-//       data => this.afterGetRequest(),
-//       error => { console.log(error); }
-//       ),);
-//   }
+    return this._http.get(`${this._feeAllocationUrl}`, options).pipe(
+      map((res: Response) => res.json()),
+      tap(
+      data => this.afterGetRequest(),
+      error => { console.log(error); }
+      ),);
+  }
 
 //   updateExpenseType(_expenseType: any[],id:number): Observable<ExpenseType> {
 //     this.beforeRequest();

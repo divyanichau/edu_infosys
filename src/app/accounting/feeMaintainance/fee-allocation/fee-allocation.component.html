@@ -16,22 +16,27 @@
       <div class="panel-body">
        
         <div class="table-responsive">
-          <ngx-datatable class="material" [rows]="_feeCategories" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
-            [footerHeight]="50" [rowHeight]="'auto'" [limit]="4">
+          <ngx-datatable class="material" [rows]="_allocated_fees" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+            [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
 
-            <ngx-datatable-column name="ID" prop="id">
+            <ngx-datatable-column name="Course" prop="course">
               <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
               <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
             </ngx-datatable-column>
 
 
 
-            <ngx-datatable-column name="Name" prop="name">
+            <ngx-datatable-column name="Class" prop="class">
               <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
               <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
             </ngx-datatable-column>
 
-            <ngx-datatable-column name="Description" prop="description">
+            <ngx-datatable-column name="Fee Category" prop="fee_category">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Total Amount" prop="total_amount">
               <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
               <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
             </ngx-datatable-column>

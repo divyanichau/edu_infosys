@@ -24,6 +24,7 @@ export class FeeAllocationComponent implements OnInit {
   classes: import("/home/dinesh/projects/Btech-EduInfosis/FrontEnd/src/app/core/classes/class")._class[];
   selected_class: number;
   _feeAlloation : AllocateFees = new AllocateFees()
+  _allocated_fees : AllocateFees[]
   selected_fee_for: number;
 
 
@@ -36,7 +37,7 @@ export class FeeAllocationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.initCourse()
+    this.initFeeAllocation()
    
   }
 
@@ -106,8 +107,17 @@ allocateFees(){
     this._sub = this._feeAllocationService.feeAllocate(this._feeAlloation)
       .subscribe(data => {
        
-        // this.initFeeCategory()
+        this.initFeeAllocation()
       });
+}
+
+initFeeAllocation(){
+  this._utils.unsubscribeSub(this._sub);
+  this._sub = this._feeAllocationService.getFeeAllocation()
+    .subscribe(data => {
+      this._allocated_fees = data
+   this.initCourse()
+    });
 }
 
 
