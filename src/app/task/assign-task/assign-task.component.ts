@@ -23,8 +23,9 @@ import { Batch} from '../../core/classes/batch';
   selector: 'app-assign-task',
   templateUrl: './assign-task.component.html',
   styleUrls: []
-})
-export class AssignTaskComponent implements OnInit {
+ })
+
+ export class AssignTaskComponent implements OnInit {
 	  private _sub: Subscription = undefined;
     private _typeSub: Subscription = undefined;
 

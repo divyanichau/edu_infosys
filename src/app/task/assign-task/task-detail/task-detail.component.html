@@ -19,14 +19,14 @@
               <div class="col-md-6 ">
                 <label for="task-name">Task Name</label>
                   <input type="text" class="form-control" [(ngModel)]="task.name" name="task-name"  placeholder="Enter Task Name" required>
-           </div>
+              </div>
    
             <div class="col-md-6 form-top-margin">
                    <label for="description">Description</label>
                      <input type="text" class="form-control" [(ngModel)]="task.description" name="description"  minlength="8" placeholder="Enter description" required>
             </div>
    
-           <div class="col-md-6 form-top-margin ">
+             <div class="col-md-6 form-top-margin ">
                <label for="reg_input_name">Priority</label>
                     <select class="form-control" [(ngModel)]="task.priority"  name="Taskmanager[task_priority]" id="Taskmanager_task_priority">
                       <option value="">Please Select</option>
@@ -44,8 +44,8 @@
             </div>
 
              <div class="col-md-6 form-top-margin">
-                <label for="user_type">User type</label>
-                  <input type="text" class="form-control" [(ngModel)]="task.user_type"  name="user_type"   placeholder="" required>
+                <label for="user">User </label>
+                  <input type="text" class="form-control" [(ngModel)]="task.user"  name="user"   placeholder="" required>
                  
             </div>
                      <!-- <select class="form-control" (change)="onChange($event.target.value)" name="user" [(ngModel)]="task.user">
@@ -75,9 +75,8 @@
                    <label for="student">Student</label>
                   <select class="form-control" [(ngModel)]="selected_student" name="student" required>
                      <option *ngFor="let s of student" [ngValue]="s.id">{{s.user.first_name}}</option>
-                   
-               </select>
-      </div>
+                    </select>
+              </div>
         
          
           <div class="row clearfix"> 
@@ -89,7 +88,7 @@
                      <option value="2">On hold</option>
                      <option value="3">Resolved</option>
                      <option value="4">Closed</option>
-               </select>
+                 </select>
             </div>
          </div> 
        

@@ -36,7 +36,6 @@ export class StudentService {
   get(): Observable<Student[]> {
     this.beforeRequest();
     const options = this._utils.makeOptions(this._headers);
-
     return this._http.get(`${this._studentUrl}`, options).pipe(
       map((res: Response) => res.json()),
       tap(

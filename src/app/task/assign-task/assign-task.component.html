@@ -45,7 +45,6 @@
                  
             </div>
 
-          <!-- <div class="row clearfix"> -->
               <div class="col-md-6 form-top-margin">
                 <label for="user_type">User type</label>
                     <select class="form-control" (change)="onChange($event.target.value)" name="user" [(ngModel)]="task.user">
@@ -73,8 +72,7 @@
             <div class="col-md-6 form-top-margin">
                    <label for="student">Student</label>
                   <select class="form-control" [(ngModel)]="selected_student" name="student" required>
-                     <option *ngFor="let s of student" [ngValue]="s.id">{{s.user.first_name}}</option>
-                   
+                     <option *ngFor="let s of student" [ngValue]="s.id">{{s.user.first_name}}</option> 
                </select>
             </div>
           </div> 
