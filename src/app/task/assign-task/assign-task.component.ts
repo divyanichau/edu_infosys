@@ -55,7 +55,6 @@ import { Batch} from '../../core/classes/batch';
    reset_details_value(){
 
     this.detail_type = this.default_detail_type;
-
     this.detail_type[1]=false;
     this.detail_type[3]=false;
   }
@@ -140,11 +139,9 @@ import { Batch} from '../../core/classes/batch';
         this.loadEvents();
         if(this.student.length > 0){
          this.selected_student = this.student[0].id;
-      }
-         
+      }      
      }
     );
-
    }
 
 

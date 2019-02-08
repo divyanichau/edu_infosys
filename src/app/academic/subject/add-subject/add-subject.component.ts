@@ -50,9 +50,7 @@ export class AddSubjectComponent implements OnInit , OnDestroy{
     console.log(this.subject)
     this._sub = this._subjectService.add(this.subject)
       .subscribe(data => {
-        console.log(data);
-         this.toastr.success('Subject Added !', 'Success',{timeOut: 3000});
-
+       this.loadSubjects();
       });
   }
 
@@ -88,10 +86,10 @@ export class AddSubjectComponent implements OnInit , OnDestroy{
         this._subjectService.delete(id).subscribe(data => 
           {
           //console.log(data);
+          alert("Deleted");
           // this.toastr.success('Vehicle Added !', 'Success', { timeOut: 3000 });
          },(err)=>{
            console.log(err);
-           alert(err);
          }
          );
        }

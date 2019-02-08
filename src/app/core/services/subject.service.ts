@@ -87,7 +87,7 @@ export class SubjectService {
    // const body = JSON.stringify(subject);
 
     return this._http.delete(`${this._teacherUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
-      map((res: Response) => res.json().data),
+      map((res: Response) => res.json()),
       tap(
     //  data => this.afterDeteleRequestRequest(),
       //error => { this.showError(error) }
