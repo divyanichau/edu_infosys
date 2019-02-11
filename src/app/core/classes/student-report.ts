@@ -8,7 +8,6 @@ export class StudentReport {
 
   report:string;
   batch: string;
-  _batch:string;
   category:string;
 
   religion: number;

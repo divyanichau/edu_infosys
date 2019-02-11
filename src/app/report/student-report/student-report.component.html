@@ -11,7 +11,7 @@
            </ul>
          </div>
         <div class="row ">
-          <form (ngSubmit) ="onSubmit(studentReport1)" #studentReport1 ="ngForm">
+          <form (ngSubmit) ="onSubmit()" #studentReport1 ="ngForm">
             <div class="col-sm-12">
               <div class="card">
                   <h4 class ="panel-heading bg-primary">
@@ -122,13 +122,15 @@
                       </select>
                     </div>
 
-                     <div class="col-sm-4">
-                      <label for="reg_input" class="req">school/batch</label>
-                      <select class="form-control" [(ngModel)]="student_report.batch" name="batch" >
-                        <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option>
-                        <option>2071 coded</option>
+                    <div class="col-sm-4">
+                      <label for="class" class="req">Select Class </label>
+                      <select class="form-control" [(ngModel)]="student_report.class" name="class">
+                        <!-- <option>class-1</option>
+                        <option>class-2</option>
+                        <option>class-3</option> -->
+                        <option *ngFor="let c of classes" [ngValue]="c.id">{{c.name}}</option> 
                       </select>
-                    </div>
+                  </div>
 
                 </div> 
                  <br>
@@ -195,7 +197,7 @@
                 <div class="form-group col-sm-2">
 
                 <button type="submit" class="btn btn-primary col-sm-1 " (click)="get_report()" >Get report</button>
-                <button type="button" class="btn btn-danger col-sm-offset-8" (click)="print('dataTable')">print report</button>
+                <button type="button" class="btn btn-danger col-sm-offset-8" (click)="do_print('dataTable')">print report</button>
                   
                 <button type="button" class="btn btn-success col-sm-offset-1 button-margin"  (click) ="exportAsCSV(dataTable)">excel</button>  
                   </div>
@@ -210,19 +212,19 @@
   </div>
 
 
-        <div class="table-responsive col-sm-12" id ="dataTable" *ngIf="studentreport">
-            <table class ="table" >
+       <div style="overflow-x:auto;" class="table-responsive "  *ngIf="studentreport">
+            <table class ="table table-bordered " > 
                <h3 class = "text-center panel-heading bg-primary"> Student Report</h3>
               <br>
-              <ngx-datatable  class="material expandable" [rows]="rows" expanded="expanded" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
-                [footerHeight]="50" [rowHeight]="'auto'">
+              <ngx-datatable  class="material" [rows]="rows" expanded="expanded" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+                [footerHeight]="50" [rowHeight]="'auto'" [columnMode]="'flex'">
 
-                <ngx-datatable-column name="ID" prop="id">
+                <ngx-datatable-column name="ID" prop="id" [flexGrow]="0.5">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Adm No" prop="admission_no">
+                <ngx-datatable-column name="Adm No" prop="admission_no" [flexGrow]="1">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">{{value}}
                   </ng-template>
@@ -240,20 +242,9 @@
                  </ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Batch" prop="batch">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">{{value}}
-                 </ng-template>
-                </ngx-datatable-column>
+               
 
                 <ngx-datatable-column name="Contact No" prop="phone.number" *ngIf ="!phonenumber">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">{{value}}
-                 </ng-template>
-                </ngx-datatable-column>
-
-
-                <ngx-datatable-column name="Class" prop="class">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">{{value}}
                  </ng-template>
@@ -337,7 +328,40 @@
 
  </div>
       
-      
+   <div  style="overflow-x:auto;display:none" class =" table table-reponsive table-bordered  center " id ="dataTable">
+      <h3 class="text-center panel-heading bg-primary">Student Report</h3> 
+     <table class="col-sm-12">
+  
+       <tr>
+         <td>suraj</td>
+         <td>dinesh</td>
+         <td>ram</td>
+         <td>get_email</td>
+         <td>shyam</td>
+         <td>manish</td>
+         <td>suraj</td>
+         <td>dinesh</td>
+         <td>ram</td>
+         <td>get_email</td>
+         <td>shyam</td>
+         <td>manish</td>
+       </tr>
+       <tr>
+          <td>surajxxxxxxxxxxxxxyyyyyyyyyyyyyyyyyyyyzzzzzzzzzzzzzzz</td>
+          <td>dinesh</td>
+          <td>ram</td>
+          <td>get_email</td>
+          <td>shyam</td>
+          <td>manish</td>
+          <td>suraj</td>
+          <td>dinesh</td>
+          <td>ram</td>
+          <td>get_email</td>
+          <td>shyam</td>
+          <td>manish</td>
+        </tr>
+     </table>
+   </div>   
 
 
              

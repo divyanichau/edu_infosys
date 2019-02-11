@@ -8,7 +8,8 @@ import { ToastrService } from 'ngx-toastr';
 import { DatatableComponent} from "@swimlane/ngx-datatable";
 import { BatchService } from '../../core/services/batch.service';
 import { UtilsService } from '../../shared/services/utils.service';
-import { Batch } from '../../core/classes/batch';
+import {ClassService} from '../../core/services/class.service';
+import {_class} from '../../core/classes/class';
 import { StudentReport } from '../../core/classes/student-report';
 import { StudentReportService } from '../../core/services/studentreport.service';
 
@@ -25,9 +26,9 @@ export class StudentReportComponent implements OnInit{
   studentemail = false;
 	student_report: StudentReport = new StudentReport();
 	selected_student :number;
-   batch: Batch[];
-   selected_batch :number;
-   default_detail_type={1:false , 2:false ,3:false , 4:false, 5:false, 6:false , 7:false, 8:false};
+  classes: _class[];
+  selected_class :number;
+  default_detail_type={1:false , 2:false ,3:false , 4:false, 5:false, 6:false , 7:false, 8:false};
   detail_type=this.default_detail_type;
   phonenumber :boolean = true;
   email :boolean = true;
@@ -44,7 +45,8 @@ export class StudentReportComponent implements OnInit{
     this.reset_details_value();
     this.detail_type[newValue] = true;
     this.studentReport.reset();
-    
+  
+     
   }
 
   reset_details_value(){
@@ -64,7 +66,8 @@ export class StudentReportComponent implements OnInit{
   constructor(
     private _studentreportService: StudentReportService,
     private studentreportService:StudentReportService,
-  	private _batchService: BatchService,
+    private _batchService: BatchService,
+    private _classService:ClassService,
   	private _utils: UtilsService,
     private router: Router,
     private toastr: ToastrService) {
@@ -74,7 +77,7 @@ export class StudentReportComponent implements OnInit{
   
     this.reset_details_value;
     this.detail_type[1] =true;
-    this.LoadBatch();
+   this.LoadClass()
   }
   
   onSubmit() {
@@ -89,21 +92,22 @@ export class StudentReportComponent implements OnInit{
      
   }
 
-  LoadBatch() {
+  LoadClass() {
     this._utils.unsubscribeSub(this._sub);
-    this._sub = this._batchService.get().subscribe(
+    this._sub = this._classService.get().subscribe(
       data => {
-        isArray(data) ? this.batch = data : data;
-        console.log(this.batch);
-        if(this.batch.length > 0){
-         this.selected_batch = this.batch[0].id;
+        isArray(data) ? this.classes = data : data;
+        console.log(this.classes);
+        if(this.classes.length > 0){
+         this.selected_class = this.classes[0].id;
+       
         }
       }
     );
-   } 
+  }
  
   get_report(){
-   
+   console.log('get report..')
    this.studentreport = true;
         
   }
@@ -150,19 +154,71 @@ export class StudentReportComponent implements OnInit{
     
  
 
-  print(id) {   
-    console.log(id);
-    if(document.getElementById(id) != null){
-      var printContents = document.getElementById(id).innerHTML;
-      var originalContents = document.body.innerHTML;
-      document.body.innerHTML = printContents;
-      // var newWin = window.open("");  
-      // newWin.document.write(printContents.outerHTML);
-      window.print();
-      document.body.innerHTML = originalContents;
-    }
-    window.close(); 
- 
+  do_print(id) {   
+     console.log(id);
+     if(document.getElementById(id) != null){
+       var printContents = document.getElementById(id).innerHTML;
+       console.log(printContents)
+       var popupWin = window.open('', '_blank', 'top=0,left=0,height=auto,width=auto');
+        popupWin.document.open();
+       popupWin.document.write(`
+       <html>
+        <head>
+          <title>Btech School Name</title>
+
+          <style>
+          #dataTable {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+          }
+
+          title{
+            text-center;
+          }
+          h3 { 
+          
+            text-align: center;
+          }
+          table ,td{
+            overflow: hidden;
+          
+        
+            border: 1px solid black ;
+            border-collapse: collapse;
+          
+           
+          }
+
+          td {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+           
+            padding: 8px;
+          }
+          .center {
+            margin: auto;
+            width: 50%;
+            padding: 10px;
+          }
+          
+          
+          //........Customized style.......
+          </style>
+        </head>
+       <body onload="window.print();window.close()">${printContents}</body>
+       </html>`
+       );
+       popupWin.document.close();
+      // document.body.innerHTML = printContents;
+       //window.print();
+      // document.body.innerHTML = originalContents;
+      } else{
+        alert('please see a report first')
+      
+      }
+    
    
   }
 

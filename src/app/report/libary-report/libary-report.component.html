@@ -1,0 +1,207 @@
+
+<div class="body">
+  <div class="content-wrapper">
+    <div class="content">
+      <div class="page-header">
+        <div class ="col-sm-12 bg-info">
+        <ul class="page-breadcrumb breadcrumb">
+          <li><a routerLink="/"><i class="material-icons">home</i> Home</a></li>
+          <li><a routerLink="/report/">Report</a></li>
+          <li><a> Libary Report</a></li>
+        </ul>
+      </div>
+        <div class="row ">
+          <form (ngSubmit) ="onSubmit()" #libaryReport ="ngForm">
+            <div class="col-sm-12">
+              <div class="card">
+                  <h4 class="panel-heading bg-primary ">
+                    Libary Report</h4>
+                   <br>
+                <div class="panel-body">
+                  <div class="row clearfix">
+                    <div class="col-sm-4">
+                      <label for="reportfor" class="req"> Report for </label>
+                      <select class="form-control" [(ngModel)]="libary_report.report_for" (change)="onChange($event.target.value)" name="reportfor">
+                        <option value ="option">Select option</option>
+                        <option value ="availablebook">Available Books</option>
+                        <option value ="issuedbook">issued Books</option>
+                        <!--<option value = "3">student wise</option>-->
+                        <!-- <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option> -->
+                      </select>
+                    </div>
+
+                    <div class="col-sm-4" *ngIf ="issuedbook">
+                      <label for="reporttype" class="req">Report type</label>
+                      <select class="form-control" (change)="OnChange($event.target.value)" name="reporttype" >
+                        <!-- <option *ngFor="let f of fee" [ngValue]="f.id">{{f.name}}</option> -->
+                        <option value ="0">select one</option>
+                        <option value ="datewise">Date Wise</option>
+                        <option value ="classwise">Class Wise</option>
+                        <option value ="sectionwise">section Wise</option>
+                        
+                      </select>
+                    </div>
+
+                    <div class="col-sm-4" *ngIf ="classwise">
+                      <label for="selectclass" class="req">  Class</label>
+                      <select class="form-control"[(ngModel)]="libary_report.class_name"  name="selectclass" >
+                        <!-- <option *ngFor="let f of fee" [ngValue]="f.id">{{f.name}}</option> -->
+                        <option value ="0">select option</option>
+                        <option value ="3">Class1</option>
+                        <option value ="4">Class2</option>
+                       
+                      </select>
+                    </div>
+
+                    <div class="col-sm-4" *ngIf ="sectionwise">
+                        <label for="section" class="req"> Section</label>
+                        <select class="form-control"[(ngModel)]="libary_report.section"  name="section" >
+                          <!-- <option *ngFor="let f of fee" [ngValue]="f.id">{{f.name}}</option> -->
+                          <option value ="0">select option</option>
+                          <option value ="3">Class1</option>
+                          <option value ="4">Class2</option>
+                         
+                        </select>
+                      </div>
+
+
+                   <div class="col-sm-4" *ngIf ="datewise">
+                        <label for="date">start date</label>
+                        <input type="date" class="form-control" [(ngModel)]="libary_report.start_date" name="date" 
+                          required>
+                  </div>
+                  <div class="col-sm-4" *ngIf ="datewise">
+                    <label for="date">end date</label>
+                    <input type="date" class="form-control" [(ngModel)]="libary_report.end_date" name="enddate" 
+                      required>
+                </div>
+
+                </div>
+                <br> 
+                <div class ="row">
+                <div class="form-group cols-sm-2">
+                        
+                         <button type="submit" class="btn btn-success col-sm-offset-10 " *ngIf ="issuedbook" (click)="get_reporttype()">view</button> 
+                         <button type="submit" class="btn btn-danger col-sm-offset-1  button-margin" >print</button> 
+                  
+                  </div>
+                 </div>
+                </div>
+              </div>
+            </div>
+         </form>
+       </div>
+     </div>
+    </div>
+  </div>
+  
+    <!--table start for available books-->
+    <div class="table-responsive" id ="dataTable" *ngIf="availablebook">
+      <table class = "table table-bordered ">
+          <h3 class ="text-center panel-heading bg-primary">Available Books</h3>
+        <br>
+        <ngx-datatable class="material" [rows]="rows" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+          [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+
+          <ngx-datatable-column name="ID" prop="id">
+            <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+            <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="ISBN No" prop="isbn_num">
+            <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+            <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Book No." prop="book_no">
+            <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+            <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Title" prop="title">
+            <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+            <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Author" prop="author">
+            <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+            <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Edition" prop="edition">
+            <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+            <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Category" prop="category">
+            <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+            <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Language" prop="language">
+            <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+            <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+          </ngx-datatable-column>
+    
+        </ngx-datatable> 
+      </table>
+    </div>
+
+<!--end of table for available books-->
+<!--table start for reporttype-->
+  <div class="table-responsive" id ="dataTable" *ngIf="reportType">
+    <table class = "table table-bordered ">
+        <h3 class ="text-center panel-heading bg-primary">Libary Report</h3>
+      <br>
+      <ngx-datatable class="material" [rows]="rows" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+        [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+
+          <ngx-datatable-column name="ID" prop="id">
+            <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+            <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="ISBN No" prop="isbn_num">
+            <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+            <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Book No." prop="book_no">
+            <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+            <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Title" prop="title">
+            <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+            <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="User Type" prop="user_type">
+            <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+            <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="User" prop="user">
+            <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+            <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Issue Date" prop="issue_date">
+            <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+            <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Due Date" prop="due_date">
+            <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+            <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable> 
+      </table>
+    </div>
+<!--table end for reporttype-->  
+
+
+</div>
+
+       
+      
+
+
+             
+
