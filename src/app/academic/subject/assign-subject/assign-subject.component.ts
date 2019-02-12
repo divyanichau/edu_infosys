@@ -61,10 +61,7 @@ export class AssignSubjectComponent implements OnInit , OnDestroy{
 
   ngOnInit() {
     this.initSubject();
-    this.loadCourses();
-
-   
-    
+    this.loadCourses();    
   }
 
   ngOnDestroy() {

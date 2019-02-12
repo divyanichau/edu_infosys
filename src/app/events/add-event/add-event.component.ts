@@ -45,7 +45,6 @@ export class AddEventComponent implements OnInit , OnDestroy{
     ) { }
 
    ngOnInit() {
-     
       this.loadEvents();
    	}
 
@@ -62,7 +61,6 @@ export class AddEventComponent implements OnInit , OnDestroy{
    console.log("fcrcr",this._event)
     this._sub = this._eventService.addEvent(this._event)
       .subscribe(data => {
-        //console.log(data);
          this.toastr.success('Event Added !', 'Success',{timeOut: 3000});
 
       });
@@ -77,9 +75,6 @@ export class AddEventComponent implements OnInit , OnDestroy{
         this.selected_event = this.events[0].id;
          this.loadManager();
     });
-       // if(this.event.length > 0){
-         // this.selected_event = this.events[0].id;
-         
         }
 
 
@@ -95,7 +90,6 @@ export class AddEventComponent implements OnInit , OnDestroy{
   }
 
  initEvent() {
-  //console.log("evet loaded")
     this._utils.unsubscribeSub(this._typeSub);
       this._sub = this._eventService.getEvent().subscribe(
       data => {
