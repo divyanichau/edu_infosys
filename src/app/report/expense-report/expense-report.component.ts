@@ -17,23 +17,39 @@ export class ExpenseReportComponent implements OnInit {
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
   expense_report: ExpenseReport = new ExpenseReport();
-  default_detail_type={1:false , 2:false};
-  detail_type=this.default_detail_type;
+  category:boolean =false;
+  datewise:boolean =false;
   expensereport= false;
   rows:any[]=[];
-  @ViewChild('expenseReport') public expenseReport:NgForm;
-
-  reset_details_value(){
-    this.detail_type = this.default_detail_type;
-    this.detail_type[1]=false;
-    this.detail_type[2]=false;
-  }
+  
+  @ViewChild('expenseReport') public expenseReport:NgForm
 
   constructor(
     private _expensereportService:ExpenseReportService,
     private _utils: UtilsService,
     private router: Router,
     private toastr: ToastrService) { }
+
+    onChange(newValue) {
+      if(newValue == "category"){
+        this.reset_report();
+        this.category =true;
+      }else if(newValue =="datewise"){
+        console.log(newValue);
+        this.reset_report();
+        this.datewise =true;
+      }else{
+       this.reset_report();
+       this.expensereport =false;
+      }
+     this.expenseReport.reset();
+      
+    }
+
+    reset_report(){
+      this.datewise =false;
+      this.category =false;
+    }
 
   ngOnInit() {
   }
@@ -48,14 +64,6 @@ export class ExpenseReportComponent implements OnInit {
        
       });
 
-  }
-
-  onChange(newValue) {
-    this.reset_details_value();
-
-    this.detail_type[newValue] = true;
-   this.expenseReport.reset();
-    
   }
 
   get_expensereport(){

@@ -16,7 +16,7 @@ import { StudentReportService } from '../../core/services/studentreport.service'
 @Component({
   selector: 'app-student-report',
   templateUrl: './student-report.component.html',
-  styleUrls: ['./student-report.component.css']
+  styleUrls: ['../../../assets/css/report-table.css']
 })
 export class StudentReportComponent implements OnInit{
 
@@ -24,12 +24,12 @@ export class StudentReportComponent implements OnInit{
   private _typeSub: Subscription = undefined;
   studentreport= false;
   studentemail = false;
+  printbutton =false;
+  csvbutton=false;
 	student_report: StudentReport = new StudentReport();
 	selected_student :number;
   classes: _class[];
   selected_class :number;
-  default_detail_type={1:false , 2:false ,3:false , 4:false, 5:false, 6:false , 7:false, 8:false};
-  detail_type=this.default_detail_type;
   phonenumber :boolean = true;
   email :boolean = true;
   address : boolean= true;
@@ -38,30 +38,66 @@ export class StudentReportComponent implements OnInit{
   amount:boolean = true;
   rows: any[] = [];
 
+  hostel:boolean=false;
+  bloodgroup:boolean=false;
+  category:boolean=false;
+  state:boolean=false;
+  religion:boolean =false;
+  gender:boolean=false;
+  fees:boolean=false;
+  transport:boolean=false;
+
   @ViewChild('studentReport1') public studentReport:NgForm;
   @ViewChild('dataTable')  public dataTable: DatatableComponent;
 
   onChange(newValue) {
-    this.reset_details_value();
-    this.detail_type[newValue] = true;
+   
+    if(newValue =="hostel"){
+      this.reset_report()
+      this.hostel =true;
+    } else if(newValue =="bloodgroup"){
+      this.reset_report()
+      this.bloodgroup =true; 
+    }else if(newValue =="category"){
+      this.reset_report()
+      this.category =true;
+    }else if(newValue =="state"){
+      this.reset_report()
+      this.state =true;
+    }else if(newValue =="religion"){
+      this.reset_report()
+      this.religion= true;
+    }else if(newValue =="gender"){
+      this.reset_report()
+      this.gender =true;
+    }else if(newValue =="fees"){
+      this.reset_report()
+      this.fees =true;
+    }else if(newValue =="transport"){
+      this.reset_report()
+      this.transport =true;
+    }else{
+     this.reset_report()
+     this.studentreport = false;
+    }
+
     this.studentReport.reset();
-  
+
      
   }
 
-  reset_details_value(){
-    this.detail_type = this.default_detail_type;
-
-    this.detail_type[1]=false;
-    this.detail_type[2]=false;
-    this.detail_type[3]=false;
-    this.detail_type[4]=false;
-    this.detail_type[5]=false;
-    this.detail_type[6]=false;
-    this.detail_type[7]=false;
-    this.detail_type[8]=false;
-
+  reset_report(){
+    this.hostel =false;
+    this.bloodgroup =false; 
+    this.fees =false;
+    this.category =false;
+    this.gender =false;
+    this.state =false;
+    this.religion =false;
+    this.transport =false;
   }
+
+ 
   
   constructor(
     private _studentreportService: StudentReportService,
@@ -74,9 +110,6 @@ export class StudentReportComponent implements OnInit{
    }
 
   ngOnInit() { 
-  
-    this.reset_details_value;
-    this.detail_type[1] =true;
    this.LoadClass()
   }
   
@@ -109,6 +142,8 @@ export class StudentReportComponent implements OnInit{
   get_report(){
    console.log('get report..')
    this.studentreport = true;
+   this.printbutton =true;
+   this.csvbutton =true;
         
   }
     
@@ -152,8 +187,6 @@ export class StudentReportComponent implements OnInit{
     return new AngularCsv(this.rows, 'report', options);
   }
     
- 
-
   do_print(id) {   
      console.log(id);
      if(document.getElementById(id) != null){
@@ -164,56 +197,12 @@ export class StudentReportComponent implements OnInit{
        popupWin.document.write(`
        <html>
         <head>
-          <title>Btech School Name</title>
-
-          <style>
-          #dataTable {
-            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-          }
-
-          title{
-            text-center;
-          }
-          h3 { 
-          
-            text-align: center;
-          }
-          table ,td{
-            overflow: hidden;
-          
-        
-            border: 1px solid black ;
-            border-collapse: collapse;
-          
-           
-          }
-
-          td {
-            padding-top: 12px;
-            padding-bottom: 12px;
-            text-align: left;
-           
-            padding: 8px;
-          }
-          .center {
-            margin: auto;
-            width: 50%;
-            padding: 10px;
-          }
-          
-          
-          //........Customized style.......
-          </style>
+          <link rel="stylesheet" type="text/css" href="../../../assets/css/report-table.css">
         </head>
        <body onload="window.print();window.close()">${printContents}</body>
        </html>`
        );
        popupWin.document.close();
-      // document.body.innerHTML = printContents;
-       //window.print();
-      // document.body.innerHTML = originalContents;
       } else{
         alert('please see a report first')
       

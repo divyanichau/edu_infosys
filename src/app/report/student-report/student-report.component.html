@@ -23,20 +23,20 @@
                     <div class="col-sm-4">
                       <label for="category" class="req"> Select Category</label>
                       <select class="form-control"  (change)="onChange($event.target.value)" name=" selectcategory">
-                        <option value ="0">Select option</option> 
-                        <option value ="1">hostel</option>
-                        <option value = "2">bloodgroup</option>
-                        <option value = "3">category</option>
-                         <option value ="4">State</option>
-                        <option value ="5">gender</option>
-                        <option value = "6">religion</option>
-                        <option value = "7">fees</option>
-                        <option value = "8">transport</option>
+                        <option value ="option">Select option</option> 
+                        <option value ="hostel">hostel</option>
+                        <option value = "bloodgroup">bloodgroup</option>
+                        <option value = "category">category</option>
+                         <option value ="state">state</option>
+                        <option value ="gender">gender</option>
+                        <option value = "religion">religion</option>
+                        <option value = "fees">fees</option>
+                        <option value = "transport">transport</option>
 
                       </select>
                     </div>
 
-                    <div class="col-sm-4"*ngIf ="detail_type[1]">
+                    <div class="col-sm-4"*ngIf ="hostel">
                       <label for="reg_input" class="req">Hostel Name</label>
                       <select class="form-control" [(ngModel)]="student_report.hostelname" name="hostelname" >
                         <!-- <option *ngFor="let h of hostel" [ngValue]="h.id">{{h.name}}</option> -->
@@ -45,7 +45,7 @@
                       </select>
                     </div>
 
-                     <div class="col-sm-4"*ngIf ="detail_type[3]">
+                     <div class="col-sm-4"*ngIf ="category">
                       <label for="category" class="req">Category</label>
                       <select class="form-control" [(ngModel)]="student_report.category" name="category" >
                         <!-- <option *ngFor="let c of category" [ngValue]="b.id">{{b.name}}</option> -->
@@ -54,7 +54,7 @@
                       </select>
                     </div>
 
-                    <div class="col-sm-4"*ngIf ="detail_type[4]">
+                    <div class="col-sm-4"*ngIf ="state">
                       <label for="state" class="req">State</label>
                       <select class="form-control" [(ngModel)]="student_report.state" name="state" >
                         <!-- <option *ngFor="let s of state" [ngValue]="s.id">{{s.name}}</option> -->
@@ -64,39 +64,38 @@
                       </select>
                     </div>
 
-                    <div class="col-sm-4"*ngIf ="detail_type[5]">
+                    <div class="col-sm-4"*ngIf ="gender">
                       <label for="gender" class="req">Gender</label>
                       <select class="form-control" [(ngModel)]="student_report.gender" name="gender" >
-                        <!-- <option *ngFor="let g of gender" [ngValue]="b.id">{{b.name}}</option> -->
+                        <!-- <option *ngFor="let g of gender" [ngValue]="g.id">{{g.name}}</option> -->
                         <option value ="1">male</option>
                         <option value ="2">female</option>
                         
                       </select>
                     </div>
 
-                     <div class="col-sm-4"*ngIf ="detail_type[6]">
+                     <div class="col-sm-4"*ngIf ="religion">
                       <label for="religion" class="req">Religion</label>
                       <select class="form-control" [(ngModel)]="student_report.religion" name="religion" >
-                        <!-- <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option> -->
-                        <option value ="1">Hindu</option>
-                        <option value="2">muslim</option>
-                        <option value="3">christian</option>
+                       
+                        <option>hindu</option>
+                        <option>muslim</option>
+                        <option>christian</option>
                         
                       </select>
                     </div>
 
-                    <div class="col-sm-4"*ngIf ="detail_type[7]">
+                    <div class="col-sm-4"*ngIf ="fees">
                       <label for="fees" class="req">Fees</label>
                       <select class="form-control" [(ngModel)]="student_report.fees" name="fees" >
-                        <!-- <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option> -->
-                        <option value ="1">uniform</option>
-                        <option value="2">mothlyfee</option>
-                        <option value ="3">labfee</option>
+                        <option>uniform</option>
+                        <option>monthlyfee</option>
+                        <option>labfee</option>
                         
                       </select>
                     </div>
 
-                     <div class="col-sm-4"*ngIf ="detail_type[8]">
+                     <div class="col-sm-4"*ngIf ="transport">
                       <label for="routecode" class="req">Route Code*</label>
                       <select class="form-control" [(ngModel)]="student_report.route_code" name="routecode" >
                         <!-- <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option> -->
@@ -107,7 +106,7 @@
                       </select>
                     </div>
 
-                    <div class="col-sm-4" *ngIf ="detail_type[2]">
+                    <div class="col-sm-4" *ngIf ="bloodgroup">
                       <label for="bloodgroup" class="req">Bloodgroup</label>
                       <select class="form-control" [(ngModel)]="student_report.blood_group" name="bloodgroup" >
                         <!-- <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option> -->
@@ -125,9 +124,6 @@
                     <div class="col-sm-4">
                       <label for="class" class="req">Select Class </label>
                       <select class="form-control" [(ngModel)]="student_report.class" name="class">
-                        <!-- <option>class-1</option>
-                        <option>class-2</option>
-                        <option>class-3</option> -->
                         <option *ngFor="let c of classes" [ngValue]="c.id">{{c.name}}</option> 
                       </select>
                   </div>
@@ -170,20 +166,20 @@
               </div>
               </div>
                 <div class="row clearfix" >
-                <div class= "col-sm-2"*ngIf ="detail_type[7]">
+                <div class= "col-sm-2"*ngIf ="fees">
                 <div class="custom-control custom-checkbox">
                  <input type="checkbox" class="custom-control-input" id="feesdetails" (click) = "get_feesdetail()">
                  <label class="custom-control-label" for="feesdetails"> Fees Details</label>
                 </div>
               </div>
               
-               <div class= "col-sm-2" *ngIf ="detail_type[8]">
+               <div class= "col-sm-2" *ngIf ="transport">
                 <div class="custom-control custom-checkbox">
                  <input type="checkbox" class="custom-control-input" id="destinationdetails">
                  <label class="custom-control-label" for="destinationdetails"> Destination Details</label>
                 </div>
               </div>
-                 <div class= "col-sm-2" *ngIf ="detail_type[1]">
+                 <div class= "col-sm-2" *ngIf ="hostel">
                 <div class="custom-control custom-checkbox">
                  <input type="checkbox" class="custom-control-input" id="hosteldetails">
                  <label class="custom-control-label" for="hosteldetails"> Hostel Details</label>
@@ -195,11 +191,9 @@
                 <br>
                 <div class ="row">
                 <div class="form-group col-sm-2">
-
                 <button type="submit" class="btn btn-primary col-sm-1 " (click)="get_report()" >Get report</button>
-                <button type="button" class="btn btn-danger col-sm-offset-8" (click)="do_print('dataTable')">print report</button>
-                  
-                <button type="button" class="btn btn-success col-sm-offset-1 button-margin"  (click) ="exportAsCSV(dataTable)">excel</button>  
+                <button type="button" class="btn btn-danger col-sm-offset-8" (click)="do_print('dataTable')" *ngIf ="printbutton">print report</button>
+                <button type="button" class="btn btn-success col-sm-offset-1 button-margin"  (click) ="exportAsCSV(dataTable)" *ngIf ="csvbutton">csv file</button>  
                   </div>
                  </div>
                 </div>
@@ -211,8 +205,7 @@
     </div>
   </div>
 
-
-       <div style="overflow-x:auto;" class="table-responsive "  *ngIf="studentreport">
+       <div style="overflow-x:auto;display:none" class="table-responsive "  >
             <table class ="table table-bordered " > 
                <h3 class = "text-center panel-heading bg-primary"> Student Report</h3>
               <br>
@@ -224,7 +217,7 @@
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Adm No" prop="admission_no" [flexGrow]="1">
+                <ngx-datatable-column name="Admission No" prop="admission_no" [flexGrow]="1">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">{{value}}
                   </ng-template>
@@ -327,41 +320,50 @@
         </div>
 
  </div>
-      
-   <div  style="overflow-x:auto;display:none" class =" table table-reponsive table-bordered  center " id ="dataTable">
-      <h3 class="text-center panel-heading bg-primary">Student Report</h3> 
-     <table class="col-sm-12">
-  
+
+    
+   <div class = " table-reponsive table-bordered " style="overflow-x:auto;" *ngIf="studentreport" id ="dataTable">
+    <h3 class="text-center panel-heading bg-primary">Student Report</h3> 
+     <table class="center col-sm-12 "  >
        <tr>
-         <td>suraj</td>
-         <td>dinesh</td>
-         <td>ram</td>
-         <td>get_email</td>
-         <td>shyam</td>
-         <td>manish</td>
-         <td>suraj</td>
-         <td>dinesh</td>
-         <td>ram</td>
-         <td>get_email</td>
-         <td>shyam</td>
-         <td>manish</td>
+         <td><b>ID</b></td>
+         <td><b>Admission No</b></td>
+         <td><b>Name </b></td>
+         <td><b>Course</b></td>
+         <td *ngIf ="!phonenumber"><b>Contact No</b></td>
+         <td *ngIf="!address"><b>permanent Address</b></td>
+         <td *ngIf="!address"><b>Temporary Address</b></td>
+         <td *ngIf="!gurdiandetail"><b>Gurdian Name</b></td>
+         <td *ngIf="!gurdiandetail"><b>Gurdian Address</b></td>
+         <td *ngIf="!gurdiandetail"><b>Gurdian Contact</b></td>
+         <td *ngIf="!parentsdetail"><b>Father Name</b></td>
+         <td *ngIf="!parentsdetail"><b>Mother Name</b></td>
+         <td *ngIf="!parentsdetail"><b>Mother Contact</b></td>
+         <td *ngIf="!amount"><b>Amount</b></td>
+         <td *ngIf="!email"><b>email</b></td>
+         <td><b>Admission Date</b></td>
        </tr>
-       <tr>
-          <td>surajxxxxxxxxxxxxxyyyyyyyyyyyyyyyyyyyyzzzzzzzzzzzzzzz</td>
-          <td>dinesh</td>
-          <td>ram</td>
-          <td>get_email</td>
-          <td>shyam</td>
-          <td>manish</td>
-          <td>suraj</td>
-          <td>dinesh</td>
-          <td>ram</td>
-          <td>get_email</td>
-          <td>shyam</td>
-          <td>manish</td>
+       <tr *ngFor ="let row of rows">
+          <td>{{row.admission_no}}</td>
+          <td>{{row.name}}</td>
+          <td>{{row.course}}</td>
+          <td *ngIf ="!phonenumber">{{row.phone.number}}</td>
+          <td *ngIf="!address">{{row.address_detail.address}}</td>
+          <td *ngIf="!address">permanent address</td>
+          <td *ngIf="!gurdiandetail">{{row.guardian_details.name}}</td>
+          <td *ngIf="!gurdiandetail">{{row.guardian_details.address.address}}</td>
+          <td *ngIf="!gurdiandetail">{{row.guardian_details.contact.number}}t</td>
+          <td *ngIf="!parentsdetail">{{row.parent_details.father.name}}</td>
+          <td *ngIf="!parentsdetail">{{row.parent_details.father.mobile}}</td>
+          <td *ngIf="!parentsdetail">{{row.parent_details.mother.mobile}}</td>
+          <td *ngIf="!amount">amount</td>
+          <td *ngIf="!email">{{row.email}}</td>
+          <td>{{row.admission_date}}</td>
+         
         </tr>
      </table>
-   </div>   
+   </div> 
+   <br>  
 
 
              

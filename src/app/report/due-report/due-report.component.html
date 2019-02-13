@@ -20,24 +20,24 @@
                 <div class="panel-body">
                   <div class="row clearfix">
                     <div class="col-sm-4">
-                      <label for="reportfor" class="req">Fee Category </label>
+                      <label for="reportfor" class="req"> Category </label>
                       <select class="form-control" (change)="onChange($event.target.value)" name="feecategory">
-                        <option value ="0">Select option</option>
-                        <option value ="1">Date Wise</option>
-                        <option value = "2">fees category wise</option>
-                        <option value = "3">fees subcategory wise</option>
-                         <option value ="4">Frequency</option>
+                        <option value ="option">Select option</option>
+                        <option value ="datewise">Date Wise</option>
+                        <option value = "feecategorywise">fee category wise</option>
+                        <option value = "classwise">class wise</option>
+                        <option value = "batchwise">batch wise</option>
                         <!-- <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option> -->
                       </select>
                     </div>
 
-                    <div class="col-sm-4">
-                        <label for="date">Due date</label>
+                    <div class="col-sm-4" *ngIf ="datewise">
+                        <label for="date"> date</label>
                         <input type="date" class="form-control" [(ngModel)]="due_report.date" name="date" placeholder=""
                           required>
                       </div>
 
-                     <div class="col-sm-4">
+                     <div class="col-sm-4" *ngIf ="batchwise">
                       <label for="batch" class="req">Batch</label>
                       <select class="form-control" [(ngModel)]="due_report.batch" name="batch" >
                         <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option> 
@@ -45,19 +45,19 @@
                       </select>
                     </div>
                  
-                </div>
-                <br> 
-                <div class ="row clearfix">
+                
+                  <div class="col-sm-4" *ngIf ="classwise">
+                    <label for="selectclass" class="req">  Class</label>
+                    <select class="form-control"[(ngModel)]="due_report.class_name"  name="selectclass" >
+                      <!-- <option *ngFor="let c of classes" [ngValue]="c.id">{{c.name}}</option> -->
+                      <option value ="0">select option</option>
+                      <option value ="3">Class1</option>
+                      <option value ="4">Class2</option>
+                     
+                    </select>
+                  </div>
 
-                    <div class="col-sm-4">
-                        <label for="course" class="req">course</label>
-                        <select class="form-control" [(ngModel)]="due_report.course" name="course" >
-                           <option *ngFor="let c of course" [ngValue]="c.id">{{c.name}}</option> 
-                           <option value ="1">msc csit</option>
-                        </select>
-                      </div>
-
-                   <div class="col-sm-4" *ngIf ="detail_type[2]">
+                   <div class="col-sm-4" *ngIf ="feecategorywise">
                     <label for="feescategory" class="req">Fees Category Wise</label>
                     <select class="form-control" [(ngModel)]="due_report.fee_category" name="feescategory" >
                       <!-- <option *ngFor="let f of fee" [ngValue]="f.id">{{f.name}}</option> -->
@@ -73,9 +73,9 @@
                  <br>
                   <div class ="row">
                 <div class="form-group cols-sm-2">
-                         <button type="submit" class="btn btn-success col-sm-offset-10 " (click)="get_report()">Go</button>
+                         <button type="submit" class="btn btn-success col-sm-offset-10 " (click)="get_report()">view</button>
                             
-                         <button type="submit" class="btn btn-danger col-sm-offset-1  button-margin" onclick="printDiv('print')">print</button> 
+                         <button type="submit" class="btn btn-danger col-sm-offset-1  button-margin" (click)="do_print('dataTable')">print</button> 
                   
                   </div>
                  </div>
@@ -86,10 +86,10 @@
        </div>
      </div>
     </div>
-  </div>
+   </div>
 
  <!--table start-->
-  <div class="table-responsive" *ngIf="duereport">
+  <div class="table-responsive" *ngIf="report">
       <table class = "table table-bordered ">
           <h3 class ="text-center panel-heading bg-primary">Due Report</h3>
          <br>
@@ -128,15 +128,39 @@
             <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
             <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
           </ngx-datatable-column>
-
-          
-
         </ngx-datatable> 
       </table>
     </div>
 
 <!--end of table-->
 </div>
+
+
+<div class = " table-reponsive table-bordered " style="overflow-x:auto;" id ="dataTable"  *ngIf="duereport">
+  <h3 class="text-center panel-heading bg-primary">Due Report</h3> 
+   <table class="center col-sm-12 ">
+     <tr>
+       <td><b>ID</b></td>
+       <td><b>Admission No</b></td>
+       <td><b>Name </b></td>
+       <td><b>Gurdian Name</b></td>
+       <td><b> Gurdian Contact No</b></td>
+       <td><b>Total Due</b></td>
+       <td><b>Fine</b></td>
+       
+     </tr>
+     <tr ng-repeat=" row in rows">
+       <td>{{row.id}}</td>
+        <td>{{row.admission_no}}</td>
+        <td>{{row.name}}</td>
+        <td>{{row.gurdian_name}}</td>
+        <td>{{row.gurdian_contact}}</td>
+        <td>{{row.total_due}}</td>
+        <td>manish</td>
+      </tr>
+   </table>
+ </div>   
+
 
        
       

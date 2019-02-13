@@ -21,19 +21,22 @@ export class LibaryReportComponent implements OnInit {
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
   libary_report: LibaryReport = new LibaryReport();
-  rows:any[]= [];
-  availablebook =false;
-  issuedbook= false;
-  libaryReport=false;
-  datewise=false;
-  classwise= false;
-  sectionwise=false;
+  
+  availablebook:boolean =false;
+  issuedbook:boolean =false;
+  libaryReport:boolean =false;
+  datewise:boolean =false;
+  classwise:boolean =false;
+  sectionwise:boolean=false;
+
   selected_class: number;
+  selected_section :number;
+
   classes: _class[];
   section :Section[];
-  selected_section :number;
+  rows:any[]= [];
  
- // @ViewChild('libaryReport') public libaryReport:NgForm;
+ @ViewChild('libaryReport') public libaryreport:NgForm;
 
   onChange(newValue) {
     if(newValue == "availablebook"){
@@ -42,51 +45,54 @@ export class LibaryReportComponent implements OnInit {
          console.log(data);
          this.rows = data;
          this.rows = [...this.rows];
-        
        });
       this.issuedbook = false;
       this.availablebook= true;
-
     }
     else if(newValue == "issuedbook"){
       this.availablebook = false;
       this.issuedbook = true;
     }
     else{
+      this.reset_availablebook()
+    }
+
+   this.reset_issued()
+
+  }
+
+ reset_availablebook(){
       this.libaryReport =false;
       this.availablebook = false;
       this.issuedbook = false;
-    }
-
-    this.datewise =false;
-    this.classwise =false;
-    this.sectionwise =false;
-
+    
   }
+ 
 
  OnChange(newValue){
-  if(newValue =="datewise"){
-    this.datewise =true;
-    this.classwise =false;
-    this.sectionwise =false;
-
-  }else if(newValue=="classwise"){
-    this.datewise =false;
-    this.classwise =true;
-    this.sectionwise =false;
-
-  }else{
-    this.datewise =false;
-    this.classwise =true;
-    this.sectionwise =true;
-  }
+    this.libaryreport.reset();
+    if(newValue =="datewise"){
+      this.reset_issued();
+      this.datewise =true;
+    }
+    else if(newValue=="classwise"){
+      this.reset_issued();
+      this.classwise =true;
+    }
+    else{
+      this.reset_issued();
+      this.classwise =true;
+      this.sectionwise =true;
+    }
+  
      
   }
 
- 
-
- 
-
+  reset_issued(){
+    this.classwise =false;
+    this.sectionwise =false;
+    this.datewise =false;
+  }
   constructor( 
   	private _utils: UtilsService,
     private router: Router,
@@ -101,6 +107,7 @@ export class LibaryReportComponent implements OnInit {
 
   onSubmit() {
     console.log(this.libary_report);
+    
     this._sub = this._libaryreportService.get(this.libary_report)
      .subscribe(data => {
         console.log(data);

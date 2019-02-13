@@ -19,18 +19,16 @@
                    <br>
                 <div class="panel-body">
                   <div class="row clearfix">
-
                       <div class="col-sm-4">
                           <label for="reportfor" class="req">Report By</label>
                           <select class="form-control" (change)="onChange($event.target.value)" name="reportby">
-                            <option value ="0">Select option</option>
-                            <option value ="1">category</option>
-                            <option value ="2">Datewise</option>
-                            <!-- <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option> -->
+                            <option value ="option">Select option</option>
+                            <option value ="category">category</option>
+                            <option value ="datewise">datewise</option>
                           </select>
                         </div>
 
-                    <div class="col-sm-4" *ngIf ="detail_type[1]">
+                    <div class="col-sm-4" *ngIf ="category">
                       <label for="reportfor" class="req">Expense Category </label>
                       <select class="form-control" [(ngModel)] ="expense_report.category" name="expensecategory" required>
                         <option>Select option</option>
@@ -42,13 +40,13 @@
                       </select>
                     </div>
 
-                      <div class="col-sm-4" *ngIf ="detail_type[2]">
+                      <div class="col-sm-4" *ngIf ="datewise">
                         <label for="fromdate">From date</label>
                         <input type="date" class="form-control" [(ngModel)]="expense_report.from_date" name="fromdate"
                           required>
                       </div>
 
-                      <div class="col-sm-4"*ngIf ="detail_type[2]">
+                      <div class="col-sm-4"*ngIf ="datewise">
                         <label for="todate">To date</label>
                         <input type="date" class="form-control" [(ngModel)]="expense_report.to_date" name="todate" placeholder=""
                           required>

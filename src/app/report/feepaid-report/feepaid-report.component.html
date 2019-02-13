@@ -73,10 +73,10 @@
                   <div class ="row">
                     <div class="form-group col-sm-2">
 
-                      <button type="submit" class="btn btn-primary col-sm-1 " (click)="get_paidreport()" >Go</button>
-                       <button type="submit" class="btn btn-danger col-sm-offset-8" onclick="printDiv('print')">print report</button>
+                      <button type="submit" class="btn btn-primary col-sm-1 " (click)="get_paidreport()"  >view</button>
+                       <button type="submit" class="btn btn-danger col-sm-offset-8" *ngIf ="printbutton">print report</button>
                         
-                       <button type="submit" class="btn btn-success col-sm-offset-1 button-margin" (click)="exportAsCSV('feepaidReport')">excel</button> 
+                       <button type="submit" class="btn btn-success col-sm-offset-1 button-margin" (click)="exportAsCSV('feepaidReport')" *ngIf ="csvbutton">excel</button> 
                 
                 </div>
                  </div>
@@ -183,9 +183,9 @@
                  <div class="form-group col-sm-2">
 
                   <button type="submit" class="btn btn-primary col-sm-1 " (click)="get_collectivereport()">Go</button>
-                  <button type="submit" class="btn btn-danger col-sm-offset-8" onclick="printDiv('print')">print report</button>
+                  <button type="button" class="btn btn-danger col-sm-offset-8" onclick="printDiv('print')" *ngIf ="printbutton">print report</button>
                    
-                  <button type="submit" class="btn btn-success col-sm-offset-1 button-margin" (click)="exportAsCSV('collectiveReport')">excel</button> 
+                  <button type="submit" class="btn btn-success col-sm-offset-1 button-margin" (click)="exportAsCSV('collectiveReport')" *ngIf ="csvbutton">csv file</button> 
                   
                   </div>
                  </div>
@@ -291,9 +291,9 @@
                   <br> 
                     <div class ="row">
                   <div class="form-group col-sm-2">
-                           <button type="submit" class="btn btn-success col-sm-offset-8 " (click)="get_monthlyreport()">Go</button>
+                           <button type="submit" class="btn btn-success col-sm-offset-8 " (click)="get_monthlyreport()">view</button>
                             
-                           <button type="submit" class="btn btn-danger col-sm-offset-1  button-margin" onclick="printDiv('print')">print report</button> 
+                           <button type="button" class="btn btn-danger col-sm-offset-1  button-margin" onclick="printDiv('print')" *ngIf ="printbutton">print report</button> 
                     
                     </div>
                    </div>

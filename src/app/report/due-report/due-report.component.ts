@@ -11,7 +11,8 @@ import { Batch } from '../../core/classes/batch';
 import { DueReport } from '../../core/classes/due-report';
 import { DueReportService } from '../../core/services/duereport.service';
 import { Course } from '../../core/classes/course';
-import { CourseService } from '../../core/services/course.service';
+import {ClassService} from '../../core/services/class.service';
+import {_class} from '../../core/classes/class';
 
 @Component({
   selector: 'app-due-report',
@@ -25,41 +26,59 @@ export class DueReportComponent implements OnInit {
   due_report: DueReport = new DueReport();
   duereport=false;
   batch: Batch[];
-  selected_batch :number;
-  selected_course :number;
-   default_detail_type={0:false , 1:false ,2:false};
-  detail_type=this.default_detail_type;
+  selected_batch:number;
+  selected_class:number;
   course: Course[];
-  datewise :boolean =true;
+  datewise :boolean =false;
+  classwise:boolean =false;
+  batchwise:boolean =false;
+  feecategorywise:boolean =false;
   rows: any[] = [];
+  classes: _class[];
+
+  
 
   @ViewChild('dueReport') public dueReport:NgForm;
 
   onChange(newValue) {
-    this.reset_details_value();
-    this.detail_type[newValue] = true;
+    if(newValue == "datewise"){
+     this.reset_report()
+     this.datewise =true;
+    }else if(newValue =="classwise"){
+      this.reset_report()
+      this.classwise =true;
+    }else if(newValue == "batchwise"){
+      this.reset_report()
+      this.batchwise = true;
+    }else if(newValue =="feecategorywise"){
+      this.reset_report()
+      this.feecategorywise =true;
+    }else{
+      this.reset_report()
+      this.duereport = false;
+    }
+
     this.dueReport.reset();
   }
-
-  reset_details_value(){
-    this.detail_type = this.default_detail_type;
-    this.detail_type[0]= false;
-    this.detail_type[1]=false;
-    this.detail_type[2]=false;
-    
+  
+  reset_report(){
+    this.datewise =false;
+    this.classwise =false;
+    this.batchwise =false;
+    this.feecategorywise =false;
   }
+ 
 
   constructor(	
     private _batchService: BatchService,
-    private _courseService: CourseService,
+    private  _classService:ClassService,
     private _duereportService: DueReportService,
   	private _utils: UtilsService,
     private router: Router,
     private toastr: ToastrService) { }
 
   ngOnInit() {
-    this.reset_details_value;
-    this.detail_type[0] =true;
+   
     this.LoadBatch();
   }
 
@@ -89,20 +108,21 @@ export class DueReportComponent implements OnInit {
         console.log(this.batch);
         if(this.batch.length > 0){
          this.selected_batch = this.batch[0].id;
-         this.LoadCourse();
+         this.LoadClass()
         }
       }
     );
   }
 
-  LoadCourse() {
+  LoadClass() {
     this._utils.unsubscribeSub(this._sub);
-    this._sub = this._courseService.get().subscribe(
+    this._sub = this._classService.get().subscribe(
       data => {
-        isArray(data) ? this.course = data : data;
-        console.log(this.course);
-        if(this.course.length > 0){
-         this.selected_course = this.course[0].id;
+        isArray(data) ? this.classes = data : data;
+        console.log(this.classes);
+        if(this.classes.length > 0){
+         this.selected_class = this.classes[0].id;
+         
         }
       }
     );
@@ -113,23 +133,28 @@ export class DueReportComponent implements OnInit {
 
    }
 
-   exportAsCSV() {
-   
-    const headers = ['id'];//Object.keys(this.rows[0]);
-  
-    const options = {
-        fieldSeparator  : ',',
-        quoteStrings    : '"',
-        decimalseparator: '.',
-        showLabels      : true,
-        headers         : headers,
-        showTitle       : false,
-        title           : 'Report',
-        useBom          : true
-    };
-  
-    return new AngularCsv(this.rows, 'duereport', options);
-  }
+   do_print(id) {   
+      console.log(id);
+      if(document.getElementById(id) != null){
+        var printContents = document.getElementById(id).innerHTML;
+        console.log(printContents)
+        var popupWin = window.open('', '_blank', 'top=0,left=0,height=auto,width=auto');
+        popupWin.document.open();
+        popupWin.document.write(`
+        <html>
+        <head>
+          <link rel="stylesheet" type="text/css" href="../../../assets/css/report-table.css">
+        </head>
+        <body onload="window.print();window.close()">${printContents}</body>
+        </html>`
+        );
+        popupWin.document.close();
+      } else{
+        alert('please see a report first')
+      
+      }
+    }
+
 
 
 

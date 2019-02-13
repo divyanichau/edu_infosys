@@ -23,6 +23,8 @@ export class FeepaidReportComponent implements OnInit {
   paidreport:boolean =false;
   collectivereport =false;
   monthlyreport =false;
+  printbutton =false;
+  csvbutton =false;
   classes: _class[];
   selected_class :number;
   rows:any[]= [];
@@ -68,8 +70,7 @@ export class FeepaidReportComponent implements OnInit {
      
      
   }
-  
- 
+
   LoadClass() {
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._classService.get().subscribe(
@@ -83,16 +84,24 @@ export class FeepaidReportComponent implements OnInit {
       }
     );
   }
-
+  
+   button(){
+     this.printbutton =true;
+     this.csvbutton =true;
+   }
+  
   get_paidreport(){
-   
     this.paidreport = true;
+    this.button();
+
   }
   get_collectivereport(){
     this.collectivereport =true;
+    this.button();
   }
   get_monthlyreport(){
     this.monthlyreport = true;
+    this.button();
   }
 
 
