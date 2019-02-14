@@ -34,7 +34,7 @@ export class AssignSubjectComponent implements OnInit , OnDestroy{
   courses: Course[];
   batch: Batch[];
   subjects: Subject[];
-
+       
   objs: AssignSubject[];
   _subjects=[];
 
@@ -160,7 +160,7 @@ export class AssignSubjectComponent implements OnInit , OnDestroy{
     // filter our data
     const temp = this.temp.filter(function(d) {
      // console.log(d.student.toLowerCase(), val)
-      return d.subject.toLowerCase().indexOf(val) !== -1 || !val;
+      return d.name.toLowerCase().indexOf(val) !== -1 || !val;
     });
 
     this._subjects = temp;

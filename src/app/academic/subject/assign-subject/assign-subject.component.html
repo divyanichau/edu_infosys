@@ -84,18 +84,18 @@
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Subjects" prop="subject">
+                <ngx-datatable-column name="Subject Name" prop="name">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
                     <span
                       title="Double click to edit"
-                      (dblclick)="editing[rowIndex + '-subject'] = true"
-                      *ngIf="!editing[rowIndex + '-subject']">
+                      (dblclick)="editing[rowIndex + '-name'] = true"
+                      *ngIf="!editing[rowIndex + '-name']">
                       {{value}}
                     </span>
                     <input
                       autofocus
-                      (blur)="updateValue($event, 'subject', rowIndex)"
-                      *ngIf="editing[rowIndex+ '-subject']"
+                      (blur)="updateValue($event, 'name', rowIndex)"
+                      *ngIf="editing[rowIndex+ '-name']"
                       type="text"
                       [value]="value"
                     />
