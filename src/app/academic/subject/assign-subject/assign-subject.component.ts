@@ -151,9 +151,7 @@ export class AssignSubjectComponent implements OnInit , OnDestroy{
         this.temp = [...this.objs];
       // this.subject = new Subject();
     
-  }
-
- );
+  } );
 }
 
   updateFilter(event) {
@@ -165,10 +163,7 @@ export class AssignSubjectComponent implements OnInit , OnDestroy{
       return d.subject.toLowerCase().indexOf(val) !== -1 || !val;
     });
 
-    // update the rows
     this._subjects = temp;
-    // Whenever the filter changes, always go back to the first page
-    // this.table.offset = 0;
   }
 
 subjectDelete(id:number){

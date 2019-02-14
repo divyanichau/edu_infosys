@@ -44,8 +44,6 @@
 </div>
 </div>
 
-
-
 <div class="body">
   <div class="content-wrapper">           
     <div class="col-sm-6">
@@ -75,7 +73,7 @@
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Batch " prop="batch">
+                <ngx-datatable-column name="Batch" prop="batch">
                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}
                   </ng-template>
@@ -85,7 +83,6 @@
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
-
 
                 <ngx-datatable-column name="Subjects" prop="subject">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
