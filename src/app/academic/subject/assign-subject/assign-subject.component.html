@@ -84,12 +84,12 @@
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Subject Name" prop="name">
+                <ngx-datatable-column name="Subject" prop="subject">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
                     <span
                       title="Double click to edit"
-                      (dblclick)="editing[rowIndex + '-name'] = true"
-                      *ngIf="!editing[rowIndex + '-name']">
+                      (dblclick)="editing[rowIndex + '-subject'] = true"
+                      *ngIf="!editing[rowIndex + '-subject']">
                       {{value}}
                     </span>
                     <input

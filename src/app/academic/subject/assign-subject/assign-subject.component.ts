@@ -160,13 +160,13 @@ export class AssignSubjectComponent implements OnInit , OnDestroy{
     // filter our data
     const temp = this.temp.filter(function(d) {
      // console.log(d.student.toLowerCase(), val)
-      return d.name.toLowerCase().indexOf(val) !== -1 || !val;
+      return d.subject.toLowerCase().indexOf(val) !== -1 || !val;
     });
 
     this._subjects = temp;
   }
 
-subjectDelete(id:number){
+ subjectDelete(id:number){
       console.log(id);
       if(confirm("Are You Sure Want To Delete?")){
         this._subjectService.delete(id).subscribe(data => 
