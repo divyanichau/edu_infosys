@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AccountingComponent } from './accounting.component';
 import { FeeCategoryComponent } from './fee-category/fee-category.component';
+import { ReportComponent } from './acc-report/acc-report.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,11 @@ const routes: Routes = [
 	 {
 	    path: "fee-category",
 	    component:FeeCategoryComponent	    
+	  },	
+
+	  {
+	    path: "acc-report",
+	    component:ReportComponent	    
 	  }	 
 	];
 

@@ -39,8 +39,8 @@ id: string;
   constructor(
     private _libraryService: LibraryService,
     private _utils: UtilsService,
-         private _routes:ActivatedRoute,
-    private router: Router,
+    private _routes:ActivatedRoute,
+    private _router: Router,
     private toastr: ToastrService
     ) { }
   
@@ -49,7 +49,7 @@ id: string;
   ngOnInit() {
 
     this.initAddBook();
-    
+     this.loadlist();
   }
 
   ngOnDestroy() {
@@ -58,40 +58,25 @@ id: string;
 
  
     onSubmit() {
+    console.log(this.id);
+    if(typeof(this.id) == 'undefined'){
     this._utils.unsubscribeSub(this._sub);
-     this.add_book.category = this.selected_lib;
-    //console.log(this.add_book);
+    this.add_book.category = this.selected_lib;
     this._sub = this._libraryService.addBook(this.add_book)
       .subscribe(data => {
         console.log("add book",data);
-         this.toastr.success('Issue Book !', 'Success',{timeOut: 3000});
- 
+        //this._router.navigate(['library/add-book']);
+        this.toastr.success('Issue Book !', 'Success',{timeOut: 3000});
       });
+    }
+    else{
+      this._sub = this._libraryService.updateBook(this.add_book,this.id)
+      .subscribe();
+    }
   }
 
-  
-
  
-  
-  initAddBook(){
-    this._utils.unsubscribeSub(this._sub);
-    this._sub = this._routes.paramMap.pipe(
-      switchMap((params: ParamMap) => {
-        this.id = params.get('id');
-        return this._libraryService.findBook(this.id);
-      }))
-      .subscribe(data => {
-        if (isObject(data)) {
-         console.log("vhgv",data);
-         this.add_book = data;
-        console.log("Edit Book",this.add_book);
-          this.loadlist();
-          this.loadCategory();
-        
-        }
-      });
-  }
-
+ 
    loadCategory() {
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._libraryService.get().subscribe(
@@ -100,7 +85,7 @@ id: string;
         //console.log(this.category);
         this.selected_lib = this.category[0].id;
       //console.log(this.add_book);
-      this.loadlist();
+     
       }
     );
   }
@@ -113,9 +98,29 @@ id: string;
         isArray(data) ? this._library = data : data;
         this.rows = this._library;
         this.temp = [...this._library];
+  this.loadCategory();
+
       }
     );
   }
+
+
+   initAddBook(){
+    this._utils.unsubscribeSub(this._sub);
+    this._sub = this._routes.paramMap.pipe(
+      switchMap((params: ParamMap) => {
+        this.id = params.get('id');
+        return this._libraryService.findBook(this.id);
+      }))
+      .subscribe(data => {
+        if (isObject(data)) {
+         console.log("vhgv",data);
+         this.add_book = data;
+        console.log("Edit Book",this.add_book);       
+        }
+      });
+  }
+
 
     updateFilter(event) {
     const val = event.target.value.toLowerCase();

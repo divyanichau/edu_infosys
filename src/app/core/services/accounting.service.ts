@@ -8,11 +8,13 @@ import { Observable } from 'rxjs';
 import { UtilsService } from '../../shared/services/utils.service';
 import { Config } from '../../shared/classes/app';
 import { FeeCategory } from '../classes/feecategory';
+import { Report } from '../classes/acc-report';
 
 
 @Injectable()
 export class AccountingService {
   private _feecategoryUrl = `${new Config().api}/accountant/fees/`;
+  private _reportUrl = `${new Config().api}/accountant/report/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
 
   constructor(
@@ -76,6 +78,32 @@ export class AccountingService {
       map((res: Response) => res.json().data),
       tap(
       //data => this.afterRequest(data),
+      error => { this.showError(error) }
+      ),);
+  }
+
+
+
+   getReport(): Observable<Report[]> {
+    //this.beforeRequest();
+    const options = this._utils.makeOptions(this._headers);
+
+    return this._http.get(`${this._reportUrl}`, options).pipe(
+      map((res: Response) => res.json()),
+      tap(
+      data => this.afterGetRequest(),
+      error => { console.log(error); }
+      ),);
+  }
+
+  addReport(accounting: Report): Observable<Report> {
+    this.beforeRequest();
+    const body = JSON.stringify(accounting);
+
+    return this._http.post(`${this._reportUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json().data),
+      tap(
+      data => this.afterRequest(),
       error => { this.showError(error) }
       ),);
   }

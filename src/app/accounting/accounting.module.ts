@@ -11,7 +11,7 @@ import { AccountingRoutingModule } from './accounting-routing.module';
 import { AccountingComponent } from './accounting.component';
 
 import { FeeCategoryComponent } from './fee-category/fee-category.component';
-
+import { ReportComponent } from './acc-report/acc-report.component';
 
 
 
@@ -26,6 +26,6 @@ import { FeeCategoryComponent } from './fee-category/fee-category.component';
     AccountingRoutingModule
   ],
   providers: [AccountingService, UtilsService],
-  declarations: [AccountingComponent, FeeCategoryComponent ]
+  declarations: [AccountingComponent, FeeCategoryComponent, ReportComponent ]
 })
 export class AccountingModule { }

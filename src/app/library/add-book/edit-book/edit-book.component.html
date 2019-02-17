@@ -1,153 +1,55 @@
- 
- <div class="content-wrapper">
-    <div class="content">
-      <div class="panel-heading">
-         <ol class="breadcrumb breadcrumb">
-              <li><a href="#"><i class="material-icons">home</i> Home</a></li>
-              <li><a href="#"><i class="material-icons">class</i>Library</a></li>
-              <li class="active">Book Return</li>
-           <ul class="breadcrumb-elements">                          
-            </ul>
-            <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a><a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
-            </ol> 
-            <br>
-
-  <form ngNativeValidate (ngSubmit)="onSubmitDetail()" #libraryForm="ngForm">     
-
-  <div class="card">                        
-<div class="row-clearfix">
-                  <div class="panel panel-primary">
-                  <div class="panel-heading">
-                <h4 class="panel-title">Book Return Details</h4>
+<form (ngSubmit)="onSubmitEditUpdate()" #libraryForm="ngForm">
+    
+   <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-primary">
+             
+              <div class="panel-heading">
+                <h4 class="panel-title">Edit Book</h4>
               </div>
+              <br> 
+
+  <div class="panel-body">
+   
+                  <div class="panel-body">  
+                  <label for="isbn_no">ISBN No.</label>
+                <input type="text" class="form-control" [(ngModel)]="add_book.isbn_no" name="isbn_no"  size="84" maxlength="45" placeholder="Enter ISBN No.">
             </div>
+
+            <div class="panel-body">
+                  <label for="title">Title</label>
+                <input type="text" class="form-control" [(ngModel)]="add_book.title" name="title"  size="84" maxlength="45" placeholder="Enter Title">
+            </div>
+
+            <div class="panel-body">   
+                  <label for="author">Author</label>
+                <input type="text" class="form-control" [(ngModel)]="add_book.author" name="author"  size="84" maxlength="45" placeholder="Enter Author">
+            </div>
+
+             <div class="panel-body">  
+                  <label for="edition">Edition</label>
+                <input type="edition" class="form-control" [(ngModel)]="add_book.edition" name="edition"  size="84" maxlength="45" placeholder="Enter Edition">
+            </div>
+
+            <div class="panel-body">
+                  <label for="category">Category</label>
+                <input type="text" class="form-control" [(ngModel)]="add_book.category" name="category"  size="84" maxlength="45" placeholder="Enter Category Name">
+            </div>
+
+            <div class="panel-body">   
+                  <label for="book_cost">Book Cost</label>
+                <input type="text" class="form-control" [(ngModel)]="add_book.book_cost" name="book_cost"  size="84" maxlength="45" placeholder="Enter Book Cost">
+            </div>
+
+
+ <div class="panel-body">
+<div class="row">
+    <div class="form-group">
+            <button class="btn btn-info" style="background-color:#aabad8;" type="Submit"><b>Save</b></button>
+        </div>
+
+    </div>
+  </div>
 </div>
-
-                        <div class="panel-body">
-                          
-                   <div class="row clearfix">
-                                <div class="control-label text-muted col-sm-6">
-                                    
-              <label for="purchase_date">Purchase Date</label>
-       <input type="date" class="form-control" [(ngModel)]="_view.purchase_date" name="purchase_date">
-                                        </div>
-                                    
-                                <div class="col-sm-6">
-                                    
-                                           <label for="bill_no">Bill No.</label>
-                                            <input type="text" class="form-control" [(ngModel)]="_view.bill_no" name="bill_no">
-                                        </div>
-                                    </div>
-                               <br>
-                         
-                                       
-                <div class="row clearfix">
-                                <div class="col-sm-6">
-                                
-                                       
-                                           <label for="isbn_number">Book ISBN No.</label>
-                                            <input type="text" class="form-control" [(ngModel)]="_view.isbn_no" name="isbn_number">
-                                        
-                                    
-                                </div>
-                                
-                                <div class="col-sm-6">
-                                   
-                                           <label for="book_no">Book Title</label>
-                                            <input type="text" class="form-control" [(ngModel)]="_view.title" name="book_no">
-                                        </div>
-                                    </div>
-                               <br>
-                       
-                                         
-  <div class="row clearfix">
-    <div class="col-sm-6">
-      <label for="shelf_no">Book No.</label>
-       <input type="text" class="form-control" [(ngModel)]="_view.book_no" name="shelf_no">
-        </div>
-                                    
-                               <div class="col-sm-6">
-      <label for="edition">Author</label>
-       <input type="text" class="form-control" [(ngModel)]="_view.author" name="edition">
-        </div>
-        </div>
-      <br>
-  <div class="row clearfix">
-    <div class="col-sm-6">
-      <label for="shelf_no">Shelf No.</label>
-       <input type="text" class="form-control" [(ngModel)]="_view.shelf_no" name="shelf_no">
-        </div>
-                                    
-                               <div class="col-sm-6">
-      <label for="edition">Edition</label>
-       <input type="text" class="form-control" [(ngModel)]="_view.edition" name="edition">
-        </div>
-        </div>
-      <br>
-          
-       <div class="row clearfix">
-                                <div class="col-sm-6">
-                                   
-                                           <label for="publisher">Book Position</label>
-                                            <input type="text" class="form-control" [(ngModel)]="_view.publisher" name="publisher">
-                                        </div>
-                                   
-                                <div class="col-sm-6">
-                                   
-                                           <label for="no_of_copies">Publisher</label>
-                                            <input type="number" class="form-control" [(ngModel)]="_view.no_of_copies" name="no_of_copies">
-                                        </div>
-                                    </div>
-                               <br>
-
-                    <div class="row clearfix">
-                                <div class="col-sm-6">
-                                  
-                                           <label for="shelf_no">No. of Copies</label>
-                                            <input type="text" class="form-control" 
-                                            [(ngModel)]="_view.shelf_no" name="shelf_no">
-                                        </div>
-                                   
-                                <div class="col-sm-6">
-                                   
-                                           <label for="book_position">Book Category</label>
-                                            <input type="text" class="form-control"
-                                            [(ngModel)]="_view.position" name="book_position">
-                                        </div>
-                                    </div>
-                               
-<br>
-                             <div class="row clearfix">
-                                <div class="col-sm-6">
-                                   
-                                           <label for="book_cost">Book Cost</label>
-                                            <input type="text" class="form-control" [(ngModel)]="_view.book_cost" name="book_cost">
-                                        </div>
-                                   
-
-                            <div class="col-sm-6">
-                                   
-                                  <label for="book_condition">Language</label>
-                                 <input type="text" class="form-control" [(ngModel)]="_view.book_cost" name="book_cost">
-                                        </div>
-                                      </div>
-
-                                       <div class="row clearfix">
-                                <div class="col-sm-6">
-                                  
-                                           <label for="shelf_no">Book Condition</label>
-                                            <input type="text" class="form-control" 
-                                            [(ngModel)]="_view.shelf_no" name="shelf_no">
-                                        </div>
-                                   
-                                <div class="col-sm-6">
-                                   
-                                           <label for="book_position">Book Status</label>
-                                            <input type="text" class="form-control"
-                                            [(ngModel)]="_view.position" name="book_position">
-                                        </div>
-                                    </div>
-                               
-                                    </div>
-                                  </div>
-                                
+</div>
+</div>

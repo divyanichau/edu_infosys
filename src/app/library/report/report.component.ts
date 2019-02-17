@@ -24,6 +24,7 @@ export class ReportComponent implements OnInit , OnDestroy{
   private _typeSub: Subscription = undefined;
   
   report : Report;
+  //_report: boolean = false;
 
  _course: Course[];
    selected_course: number;
@@ -122,6 +123,9 @@ export class ReportComponent implements OnInit , OnDestroy{
   generate_card(){
     this.detail_type[1] = true;
   }
+  // get_report(){
+  //   this._report= !_report;
+  // }
 
  
 }

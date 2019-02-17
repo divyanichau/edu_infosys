@@ -19,6 +19,7 @@ import { UtilsService } from '../../shared/services/utils.service';
 
 import { ToastrService } from 'ngx-toastr';
 
+
 declare var numeral: any
 @Component({
   selector: 'app-issue-book',
@@ -95,9 +96,17 @@ obj_book : IssueBook = new IssueBook();
     this.reset_details_value();
     this.detail_type[1]= true; 
     this.initIssueBook();
+    //this.nepaliDatePicker();
     
    
   }
+
+//   $(".date-picker").nepaliDatePicker({
+//     dateFormat: "%D, %M %d, %y",
+//     closeOnDateSelect: true,
+//     minDate : "सोम, जेठ १०, २०७३",
+//     maxDate : "मंगल, जेठ ३२, २०७३"
+// });
 
   ngOnDestroy() {
     this._utils.unsubscribeSub(this._sub);
