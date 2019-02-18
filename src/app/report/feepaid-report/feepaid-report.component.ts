@@ -46,17 +46,21 @@ export class FeepaidReportComponent implements OnInit {
   }
 
   onSubmit(type) {
-    console.log(type);
-    if( type === this.paid_report){ 
+    console.log( type);
+    if( type == "feepaidReport"){
+      //alert('im in first') ;
       this.collective_report.reset();
       this.monthly_report.reset();
       console.log(this.feepaid_report)
-    }else if(type === this.collective_report){
+    }else if(type == "collectiveReport"){
       this.paid_report.reset();
       this.monthly_report.reset();
-    } else if( type === this.monthly_report){
+    } else if( type == "monthlyReport"){
       this.paid_report.reset();
       this.collective_report.reset();
+    }else{
+      alert('im in else')
+      console.log('im in else')
     }
 
     console.log(this.feepaid_report);
@@ -85,23 +89,19 @@ export class FeepaidReportComponent implements OnInit {
     );
   }
   
-   button(){
-     this.printbutton =true;
-     this.csvbutton =true;
-   }
+   
   
   get_paidreport(){
     this.paidreport = true;
-    this.button();
-
+    
   }
   get_collectivereport(){
     this.collectivereport =true;
-    this.button();
+    
   }
   get_monthlyreport(){
     this.monthlyreport = true;
-    this.button();
+
   }
 
 

@@ -46,7 +46,7 @@
                           required>
                       </div>
 
-                      <div class="col-sm-4"*ngIf ="datewise">
+                      <div class="col-sm-4" *ngIf ="datewise">
                         <label for="todate">To date</label>
                         <input type="date" class="form-control" [(ngModel)]="expense_report.to_date" name="todate" placeholder=""
                           required>
@@ -58,7 +58,7 @@
                     <div class="form-group cols-sm-2">
                          <button type="submit" class="btn btn-success col-sm-offset-8 " (click)="get_expensereport()">view report</button>
                             
-                         <button type="submit" class="btn btn-danger col-sm-offset-1  button-margin" onclick="printDiv('print')">print report</button> 
+                         <button type="submit" class="btn btn-danger col-sm-offset-1  button-margin" onclick="do_print('dataTable')">print report</button> 
                   
                     </div>
                  </div>
@@ -72,7 +72,7 @@
   </div>
 
  <!--table start-->
-  <div class="table-responsive" *ngIf="expensereport">
+  <div class="table-responsive" *ngIf="expense">
       <table class = "table table-bordered ">
           <h3 class="panel-heading text-center bg-primary "><b>Expense Report</b></h3>
          <br>
@@ -109,6 +109,28 @@
 
 <!--table end-->
 </div>
+
+
+<div class = " table-reponsive table-bordered " style="overflow-x:auto;" id ="dataTable"  *ngIf="expensereport">
+  <h3 class="text-center panel-heading bg-primary">Libary Report</h3> 
+   <table class="center col-sm-12 ">
+     <tr>
+       <td><b>ID</b></td>
+       <td><b>Date</b></td>
+       <td><b>Expense Name </b></td>
+       <td><b>Amount</b></td>
+       <td><b>Payment Status</b></td>
+  
+     </tr>
+     <tr *ngFor="let row of rows">
+       <td>{{row.id}}</td>
+        <td>{{row.date}}</td>
+        <td>{{row.expense_name}}</td>
+        <td>{{row.amount}}</td>
+        <td>{{row.payment_status}}</td>
+      </tr>
+   </table>
+ </div> 
 
        
       

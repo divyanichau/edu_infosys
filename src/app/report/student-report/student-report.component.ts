@@ -44,8 +44,10 @@ export class StudentReportComponent implements OnInit{
   state:boolean=false;
   religion:boolean =false;
   gender:boolean=false;
-  fees:boolean=false;
+  studentby:boolean=false;
   transport:boolean=false;
+  select_class:boolean=true;
+  tmp ={};
 
   @ViewChild('studentReport1') public studentReport:NgForm;
   @ViewChild('dataTable')  public dataTable: DatatableComponent;
@@ -70,9 +72,9 @@ export class StudentReportComponent implements OnInit{
     }else if(newValue =="gender"){
       this.reset_report()
       this.gender =true;
-    }else if(newValue =="fees"){
+    }else if(newValue =="studentby"){
       this.reset_report()
-      this.fees =true;
+      this.studentby =true;
     }else if(newValue =="transport"){
       this.reset_report()
       this.transport =true;
@@ -86,10 +88,20 @@ export class StudentReportComponent implements OnInit{
      
   }
 
+  OnChange(value){
+    if(value == "allclass"){
+      this.select_class =false;
+    }else{
+      this.select_class =true;
+    }
+
+  }
+
+
   reset_report(){
     this.hostel =false;
     this.bloodgroup =false; 
-    this.fees =false;
+    this.studentby =false;
     this.category =false;
     this.gender =false;
     this.state =false;
@@ -140,11 +152,12 @@ export class StudentReportComponent implements OnInit{
   }
  
   get_report(){
-   console.log('get report..')
-   this.studentreport = true;
-   this.printbutton =true;
-   this.csvbutton =true;
-        
+    console.log(this.rows);
+    //if (this.rows.length>0){
+    this.studentreport = true;
+    this.printbutton =true;
+    this.csvbutton =true;
+    //}    
   }
     
   get_email(){
@@ -171,45 +184,37 @@ export class StudentReportComponent implements OnInit{
   }
 
 
-  exportAsCSV() {
-    const headers = ['id'];//Object.keys(this.rows[0]);
-    const options = {
-        fieldSeparator  : ',',
-        quoteStrings    : '"',
-        decimalseparator: '.',
-        showLabels      : true,
-        headers         : headers,
-        showTitle       : false,
-        title           : 'Report',
-        useBom          : true
-    };
-
-    return new AngularCsv(this.rows, 'report', options);
-  }
+  // exportAsCSV() {
+  //   console.log(this.rows);
     
-  do_print(id) {   
-     console.log(id);
-     if(document.getElementById(id) != null){
-       var printContents = document.getElementById(id).innerHTML;
-       console.log(printContents)
-       var popupWin = window.open('', '_blank', 'top=0,left=0,height=auto,width=auto');
-        popupWin.document.open();
-       popupWin.document.write(`
-       <html>
-        <head>
-          <link rel="stylesheet" type="text/css" href="../../../assets/css/report-table.css">
-        </head>
-       <body onload="window.print();window.close()">${printContents}</body>
-       </html>`
-       );
-       popupWin.document.close();
-      } else{
-        alert('please see a report first')
-      
-      }
+  //   const headers = Object.keys(this.rows[0]);
     
+  //   const options = {
+  //       fieldSeparator  : ',',
+  //       quoteStrings    : '"',
+  //       decimalseparator: '.',
+  //       showLabels      : true,
+  //       headers         : headers,
+  //       showTitle       : false,
+  //       title           : 'Report',
+  //       useBom          : true
+  //   };
    
-  }
+  //    var output = [];
+  //   //  for(var row in this.rows)
+       
+  //   //    console.log(row);
+  //   //  }
+  //   //  console.log('row.guardian_detail.name');
+  //   // this.tmp = {
+  //   //    'gurdain_name':row gurdian_detail.name
+  //   //  }
+    
+  //   return new AngularCsv(this.rows, 'report', options);
+  
+  // }
+    
+ 
 
 
 }

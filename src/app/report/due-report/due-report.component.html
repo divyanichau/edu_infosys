@@ -49,11 +49,8 @@
                   <div class="col-sm-4" *ngIf ="classwise">
                     <label for="selectclass" class="req">  Class</label>
                     <select class="form-control"[(ngModel)]="due_report.class_name"  name="selectclass" >
-                      <!-- <option *ngFor="let c of classes" [ngValue]="c.id">{{c.name}}</option> -->
-                      <option value ="0">select option</option>
-                      <option value ="3">Class1</option>
-                      <option value ="4">Class2</option>
-                     
+                       <option *ngFor="let c of classes" [ngValue]="c.id">{{c.name}}</option> 
+              
                     </select>
                   </div>
 
@@ -75,7 +72,7 @@
                 <div class="form-group cols-sm-2">
                          <button type="submit" class="btn btn-success col-sm-offset-10 " (click)="get_report()">view</button>
                             
-                         <button type="submit" class="btn btn-danger col-sm-offset-1  button-margin" (click)="do_print('dataTable')">print</button> 
+                         <button type="submit" class="btn btn-danger col-sm-offset-1  button-margin" onclick="do_print('dataTable')" *ngIf ="printbutton">print</button> 
                   
                   </div>
                  </div>
@@ -149,7 +146,7 @@
        <td><b>Fine</b></td>
        
      </tr>
-     <tr ng-repeat=" row in rows">
+     <tr *ngFor ="let row ofrows">
        <td>{{row.id}}</td>
         <td>{{row.admission_no}}</td>
         <td>{{row.name}}</td>

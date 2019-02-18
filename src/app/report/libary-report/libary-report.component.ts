@@ -4,14 +4,13 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { isArray } from 'lodash';
 import { ToastrService } from 'ngx-toastr';
-import { DatatableComponent} from "@swimlane/ngx-datatable";
 import { UtilsService } from '../../shared/services/utils.service';
 import {LibaryReport} from '../../core/classes/libary-report';
 import {LibaryReportService} from '../../core/services/libaryreport.service';
 import {ClassService} from '../../core/services/class.service';
-import {_class} from '../../core/classes/class';
 import {SectionService} from '../../core/services/section.service';
 import {Section} from '../../core/classes/section';
+import {_class} from '../../core/classes/class';
 @Component({
   selector: 'app-libary-report',
   templateUrl: './libary-report.component.html',
@@ -28,6 +27,7 @@ export class LibaryReportComponent implements OnInit {
   datewise:boolean =false;
   classwise:boolean =false;
   sectionwise:boolean=false;
+  printbutton:boolean =false;
 
   selected_class: number;
   selected_section :number;
@@ -36,7 +36,7 @@ export class LibaryReportComponent implements OnInit {
   section :Section[];
   rows:any[]= [];
  
- @ViewChild('libaryReport') public libaryreport:NgForm;
+ @ViewChild('libaryreport') public libaryreport:NgForm;
 
   onChange(newValue) {
     if(newValue == "availablebook"){
@@ -46,53 +46,68 @@ export class LibaryReportComponent implements OnInit {
          this.rows = data;
          this.rows = [...this.rows];
        });
-      this.issuedbook = false;
-      this.availablebook= true;
+       this.reset_issued();
+       this.printbutton =true;
+       this.availablebook= true;
+     
     }
     else if(newValue == "issuedbook"){
-      this.availablebook = false;
+      this.reset_availablebook()
+      this.reset_button();
       this.issuedbook = true;
     }
     else{
       this.reset_availablebook()
+      this.reset_issued();
+      this.reset_button();
     }
 
-   this.reset_issued()
+  
 
   }
 
  reset_availablebook(){
-      this.libaryReport =false;
-      this.availablebook = false;
-      this.issuedbook = false;
-    
+      this.availablebook= false;   
   }
- 
+
+  reset_button(){
+    this.printbutton = false
+  }
+
+  reset_issued(){
+    this.issuedbook = false;
+    this.libaryReport =false;
+    this.classwise =false;
+    this.sectionwise =false;
+    this.datewise =false;
+  }
 
  OnChange(newValue){
     this.libaryreport.reset();
     if(newValue =="datewise"){
       this.reset_issued();
+      this.issuedbook =true;
       this.datewise =true;
     }
     else if(newValue=="classwise"){
       this.reset_issued();
+      this.issuedbook =true;
       this.classwise =true;
     }
-    else{
+    else if(newValue == "sectionwise"){
       this.reset_issued();
+      this.issuedbook =true;
       this.classwise =true;
       this.sectionwise =true;
+    }else{
+      this.reset_issued()
+      this.issuedbook =true;
+
     }
   
      
   }
 
-  reset_issued(){
-    this.classwise =false;
-    this.sectionwise =false;
-    this.datewise =false;
-  }
   constructor( 
   	private _utils: UtilsService,
     private router: Router,
@@ -148,6 +163,8 @@ export class LibaryReportComponent implements OnInit {
  
   get_reporttype(){
     this.libaryReport =true;
+    this.printbutton =true;
+
   }
 
   

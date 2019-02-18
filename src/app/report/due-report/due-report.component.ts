@@ -32,6 +32,7 @@ export class DueReportComponent implements OnInit {
   datewise :boolean =false;
   classwise:boolean =false;
   batchwise:boolean =false;
+  printbutton:boolean = false;
   feecategorywise:boolean =false;
   rows: any[] = [];
   classes: _class[];
@@ -130,30 +131,11 @@ export class DueReportComponent implements OnInit {
 
   get_report(){
     this.duereport = true;
+    this.printbutton =true;
 
    }
 
-   do_print(id) {   
-      console.log(id);
-      if(document.getElementById(id) != null){
-        var printContents = document.getElementById(id).innerHTML;
-        console.log(printContents)
-        var popupWin = window.open('', '_blank', 'top=0,left=0,height=auto,width=auto');
-        popupWin.document.open();
-        popupWin.document.write(`
-        <html>
-        <head>
-          <link rel="stylesheet" type="text/css" href="../../../assets/css/report-table.css">
-        </head>
-        <body onload="window.print();window.close()">${printContents}</body>
-        </html>`
-        );
-        popupWin.document.close();
-      } else{
-        alert('please see a report first')
-      
-      }
-    }
+ 
 
 
 
