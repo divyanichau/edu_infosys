@@ -129,6 +129,54 @@
           
           </div>
           <!-- modal end -->
+
+        <!-- modal start -->
+        <div class="modal fade" id="myModal1" role="dialog">
+          <div class="modal-dialog">
+                  <form ngNativeValidate (ngSubmit)="allocateFeesUpdate()" #FeeAllocationUpdate_Form="ngForm">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h4 class="modal-title" id="smallModalLabel">Update FeeAllocation</h4>
+                            </div>
+                            <div class="modal-body">
+                              <div class="panel-body">
+                             
+                                <div class="col-md-6 " >
+                                  <label>Fee Category</label>
+                                      <select name="fee-category" class="form-control" disabled>
+                                      
+                                        <option >{{_feeAlloation1.class}}</option>
+                                    </select>
+                                </div>
+                                  <div class="col-md-6 " >
+                                    <label>Fee Category</label>
+                                        <select name="fee-category" class="form-control" disabled>
+                                        
+                                          <option >{{_feeAlloation1.fee_category}}</option>
+                                      </select>
+                                  </div>
+
+                          
+                                  <div class="col-md-6 form-top-margin" >
+                                      <label for="amount">Total Amount</label>
+                                        <input type="number" name="total_amount" class="form-control" [(ngModel)]="_feeAlloation1.total_amount"  required>
+                                  </div>
+
+                               
+                    
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="submit" class="btn btn-primary waves-effect">Save</button>
+                              <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CLOSE</button>
+                            </div>
+                          </div>
+                        </form>
+                    
+            </div>
+        
+        </div>
+        <!-- modal end -->
     
   
   </div>

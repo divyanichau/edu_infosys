@@ -64,3 +64,19 @@
     font-size: 15px;
     
 }
+.fee-collection-margin{
+    margin-top: -35px;
+}
+
+.button-margin-bottom{
+    margin-bottom: 40px;
+}
+.voucher-header{
+    margin-left: -20px;
+    margin-top: -10px;
+}
+.panel-margin{
+    margin-top: -40px;
+    /* margin-left: 300px; */
+}
+

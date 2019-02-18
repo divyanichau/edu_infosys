@@ -11,6 +11,9 @@ import { FeeMaintainanceService } from 'src/app/core/services/accounting/fee-mai
 })
 export class FeeCategoryComponent implements OnInit {
   private _sub: Subscription = undefined;
+
+ 
+
   _feeCategory : FeeCategory =  new FeeCategory()
   _feeCategories : FeeCategory[]
   _feeCategories1 :FeeCategory =  new FeeCategory()
@@ -66,5 +69,5 @@ export class FeeCategoryComponent implements OnInit {
       });
 
   }
-  
+
 }

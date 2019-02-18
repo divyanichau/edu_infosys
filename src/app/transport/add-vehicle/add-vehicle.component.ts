@@ -43,6 +43,8 @@ export class AddVehicleComponent implements OnInit {
 
   ngOnInit() {
     this.loadDriver();
+    
+
   }
 
   onSubmitDriver() {

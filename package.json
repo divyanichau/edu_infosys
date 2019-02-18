@@ -41,6 +41,7 @@
     "jquery.transit": "^0.9.12",
     "lodash": "^4.17.5",
     "moment": "^2.20.1",
+    "nepali-date-picker": "^2.0.1",
     "ngx-progressbar": "^2.1.1",
     "ngx-toastr": "^9.1.1",
     "notyf": "^2.0.1",

@@ -17,6 +17,7 @@ import { AllocateFees } from '../../classes/Accounting/feeMaintainance/allocate-
 export class FeeAllocateService{
 //   private _expenseTypeUrl = `${new Config().api}/accounting/expense-category/`;
   private _feeAllocationUrl = `${new Config().api}/accounting/fee-allocation/`;
+  private _feeAllocationWithStudentUrl = `${new Config().api}/accounting/allocation/student/`;
 //   private _dailyExpenseUrl = `${new Config().api}/accounting/daily-expense/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
   Route = [];
@@ -32,16 +33,16 @@ export class FeeAllocateService{
   ) { }
 
 
-//   findExpenseCategy(id: number): Observable<ExpenseTypeUpdate[]> {
-//     this.beforeRequest();
+  findFeeAllocation(id: number): Observable<AllocateFees> {
+    this.beforeRequest();
 
-//     return this._http.get(`${this._expenseTypeUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
-//       map((res: Response) => res.json()),
-//       tap(
-//       data => this.afterGetRequest(),
-//       error => { console.log(error); }
-//       ),);
-//   }
+    return this._http.get(`${this._feeAllocationUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json()),
+      tap(
+      data => this.afterGetRequest(),
+      error => { console.log(error); }
+      ),);
+  }
 
   feeAllocate(_allocatedFees: AllocateFees): Observable<AllocateFees> {
     this.beforeRequest();
@@ -55,6 +56,7 @@ export class FeeAllocateService{
       ),);
   }
 
+
   getFeeAllocation(): Observable<AllocateFees[]> {
     //this.beforeRequest();
     const options = this._utils.makeOptions(this._headers);
@@ -66,18 +68,31 @@ export class FeeAllocateService{
       error => { console.log(error); }
       ),);
   }
+  getFeeAllocationWithStudent(student_id :number,_class:number): Observable<AllocateFees[]> {
+    //this.beforeRequest();
+    const options = this._utils.makeOptions(this._headers);
 
-//   updateExpenseType(_expenseType: any[],id:number): Observable<ExpenseType> {
-//     this.beforeRequest();
-//     const body = JSON.stringify(_expenseType);
+    let url = `${this._feeAllocationWithStudentUrl}?` + 'student_id' + '=' + student_id +'&&' + '_class_id' + '=' + _class
 
-//     return this._http.put(`${this._expenseTypeUrl}${id}/`, body, this._utils.makeOptions(this._headers)).pipe(
-//       map((res: Response) => res.json()),
-//       tap(
-//       data => this.afterUpdateRequest(),
-//       error => { this.showError(error) }
-//       ),);
-//   }
+    return this._http.get(url , options).pipe(
+      map((res: Response) => res.json()),
+      tap(
+      data => this.afterGetRequest(),
+      error => { console.log(error); }
+      ),);
+  }
+
+  updateFeeAllocation(_allocatedFees: AllocateFees,id:number): Observable<AllocateFees> {
+    this.beforeRequest();
+    const body = JSON.stringify(_allocatedFees);
+
+    return this._http.put(`${this._feeAllocationUrl}${id}/`, body, this._utils.makeOptions(this._headers)).pipe(
+      map((res: Response) => res.json()),
+      tap(
+      data => this.afterFeeAllocationUpdateRequest(),
+      error => { this.showError(error) }
+      ),);
+  }
 
 //   AddDailyExpense(_dailyExpense: DailyExpense): Observable<DailyExpense> {
 //     this.beforeRequest();
@@ -136,11 +151,11 @@ export class FeeAllocateService{
 
 //   }
 
-//   afterDailyExpenseUpdateRequest(): void {
-//     this._utils.stop_progress();
-//     this.toastr.success('Done','Expense Content Updated',{timeOut: 3000});
+  afterFeeAllocationUpdateRequest(): void {
+    this._utils.stop_progress();
+    this.toastr.success('Done','Fee Allocation Updated',{timeOut: 3000});
 
-//   }
+  }
 
   afterRequest(): void {
     this._utils.stop_progress();

@@ -24,8 +24,12 @@ export class FeeAllocationComponent implements OnInit {
   classes: import("/home/dinesh/projects/Btech-EduInfosis/FrontEnd/src/app/core/classes/class")._class[];
   selected_class: number;
   _feeAlloation : AllocateFees = new AllocateFees()
+  _feeAlloation1 : AllocateFees = new AllocateFees()
   _allocated_fees : AllocateFees[]
+  _allocated_fees1 : AllocateFees[]
   selected_fee_for: number;
+  fe_id: number;
+  total_amount :number;
 
 
   constructor(
@@ -82,6 +86,9 @@ initClass() {
         });
 
   }
+
+  
+
   OnChangeFeeeFor(val:any){
   this.selected_fee_for = val
       // console.log(val)
@@ -117,6 +124,26 @@ initFeeAllocation(){
     .subscribe(data => {
       this._allocated_fees = data
    this.initCourse()
+    });
+}
+
+OnRowClick(value:number){
+ this.fe_id = value
+  this._utils.unsubscribeSub(this._sub);
+  this._sub = this._feeAllocationService.findFeeAllocation(value)
+    .subscribe(data => {
+      this._feeAlloation1 = data
+      // console.log(this._allocated_fees1)
+  
+    });
+}
+
+allocateFeesUpdate(){
+  this._utils.unsubscribeSub(this._sub);
+  this._sub = this._feeAllocationService.updateFeeAllocation(this._feeAlloation1,this.fe_id)
+    .subscribe(data => {
+     
+  // this.initFeeAllocation()
     });
 }
 

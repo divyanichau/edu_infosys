@@ -1,3 +1,398 @@
-<p>
-  fee-collection works!
-</p>
+<div class="content-wrapper">
+  <div class="content">
+    <div class="page-header">
+      <ol class="breadcrumb breadcrumb">
+        <li><a href="#"><i class="material-icons">home</i> Home</a></li>
+        <li  class="active"><a href="#"><i class="material-icons">class</i>fee-collection</a></li>
+
+        
+      </ol>
+    </div>
+    <div class="panel panel-primary fee-collection-margin">
+      <div class="panel-heading">
+        <h1 class="panel-title">Fee Collection</h1>
+      </div>
+      <form (ngSubmit)="OnSubmitPayment()" #enteredPayment="ngForm" >
+        <div class="panel-body">
+            <div class="row-clearfix">
+
+                <div class="col-md-4">
+                    <label>Course</label>
+                    <select name="fee-for" class="form-control" [(ngModel)]="selected_course" (change)="onCourseChange(selected_course)">
+                        <option  *ngFor = "let course of courses" [ngValue]="course.id">{{course.name}}</option>
+                      
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label>Class</label>
+                    <select name="fee-for" class="form-control" [(ngModel)]="selected_class"  (change)="onClassChange(selected_class)" >
+                        <option  *ngFor = "let class of classes" [ngValue]="class.id">{{class.name}}</option>
+                      
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label>Student</label>
+                    <select name="fee-for" class="form-control" [(ngModel)]="selected_student" (change)="onChangeStudent(selected_student)">
+                      <option  *ngFor = "let student of students" [ngValue]="student.id">{{student.name}}</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4 form-top-margin">
+                  <label>Payment Category</label>
+                  <select name="selected-fees" class="form-control" [(ngModel)]="selected_fee_category" (change)="onChangeFeeCategory(selected_fee_category)">
+                    <option  *ngFor = "let af of _feeCategory" [ngValue]="af.id">{{af.fee_category}}</option>
+                  </select>
+              </div>
+
+                <div class="col-md-4 form-top-margin payment-span">
+                  <p>Total Amount :({{total_amount}})</p>
+                </div>
+
+
+                <div class="col-md-4 form-top-margin">
+                    <label for="ea">Enter Amount</label>
+                  <input type="number" id="ea" class="form-control" name="amount" [(ngModel)] = "_fee_collection.amount">
+                </div>
+
+                <div class="col-md-4 form-top-margin">
+                  <label for="remarks">Remarks</label>
+                  <textarea class="form-control" rows="4" id="remarks" name="remarks" [(ngModel)]="_fee_collection.remarks"></textarea>
+                </div>
+                <br/>
+    
+                
+               <div class="col-md-12 form-top-margin">
+                  <button type="button" class="btn btn-primary button-margin-bottom" (click) = "verifyData()">Submit</button>
+               </div>
+              
+            </div>
+
+          
+        </div>
+        <div class="panel panel-danger panel-margin" *ngIf ="boo==false">
+            <div class="panel-heading">
+               <span class="panel-title panel-margin">Please Verify Before Submitting !!</span>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-4 col-md-offset-2">
+                 <p> Student_Name: {{student_name}}</p>
+                  <p>Total Amount :{{total_amount}}</p>
+                  <p>Paid Amount :{{Paid_amount}}</p>
+                  <p *ngIf= "total_amount > Paid_amount">Remaining To pay:{{total_amount-Paid_amount}}</p>
+                  <p *ngIf= "Paid_amount > total_amount">Balance:{{Paid_amount-total_amount}}</p>
+                  <p *ngIf= "Paid_amount == total_amount">Payment Status:Fully PAID</p>
+                  <p *ngIf= "total_amount > Paid_amount">Payment Status:Partially PAID</p>
+                  <p *ngIf= "Paid_amount > total_amount">Payment Status:Extra PAID</p>
+                  <p>Payment Category: {{Payment_Category}}</p>
+                </div>
+            </div>
+            <div class="panel-footer">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            
+          </div>
+    </form>
+    </div>
+
+
+<!-- Tabs Start -->
+<div class="row clearfix">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+      
+          <div class="body">
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs" role="tablist">
+                  <li role="presentation" class="active">
+                      <a href="#ph" data-toggle="tab">
+                          <i class="material-icons">home</i> Payment History
+                      </a>
+                  </li>
+                  <li role="presentation">
+                      <a href="#statement" data-toggle="tab">
+                          <i class="material-icons">face</i> Statement
+                      </a>
+                  </li>
+              </ul>
+
+              <!-- Tab panes -->
+              <div class="tab-content">
+                  <div role="tabpanel" class="tab-pane fade in active" id="ph">
+                      <div class="panel-body">
+                        <table id="payment_statement">
+                            <tr>
+                              <th>Date</th>
+                              <th>Fee Category</th>
+                              <th>Dues</th>
+                              <th>Paid</th>
+                              <th>Remaining Dues</th>
+                              <th>Balance</th>
+                              <th>Payment Status</th>
+                             
+                              
+                            </tr>
+                          
+                            <tr *ngFor = "let ph of _payment_history">
+                              <td>{{ph.paid_date}}</td>
+                              <td>{{ph.fee_category}}</td>
+                              <td>{{ph.dues}}</td>
+                              <td>{{ph.paid_amount}}</td>
+                              <td>67</td>
+                              <td>34</td>
+                              <td>{{ph.payment_status}}</td>
+                              
+                              
+                              
+                            </tr>
+                          </table>
+                    </div>
+                  </div>
+                  <div role="tabpanel" class="tab-pane fade" id="statement">
+                      <b>Profile Content</b>
+                      <p>
+                          Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri ut tation electram moderatius.
+                          Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent aliquid
+                          pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere gubergren
+                          sadipscing mel.
+                      </p>
+                  </div>
+               
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- Tabs End -->
+   
+    <!-- <div class="panel panel-primary  ">
+      <div class="panel-heading">
+        <h1 class="panel-title">Payment Window</h1>
+      </div>
+      <div class="panel-body">
+       
+       
+        <div class="table-responsive">
+          <ngx-datatable class="material" [rows]="_allocated_fees" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
+            [footerHeight]="50" [rowHeight]="'auto'" [limit]="5" [selected]="selected" 
+            [selectionType]="'checkbox'"  (select)='onSelect($event)'>
+
+         
+            
+
+            
+            <ngx-datatable-column name="Fee Category" prop="fee_category">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+
+
+
+
+            <ngx-datatable-column name="Total Amount" prop="total_amount">
+              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+
+     
+
+            <ngx-datatable-column name="Paid Amount" prop="paid_amount">
+              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                <span title="click to edit" (click)="editing[rowIndex + '-paid_amount'] = true" *ngIf="!editing[rowIndex + '-paid_amount']">
+                  {{value}}
+                </span>
+                <input autofocus (blur)="updateValue($event, 'paid_amount', rowIndex)" *ngIf="editing[rowIndex+ '-paid_amount']"
+                  type="text" [value]="value" />
+              </ng-template>
+            </ngx-datatable-column> -->
+
+
+            <!-- <ngx-datatable-column [width]="120" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false" prop="id">
+                <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected" let-selectFn="selectFn">
+
+                  <input type="checkbox"  id="basic_checkbox" [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"/>
+                  <label for="basic_checkbox">Select All</label>
+                </ng-template>
+                <ng-template ngx-datatable-cell-template  let-isSelected="isSelected" let-onCheckboxChangeFn="onCheckboxChangeFn"
+                 let-value="value">
+              <input type="checkbox" id="basic_checkbox_{{value}}" [checked]="isSelected" (change)="onCheckboxChangeFn($event)" >
+                <label for="basic_checkbox_{{value}}">Select : {{value}}</label>
+           
+                </ng-template>
+            </ngx-datatable-column> -->
+
+            
+
+          <!-- </ngx-datatable>
+        </div>
+
+      </div>
+    </div> -->
+
+
+    <!-- <div class="panel panel-default fee-collection-margin">
+    <form (ngSubmit)="OnSubmitPayment()" #enteredPayment="ngForm">
+      <div class="panel-body">
+          <div class="row-clearfix">
+
+              <div class="col-md-4">
+                  <label>Mode Of Payment</label>
+                  <select name="fee-for" class="form-control" [(ngModel)]="fee_collection.mode_of_payment" required>
+                      <option  value="0" selected="selected">Select </option>
+                      <option value="1" >Cash</option>
+                      <option value="1" >Deposit</option>
+                      <option value="1" >Cheque</option>
+                  </select>
+              </div>
+       
+            <div class="col-md-4">
+              <label for="t_d">Total Dues</label>
+              <input type="textbox" class="form-control" id="t_d" value="{{total_dues | number:'.2'}}"  disabled>
+            </div>
+
+            <div class="col-md-4 ">
+              <label for="t_p">Total Paid</label>
+              <input type="textbox" class="form-control" id="t_p" value="{{total_paid_amount}}" disabled >
+            </div>
+
+            <div class="col-md-4 form-top-margin">
+              <label for="r_a">Remaining Amount</label>
+              <input type="text" id="r_a" class="form-control" value="{{remaining_amount}}" disabled>
+            </div>
+
+            <div class="col-md-4 form-top-margin">
+              <label for="rec_n">Receipt Number</label>
+              <input type="text" id="rec_n" class="form-control" name="receipt_number" [(ngModel)]="fee_collection.receipt_number" >
+            </div>
+
+           
+              
+            <div class="col-md-4 form-top-margin">
+              <label for="remarks">Remarks</label>
+              <textarea class="form-control" rows="4" id="remarks" name="remarks" [(ngModel)]="fee_collection.remarks"></textarea>
+            </div>
+
+    
+          </div>
+      </div>
+      <div class="panel-footer button-margin-bottom">
+        <div class="col-md-2 col-md-offset-10 ">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </form>
+    </div>
+    
+  
+  </div>
+  <div class="btn-toolbar">
+    <button class="btn btn-primary" (click) = "LoadHistory()">Load History</button>
+    <button class="btn btn-primary" (click) = "LoadStatement()">Load Statement</button>
+  </div>
+  <div class="panel panel-primary" *ngIf ="va==false">
+    
+      <div class="panel-body" style="border:1px solid black;" >
+        <div class="row-clearfix">
+          <div class="col-md-3">
+              <h4 class="voucher-header">Fee Statement</h4>
+          </div>
+          <div class="col-md-3 col-md-offset-6">
+              <h4 class="voucher-header">Voucher No:________</h4>
+          </div>
+        </div>
+        <hr/>
+        <div class="row-clearfix">
+          <div class="col-md-3">
+              <img src="../../../../assets/images/logo.png" class="img-rounded" style="height: 130px;" >
+          </div>
+          <div class="col-md-9">
+            <h3 >Ambikeshwori College of Technology</h3><br>
+            <p style="margin-top:-25px;margin-left: 80px">Ghorahi 11 Dang</p><br>
+            <p style="margin-top:-25px;margin-left: 50px"><ins>Contact:</ins>082-560330,986765432</p><br>
+            <p style="margin-top:-25px;margin-left: 80px"><ins>Bank Detail:</ins>Prabhu Bank , Ghorahi Dang</p><br>
+          </div>
+        </div>
+        <hr/>
+        <div class="row-clearfix">
+            <p>Student_id_____ _________Session:_____________ Roll_No___________</p>
+            <p>Student_Name________________________</p>
+            <p>Class:_______ </p> <p>Payment_Type_________</p>
+        </div>
+       
+        <div class="row-clearfix">
+            <table id="payment_statement">
+              <tr>
+                <th>Date</th>
+                <th>Fee Category</th>
+                <th>Dues</th>
+                <th>Paid</th>
+                <th>Remaining Dues</th>
+                <th>Balance</th>
+                
+              </tr>
+            
+              <tr *ngFor="let ph of _payment_statement.payment_history">
+                <td>{{ph.date}}</td>
+                <td>{{ph.fee_category}}</td>
+                <td>{{ph.dues}}</td>
+                <td>{{ph.paid}}</td>
+                <td>{{ph.remaining_dues}}</td>
+                <td>{{ph.balance}}</td>
+              </tr>
+
+              <tr >
+                <td colspan="2">Total Amount</td>
+                <td > {{_payment_statement.total_dues}}</td>
+                <td > {{_payment_statement.total_paid}}</td>
+                <td > {{_payment_statement.remaining_to_pay}}</td>
+                <td > {{_payment_statement.total_balance}}</td>
+                </tr>
+              
+            </table>
+            <p>Total Remaining Dues:{{_payment_statement.total_remaining_dues}}</p>
+        </div>
+        <hr/>
+          <h4 class="voucher-header" style="margin-left:10px;">Total Paid In Word:<i>{{_payment_statement.total_paid_in_words}}</i></h4>
+        <hr/>
+        <div class="row-clearfix">
+          <div class="col-md-3">
+            <p>Approved By</p>
+          </div>
+          <div class="col-md-3 col-md-6">
+            <p>colleges Stamp</p>
+          </div>
+        </div>
+      </div>
+    <div class="panel-footer">
+      <button class="btn btn-primary" onclick = "printDiv('payment_statement')">Print StateteMent</button>
+    </div>
+  </div>
+
+
+<div class="panel panel-primary" *ngIf = "va==true">
+  <div class="panel-heading">
+    <h5>Payment Hostory</h5>
+  </div>
+  <div class="panel-body">
+      <table id="payment_statement">
+          <tr>
+            <th>Date</th>
+            <th>Fee Category</th>
+            <th>Paid Amount</th>
+            <th>Payment Status</th>
+            <th>Remarks</th>
+            
+          </tr>
+        
+          <tr *ngFor = "let ph of _payment_history">
+            <td>{{ph.paid_date}}</td>
+            <td>{{ph.fee_category}}</td>
+            <td>{{ph.paid_amount}}</td>
+            <td>{{ph.payment_status}}</td>
+            <td>{{ph.remarks}}</td>
+            
+          </tr>
+        </table>
+  </div>
+</div> -->
+</div>
