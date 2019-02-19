@@ -88,6 +88,11 @@ const routes: Routes = [
 	  	path: 'task',
 	   	loadChildren: './task/task.module#TaskModule'
 	  },
+ {
+	  	path: 'store',
+	   	loadChildren: './store/store.module#StoreModule'
+	  },
+
 
 
 	];
