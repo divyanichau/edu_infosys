@@ -1,5 +1,9 @@
 export class Setting {
-	
-	institution_name: string;
+
+	 id: number;
+	name: string;
+	address: string;
+	email: string;
+	phone: number;
 	
 }

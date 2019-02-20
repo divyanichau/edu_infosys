@@ -15,7 +15,7 @@
 
           
   <div class="body">
-   <form (ngSubmit)="onSubmit()" #classForm="ngForm"> -->
+   <form ngNativeValidate (ngSubmit)="onSubmit()" #settingForm="ngForm"> 
         <div class="col-sm-12">
             <div class="panel panel-primary">
               <div class="panel-heading" >
@@ -35,13 +35,13 @@
           <div class="row clearfix">
                   <div class="col-sm-6">
                         <label for="fee_category">Institution Name</label>
-                    <input type= "text" class="form-control"  placeholder="Enter Institution Name" >
+                    <input type= "text" class="form-control" [(ngModel)]="obj.name" [ngModelOptions]="{standalone: true}" placeholder="Enter Institution Name" required>
                             
                   </div>
 
                   <div class="col-sm-6">
                         <label for="fee_category">Institution Address</label>
-                    <input type= "text" class="form-control"  placeholder="Enter Institution Details" >
+                    <input type= "text" class="form-control" [(ngModel)]="obj.address" [ngModelOptions]="{standalone: true}" placeholder="Enter Institution Address" required>
                             
                   </div>
                 </div>
@@ -50,13 +50,13 @@
               <div class="row clearfix">
                   <div class="col-sm-6">
                         <label for="fee_category">Institution Email</label>
-                    <input type= "text" class="form-control"  placeholder="Enter Email Address" >
+                    <input type= "text" class="form-control" [(ngModel)]="obj.email" [ngModelOptions]="{standalone: true}" placeholder="Enter Email Address" required>
                             
                   </div>
 
                   <div class="col-sm-6">
                         <label for="fee_category">Institution Phone</label>
-                    <input type= "text" class="form-control"  placeholder="Enter Phone Number" >
+                    <input type= "text" class="form-control" [(ngModel)]="obj.phone" [ngModelOptions]="{standalone: true}" placeholder="Enter Phone Number" required>
                             
                   </div>
                 </div>
@@ -64,8 +64,8 @@
               <div class="panel-body">
           <div class="form-group">
                   <button class="btn btn-primary btn-lg"  type="Submit"><b>Update</b></button>
-              </div>
-           </div>
+          </div>
+          </div>
           </div>
         </div>
 
@@ -85,12 +85,7 @@
   Select a file: <input type="file" name="myFile"><br><br>
 
 </form>
-<div class="panel-body">
-    <div class="form-group">
-            <button class="btn btn-info" style="background-color:#aabad8;" type="Submit"><b>Update Logo</b></button>
-        </div>
 
-    </div>
 </div>
 </div>
        

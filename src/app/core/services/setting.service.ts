@@ -12,7 +12,7 @@ import { Setting } from '../classes/setting';
 
 @Injectable()
 export class SettingService {
-  private _settingUrl = `${new Config().api}/class/`;
+  private _settingUrl = `${new Config().api}/setting/institution/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
 
   constructor(
@@ -36,7 +36,8 @@ export class SettingService {
 
   add(setting: Setting): Observable<Setting> {
     this.beforeRequest();
-    const body = JSON.stringify(Setting);
+    const body = JSON.stringify(setting);
+    console.log("hsgshs",body)
 
     return this._http.post(`${this._settingUrl}`, body, this._utils.makeOptions(this._headers)).pipe(
       map((res: Response) => res.json().data),
