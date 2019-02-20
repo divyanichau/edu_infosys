@@ -1,10 +1,9 @@
 export class inventory_item{
   id: number;
-  vendors : number;
+  vendor : number;
   category: number;
-  inventory_item: string;
+  item_name: string;
   quantity: number;
   discount: number;
-  mrp: number;
   rate: number;
 }

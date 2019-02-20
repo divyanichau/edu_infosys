@@ -14,7 +14,7 @@ import { inventory_item} from '../../core/classes/inventory-item';
 
 @Injectable()
 export class StoreService {
-  private _itemUrl = `${new Config().api}/course/store/`;
+  private _itemUrl = `${new Config().api}/store/products/`;
   private _headers = this._utils.makeHeaders({ withToken: true });
 
   constructor(

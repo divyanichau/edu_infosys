@@ -11,7 +11,8 @@ import { StoreComponent } from './store.component';
 import { UtilsService } from '../shared/services/utils.service';
 import { StoreService } from '../core/services/store.service';
 import { InventoryItemComponent } from './inventory-item/inventory-item.component';
-
+import { VendorService } from '../core/services/vendor.service';
+import { CategoryService } from '../core/services/category.service';
 
 @NgModule({
   imports: [
@@ -23,7 +24,7 @@ import { InventoryItemComponent } from './inventory-item/inventory-item.componen
 
     StoreRoutingModule
   ],
-  providers: [ StoreService , UtilsService],
+  providers: [ StoreService , VendorService, CategoryService, UtilsService],
   declarations: [StoreComponent, InventoryItemComponent]
 
 })

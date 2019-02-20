@@ -10,37 +10,32 @@
        <div class="body">
           <div class="row clearfix">
                  <div class="col-md-6 ">
-                    <label for="store" class="req">Vendors</label>
-                      <select name="store" class="form-control" [(ngModel)]="_inventory_item.vendors" required>
-                      <option  value="0" selected="selected">Select Vendors </option>
-					  <option value="1">Initial Stock</option>
-					  <option value="2">Classmate2 - Admin</option>
-					  <option value="3">webschool - Bashyam Public school</option>
-					 <option value="4">test - Alexa abc</option>
-					 <option value="5">SSPF - Stefun</option>
-					 <option value="6">TESTing - mick</option>
-					 <option value="7">Rawat - Hitesh</option>
-					 <option value="8">Modern  - Hitesh</option>
-                  </select>
+                    <label for="store" class="req">Vendor</label>
+                      <select class="form-control"  [(ngModel)]="selected_vendor" name="vendor" required>
+                          <option *ngFor="let v of _vendor" [ngValue]="v.id">{{v.name}}</option>
+                      </select>
+                  </div>
+
+              <div class="col-md-4">
+                <button type="button" class="btn btn-primary waves-effect" data-toggle="modal" data-target="#smallModal"
+                  style="margin-top:23px;margin-left: -23px;">+Add Vendors</button>
               </div>
         
-            <div class="col-md-6">
+            <div class="col-md-6 form-top-margin"  style="margin-left:1px;">
                   <label for="category">Category</label>
-                    <select class="form-control" name="category" [(ngModel)]="_inventory_item.category" reqiured>
-                       <option value="0" selected="selected">Please Select</option>
-                       <option value="1">Books</option>
-                       <option value="2">Demo</option>
-                       <option value="3">Year Book</option>
-                       <option value="4">Food</option>
-                       <option value="5">Book</option>
-                       <option value="6">Computer</option>
-                   </select>
-           </div>
+                     <select class="form-control"  [(ngModel)]="selected_category" name="category" required>
+                          <option *ngFor="let c of _category" [ngValue]="c.id">{{c.name}}</option>
+                      </select>
+            </div>
 
+            <div class="col-md-4 form-top-margin">
+                <button type="button" class="btn btn-primary waves-effect" data-toggle="modal" data-target="#smallModal1"
+                  style="margin-top:23px;margin-left: -23px;">+Add Category</button>
+              </div>
              
                <div class="col-md-6 form-top-margin">
-                  <label for="inventory_item">Inventory Item</label>
-                     <input type="text" class="form-control" [(ngModel)]="_inventory_item.inventory_item"  name="inventory_item"   placeholder="Enter inventory item" required>
+                  <label for="item_name"> Item Name</label>
+                     <input type="text" class="form-control" [(ngModel)]="_inventory_item.item_name"  name="item_name"   placeholder="Enter  item name" required>
                </div>
         
             <div class="col-md-6 form-top-margin">
@@ -48,29 +43,86 @@
                    <input type="text" class="form-control" [(ngModel)]="_inventory_item.quantity"  name="quantity"   placeholder="Enter quantity" required>
             </div>
          
-              <div class="col-md-6 form-top-margin">
+            <div class="col-md-6 form-top-margin">
                   <label for="reg_input" class="req">Discount</label>
                       <input type="text" class="form-control" [(ngModel)]="_inventory_item.discount"  name="discount"   placeholder="Enter discount" required>
-                    </div>
-        
-         
-              <div class="col-md-6 form-top-margin">
-                <label for="mrp">MRP</label>
-                     <input type="number" class="form-control" [(ngModel)]="_inventory_item.mrp"  name="mrp"   placeholder="" required>
             </div>
+        
           
-              <div class="col-md-6 form-top-margin">
+            <div class="col-md-6 form-top-margin">
                 <label for="rate">Rate</label>
                      <input type="number" class="form-control" [(ngModel)]="_inventory_item.rate"  name="rate"   placeholder="" required>
-               </div>
-           </div>
-       </div>
+            </div>
+        </div>
+      </div>
      
           <div class="panel-footer">
             <button class="btn btn-primary btn-lg" type="Submit"><b>Save</b></button>
          </div>
      </div>
 
+<div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <form ngNativeValidate (ngSubmit)="onSubmitVendor()" #vendorForm="ngForm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="smallModalLabel">Add Vendor</h4>
+        </div>
+        <div class="modal-body">
+          <div class="panel-body">
+            <div class="row clearfix">
+              <div class="col-md-6">
+                <label for="company_name">Company Name</label>
+                <input type="text" name="company_name"  class="form-control" [(ngModel)]="obj.name" placeholder=" Company Name">
+              </div>
+
+              <div class="col-md-6 ">
+                <label for="description">Description </label>
+                <input type="text" name="description" class="form-control" placeholder="" [(ngModel)]="obj.description">
+              </div>
+          
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary waves-effect">Add Vendor</button>
+          <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CLOSE</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal fade" id="smallModal1" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <form ngNativeValidate (ngSubmit)="onSubmitCategory()" #categoryForm="ngForm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="smallModalLabel">Add Category</h4>
+        </div>
+        <div class="modal-body">
+          <div class="panel-body">
+            <div class="row clearfix">
+              <div class="col-md-6">
+                <label for="name">Name</label>
+                <input type="text" name="name"  class="form-control" [(ngModel)]="objs.name" placeholder=" Enter Name">
+              </div>
+
+              <div class="col-md-6">
+                <label for="description">Description</label>
+                <input type="text" name="description"  class="form-control" [(ngModel)]="objs.description" placeholder=" ">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary waves-effect">Add Category</button>
+          <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CLOSE</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
 
 
 <div class="body">
@@ -78,22 +130,28 @@
     <div class="col-sm-6"> 
       <div class="panel panel-primary">
         <div class="panel-heading">    
-         <h4 class="panel-title">Search Vendors</h4>
-        </div>
+         <!-- <h4 class="panel-title">Search Vendors</h4> -->
+        </div> 
         <div class="panel-body">
        <div class="table-responsive">                       
-               <div class="col-xs-6 col-md-6">
-                  <div class="input-group">
-                    <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter Name" id="txtSearch" />
+               <div class="col-xs-6">
+                 <!--  <div class="input-group">
+                   <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter Name" id="txtSearch" />
                     <div class="input-group-btn">
                       <button class="btn btn-primary" type="submit">
                         <span class="glyphicon glyphicon-search"></span>
                       </button>
                     </div>
-                  </div>
+                  </div>  -->
+                <label for="reg_no"></label>
+                  <select class="form-control" name="Inventoryitem[vendorsid]" id="Inventoryitem_vendorsid">
+                    <option value="">Select</option>
+                    <option value="1">All Products</option>
+                    <option value="2">Categorywise</option>
+                 </select>
                 </div>
               </div>
-         
+      
               <ngx-datatable class="material" [rows]="inventors" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
                 [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
 
