@@ -1,12 +1,32 @@
 <div class="body">
   <div class="content-wrapper">
     <form ngNativeValidate (ngSubmit)="OnSubmitStore()" #storeForm="ngForm">
-      <div class="col-sm-6">
+      <div class="col-sm-12">
         <div class="panel panel-primary">
-          <div class="panel-heading">
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+             <a href="#add_inventory" data-toggle="tab">
+               <i class="material-icons">list</i> Add Inventory Item
+             </a>
+           </li>
+         <li role="presentation">
+          <a href="#inventory_list" data-toggle="tab">
+            <i class="material-icons">list</i> Inventory List
+          </a>
+         </li>
+      </ul>
+      <br>
+        <div class="tab-content" >
+          <div  class="tab-pane fade in active" id="add_inventory" >
+             <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h4 class="panel-title">Add Inventory Item</h4>
+              </div>
+            </div>    
+          <!-- <div class="panel-heading">
               <h4 class="panel-title">Add  Inventory Item</h4>
-          </div>
-        </div>
+          </div> -->
+     
        <div class="body">
           <div class="row clearfix">
                  <div class="col-md-6 ">
@@ -125,24 +145,26 @@
 </div>
 
 
-<div class="body">
-  <div class="content-wrapper">           
-    <div class="col-sm-6"> 
-      <div class="panel panel-primary">
-        <div class="panel-heading">    
-         <!-- <h4 class="panel-title">Search Vendors</h4> -->
-        </div> 
+<div role="tabpanel" class="tab-pane fade" id="inventory_list">  
+ <div class="form-group">
+  <div class="row">
+   <div class="col-sm-12"> 
+     <div class="panel panel-primary">
+       <div class="panel-heading" > 
+          <h4 class="panel-title">Inventory List</h4>
+        </div>
+
         <div class="panel-body">
-       <div class="table-responsive">                       
-               <div class="col-xs-6">
-                 <!--  <div class="input-group">
+         <div class="table-responsive">                       
+           <div class="col-xs-6 col-md-6">
+              <div class="input-group">
                    <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter Name" id="txtSearch" />
                     <div class="input-group-btn">
                       <button class="btn btn-primary" type="submit">
                         <span class="glyphicon glyphicon-search"></span>
                       </button>
                     </div>
-                  </div>  -->
+              </div>  
                 <label for="reg_no"></label>
                   <select class="form-control" name="Inventoryitem[vendorsid]" id="Inventoryitem_vendorsid">
                     <option value="">Select</option>
@@ -204,6 +226,9 @@
         </div>
       </div>
   </div>
+</div>
+
+
 
 
 
