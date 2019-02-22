@@ -22,9 +22,8 @@
                   <div class="row clearfix">
                     <div class="col-sm-4">
                       <label for="category" class="req"> Select Category</label>
-                      <select class="form-control"  (change)="onChange($event.target.value)" name=" selectcategory" required>
+                      <select class="form-control" (change)="onChange($event.target.value)" name=" selectcategory" required>
                         <option value ="option">Select option</option> 
-                        <option value ="hostel">hostel</option>
                         <option value = "bloodgroup">bloodgroup</option>
                         <option value = "category">category</option>
                          <option value ="state">state</option>
@@ -34,16 +33,7 @@
                         <option value = "transport">transport</option>
                         
                       </select>
-                    </div>
-
-                    <div class="col-sm-4"*ngIf ="hostel">
-                      <label for="reg_input" class="req">Hostel Name</label>
-                      <select class="form-control" [(ngModel)]="student_report.hostelname" name="hostelname"required >
-                        <!-- <option *ngFor="let h of hostel" [ngValue]="h.id">{{h.name}}</option> -->
-                        <option value ="1">boys apartment</option>
-                        <option value ="2">girls apartment</option>
-                      </select>
-                    </div>
+                    </div>              
 
                      <div class="col-sm-4"*ngIf ="category">
                       <label for="category" class="req">Category</label>
@@ -108,14 +98,14 @@
                       <label for="bloodgroup" class="req">Bloodgroup</label>
                       <select class="form-control" [(ngModel)]="student_report.blood_group" name="bloodgroup" required >
                         <!-- <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option> -->
-                        <option>A</option>
-                        <option>A-</option>
-                        <option>B+</option>
-                        <option>B-</option>
-                         <option>AB</option>
-                        <option>AB-</option>
-                         <option>O+</option>
-                        <option>O-</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value ="o-">O-</option>
                       </select>
                     </div>
 
@@ -193,7 +183,7 @@
                 <div class="form-group col-sm-2">
                 <button type="submit" class="btn btn-primary col-sm-1 " (click)="get_report()" >Get report</button>
                 <button type="button" class="btn btn-danger col-sm-offset-8" onclick ="do_print('dataTable')" *ngIf ="printbutton">print report</button>
-                <button type="button" class="btn btn-success col-sm-offset-1 button-margin"  onclick ="exportTableToCSV('dataTable')" *ngIf ="csvbutton">csv file</button>  
+                <button type="button" class="btn btn-success col-sm-offset-1 button-margin" (click) = "exportAsCSV('dataTable')" *ngIf ="csvbutton">csv file</button>  
                   </div>
                  </div>
                 </div>
@@ -205,126 +195,10 @@
     </div>
   </div>
 
-     <!--  <div class="table-responsive  " *ngIf="studentreport"  >
-            <table class ="table table-bordered " > 
-               <h3 class = "text-center panel-heading bg-primary"> Student Report</h3>
-              <br>
-              <ngx-datatable  class="material" [rows]="rows" expanded="expanded" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
-                [footerHeight]="50" [rowHeight]="'auto'" [columnMode]="'flex'">
-
-                <ngx-datatable-column name="ID" prop="id" [flexGrow]="0.5">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Admission No" prop="admission_no" [flexGrow]="1">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">{{value}}
-                  </ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Name" prop="name">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">{{value}}
-                 </ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Course" prop="course">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">{{value}}
-                 </ng-template>
-                </ngx-datatable-column>
-
-               
-
-                <ngx-datatable-column name="Contact No" prop="phone.number" *ngIf ="!phonenumber">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">{{value}}
-                 </ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="permanent Address" prop="address_detail.address" *ngIf = "!address">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">{{value}}
-                 </ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Temporary Address" prop="temporary_address" *ngIf="!address">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">{{value}}
-                  </ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Gurdian Name" prop="guardian_details.name" *ngIf="!gurdiandetail">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">{{value}}
-                 </ng-template>
-                </ngx-datatable-column>
-
-               <ngx-datatable-column name="Gurdian Address" prop="guardian_details.address.address" *ngIf="!gurdiandetail">
-                <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">{{value}}
-               </ng-template>
-              </ngx-datatable-column>
-
-            <ngx-datatable-column name="Gurdian Contact" prop="guardian_details.contact.number" *ngIf="!gurdiandetail">
-              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-              <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">{{value}}
-              </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="Father Name" prop="parent_details.father.name" *ngIf="!parentsdetail">
-              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-              <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">{{value}}
-              </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="Mother Name" prop="parent_details.mother.name" *ngIf="!parentsdetail">
-              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-              <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">{{value}}
-              </ng-template>
-            </ngx-datatable-column>
-            
-            <ngx-datatable-column name="Father Contact" prop="parent_details.father.mobile" *ngIf="!parentsdetail">
-              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-              <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">{{value}}
-             </ng-template>
-            </ngx-datatable-column>
-           
-
-            <ngx-datatable-column name="Mother Contact" prop="parent_details.mother.mobile" *ngIf="!parentsdetail">
-              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-              <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">{{value}}
-             </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="Amount" prop="amount" *ngIf="!amount">
-              <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-              <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">{{value}}
-              </ng-template>
-            </ngx-datatable-column>
-
-                <ngx-datatable-column name="Email" prop="email"*ngIf="!email">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Admission Date" prop="admission_date">
-                  <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                  <ng-template let-value="value" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">{{value}}
-                  </ng-template>
-                </ngx-datatable-column>
-
-              </ngx-datatable>
-          </table>
-        </div> -->
-
- </div>
-
-    
-   <div class = " table-reponsive table-bordered " style="overflow-x:auto;" *ngIf="studentreport" id ="dataTable">
-    <h3 class="text-center panel-heading bg-primary">Student Report</h3> 
-     <table class="center col-sm-12 "  >
+   
+  <div class = "table-reponsive" *ngIf="studentreport" id ="dataTable">
+    <h4 class="text-center panel-heading bg-info">Student Report</h4> 
+     <table class="center col-sm-12  table-bordered table-striped table-hover footable"  >
        <tr>
          <th>ID</th>
          <th>Admission No</th>
@@ -343,14 +217,14 @@
          <th *ngIf="!email">Email</th>
          <th>Admission Date</th>
        </tr>
-        <tr *ngFor ="let row of rows">
+         <tr *ngFor ="let row of rows">
           <td>{{row.id}}</td>
           <td>{{row.admission_no}}</td>
           <td>{{row.name}}</td>
           <td>{{row.course}}</td>
           <td *ngIf ="!phonenumber">{{row.phone.number}}</td>
           <td *ngIf="!address">{{row.address_detail.address}}</td>
-          <td *ngIf="!address"></td>
+          <td *ngIf="!address">Temporary address</td>
           <td *ngIf="!gurdiandetail">{{row.guardian_details.name}}</td>
           <td *ngIf="!gurdiandetail">{{row.guardian_details.address.address}}</td>
           <td *ngIf="!gurdiandetail">{{row.guardian_details.contact.number}}t</td>
@@ -362,10 +236,18 @@
           <td>{{row.admission_date}}</td>
          
         </tr>
+        
+      
     
      </table>
    </div> 
-   <br>  
+
+
+ </div>
+
+    
+   
+    
 
 
              

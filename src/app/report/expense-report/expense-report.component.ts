@@ -20,6 +20,7 @@ export class ExpenseReportComponent implements OnInit {
   category:boolean =false;
   datewise:boolean =false;
   expensereport= false;
+  printbutton:boolean =false;
   rows:any[]=[];
   
   @ViewChild('expenseReport') public expenseReport:NgForm
@@ -67,7 +68,7 @@ export class ExpenseReportComponent implements OnInit {
   }
 
   get_expensereport(){
-   
+    this.printbutton =true;
     this.expensereport = true;
   }
 

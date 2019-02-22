@@ -36,6 +36,7 @@
     "angular7-csv": "^0.2.12",
     "bootstrap": "^4.2.1",
     "core-js": "^2.5.4",
+    "file-saver": "^2.0.1",
     "font-awesome": "^4.7.0",
     "highcharts": "^6.0.6",
     "ionicons": "^2.0.1",

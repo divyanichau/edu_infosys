@@ -19,19 +19,18 @@
                       <br>
                       <div class="panel-body">
                         <div class="row clearfix">
-                        
                           <div class="col-sm-4">
                               <label for="from_date">From Date</label>
-                              <input type="Date" class="form-control" [(ngModel)]="absent_report.from_date" name="from_date" >
+                              <input type="Date" class="form-control" [(ngModel)]="absent_report.from_date" name="from_date" required  >
                             </div>
                           <div class="col-sm-4">
                               <label for="to_date"> To Date</label>
-                              <input type="Date" class="form-control" [(ngModel)]="absent_report.to_date" name="to_date" >
+                              <input type="Date" class="form-control" [(ngModel)]="absent_report.to_date" name="to_date" required >
                           </div>
 
                           <div class="col-sm-4">
-                            <label for="class" class="req">Select Class </label>
-                            <select class="form-control" [(ngModel)]="absent_report.class" name="class">
+                            <label for="class" class="req"> Class </label>
+                            <select class="form-control" [(ngModel)]="absent_report.class" name="class" required >
                               <!-- <option>class-1</option>
                               <option>class-2</option>
                               <option>class-3</option> -->
@@ -43,8 +42,8 @@
                         <br>
                         <div class ="row clearfix">
                             <div class="col-sm-4">
-                                <label for="section" class="req">Select Section</label>
-                                <select class="form-control" [(ngModel)]="absent_report.section" name="section">
+                                <label for="section" class="req"> Section</label>
+                                <select class="form-control" [(ngModel)]="absent_report.section" name="section" required >
                                   <option *ngFor="let s of section" [ngValue]="s.id">{{s.name}}</option>
                                 </select>
                             </div>
@@ -69,8 +68,8 @@
           </div>
         </div>
 
-        <!--collective report table start-->
-      <div class="table-responsive" *ngIf="student_absent_report">
+        <!--absent report table start-->
+    <!--  <div class="table-responsive" *ngIf="student_absent_report">
             <br>
               <table class ="table table-bordered">
                 <h3 class="text-center panel-heading bg-primary">  Student Absent Report</h3>
@@ -120,9 +119,36 @@
                 
                 </ngx-datatable> 
               </table>
-      </div>
+      </div>-->
         <!--student absent report a table end-->
         
    </div>
 <!--end of body-->
  </div>
+
+ <div class = " table-reponsive "  id ="dataTable"  *ngIf="student_absent_report">
+  <h3 class="text-center panel-heading bg-primary">Absent Report</h3> 
+   <table class="center col-sm-12 table-bordered table-striped footable table-hover">
+     <tr>
+       <th>ID</th>
+       <th>Date</th>
+       <th> Name </th>
+       <th>Class</th>
+       <th>Section</th>
+       <th>status</th>
+       <th>Gurdian Name</th>
+       <th>Gurdian Contact</th>
+  
+     </tr>
+     <tr *ngFor="let row of rows">
+       <td>{{row.id}}</td>
+        <td>{{row.date}}</td>
+        <td>{{row.name}}</td>
+        <td>{{row.class}}</td>
+        <td>{{row.section}}</td>
+        <td>{{row.attendence.status}}</td>
+        <td>{{row.gurdian_detail.name}}</td>
+        <td>{{row.gurdian_detail.contact}}</td>
+      </tr>
+   </table>
+ </div> 

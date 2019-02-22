@@ -7,5 +7,6 @@ export class FeepaidReport{
     batch:string;
     course:string;
     classes:string;
+    section:string;
 
 }

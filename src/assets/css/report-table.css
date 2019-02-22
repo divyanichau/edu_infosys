@@ -5,11 +5,18 @@
   }
 
  #dataTable {
-    margin-top: -65px;
+    margin-top: -45px;
+    overflow-x:auto;
+    overflow-y:auto;
+
 
   }
+   .btn-group {
+     margin:2px;
+   }
+   
 
-  h3 { 
+  h4 { 
   
     text-align: center;
   }

@@ -9,15 +9,15 @@
        </div> 
       
          <div class="btn btn-group bg-info" >
-           <ul class="nav nav-tabs nav-tabs-highlight" (change)="onChange($event.target.value)" >
+           <ul class="nav nav-tabs nav-tabs-highlight" >
                <li  class="active">
                    <a  class="btn btn-default"  value ="1" href="#paid_report" data-toggle="tab">
-                       <b> Paid Report(class wise)</b> 
+                       <b>Paid Report(categorywise)</b> 
                    </a>
                </li>
                <li class="presentation">
                    <a class ="btn btn-default" value ="2"  href="#collective_report" data-toggle="tab">
-                        <b> Paid Report(specific interval)</b> 
+                        <b> Paid Report(collective)</b> 
                    </a>
                </li>
                <li class ="presentation">
@@ -31,12 +31,13 @@
           
  
    <div class="tab-content">
+
    <div role="tabpanel" class="tab-pane active" id="paid_report" >
    <div class="content-wrapper">
      <div class="content">
          <div class="row ">
            <form (ngSubmit) ="onSubmit('feepaidReport')" #feepaidReport ="ngForm">
-             <div class="col-sm-12">
+             <div class="col-sm-10">
                <div class="card">
                    <h4 class=" panel-heading bg-primary">
                      Fee Paid Report
@@ -45,13 +46,23 @@
                  <div class="panel-body">
                    <div class="row clearfix">
                     
-                     <div class="col-sm-4">
-                         <label for="paiddate">Paid Date</label>
-                         <input type="date"  class="form-control"[(ngModel)]="feepaid_report.paid_date" name= "paiddate" >
-                       </div>
-                       <div class="col-sm-4">
+                       <div class="col-sm-3">
+                        <label for="reportfor" class="req"> Category </label>
+                        <select class="form-control" (change)="onChange($event.target.value)" name="feecategory" required >
+                          <option value ="option">Select option</option>
+                          <option value ="classwise">classwise</option>
+                          <option value = "sectionwise">sectionwise</option>                       
+                        </select>
+                      </div>
+
+                      <div class="col-sm-3">
+                          <label for="paiddate">Paid Date</label>
+                          <input type="date"  class="form-control"[(ngModel)]="feepaid_report.paid_date" name= "paiddate" required >
+                        </div>
+
+                       <div class="col-sm-3"  *ngIf ="classwise">
                          <label for="reportfor" class="req">Class </label>
-                         <select class="form-control" [(ngModel)]="feepaid_report.class" name="classname">
+                         <select class="form-control" [(ngModel)]="feepaid_report.class" name="classname" required >
                            <option>class12</option>
                        
                            <!-- <option *ngFor="let c of classes" [ngValue]="c.id">{{c.name}}</option> -->
@@ -60,111 +71,68 @@
  
                    
                     </div> 
-                 <h3 class="col-sm-offset-1"><b>OR</b></h3>
-                 <div class ="row clearfix">
-                     <div class="col-sm-4">
-                         <label for="search" class="req">Receipt no</label>
-                         <input type ="text" placeholder=" Enter receipt no" class="form-control clearable" [(ngModel)]="feepaid_report.receipt_no" name="receiptno">
-                      
-                    </div>
- 
-                 </div>
-                   <br>
-                   <div class ="row">
-                     <div class="form-group col-sm-2">
-                       <button type="submit" class="btn btn-primary col-sm-1 " (click)="get_paidreport()"  >view</button>
-                        <button type="submit" class="btn btn-danger col-sm-offset-8" onclick="do_print('dataTable')" >print report</button> 
-                        <button type="submit" class="btn btn-success col-sm-offset-1 button-margin" (click)="exportAsCSV('feepaidReport')" >excel</button> 
                  
-                 </div>
+                    <br>
+                   <div class ="row clearfix">
+                      <div class="col-sm-3" *ngIf ="sectionwise">
+                          <label for="section" class="req"> Section</label>
+                          <select class="form-control" [(ngModel)]="feepaid_report.section" name="section" required >
+                            <option *ngFor="let s of section" [ngValue]="s.id">{{s.name}}</option>
+                          </select>
+                      </div>
+                      <div class="form-group col-sm-2">
+                       <button type="submit" class="btn btn-primary col-sm-offset-10" (click)="get_paidreport()"  >view</button>
+                      </div>
                   </div>
                  </div>
                </div>
-             </div>
+              </div>      
           </form>
         </div>
       </div>
    
    </div>
- 
+   <br>
+   <br>
+  
+  
    <!--paid report table start-->
-  <!-- <div class="table-responsive" *ngIf ="paidreport" id ="dataTable" >
-       <br>
-         <table class ="table table-bordered">
-            <h3 class="text-center panel-heading bg-primary"> Fee Paid Report ClassWise</h3>
-           <br>
-           <ngx-datatable class="material" [rows]="rows" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
-             [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
-              
-             <ngx-datatable-column name="ID" prop="id">
-               <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-               <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-             </ngx-datatable-column>
-   
-             <ngx-datatable-column name="Name" prop="name">
-               <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-               <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-             </ngx-datatable-column>
-   
-             <ngx-datatable-column name="Ad No/Course" prop="admission_no">
-               <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-               <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-             </ngx-datatable-column>
-   
-             <ngx-datatable-column name="Total Fine" prop="total_fine">
-               <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-               <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-             </ngx-datatable-column>
-             <ngx-datatable-column name="Total Discount" prop="total_discount">
-               <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-               <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-             </ngx-datatable-column>
-   
-             <ngx-datatable-column name="Receipt No" prop="receipt_no">
-               <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-               <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-             </ngx-datatable-column>
-   
-             <ngx-datatable-column name="Total due" prop="total_due">
-               <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-               <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-             </ngx-datatable-column>
-             
-   
-           </ngx-datatable> 
-         </table>
-       </div>-->
-      <!--paid report table end-->
+
+   <div class = " table-reponsive"  id ="dataTable"  *ngIf="paidreport">
+     <div class ="btn btn-group  col-sm-offset-1 btn-hover button-margin">
+      <button type="submit" class="btn btn-danger" onclick="do_print('dataTable')" >print report</button> 
+      <button type="submit" class="btn btn-success" (click)="exportAsCSV('feepaidReport')" >csv</button> 
+      </div>
+    <h4 class="text-center panel-heading bg-info">Fee Paid Report ClassWise</h4> 
+     <table class="center col-sm-12 table-bordered table-striped  footable table-hover">
+       <tr>
+         <th>ID</th>
+         <th>Admission No</th>
+         <th>Name </th>
+         <th>Total Fine</th>
+         <th> Total Discount</th>
+         <th>Receipt No</th>
+         <th>Total due</th>
+         
+       </tr>
+       <tr *ngFor ="let row of rows">
+         <td>{{row.id}}</td>
+          <td>{{row.admission_no}}</td>
+          <td>{{row.name}}</td>
+          <td>{{row.total_fine}}</td>
+          <td>{{row.total_discount}}</td>
+          <td>{{row.receipt_no}}</td>
+          <td>{{row.total_due}}</td>
+        </tr>
+     </table>
+   </div>    
+
+  
+   <!--paid report table end-->
  
    
-     <div class = " table-reponsive table-bordered " style="overflow-x:auto;" id ="dataTable"  *ngIf="paidreport">
-       <h3 class="text-center panel-heading bg-primary">Fee Paid Report ClassWise</h3> 
-        <table class="center col-sm-12 ">
-          <tr>
-            <td><b>ID</b></td>
-            <td><b>Admission No</b></td>
-            <td><b>Name </b></td>
-            <td><b>Total Fine</b></td>
-            <td><b> Total Discount</b></td>
-            <td><b>Receipt No</b></td>
-            <td><b>Total due</b></td>
-            
-          </tr>
-          <tr *ngFor ="let row ofrows">
-            <td>{{row.id}}</td>
-             <td>{{row.admission_no}}</td>
-             <td>{{row.name}}</td>
-             <td>{{row.total_fine}}</td>
-             <td>{{row.total_discount}}</td>
-             <td>{{row.receipt_no}}</td>
-             <td>{{row.total_due}}</td>
-           </tr>
-        </table>
-      </div>    
- 
+   
    </div>
- 
- 
  
    <div role="tabpanel" class="tab-pane " id ="collective_report">
  
@@ -172,7 +140,7 @@
      <div class="content">
          <div class="row ">
            <form (ngSubmit) ="onSubmit('collectiveReport')" #collectiveReport ="ngForm">
-             <div class="col-sm-12">
+             <div class="col-sm-10">
                <div class="card">
                    <h4 class="panel-heading bg-primary">
                      Collective Report
@@ -180,37 +148,51 @@
                  <br>
                  <div class="panel-body">
                    <div class="row clearfix">
+
+                      <div class="col-sm-3">
+                          <label for="reportfor" class="req"> Category </label>
+                          <select class="form-control" (change)="collective($event.target.value)" name="feecategory" required >
+                            <option value ="option">Select option</option>
+                            <option value ="classwise">classwise</option>
+                            <option value = "sectionwise">sectionwise</option>                       
+                          </select>
+                        </div>
  
-                       <div class="col-sm-4">
+                       <div class="col-sm-3">
                            <label for="paiddate">From Date</label>
-                           <input type="date" class="form-control"[(ngModel)]="feepaid_report.from_date" name= "paiddate" >
+                           <input type="date" class="form-control"[(ngModel)]="feepaid_report.from_date" name= "paiddate" required >
                        </div>
                      
-                     <div class="col-sm-4">
-                       <label for="enddate">End Date</label>
-                       <input type="date"  class="form-control" [(ngModel)]="feepaid_report.end_date" name="enddate" >
+                     <div class="col-sm-3">
+                       <label for="enddate"> To Date</label>
+                       <input type="date"  class="form-control" [(ngModel)]="feepaid_report.end_date" name="enddate" required  >
                      </div>
  
-                      <div class="col-sm-4">
-                       <label for="class" class="req">Select Class</label>
-                       <select class="form-control" [(ngModel)]="feepaid_report.classes" name="class">
-                         <option>coded class 1</option>
-                         
-                        <!-- <option *ngFor="let c of classes" [ngValue]="c.id">{{c.name}}</option> -->
-                       </select>
-                     </div>
+                    
  
                    </div>
      
                   <br>
                   <div class ="row">
-                  <div class="form-group col-sm-2">
+                      <div class="col-sm-3" *ngIf ="_class">
+                          <label for="class" class="req">Class</label>
+                          <select class="form-control" [(ngModel)]="feepaid_report.classes" name="class" required >
+                            <option>coded class 1</option>
+                            
+                           <!-- <option *ngFor="let c of classes" [ngValue]="c.id">{{c.name}}</option> -->
+                          </select>
+                       </div>
+    
+                    <div class="col-sm-3" *ngIf ="_section">
+                        <label for="section" class="req"> Section</label>
+                        <select class="form-control" [(ngModel)]="feepaid_report.section" name="section" required >
+                            <option *ngFor="let s of section" [ngValue]="s.id">{{s.name}}</option>
+                        </select> 
+                    </div>            
+                    <div class="form-group col-sm-2">
  
-                   <button type="submit" class="btn btn-primary col-sm-1 " (click)="get_collectivereport()">Go</button>
-                   <button type="button" class="btn btn-danger col-sm-offset-8" onclick ="do_print('dataTable')" >print report</button>
-                    
-                   <button type="button" class="btn btn-success col-sm-offset-1 button-margin" (click)="exportAsCSV('collectiveReport')" >csv file</button> 
-                   
+                   <button type="submit" class="btn btn-primary col-sm-offset-10" (click)="get_collectivereport()">view</button>
+                  
                    </div>
                   </div>
                  </div>
@@ -220,94 +202,33 @@
         </div>
      </div>
    </div>
+   <br>
+  <br>
  
    <!--collective report table start-->
- <!-- <div class="table-responsive" *ngIf="collectivereport">
-       <br>
-         <table class ="table table-bordered">
-            <h3 class="text-center panel-heading bg-primary"> Collective Report</h3>
-           <br>
-           <ngx-datatable class="material" [rows]="rows" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
-             [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
-              
-             <ngx-datatable-column name="ID" prop="id">
-               <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-               <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-             </ngx-datatable-column>
-   
-             <ngx-datatable-column name="Name" prop="name">
-               <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-               <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-             </ngx-datatable-column>
-   
-             <ngx-datatable-column name="Ad No/Course" prop="admission_no">
-               <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-               <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-             </ngx-datatable-column>
  
-             <ngx-datatable-column name="category" prop="fee_category">
-               <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-               <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-             </ngx-datatable-column>
- 
-             <ngx-datatable-column name="course" prop="course">
-                 <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                 <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-               </ngx-datatable-column>
- 
-               <ngx-datatable-column name="batch" prop="batch">
-                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                 </ngx-datatable-column>
- 
-                 <ngx-datatable-column name="Adm Fee" prop="admission_fee">
-                     <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-                     <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-                   </ngx-datatable-column>
-   
-             <ngx-datatable-column name="Total Fine" prop="total_fine">
-               <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-               <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-             </ngx-datatable-column>
-             <ngx-datatable-column name="Total Discount" prop="total_discount">
-               <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-               <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-             </ngx-datatable-column>
-   
-             <ngx-datatable-column name="Receipt No" prop="receipt_no">
-               <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-               <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-             </ngx-datatable-column>
-   
-             <ngx-datatable-column name="Total due" prop="total_due">
-               <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-               <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-             </ngx-datatable-column>
-             
-   
-           </ngx-datatable> 
-         </table>
-       </div>--> 
-   <!--collective report atable end-->
-  
- 
-   <div class = " table-reponsive table-bordered " style="overflow-x:auto;" id ="dataTable"  *ngIf="collectivereport">
-     <h3 class="text-center panel-heading bg-primary">Collective Report</h3> 
-      <table class="center col-sm-12 ">
+   <div class = " table-reponsive "  id ="dataTable"  *ngIf="collectivereport">
+     <div class = "btn btn-group">
+        <button type="button" class="btn btn-danger col-sm-offset-8" onclick ="do_print('dataTable')"  >print report</button>           
+        <button type="button" class="btn btn-success col-sm-offset-1 button-margin" (click)="exportAsCSV('collectiveReport')">csv</button> 
+                   
+     </div>
+     <h4 class="text-center panel-heading bg-info">Collective Report</h4> 
+      <table class="center col-sm-12 table-bordered table-striped  footable table-hover">
         <tr>
-          <td><b>ID</b></td>
-          <td><b>Admission No</b></td>
-          <td><b>Name </b></td>
-          <td><b>category</b></td>
-          <td><b>course</b></td>
-          <td><b>batch</b></td>
-          <td><b>Admission Fee</b></td>
-          <td><b>Total Discount</b></td>
-          <td><b>Receipt No</b></td>
-          <td><b>Total due</b></td>
+          <th>ID</th>
+          <th>Admission No</th>
+          <th>Name</th>
+          <th>category</th>
+          <th>course</th>
+          <th>batch</th>
+          <th>Admission Fee</th>
+          <th>Total Discount</th>
+          <th>Receipt No</th>
+          <th>Total due</th>
           
         </tr>
-        <tr *ngFor ="let row ofrows">
+        <!-- <tr *ngFor ="let row ofrows">
           <td>{{row.id}}</td>
            <td>{{row.admission_no}}</td>
            <td>{{row.category}}</td>
@@ -317,11 +238,20 @@
            <td>{{row.total_discount}}</td>
            <td>{{row.receipt_no}}</td>
            <td>{{row.total_due}}</td>
+         </tr> -->
+         <tr>
+           <td>abcsddsdsddsdsddddddsds</td>
+           <td>avgavsvhshshghsghsgshghs</td>
+           <td>njshshsjhsussbhsghshgsgvs</td>
+           <td>snssnmsbjbsjsbb</td>
+           <td>bsgsbsnsbnmsbmnsmnsnm</td>
+           <td>snsnjssjjsbshbshjs</td>
+           <td>snsbssbmbnmbsbsbs</td>
+           <td>snjnsjnsmsnmsnbssn</td>
+           <td>nssjnsjsnsjssjsjsjs</td>
          </tr>
       </table>
     </div>
- 
- 
  
    </div>
    
@@ -341,16 +271,15 @@
                      <div class="row clearfix">
                          <div class="col-sm-4">
                              <label for="date">Date</label>
-                             <input type="date" id = "Date"  value ="1" class="form-control" [(ngModel)]="feepaid_report.date" name="date" >
+                             <input type="date" id = "Date"  value ="1" class="form-control" [(ngModel)]="feepaid_report.date" name="date" required >
                            </div>
  
                    </div>
                    <br> 
                      <div class ="row">
                    <div class="form-group col-sm-2">
-                            <button type="submit" class="btn btn-success col-sm-offset-8 " (click)="get_monthlyreport()">view</button> 
-                            <button type="button" class="btn btn-danger col-sm-offset-1  button-margin" onclick ="do_print('dataTable')" >print report</button> 
-                     
+                            <button type="submit" class="btn btn-primary col-sm-offset-10 " (click)="get_monthlyreport()">view</button> 
+                          
                      </div>
                     </div>
                    </div>
@@ -360,54 +289,35 @@
           </div>
        </div>
      </div>
+     <br>
+     <br>
+
     <!--paidreport date wise table start-->
+    <div class = " table-reponsive "  id ="dataTable"  *ngIf="monthlyreport">
+        <div class = "btn btn-group">
+            <button type="button" class="btn btn-danger col-sm-offset-8" onclick ="do_print('dataTable')"  >print report</button>           
+            <button type="button" class="btn btn-success col-sm-offset-1 button-margin" (click)="exportAsCSV('collectiveReport')">csv</button> 
+                       
+         </div>
+      <h4 class="text-center panel-heading bg-info">Feepaid Report</h4> 
+       <table class="center col-sm-12 table-bordered table-striped  footable table-hover ">
+         <tr>
+           <th>ID</th>
+           <th> fees category Name</th>
+           <th>amount </th>
+         </tr>
+         <tr *ngFor ="let row ofrows">
+           <td>{{row.id}}</td>
+            <td>{{row.fees_category_name}}</td>
+            <td>{{row.name}}</td>
+           
+          </tr>
+       </table>
+     </div>
+  
+   <!--paidreport date wise table end-->
  
-   <!-- <div class="table-responsive" *ngIf ="monthlyreport" >
-       <br>
-         <table class ="table table-bordered">
-            <h3 class="text-center panel-heading bg-primary"> Fee Paid Report Datewise</h3>
-           <br>
-           <ngx-datatable class="material" [rows]="rows" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
-             [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
-              
-             <ngx-datatable-column name="ID" prop="id">
-               <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-               <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-             </ngx-datatable-column>
-   
-   
-             <ngx-datatable-column name="fees category Name" prop="fee_category_name">
-               <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-               <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-             </ngx-datatable-column>
-   
-             <ngx-datatable-column name="amount" prop="amount">
-               <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
-               <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
-             </ngx-datatable-column>
-             
-   
-           </ngx-datatable> 
-         </table>
-       </div>-->
-         <!--paidreport date wise table end-->
- 
-         <div class = " table-reponsive table-bordered " style="overflow-x:auto;" id ="dataTable"  *ngIf="monthlyreport">
-           <h3 class="text-center panel-heading bg-primary">Feepaid Report</h3> 
-            <table class="center col-sm-12 ">
-              <tr>
-                <td><b>ID</b></td>
-                <td><b> fees category Name</b></td>
-                <td><b>amount </b></td>
-              </tr>
-              <tr *ngFor ="let row ofrows">
-                <td>{{row.id}}</td>
-                 <td>{{row.fees_category_name}}</td>
-                 <td>{{row.name}}</td>
-                
-               </tr>
-            </table>
-          </div>
+        
  
     </div>
   

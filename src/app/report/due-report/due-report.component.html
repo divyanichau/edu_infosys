@@ -21,13 +21,12 @@
                   <div class="row clearfix">
                     <div class="col-sm-4">
                       <label for="reportfor" class="req"> Category </label>
-                      <select class="form-control" (change)="onChange($event.target.value)" name="feecategory">
+                      <select class="form-control" (change)="onChange($event.target.value)" name="feecategory" required >
                         <option value ="option">Select option</option>
                         <option value ="datewise">Date Wise</option>
                         <option value = "feecategorywise">fee category wise</option>
                         <option value = "classwise">class wise</option>
-                        <option value = "batchwise">batch wise</option>
-                        <!-- <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option> -->
+                        <option value = "batchwise">batch wise</option>                      
                       </select>
                     </div>
 
@@ -39,7 +38,7 @@
 
                      <div class="col-sm-4" *ngIf ="batchwise">
                       <label for="batch" class="req">Batch</label>
-                      <select class="form-control" [(ngModel)]="due_report.batch" name="batch" >
+                      <select class="form-control" [(ngModel)]="due_report.batch" name="batch" required  >
                         <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option> 
                         <option value="1">2073</option>
                       </select>
@@ -48,7 +47,7 @@
                 
                   <div class="col-sm-4" *ngIf ="classwise">
                     <label for="selectclass" class="req">  Class</label>
-                    <select class="form-control"[(ngModel)]="due_report.class_name"  name="selectclass" >
+                    <select class="form-control"[(ngModel)]="due_report.class_name"  name="selectclass" required >
                        <option *ngFor="let c of classes" [ngValue]="c.id">{{c.name}}</option> 
               
                     </select>
@@ -56,7 +55,7 @@
 
                    <div class="col-sm-4" *ngIf ="feecategorywise">
                     <label for="feescategory" class="req">Fees Category Wise</label>
-                    <select class="form-control" [(ngModel)]="due_report.fee_category" name="feescategory" >
+                    <select class="form-control" [(ngModel)]="due_report.fee_category" name="feescategory" required  >
                       <!-- <option *ngFor="let f of fee" [ngValue]="f.id">{{f.name}}</option> -->
                       <option>Hostel Fee</option>
                       <option>Libary Fee</option>
@@ -70,10 +69,9 @@
                  <br>
                   <div class ="row">
                 <div class="form-group cols-sm-2">
-                         <button type="submit" class="btn btn-success col-sm-offset-10 " (click)="get_report()">view</button>
-                            
+                         <button type="submit" class="btn btn-success col-sm-offset-10 " (click)="get_report()">view</button> 
                          <button type="submit" class="btn btn-danger col-sm-offset-1  button-margin" onclick="do_print('dataTable')" *ngIf ="printbutton">print</button> 
-                  
+                         <button type="button" class="btn btn-success col-sm-offset-1 button-margin" (click) = "exportAsCSV('dataTable')" *ngIf ="csvbutton">csv file</button>  
                   </div>
                  </div>
                 </div>
@@ -133,9 +131,9 @@
 </div>
 
 
-<div class = " table-reponsive table-bordered " style="overflow-x:auto;" id ="dataTable"  *ngIf="duereport">
-  <h3 class="text-center panel-heading bg-primary">Due Report</h3> 
-   <table class="center col-sm-12 ">
+<div class = " table-reponsive" id ="dataTable"  *ngIf="duereport">
+  <h4 class="text-center panel-heading bg-info">Due Report</h4> 
+   <table class="center col-sm-12 table-bordered table-striped  footable table-hover">
      <tr>
        <td><b>ID</b></td>
        <td><b>Admission No</b></td>

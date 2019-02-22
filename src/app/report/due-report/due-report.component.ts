@@ -17,7 +17,7 @@ import {_class} from '../../core/classes/class';
 @Component({
   selector: 'app-due-report',
   templateUrl: './due-report.component.html',
-  styleUrls: ['./due-report.component.css']
+  styleUrls: ['../../../assets/css/report-table.css']
 })
 
 export class DueReportComponent implements OnInit {
@@ -133,9 +133,49 @@ export class DueReportComponent implements OnInit {
     this.duereport = true;
     this.printbutton =true;
 
-   }
+  }
 
- 
+  exportAsCSV() {
+      console.log(this.rows);
+      if(this.rows.length>0){
+        
+      
+        var output = [];
+        for (var row of this.rows) {
+          // console.log(row);
+          var tmp = {
+            'Id':row.id,
+            'Admission No':row.admission,
+            'Name':row.name,
+            'Guardain Name': row.guardian_details.name,
+            'Guardian Contact':row.guardian_details.contact.number,
+            'Total Due':row.total_due,
+    
+          }
+
+          output.push(tmp)
+        }
+
+      console.log(output);
+      const headers = Object.keys(output[0]);
+      
+        const options = {
+          fieldSeparator: ',',
+          quoteStrings: '"',
+          decimalseparator: '.',
+          showLabels: true,
+          headers: headers,
+          showTitle: false,
+          title: 'Report',
+          useBom: true
+        };
+        return new AngularCsv( output,'due-report', options);
+      
+      } else{
+        alert(' data is empty');
+      }
+    
+  }
 
 
 

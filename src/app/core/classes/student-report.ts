@@ -33,6 +33,7 @@ export class StudentReport {
    mother_name:string;
    parents_contact:string;
    amount:number;
+   select_category:string;
    
  
 }

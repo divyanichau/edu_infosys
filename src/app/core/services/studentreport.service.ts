@@ -29,17 +29,21 @@ export class StudentReportService {
 
      var url = `${this._studentreportUrl}/?`
      for(var key in student_report){
-        
+      
         var val = student_report[key];
 
         if (typeof(val) !== 'undefined'&& val !== null){
             
-            url = url + key + '=' + val + '&' ;
+            url = url + key+ '=' + encodeURIComponent(val)  + '&' ;
+            
           
-           console.log( key +"="+val);
+           console.log(url);
         }
   
       }
+
+      // var encoded = encodeURI(url);
+      // console.log(encoded);
 
      const options = this._utils.makeOptions(this._headers);
      return this._http.get(url, options).pipe(

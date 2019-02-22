@@ -56,9 +56,9 @@
                   <br> 
                   <div class ="row">
                     <div class="form-group cols-sm-2">
-                         <button type="submit" class="btn btn-success col-sm-offset-8 " (click)="get_expensereport()">view report</button>
+                         <button type="submit" class="btn btn-success col-sm-offset-10 " (click)="get_expensereport()">view</button>
                             
-                         <button type="submit" class="btn btn-danger col-sm-offset-1  button-margin" onclick="do_print('dataTable')">print report</button> 
+                         <button type="submit" class="btn btn-danger col-sm-offset-1  button-margin" *ngIf ="printbutton" onclick="do_print('dataTable')">print</button> 
                   
                     </div>
                  </div>
@@ -111,15 +111,15 @@
 </div>
 
 
-<div class = " table-reponsive table-bordered " style="overflow-x:auto;" id ="dataTable"  *ngIf="expensereport">
-  <h3 class="text-center panel-heading bg-primary">Libary Report</h3> 
-   <table class="center col-sm-12 ">
+<div class = " table-reponsive"  id ="dataTable"  *ngIf="expensereport">
+  <h4 class="text-center panel-heading bg-info">Expense Report</h4> 
+   <table class="center col-sm-12 table-bordered table-striped  footable table-hover">
      <tr>
-       <td><b>ID</b></td>
-       <td><b>Date</b></td>
-       <td><b>Expense Name </b></td>
-       <td><b>Amount</b></td>
-       <td><b>Payment Status</b></td>
+       <th>ID</th>
+       <th>Date</th>
+       <th>Expense Name </th>
+       <th>Amount</th>
+       <th>Payment Status</th>
   
      </tr>
      <tr *ngFor="let row of rows">

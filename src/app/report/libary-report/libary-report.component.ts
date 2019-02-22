@@ -14,7 +14,7 @@ import {_class} from '../../core/classes/class';
 @Component({
   selector: 'app-libary-report',
   templateUrl: './libary-report.component.html',
-  styleUrls: ['./libary-report.component.css']
+  styleUrls: ['../../../assets/css/report-table.css']
 })
 export class LibaryReportComponent implements OnInit {
   private _sub: Subscription = undefined;

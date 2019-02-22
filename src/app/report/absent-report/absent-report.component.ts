@@ -14,7 +14,7 @@ import {Section} from '../../core/classes/section';
 @Component({
   selector: 'app-absent-report',
   templateUrl: './absent-report.component.html',
-  styleUrls: ['./absent-report.component.css']
+  styleUrls: ['../../../assets/css/report-table.css']
 })
 export class AbsentReportComponent implements OnInit {
   private _sub: Subscription = undefined;
