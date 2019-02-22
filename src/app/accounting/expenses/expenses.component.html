@@ -5,7 +5,9 @@
         <li><a href="#"><i class="material-icons">home</i> Home</a></li>
         <li  class="active"><a href="#"><i class="material-icons">class</i>Expenses</a></li>
 
+        
         <button class="btn btn-primary btn-sm expense-btn" data-toggle="modal" data-target="#myModal">Add New</button>
+        <button class="btn btn-primary btn-sm" data-toggle="modal" (click)="exportCsv()">Export As CSV</button>
       </ol>
     </div>
    
@@ -14,11 +16,42 @@
         <h1 class="panel-title">DailyExpense Report</h1>
       </div>
       <div class="panel-body">
-       
+          <div class="row clearfix">
+              <div class="col-md-2">
+                  <label >Select</label>
+                <select class="form-control" name="selectType" (change)="selectOption($event.target.value)" [(ngModel)]="_filtered_data.select_type">
+                    <option value="0">All Expenses</option>
+                    <option value="1">Category Wise</option>
+                    <option value="2">Date Wise</option>
+                </select>
+
+              </div>
+
+              <div class="col-md-3" *ngIf="boo1==true">
+                  <label >Select Category</label>
+                <select class="form-control" name="expense_category" [(ngModel)]="selected_expenseCategory" (change)="CategoryChange(selected_expenseCategory)">
+                    <option *ngFor="let ec of _expenseCategories" [ngValue]="ec.id">{{ec.name}}</option>
+                </select>
+              </div>
+
+              <div class="col-md-10" *ngIf ="boo2==true">
+                  <div class=" col-md-5" >
+                      <label>Date From</label>
+                      <input type="date" class="form-control" name="start_date" [(ngModel)]="_filtered_data.start_date" >
+                    </div>
+      
+                    <div class=" col-md-5">
+                        <label>Date Upto</label>
+                        <input type="date" class="form-control"  name="end_date" [(ngModel)]="_filtered_data.end_date" >
+                    </div>
+                    <button class="btn btn-primary" style="margin-top: 26px;" (click)="LoadExpenseWithDate()">load</button>
+              </div>
+
+            </div>
         <div class="table-responsive">
           <ngx-datatable class="material" [rows]="_dailyExpenses" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
             [footerHeight]="50" [rowHeight]="'auto'" [limit]="4">
-
+         
             <ngx-datatable-column name="Expense Category" prop="expense_type">
               <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
               <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
@@ -67,7 +100,7 @@
                                   <div class="row clearfix">
                                     <div class="col-md-6">
                                         <label > Expense Category</label>
-                                      <select class="form-control" name="selected_expenseCategory" [(ngModel)]="selected_expenseCategory" >
+                                      <select class="form-control" name="selected_expenseCategory1" [(ngModel)]="selected_expenseCategory" >
                                           <option *ngFor="let expensecategory of _expenseCategories" [ngValue]="expensecategory.id">{{expensecategory.name}}</option>
                                       </select>
 

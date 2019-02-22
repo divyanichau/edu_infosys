@@ -18,13 +18,15 @@ import { FeeCollectionComponent } from './feeMaintainance/fee-collection/fee-col
 import { CourseService } from '../core/services/course.service';
 import { ClassService } from '../core/services/class.service';
 import { StudentService } from '../core/services/student.service';
+
 @NgModule({
   declarations: [ExpensesComponent,ExpenseTypeComponent, FeeCategoryComponent, FeeAllocationComponent, FeeCollectionComponent],
   imports: [
     CommonModule,
     AccountingRoutingModule,
     NgxDatatableModule,
-    FormsModule
+    FormsModule,
+   
   ],
   providers:[ExpenseService,FeeMaintainanceService,CourseService,
     ClassService,FeeAllocateService,StudentService,FeeCollectionService]

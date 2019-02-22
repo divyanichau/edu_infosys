@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { UtilsService } from '../../../shared/services/utils.service';
 import { Config } from '../../../shared/classes/app';
-import { ExpenseType,ExpenseTypeUpdate,DailyExpense } from '../../classes/Accounting/expenses';
+import { ExpenseType,ExpenseTypeUpdate,DailyExpense ,ExpenseSelection} from '../../classes/Accounting/expenses';
 
 @Injectable({
   providedIn: 'root'
@@ -112,11 +112,24 @@ export class ExpenseService{
       ),);
   }
 
-  getDailyExpense(): Observable<DailyExpense[]> {
+  getDailyExpense(_filtered_data?:ExpenseSelection): Observable<DailyExpense[]> {
     //this.beforeRequest();
     const options = this._utils.makeOptions(this._headers);
+    let url = `${this._dailyExpenseUrl}`+'?'
+    
+    if (_filtered_data.select_type == 0){
+      url = url + 'expense_category' + '=' + 0
+    }
+    else if(_filtered_data.select_type == 1){
+      url = url + 'expense_category' + '=' + _filtered_data.expense_category
+    }
+    else{
+      // alert(_filtered_data.end_date)
+      url = url + 'start_date'+'='+ _filtered_data.start_date + '&&'+'end_date'+'='+ _filtered_data.end_date
 
-    return this._http.get(`${this._dailyExpenseUrl}`, options).pipe(
+    }
+
+    return this._http.get(url , options).pipe(
       map((res: Response) => res.json()),
       tap(
       data => this.afterGetRequest(),
