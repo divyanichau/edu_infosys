@@ -152,17 +152,15 @@ export class InventoryItemComponent implements OnInit , OnDestroy{
     this.table.offset = 0;
   }
 
-onChange(value:number){
+ onChange(value:number){
    this._inventory_item.select_type = value
   if (value == 0){
-
       this.boo1 = false
   }
   else{
     this.boo1 = true
     this._inventory_item.category = this.selected_category
   }
-this.initStore()
-
-}
+  this.initStore()
+ }
 }

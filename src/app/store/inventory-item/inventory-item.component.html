@@ -51,22 +51,22 @@
              
             <div class="col-md-6 form-top-margin">
               <label for="item_name"> Item Name</label>
-                <input type="text" class="form-control" [(ngModel)]="_inventory_item.item_name"  name="item_name"   placeholder="Enter  item name" required>
+                <input type="text" class="form-control" [(ngModel)]="_inventory_item.item_name"  name="item_name"   placeholder="Enter  item name">
             </div>
         
             <div class="col-md-6 form-top-margin">
-              <label for="reg_input" class="req">Quantity</label>
-                <input type="text" class="form-control" [(ngModel)]="_inventory_item.quantity"  name="quantity"   placeholder="Enter quantity" required>
+              <label for="quantity" class="req">Quantity</label>
+                <input type="text" class="form-control" [(ngModel)]="_inventory_item.quantity"  name="quantity"   placeholder="Enter quantity" >
             </div>
          
             <div class="col-md-6 form-top-margin">
-              <label for="reg_input" class="req">Discount</label>
-                <input type="text" class="form-control" [(ngModel)]="_inventory_item.discount"  name="discount"   placeholder="Enter discount" required>
+              <label for="discount" class="req">Discount</label>
+                <input type="text" class="form-control" [(ngModel)]="_inventory_item.discount"  name="discount"   placeholder="Enter discount" >
             </div>
           
             <div class="col-md-6 form-top-margin">
               <label for="rate">Rate</label>
-                <input type="number" class="form-control" [(ngModel)]="_inventory_item.rate"  name="rate"   placeholder="" required>
+                <input type="number" class="form-control" [(ngModel)]="_inventory_item.rate"  name="rate"   placeholder="">
             </div>
         </div>
       </div>
@@ -156,7 +156,7 @@
                  </select>
             </div>
 
-          <div class="col-md-3" *ngIf="boo1==true">
+           <div class="col-md-3" *ngIf="boo1==true">
                 <label for="category">Category</label>
                   <select class="form-control"  [(ngModel)]="selected_category" name="category" required>
                     <option *ngFor="let c of _category" [ngValue]="c.id">{{c.name}}</option>
