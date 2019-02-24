@@ -10,7 +10,7 @@
        <div class="body">
           <div class="row clearfix">
              <div class="col-md-6">
-                <label for="reg_input" class="req">Event </label>
+                <label for="reg_input" class="req">Event</label>
                       <select class="form-control" [(ngModel)]="selected_event" name="event" required>
                         <option *ngFor="let e of event" [ngValue]="e.id">{{e.name}}</option>
                       </select>
@@ -51,7 +51,7 @@
                         <option value="1">Select Type</option>
                         <option value="3">Student</option>
                         <option value="4">Employee</option>
-                  </select> 
+                     </select> 
               </div>
           </div>
          <div class="row clearfix" *ngIf="detail_type[3]">

@@ -6,4 +6,5 @@ export class inventory_item{
   quantity: number;
   discount: number;
   rate: number;
+  select_type: number;
 }

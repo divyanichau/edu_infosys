@@ -51,11 +51,18 @@ export class StoreService {
       error => { this.showError(error) }
       ),);
   }
-    get(): Observable<inventory_item[]> {
+    get(_selection_data:inventory_item): Observable<inventory_item[]> {
     //this.beforeRequest();
     const options = this._utils.makeOptions(this._headers);
-
-    return this._http.get(`${this._itemUrl}`, options).pipe(
+    console.log(_selection_data)
+    let url = `${this._itemUrl}` + '?'
+    if(_selection_data.select_type == 0){
+      url  = url + 'select_type' + '=' + _selection_data.select_type
+    }
+    else{
+       url  = url + 'select_type' + '=' + _selection_data.select_type + '&&'+ 'category_id' + '=' + _selection_data.category
+    }
+    return this._http.get(url, options).pipe(
       map((res: Response) => res.json()),
       tap(
      data => {},
@@ -79,16 +86,20 @@ export class StoreService {
 
 
 
-  delete(id:number): Observable<inventory_item> {
+  
+   delete(id:number): Observable<inventory_item> {
+   // console.log("dfsf",_inventory_item);
     this.beforeRequest();
-   // const body = JSON.stringify(store);
+   // const body = JSON.stringify(set_term);
+   
 
     return this._http.delete(`${this._itemUrl}${id}/`, this._utils.makeOptions(this._headers)).pipe(
       map((res: Response) => res.json()),
       tap(
-    //  data => this.afterDeteleRequestRequest(),
-      error => { this.showError(error) }
+     // data => this.afterUpdateRequest(data),
+     // error => { this.showError(error) }
       ),);
+     
   }
 
 

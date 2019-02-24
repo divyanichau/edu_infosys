@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { isArray } from 'lodash';
 import { ToastrService } from 'ngx-toastr';
 
-
 import{ DatatableComponent} from '@swimlane/ngx-datatable';
 
 import { UtilsService } from '../../shared/services/utils.service';
@@ -21,6 +20,7 @@ import { _Category } from '../../core/classes/category';
   templateUrl: './inventory-item.component.html',
   styleUrls: []
 })
+
 export class InventoryItemComponent implements OnInit , OnDestroy{
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
@@ -40,8 +40,10 @@ export class InventoryItemComponent implements OnInit , OnDestroy{
   rows: any[] = [];
   temp: any[] = [];
   editing = {};
+  boo1 = false
 
  @ViewChild(DatatableComponent) table: DatatableComponent;
+
   constructor(
     private _utils: UtilsService,
     private router: Router,
@@ -55,7 +57,7 @@ export class InventoryItemComponent implements OnInit , OnDestroy{
   	this.loadVendor();
   	// this.initStore();
   	// this._inventory_item.vendor=0
-  	// this._inventory_item.category=0
+     this. _inventory_item.select_type=0
    	}
 
    	ngOnDestroy() {
@@ -63,21 +65,15 @@ export class InventoryItemComponent implements OnInit , OnDestroy{
   }
 
    onSubmitVendor() {
-    //console.log("Vendor Add Form Initiated")
     this._utils.unsubscribeSub(this._sub);
     this._inventory_item.vendor = this.selected_vendor;
     console.log(this._inventory_item);
-    //console.log(this.obj)
     this._sub = this._vendorService.AddVendor(this.obj).subscribe(data => {
-     // console.log(data);
       //alert("Vendor Added");
-  
     });
-
   }
 
    onSubmitCategory() {
-    //console.log("Category Add Form Initiated")
     this._utils.unsubscribeSub(this._sub);
     this._inventory_item.category = this.selected_category;
     console.log(this._inventory_item);
@@ -85,9 +81,7 @@ export class InventoryItemComponent implements OnInit , OnDestroy{
     this._sub = this._categoryService.AddCategory(this.objs).subscribe(data => {
      // console.log(data);
       //alert("Category Added");
-  
     });
-
   }
 
    OnSubmitStore() {
@@ -104,26 +98,21 @@ export class InventoryItemComponent implements OnInit , OnDestroy{
   }
 
    loadVendor() {
-
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._vendorService.getVendor().subscribe(
       data => {
         isArray(data) ? this._vendor = data : data;
-       // console.log("Selected Vendor",this._vendor);
         this.selected_vendor = this._vendor[0].id;
         this.loadCategory();
-      }
-    );
+      });
     }
 
 
  loadCategory() {
-
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._categoryService.getCategory().subscribe(
       data => {
         isArray(data) ? this._category = data : data;
-       // console.log("Selected category",this._category);
         this.selected_category = this._category[0].id;
         this.initStore();
       }
@@ -132,28 +121,48 @@ export class InventoryItemComponent implements OnInit , OnDestroy{
 
   initStore() {
     this._utils.unsubscribeSub(this._typeSub);
-      this._sub = this._storeService.get().subscribe(
+      this._sub = this._storeService.get(this. _inventory_item).subscribe(
       data => {
-        isArray(data) ? this.inventors = data : data;
+        this.inventors = data 
+        console.log("total Products",this.inventors);
         this.rows = this.inventors;
         this.temp = [...this.inventors];
-      }
-    );
+      });
+  }
+
+ delete(id:number){
+    if(confirm("Are You Sure Want To Delete?")){
+      this._storeService.delete(id).subscribe(data => 
+        {
+        //console.log(data);
+        alert("Deleted");
+       },(errr)=>{
+         console.log(errr);
+       }
+       );
+     }
   }
 
  updateFilter(event) {
-     const val = event.target.value.toLowerCase();
-
-    // filter our data
+    const val = event.target.value.toLowerCase();
     const temp = this.temp.filter(function(d) {
-     // console.log(d.student.toLowerCase(), val)
       return d.name.toLowerCase().indexOf(val) !== -1 || !val;
     });
-
-    // update the rows
     this.inventors = temp;
-    // Whenever the filter changes, always go back to the first page
     this.table.offset = 0;
   }
 
+onChange(value:number){
+   this._inventory_item.select_type = value
+  if (value == 0){
+
+      this.boo1 = false
+  }
+  else{
+    this.boo1 = true
+    this._inventory_item.category = this.selected_category
+  }
+this.initStore()
+
+}
 }

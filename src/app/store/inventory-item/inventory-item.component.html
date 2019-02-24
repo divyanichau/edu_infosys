@@ -23,10 +23,6 @@
                 <h4 class="panel-title">Add Inventory Item</h4>
               </div>
             </div>    
-          <!-- <div class="panel-heading">
-              <h4 class="panel-title">Add  Inventory Item</h4>
-          </div> -->
-     
        <div class="body">
           <div class="row clearfix">
                  <div class="col-md-6 ">
@@ -42,36 +38,35 @@
               </div>
         
             <div class="col-md-6 form-top-margin"  style="margin-left:1px;">
-                  <label for="category">Category</label>
-                     <select class="form-control"  [(ngModel)]="selected_category" name="category" required>
-                          <option *ngFor="let c of _category" [ngValue]="c.id">{{c.name}}</option>
-                      </select>
+                <label for="category">Category</label>
+                  <select class="form-control"  [(ngModel)]="selected_category" name="category" required>
+                    <option *ngFor="let c of _category" [ngValue]="c.id">{{c.name}}</option>
+                  </select>
             </div>
 
             <div class="col-md-4 form-top-margin">
                 <button type="button" class="btn btn-primary waves-effect" data-toggle="modal" data-target="#smallModal1"
                   style="margin-top:23px;margin-left: -23px;">+Add Category</button>
-              </div>
+            </div>
              
-               <div class="col-md-6 form-top-margin">
-                  <label for="item_name"> Item Name</label>
-                     <input type="text" class="form-control" [(ngModel)]="_inventory_item.item_name"  name="item_name"   placeholder="Enter  item name" required>
-               </div>
+            <div class="col-md-6 form-top-margin">
+              <label for="item_name"> Item Name</label>
+                <input type="text" class="form-control" [(ngModel)]="_inventory_item.item_name"  name="item_name"   placeholder="Enter  item name" required>
+            </div>
         
             <div class="col-md-6 form-top-margin">
-                <label for="reg_input" class="req">Quantity</label>
-                   <input type="text" class="form-control" [(ngModel)]="_inventory_item.quantity"  name="quantity"   placeholder="Enter quantity" required>
+              <label for="reg_input" class="req">Quantity</label>
+                <input type="text" class="form-control" [(ngModel)]="_inventory_item.quantity"  name="quantity"   placeholder="Enter quantity" required>
             </div>
          
             <div class="col-md-6 form-top-margin">
-                  <label for="reg_input" class="req">Discount</label>
-                      <input type="text" class="form-control" [(ngModel)]="_inventory_item.discount"  name="discount"   placeholder="Enter discount" required>
+              <label for="reg_input" class="req">Discount</label>
+                <input type="text" class="form-control" [(ngModel)]="_inventory_item.discount"  name="discount"   placeholder="Enter discount" required>
             </div>
-        
           
             <div class="col-md-6 form-top-margin">
-                <label for="rate">Rate</label>
-                     <input type="number" class="form-control" [(ngModel)]="_inventory_item.rate"  name="rate"   placeholder="" required>
+              <label for="rate">Rate</label>
+                <input type="number" class="form-control" [(ngModel)]="_inventory_item.rate"  name="rate"   placeholder="" required>
             </div>
         </div>
       </div>
@@ -100,10 +95,10 @@
                 <label for="description">Description </label>
                 <input type="text" name="description" class="form-control" placeholder="" [(ngModel)]="obj.description">
               </div>
-          
             </div>
           </div>
         </div>
+
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary waves-effect">Add Vendor</button>
           <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CLOSE</button>
@@ -125,16 +120,17 @@
             <div class="row clearfix">
               <div class="col-md-6">
                 <label for="name">Name</label>
-                <input type="text" name="name"  class="form-control" [(ngModel)]="objs.name" placeholder=" Enter Name">
+                  <input type="text" name="name"  class="form-control" [(ngModel)]="objs.name" placeholder=" Enter Name">
               </div>
 
               <div class="col-md-6">
                 <label for="description">Description</label>
-                <input type="text" name="description"  class="form-control" [(ngModel)]="objs.description" placeholder=" ">
+                  <input type="text" name="description"  class="form-control" [(ngModel)]="objs.description" placeholder=" ">
               </div>
             </div>
           </div>
         </div>
+
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary waves-effect">Add Category</button>
           <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CLOSE</button>
@@ -146,34 +142,28 @@
 
 
 <div role="tabpanel" class="tab-pane fade" id="inventory_list">  
- <div class="form-group">
-  <div class="row">
-   <div class="col-sm-12"> 
-     <div class="panel panel-primary">
-       <div class="panel-heading" > 
-          <h4 class="panel-title">Inventory List</h4>
-        </div>
-
+    <div class="panel panel-primary inventory-table">
+          <div class="panel-heading"> 
+            <h4 class="panel-title">Inventory List</h4>
+         </div>
         <div class="panel-body">
-         <div class="table-responsive">                       
-           <div class="col-xs-6 col-md-6">
-              <div class="input-group">
-                   <input type="text" (keyup)='updateFilter($event)' class="form-control" placeholder="Enter Name" id="txtSearch" />
-                    <div class="input-group-btn">
-                      <button class="btn btn-primary" type="submit">
-                        <span class="glyphicon glyphicon-search"></span>
-                      </button>
-                    </div>
-              </div>  
-                <label for="reg_no"></label>
-                  <select class="form-control" name="Inventoryitem[vendorsid]" id="Inventoryitem_vendorsid">
-                    <option value="">Select</option>
-                    <option value="1">All Products</option>
-                    <option value="2">Categorywise</option>
+          <div class="row clearfix">
+            <div class="col-md-2">
+                <label >Select</label>
+                  <select class="form-control" (change)="onChange($event.target.value)" name="selecttype" [(ngModel)]="_inventory_item.select_type">
+                    <option value="0">All Products</option>
+                    <option value="1">Categorywise</option>
                  </select>
-                </div>
-              </div>
-      
+            </div>
+
+          <div class="col-md-3" *ngIf="boo1==true">
+                <label for="category">Category</label>
+                  <select class="form-control"  [(ngModel)]="selected_category" name="category" required>
+                    <option *ngFor="let c of _category" [ngValue]="c.id">{{c.name}}</option>
+                  </select>
+            </div>
+         </div>
+         <div class="table-responsive">                       
               <ngx-datatable class="material" [rows]="inventors" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"
                 [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
 
@@ -200,7 +190,7 @@
                   </ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name=" Inventory Item " prop="inventory_item">
+                <ngx-datatable-column name=" Inventory Item " prop="item_name">
                   <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
                   <ng-template let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
                 </ngx-datatable-column>
@@ -215,9 +205,8 @@
                     Manage
                   </ng-template>
                   <ng-template let-row="inventors" let-value="value" ngx-datatable-cell-template>
-                    <a class="glyphicon glyphicon-eye-open  btn btn-primary" style=" margin-left:-10px;" title="" href="/store/edit-store/{{value}}"><img src="" alt=""></a>
-                     <a class="glyphicon glyphicon-trash left-icon" title="" href="/store/inventory-item/delete/{{value}}"><img src="" alt=""></a>
-                     <button class="glyphicon glyphicon-trash left-icon btn btn-danger" style="margin-left:0.01px;" (click)="deleteStore(value)"></button>
+
+                     <button class="glyphicon glyphicon-trash left-icon btn btn-danger" style="margin-left:0.01px;" (click)="delete(value)"></button>
                   </ng-template>
                 </ngx-datatable-column>
               </ngx-datatable>
