@@ -1,0 +1,91 @@
+
+<div class="body">
+  <div class="content-wrapper">
+     <div class="content">
+       <div class="page-header">
+          <ol class="breadcrumb breadcrumb" >
+               <li><a href="#"><i class="material-icons">home</i> Home</a></li>
+               <li><a href="#"><i class="material-icons">class</i>Settings</a></li>
+               <li class="active">Institution Details</li>
+            <ul class="breadcrumb-elements">                          
+             </ul>
+             <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a><a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+             </ol> 
+             </div>
+           </div>
+ 
+           
+   <div class="body">
+    <form ngNativeValidate (ngSubmit)="onSubmitInstituteDetail()" #settingForm="ngForm"> 
+         <div class="col-sm-12">
+             <div class="panel panel-primary">
+               <div class="panel-heading" >
+                 <h4 class="panel-title">Institution Details</h4>
+               </div>
+               <br> 
+        
+         <div class="panel-body">
+         <div class="col-sm-8">
+             <div class="panel panel-default">
+               <div class="panel-heading" >
+                 <h4 class="panel-title">Institute Detail</h4>
+               </div>
+               <br>
+ 
+ <div class="panel-body">
+           <div class="row clearfix">
+                   <div class="col-sm-6">
+                         <label for="fee_category">Institution Name</label>
+                     <input type= "text" class="form-control" [(ngModel)]="_institute_detail.name" name="insName" placeholder="Enter Institution Name"  required>
+                             
+                   </div>
+ 
+                   <div class="col-sm-6">
+                         <label for="fee_category">Institution Address</label>
+                     <input type= "text" class="form-control" [(ngModel)]="_institute_detail.address" name="insAddress" placeholder="Enter Institution Address" required>
+                             
+                   </div>
+                 </div>
+              <br>
+              <br>
+               <div class="row clearfix">
+                   <div class="col-sm-6">
+                         <label for="fee_category">Institution Email</label>
+                     <input type= "text" class="form-control" [(ngModel)]="_institute_detail.email" [ngModelOptions]="{standalone: true}" placeholder="Enter Email Address" required>
+                             
+                   </div>
+ 
+                   <div class="col-sm-6">
+                         <label for="fee_category">Institution Phone</label>
+                     <input type= "text" class="form-control" [(ngModel)]="_institute_detail.phone" [ngModelOptions]="{standalone: true}" placeholder="Enter Phone Number" required>
+                             
+                   </div>
+                 </div>
+               </div>
+               <div class="panel-body">
+           <div class="form-group">
+                   <button class="btn btn-primary btn-lg"  type="Submit"><b>Update</b></button>
+           </div>
+           </div>
+           </div>
+         </div>
+ 
+         <div class="content-wrapper">           
+     <div class="content">
+  <div class="form-group">
+     <div class="row">
+     <div class="col-sm-4"> 
+      <div class="panel panel-default">
+              <div class="tie1">
+                <img src="{{_utils.media_url}}/{{_institute_detail.logo}}" alt="" style="height:120px;">
+                </div>
+                <div class="panel-body">
+           <div class="form-group">
+            <form action="/action_page.php">
+   Select a file: <input type="file" name="logo" (change)="uploadLogo($event.target.files)"><br><br>
+ 
+ </form>
+ 
+ </div>
+ </div>
+        

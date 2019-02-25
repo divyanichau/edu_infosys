@@ -26,27 +26,28 @@
                 </select>
 
               </div>
-
-              <div class="col-md-3" *ngIf="boo1==true">
-                  <label >Select Category</label>
-                <select class="form-control" name="expense_category" [(ngModel)]="selected_expenseCategory" (change)="CategoryChange(selected_expenseCategory)">
-                    <option *ngFor="let ec of _expenseCategories" [ngValue]="ec.id">{{ec.name}}</option>
-                </select>
-              </div>
-
-              <div class="col-md-10" *ngIf ="boo2==true">
-                  <div class=" col-md-5" >
-                      <label>Date From</label>
-                      <input type="date" class="form-control" name="start_date" [(ngModel)]="_filtered_data.start_date" >
-                    </div>
-      
-                    <div class=" col-md-5">
-                        <label>Date Upto</label>
-                        <input type="date" class="form-control"  name="end_date" [(ngModel)]="_filtered_data.end_date" >
-                    </div>
-                    <button class="btn btn-primary" style="margin-top: 26px;" (click)="LoadExpenseWithDate()">load</button>
-              </div>
-
+             
+                <div class="col-md-3" *ngIf="boo1==true">
+                    <label >Select Category</label>
+                  <select class="form-control" name="expense_category" [(ngModel)]="selected_expenseCategory" (change)="CategoryChange(selected_expenseCategory)">
+                      <option *ngFor="let ec of _expenseCategories" [ngValue]="ec.id">{{ec.name}}</option>
+                  </select>
+                </div>
+                <form ngNativeValidate (ngSubmit)="onSubmitdate()" #dateForm="ngForm">
+                  <div class="col-md-10" *ngIf ="boo2==true">
+                      <div class=" col-md-5" >
+                          <label>Date From</label>
+                          <input type="date" class="form-control" name="start_date" [(ngModel)]="_filtered_data.start_date" >
+                        </div>
+          
+                        <div class=" col-md-5">
+                            <label>Date Upto</label>
+                            <input type="date" class="form-control"  name="end_date" [(ngModel)]="_filtered_data.end_date" >
+                        </div>
+                        <button class="btn btn-primary" type="button" style="margin-top: 26px;" (click)="LoadExpenseWithDate()">load</button>
+                        <button class="btn btn-primary" type="button" style="margin-top: 26px;"(click)="newHero(); dateForm.reset()">clear</button>
+                  </div>
+            </form>
             </div>
         <div class="table-responsive">
           <ngx-datatable class="material" [rows]="_dailyExpenses" [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50"

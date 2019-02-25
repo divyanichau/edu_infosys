@@ -26,7 +26,7 @@ export class ExpensesComponent implements OnInit {
   expenseId_id: number;
   boo1: boolean;
   boo2: boolean;
-
+ date:Date
   constructor(
     private _utils:UtilsService,
     private _expenseTypeService:ExpenseService
@@ -37,6 +37,9 @@ export class ExpensesComponent implements OnInit {
     this.initExpenseCategory()
     this._select_type.select_type = 0
     this._filtered_data.select_type = 0
+    this.date =  new Date();
+    // alert(this.date)
+    
     // this._filtered_data.expense_category = this.select_type
   }
   // clearValues() {
@@ -58,7 +61,7 @@ export class ExpensesComponent implements OnInit {
  initDailyExpense(){
   this._utils.unsubscribeSub(this._sub);
   
-  // console.log(this._filtered_data)
+  console.log(this._filtered_data)
   this._sub = this._expenseTypeService.getDailyExpense(this._filtered_data)
     .subscribe(data => {
       this._dailyExpenses = data;
@@ -130,6 +133,15 @@ CategoryChange(id :number){
 LoadExpenseWithDate(){
   this.initDailyExpense()
 }
+// ClearFormData(){
+//   this.form_name.reset();
+// }
+newHero(){
+  let val:number = 0
+  this._filtered_data.select_type == val
+  console.log(this._filtered_data.select_type)
+  this.initDailyExpense()
+}
 
 exportCsv(){
   const header = Object.keys(this._dailyExpenses[0])
@@ -143,6 +155,6 @@ exportCsv(){
     removeNewLines: false,
     keys: []
   };
-  return new AngularCsv(this._dailyExpenses,'expense-report',options)
+  return new AngularCsv(this._dailyExpenses,'this.date',options)
 }
 }
