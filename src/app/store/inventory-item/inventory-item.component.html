@@ -51,22 +51,22 @@
              
             <div class="col-md-6 form-top-margin">
               <label for="item_name"> Item Name</label>
-                <input type="text" class="form-control" [(ngModel)]="_inventory_item.item_name"  name="item_name"   placeholder="Enter  item name">
+                <input type="text" class="form-control" [(ngModel)]="_inventory_item.item_name"  name="item_name"   placeholder="Enter  item name" required>
             </div>
         
             <div class="col-md-6 form-top-margin">
               <label for="quantity" class="req">Quantity</label>
-                <input type="text" class="form-control" [(ngModel)]="_inventory_item.quantity"  name="quantity"   placeholder="Enter quantity" >
+                <input type="text" class="form-control" [(ngModel)]="_inventory_item.quantity"  name="quantity"   placeholder="Enter quantity" required>
             </div>
          
             <div class="col-md-6 form-top-margin">
               <label for="discount" class="req">Discount</label>
-                <input type="text" class="form-control" [(ngModel)]="_inventory_item.discount"  name="discount"   placeholder="Enter discount" >
+                <input type="text" class="form-control" [(ngModel)]="_inventory_item.discount"  name="discount"   placeholder="Enter discount" required>
             </div>
           
             <div class="col-md-6 form-top-margin">
               <label for="rate">Rate</label>
-                <input type="number" class="form-control" [(ngModel)]="_inventory_item.rate"  name="rate"   placeholder="">
+                <input type="number" class="form-control" [(ngModel)]="_inventory_item.rate"  name="rate"   placeholder="" required>
             </div>
         </div>
       </div>

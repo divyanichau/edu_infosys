@@ -219,30 +219,39 @@
                         <div class="panel-body">
                             <div class="table-responsive">
                                 <table class="table table-hover dashboard-task-infos">
+
+             <!--   <div class="row clearfix">
+                    <div class="col-sm-10" >
+                      <label for="reg_input" class="req">Event</label>
+                      <select class="form-control"  [(ngModel)]="selected_event" name="event" required>
+                          <option *ngFor="let e of events" [ngValue]="e.id">{{e.name}}</option>
+                      </select>
+                    </div>
+                </div>  -->
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Task</th>
+                                            <th>Event</th>
                                             <th>Status</th>
                                             <th>Manager</th>
                                             <th>Progress</th>
                                         </tr>
-                                    </thead>
+                                    </thead> 
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Sports week from next week</td>
-                                            <td><span class="label bg-green">To Do</span></td>
-                                            <td>Hari Khanal</td>
+                                        <tr *ngFor="let e of _events">
+                                            <td>{{e.id}}</td>
+                                            <td>{{e.name}}</td>
+                                            <td><span class="label bg-green">{{e.status}}</span></td>
+                                            <td>{{e.manager}}</td>
                                             <td>
                                                 <div class="progress">
                                                     <div class="progress-bar bg-green" role="progressbar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100" style="width: 62%"></div>
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr>
+                                   <!--      <tr>
                                             <td>2</td>
-                                            <td>2nd Terminal Exam</td>
+                                            <td></td>
                                             <td><span class="label bg-blue">Doing</span></td>
                                             <td>Ram Prasad</td>
                                             <td>
@@ -250,7 +259,7 @@
                                                     <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"></div>
                                                 </div>
                                             </td>
-                                        </tr>
+                                        </tr> -->
                                         
                                     </tbody>
                                 </table>

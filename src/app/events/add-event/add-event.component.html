@@ -9,12 +9,12 @@
         </div>
        <div class="body">
           <div class="row clearfix">
-                    <div class="col-md-6">
-                      <label for="reg_input" class="req">Event Types</label>
-                      <select class="form-control"  [(ngModel)]="selected_event" name="event" required>
-                          <option *ngFor="let e of events" [ngValue]="e.id">{{e.name}}</option>
-                      </select>
-                    </div>    
+              <div class="col-md-6">
+                  <label for="reg_input" class="req">Event Types</label>
+                    <select class="form-control"  [(ngModel)]="selected_event" name="event" required>
+                        <option *ngFor="let e of events" [ngValue]="e.id">{{e.name}}</option>
+                    </select>
+              </div>    
             <div class="col-md-6">
                   <label for="event-name">Event Name</label>
                      <input type="text" class="form-control" [(ngModel)]="_event.name"   name="event-name"  placeholder="Enter Event Name" required>

@@ -1,5 +1,3 @@
-
-
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule }   from '@angular/forms';
@@ -13,6 +11,9 @@ import { UtilsService } from '../shared/services/utils.service';
 import { DashboardService } from '../core/services/dashboard.service';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
+
+import { EventService } from '../core/services/event.service';
+import { TeacherService } from '../core/services/teacher.service';
 
 
 
@@ -28,7 +29,7 @@ import { DashboardComponent } from './dashboard.component';
 
     DashboardRoutingModule
   ],
-  providers: [],
+   providers:[EventService, TeacherService],
 
   declarations: [DashboardComponent]
 
