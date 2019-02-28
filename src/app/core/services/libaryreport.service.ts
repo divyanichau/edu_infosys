@@ -36,7 +36,7 @@ export class LibaryReportService {
        }
  
      }
-     console.log(url)
+     //console.log(url)
     //this.beforeRequest();
     const options = this._utils.makeOptions(this._headers);
 

@@ -7,18 +7,18 @@
         <ul class="page-breadcrumb breadcrumb">
           <li><a routerLink="/"><i class="material-icons">home</i> Home</a></li>
           <li><a routerLink="/report/">Report</a></li>
-          <li><a> Libary Report</a></li>
+          <li><a> Library Report</a></li>
         </ul>
       </div>
         <div class="row ">
           <form (ngSubmit) ="onSubmit()" #libaryreport ="ngForm">
             <div class="col-sm-12">
               <div class="card">
-                  <h4 class="panel-heading bg-primary ">Libary Report</h4>
+                  <h4 class="panel-heading bg-primary ">Library Report</h4>
                    <br>
                 <div class="panel-body">
                   <div class="row clearfix">
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                       <label for="reportfor" class="req"> Report for </label>
                       <select class="form-control" [(ngModel)]="libary_report.report_for" (change)="onChange($event.target.value)" name="reportfor" required>
                         <option value ="option">Select option</option>
@@ -27,7 +27,7 @@
                       </select>
                     </div>
 
-                    <div class="col-sm-4" *ngIf ="issuedbook">
+                    <div class="col-sm-3" *ngIf ="issuedbook">
                       <label for="reporttype" class="req">Report type</label>
                       <select class="form-control" (change)="OnChange($event.target.value)" name="reporttype"required >
                         <option value ="option">select option</option>
@@ -38,7 +38,7 @@
                       </select>
                     </div>
 
-                    <div class="col-sm-4" *ngIf ="classwise">
+                    <div class="col-sm-3" *ngIf ="classwise">
                       <label for="selectclass" class="req">  Class</label>
                       <select class="form-control"[(ngModel)]="libary_report.class_name"  name="selectclass" required >
                         <!-- <option *ngFor="let c of classes" [ngValue]="c.id">{{c.name}}</option> -->
@@ -49,7 +49,7 @@
                       </select>
                     </div>
 
-                    <div class="col-sm-4" *ngIf ="sectionwise">
+                    <div class="col-sm-3" *ngIf ="sectionwise">
                         <label for="section" class="req"> Section</label>
                         <select class="form-control"[(ngModel)]="libary_report.section"  name="section"required  >
                           <!-- <option *ngFor="let s of section" [ngValue]="s.id">{{s.name}}</option> -->
@@ -61,12 +61,12 @@
                       </div>
 
 
-                   <div class="col-sm-4" *ngIf ="datewise">
+                   <div class="col-sm-3" *ngIf ="datewise">
                         <label for="date">start date</label>
                         <input type="date" class="form-control" [(ngModel)]="libary_report.start_date" name="date" 
                           required>
                   </div>
-                  <div class="col-sm-4" *ngIf ="datewise">
+                  <div class="col-sm-3" *ngIf ="datewise">
                     <label for="date">end date</label>
                     <input type="date" class="form-control" [(ngModel)]="libary_report.end_date" name="enddate" 
                       required>
@@ -91,8 +91,8 @@
   </div>
    <!--libary table start-->
 
-   <div class = " table-reponsive  "  id ="dataTable"  *ngIf="availablebook">
-    <h4 class="text-center panel-heading bg-info">Libary Report</h4> 
+   <div class = " table-reponsive"  id ="dataTable"  *ngIf="availablebook">
+    <h4 class="text-center panel-heading bg-info">Available Books</h4> 
      <table class="center col-sm-12 table-bordered table-striped  footable table-hover ">
        <tr>
          <th>ID</th>
@@ -117,8 +117,8 @@
      </table>
    </div>   
   
-   <div class = " table-reponsive " style="overflow-x:auto;" id ="dataTable"  *ngIf="libaryReport">
-    <h3 class="text-center panel-heading bg-primary">Libary Report</h3> 
+   <div class = " table-reponsive " id ="dataTable"  *ngIf="libaryReport">
+    <h4 class="text-center panel-heading bg-info">Issued Report</h4> 
      <table class="center col-sm-12 table-bordered table-striped  footable ">
        <tr>
          <th>ID</th>
@@ -127,6 +127,8 @@
          <th>Title</th>
          <th>User Type</th>
          <th>User</th>
+         <th>Class</th>
+         <th *ngIf = "sectionwise">Section</th>
          <th>Issue Date</th>
          <th>Return Date</th>
          
@@ -138,6 +140,8 @@
           <td>{{row.title}}</td>
           <td>{{row.user_type}}</td>
           <td>{{row.user}}</td>
+          <th>Class</th>
+          <th ngIf ="sectionwise">Section</th>
           <td>{{row.issue_date}}</td>
           <td>{{row.return_date}}</td>
           <td>manish</td>

@@ -13,15 +13,16 @@ export class StudentReport {
   religion: number;
   route_code:string;
   fees:number;
-  bloodgroup:string;
+  blood_group:string;
   caste:string;
   gender:string;
-  state:string;
+  province:string;
   report_type:string;
   report_value:string;
   
    admission_no:number;
-  
+   section:number;
+   reportby:string;
    course:string;
    contact_no:number;
    class:string;
@@ -34,7 +35,7 @@ export class StudentReport {
    parents_contact:string;
    amount:number;
    select_category:string;
-   
+
  
 }
 

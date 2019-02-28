@@ -40,6 +40,7 @@ export class LibaryReportComponent implements OnInit {
 
   onChange(newValue) {
     if(newValue == "availablebook"){
+      this._utils.unsubscribeSub(this._sub);
       this._sub = this._libaryreportService.get(this.libary_report)
       .subscribe(data => {
          console.log(data);
@@ -62,8 +63,6 @@ export class LibaryReportComponent implements OnInit {
       this.reset_button();
     }
 
-  
-
   }
 
  reset_availablebook(){
@@ -83,28 +82,38 @@ export class LibaryReportComponent implements OnInit {
   }
 
  OnChange(newValue){
-    this.libaryreport.reset();
+   // this.libaryreport.reset();
+   
     if(newValue =="datewise"){
       this.reset_issued();
       this.issuedbook =true;
       this.datewise =true;
+      this.libary_report.section =null;
+      this.libary_report.class_name =null;
+      
     }
     else if(newValue=="classwise"){
       this.reset_issued();
       this.issuedbook =true;
       this.classwise =true;
+      this.libary_report.end_date =null;
+      this.libary_report.start_date =null;
+      this.libary_report.section=null;
     }
     else if(newValue == "sectionwise"){
       this.reset_issued();
       this.issuedbook =true;
       this.classwise =true;
       this.sectionwise =true;
+      this.libary_report.end_date =null;
+      this.libary_report.start_date =null;
     }else{
       this.reset_issued()
       this.issuedbook =true;
 
     }
-  
+
+    this.printbutton=false;
      
   }
 
@@ -121,8 +130,8 @@ export class LibaryReportComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.libary_report);
-    
+    //console.log(this.libary_report);
+    this._utils.unsubscribeSub(this._sub);
     this._sub = this._libaryreportService.get(this.libary_report)
      .subscribe(data => {
         console.log(data);

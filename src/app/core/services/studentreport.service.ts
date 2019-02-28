@@ -28,23 +28,30 @@ export class StudentReportService {
      //this.beforeRequest();
 
      var url = `${this._studentreportUrl}/?`
+    //  if(student_report.reportby =="allclass"){
+    //    url = `${this._studentreportUrl}/?`+'bloodgroup'+'='+student_report.bloodgroup+
+       
+    //  }
+    console.log(student_report)
+   
      for(var key in student_report){
-      
-        var val = student_report[key];
+      var val = student_report[key];
 
-        if (typeof(val) !== 'undefined'&& val !== null){
-            
-            url = url + key+ '=' + encodeURIComponent(val)  + '&' ;
-            
+      // if(val == 'allclass'){
+        
+      // }
+
+        if (typeof(val) !== 'undefined' && val!== null){
           
-           console.log(url);
+            url = url + key+ '=' + encodeURIComponent(val)  + '&' ;
+         
         }
-  
+        
+    
       }
+      console.log(url);
 
-      // var encoded = encodeURI(url);
-      // console.log(encoded);
-
+     
      const options = this._utils.makeOptions(this._headers);
      return this._http.get(url, options).pipe(
        map((res: Response) => res.json()),

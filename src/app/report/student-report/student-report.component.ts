@@ -5,8 +5,6 @@ import { AngularCsv } from 'angular7-csv';
 import { Subscription } from 'rxjs';
 import { isArray } from 'lodash';
 import { ToastrService } from 'ngx-toastr';
-import { DatatableComponent } from "@swimlane/ngx-datatable";
-import { BatchService } from '../../core/services/batch.service';
 import { UtilsService } from '../../shared/services/utils.service';
 import { ClassService } from '../../core/services/class.service';
 import { _class } from '../../core/classes/class';
@@ -25,21 +23,25 @@ export class StudentReportComponent implements OnInit {
 
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
+
   studentreport = false;
   studentemail = false;
   printbutton = false;
   csvbutton = false;
   student_report: StudentReport = new StudentReport();
   selected_student: number;
-  classes: _class[];
   selected_class: number;
+  selected_section :number;
   phonenumber: boolean = true;
   email: boolean = true;
   address: boolean = true;
   gurdiandetail: boolean = true;
   parentsdetail: boolean = true;
   amount: boolean = true;
+  destinationdetail:boolean =true;
   rows: any[] = [];
+  classes: _class[];
+  section:Section[];
 
   
   bloodgroup: boolean = false;
@@ -49,97 +51,137 @@ export class StudentReportComponent implements OnInit {
   gender: boolean = false;
   studentby: boolean = false;
   transport: boolean = false;
-  select_class: boolean = true;
+  classwise: boolean = false;
+  sectionwise:boolean = false;
+  reportby:boolean =false;
   tmp = {};
 
   @ViewChild('studentReport1') public studentReport: NgForm;
-  @ViewChild('dataTable') public dataTable: DatatableComponent;
-
-  onChange(newValue) {
-
+  report_for: any;
+ 
+  onChange1(newValue) {
+    this.report_for = newValue
     if (newValue == "bloodgroup") {
-      this.reset_report()
-      this.select_class = true;
+      this.reset_report1();
       this.bloodgroup = true;
-    } else if (newValue == "category") {
-      this.reset_report()
-      this.select_class = true;
-      this.category = true;
+      this.reportby =true;
+     // this.student_report.blood_group ;
+     // this.onSubmit()
     } else if (newValue == "state") {
-      this.reset_report()
-      this.select_class = true;
+      this.reset_report1()
       this.state = true;
+      this.reportby =true;
+      //this.student_report.province;
+      //this.onSubmit()
     } else if (newValue == "religion") {
-      this.reset_report()
-      this.select_class = true;
+      this.reset_report1() 
       this.religion = true;
+      this.reportby =true;
+      //this.student_report.religion
+      //this.onSubmit()
     } else if (newValue == "gender") {
-      this.reset_report()
-      this.select_class = true;
+      this.reset_report1()
       this.gender = true;
-    } else if (newValue == "studentby") {
-      this.reset_report()
-      this.studentby = true;
+      this.reportby =true;
+      //this.student_report.gender;
+      //this.onSubmit()
     } else if (newValue == "transport") {
-      this.reset_report()
-      this.select_class = true;
+      this.reset_report1()
       this.transport = true;
+      this.reportby =true;
+       
+      //this.onSubmit()
     } else {
-      this.reset_report()
+      this.reset_report1()
+      this. reset_report2()
+      this.reportby =false;
       this.studentreport = false;
+     
     }
-
-    this.studentReport.reset();
-
-
+    this.button_reset();
+  this.studentReport.reset();
+   
   }
 
-  OnChange(value) {
-    if (value == "allclass") {
-      this.select_class = false;
-    } else {
-      this.select_class = true;
+ button_reset(){
+  this.printbutton =false;
+  this.csvbutton=false;
+  this.studentreport =false;
+ }
+ 
+  onChange2(value) {
+    console.log(value);
+    if (value =="classwise") {
+      this.classwise = true;
+      this.sectionwise =false;
+     // this.student_report.class;
+      //this.onSubmit()
+      
+      
+    } else if(value == "sectionwise"){
+      this.classwise = true;
+      this.sectionwise =true;
+      //this.student_report.class;
+      //this.student_report.section;
+      //this.onSubmit()
+    
     }
-
+    else if(value == "allclass"){
+      this.classwise = false;
+      this.sectionwise = false;
+      this.student_report.class = null;
+      this.student_report.section = null;
+      //this.onSubmit()
+   
+    }
+    else  {
+      this.reset_report2()
+    }
+    this.button_reset()
+   
   }
 
+ reset_report2(){
+  this.classwise =false;
+  this.sectionwise=false;
+ 
+ } 
 
-  reset_report() {
+
+ reset_report1() {
     this.bloodgroup = false;
-    this.studentby = false;
     this.category = false;
     this.gender = false;
     this.state = false;
     this.religion = false;
     this.transport = false;
+  
   }
-
-
 
   constructor(
     private _studentreportService: StudentReportService,
-    private _batchService: BatchService,
     private _classService: ClassService,
-    
+    private _sectionService: SectionService,
     private _utils: UtilsService,
     private router: Router,
     private toastr: ToastrService) {
-  }
+    }
 
   ngOnInit() {
     this.LoadClass()
   }
 
-  onSubmit() {
-    //console.log(this.student_report)
+  onSubmit(){
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._studentreportService.get(this.student_report)
       .subscribe(data => {
         //console.log('RETURNED DATA',data)
         this.rows = data;
-        this.rows = [...this.rows];
+        this.rows = [...this.rows]
+          this.get_report();
+       
       });
-
+     // console.log(this.rows);
   }
 
   LoadClass() {
@@ -150,22 +192,37 @@ export class StudentReportComponent implements OnInit {
         console.log(this.classes);
         if (this.classes.length > 0) {
           this.selected_class = this.classes[0].id;
-
+         this.LoadSection();
         }
       }
     );
   }
-
+  
+  LoadSection() {
+    this._utils.unsubscribeSub(this._sub);
+    this._sub = this._sectionService.get().subscribe(
+      data => {
+        isArray(data) ? this.section = data : data;
+        console.log(this.section);
+        if(this.section.length > 0){
+         this.selected_section = this.section[0].id;
+        }
+      }
+    );
+  }
  
 
-  get_report() {
-    console.log(this.rows);
-    //if (this.rows.length>0){
+   get_report() {
+
     this.studentreport = true;
-    this.printbutton = true;
-    this.csvbutton = true;
-    //}    
-  }
+    if (this.rows.length>0){
+      this.printbutton = true;
+      this.csvbutton = true;
+    }else{
+      this.printbutton = false;
+      this.csvbutton = false;
+    }  
+ }
 
   get_email() {
     this.email = !this.email;
@@ -185,17 +242,15 @@ export class StudentReportComponent implements OnInit {
   get_parentsdetail() {
     this.parentsdetail = !this.parentsdetail;
   }
-
-  get_feesdetail() {
-    this.amount = !this.amount;
+  get_destinationdetail(){
+    this.destinationdetail =!this.destinationdetail
   }
+ 
 
 
   exportAsCSV() {
-    console.log(this.rows);
-    if(this.rows.length>0){
-      
-    
+    //console.log(this.rows);
+   // if(this.rows.length>0){
       var output = [];
       for (var row of this.rows) {
         // console.log(row);
@@ -232,14 +287,11 @@ export class StudentReportComponent implements OnInit {
       };
       return new AngularCsv( output,'student-report', options);
     
-    } else{
-      alert(' data is empty');
     }
-
-  }
-
-
-
+    
+        
+    
+   
 
 
 
