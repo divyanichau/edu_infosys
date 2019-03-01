@@ -11,7 +11,7 @@
         </ul>
       </div>
         <div class="row ">
-          <form (ngSubmit) ="onSubmit()" #libaryreport ="ngForm">
+          <form ngNativeValidate (ngSubmit) ="onSubmit()" #libraryreport ="ngForm">
             <div class="col-sm-12">
               <div class="card">
                   <h4 class="panel-heading bg-primary ">Library Report</h4>
@@ -20,7 +20,7 @@
                   <div class="row clearfix">
                     <div class="col-sm-3">
                       <label for="reportfor" class="req"> Report for </label>
-                      <select class="form-control" [(ngModel)]="libary_report.report_for" (change)="onChange($event.target.value)" name="reportfor" required>
+                      <select class="form-control" [(ngModel)]="library_report.report_for" (change)="onChange($event.target.value)" name="reportfor" required>
                         <option value ="option">Select option</option>
                         <option value ="availablebook">Available Books</option>
                         <option value ="issuedbook">issued Books</option>
@@ -40,7 +40,7 @@
 
                     <div class="col-sm-3" *ngIf ="classwise">
                       <label for="selectclass" class="req">  Class</label>
-                      <select class="form-control"[(ngModel)]="libary_report.class_name"  name="selectclass" required >
+                      <select class="form-control"[(ngModel)]="library_report.class_name"  name="selectclass" required >
                         <!-- <option *ngFor="let c of classes" [ngValue]="c.id">{{c.name}}</option> -->
                         <option value ="0">select option</option>
                         <option value ="3">Class1</option>
@@ -51,7 +51,7 @@
 
                     <div class="col-sm-3" *ngIf ="sectionwise">
                         <label for="section" class="req"> Section</label>
-                        <select class="form-control"[(ngModel)]="libary_report.section"  name="section"required  >
+                        <select class="form-control"[(ngModel)]="library_report.section"  name="section"required  >
                           <!-- <option *ngFor="let s of section" [ngValue]="s.id">{{s.name}}</option> -->
                           <option value ="0">select option</option>
                           <option value ="3">section A</option>
@@ -63,12 +63,12 @@
 
                    <div class="col-sm-3" *ngIf ="datewise">
                         <label for="date">start date</label>
-                        <input type="date" class="form-control" [(ngModel)]="libary_report.start_date" name="date" 
+                        <input type="date" class="form-control" [(ngModel)]="library_report.start_date" name="date" 
                           required>
                   </div>
                   <div class="col-sm-3" *ngIf ="datewise">
                     <label for="date">end date</label>
-                    <input type="date" class="form-control" [(ngModel)]="libary_report.end_date" name="enddate" 
+                    <input type="date" class="form-control" [(ngModel)]="library_report.end_date" name="enddate" 
                       required>
                 </div>
 
@@ -98,21 +98,22 @@
          <th>ID</th>
          <th>ISBN No</th>
          <th>Book No.</th>
-         <th>Title</th>
+         <th>Name</th>
          <th>Author</th>
          <th>Edition</th>
          <th>Category</th>
          <th>Language</th>
          
        </tr>
-       <tr *ngFor="let row of rows">
+       <tr>
          <td>{{row.id}}</td>
           <td>{{row.isbn_no}}</td>
           <td>{{row.book_no}}</td>
-          <td>{{row.title}}</td>
+          <td>{{row.name}}</td>
           <td>{{row.author}}</td>
           <td>{{row.edition}}</td>
-          <td>{{row.Language}}</td>
+          <td>{{row.category}}</td>
+          <td>{{row.language}}</td>
         </tr>
      </table>
    </div>   
@@ -133,24 +134,23 @@
          <th>Return Date</th>
          
        </tr>
-       <tr *ngFor="let row of rows">
+       <tr>
          <td>{{row.id}}</td>
           <td>{{row.isbn_no}}</td>
           <td>{{row.book_no}}</td>
-          <td>{{row.title}}</td>
+          <td>{{row.name}}</td>
           <td>{{row.user_type}}</td>
           <td>{{row.user}}</td>
-          <th>Class</th>
-          <th ngIf ="sectionwise">Section</th>
-          <td>{{row.issue_date}}</td>
+          <td>{{row.class}}</td>
+          <td *ngIf ="sectionwise">{{row.section}}</td>
+          <td>{{row.issued_date}}</td>
           <td>{{row.return_date}}</td>
-          <td>manish</td>
         </tr>
      </table>
    </div>
    <br> 
  
-<!--libary table end-->  
+<!--library table end-->  
 
 </div>
 

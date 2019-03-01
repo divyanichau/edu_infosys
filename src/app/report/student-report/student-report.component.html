@@ -104,7 +104,6 @@
                     <div class="col-sm-3" *ngIf ="classwise">
                       <label for="class" class="req"> Class </label>
                       <select class="form-control" [(ngModel)]="student_report.class" name="class" required >
-                        <option>class1</option>
                         <option *ngFor="let c of classes" [ngValue]="c.id">{{c.name}}</option> 
                       </select>
                   </div>
@@ -112,8 +111,7 @@
 
                   <div class="col-sm-3" *ngIf ="sectionwise">
                     <label for="section" class="req"> Section</label>
-                    <select class="form-control" [(ngModel)]="student_report.section" name="section" required >
-                      <option>sectionA</option>
+                    <select class="form-control" [(ngModel)]="student_report.section" name="section" required > 
                       <option *ngFor="let s of section" [ngValue]="s.id">{{s.name}}</option>
                     </select>
 
@@ -185,8 +183,8 @@
  
   <div class = "table-reponsive"  *ngIf="studentreport" id ="dataTable" >
     <h4 class="text-center panel-heading bg-info"*ngIf="studentreport"  id ="header">Student Report of {{report_for}}-{{student_report.blood_group || student_report.state||student_report.gender||student_report.religion}}</h4>
-     <table class="center col-sm-12  table-bordered table-striped table-hover footable">
-       <tr>
+     <table class="center col-sm-12  table-bordered table-striped table-hover footable" id ="Table">
+      <tr>
          <th>SN</th>
          <th>Admission No</th>
          <th>Name </th>

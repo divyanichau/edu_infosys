@@ -23,8 +23,8 @@ import { ClassService } from '../core/services/class.service';
 import { SectionService } from '../core/services/section.service';
 import { ExpenseReportComponent } from './expense-report/expense-report.component';
 import {ExpenseReportService} from '../core/services/expensereport.service';
-import { LibaryReportComponent } from './libary-report/libary-report.component';
-import {LibaryReportService} from '../core/services/libaryreport.service';
+import { LibraryReportComponent } from './library-report/library-report.component';
+import {LibraryReportService} from '../core/services/libraryreport.service';
 
 @NgModule({
   imports: [
@@ -40,9 +40,9 @@ import {LibaryReportService} from '../core/services/libaryreport.service';
 
   ReportRoutingModule
   ],
-  providers: [BatchService , UtilsService, StudentReportService, LibaryReportService, ExpenseReportService, ClassService, SectionService, AbsentReportService , FeepaidReportService ,DueReportService, CourseService],
+  providers: [BatchService , UtilsService, StudentReportService, LibraryReportService, ExpenseReportService, ClassService, SectionService, AbsentReportService , FeepaidReportService ,DueReportService, CourseService],
 
-  declarations: [ ReportComponent , StudentReportComponent, DueReportComponent, FeepaidReportComponent, AbsentReportComponent, ExpenseReportComponent, LibaryReportComponent]
+  declarations: [ ReportComponent , StudentReportComponent, DueReportComponent, FeepaidReportComponent, AbsentReportComponent, ExpenseReportComponent, LibraryReportComponent]
 
 
 })

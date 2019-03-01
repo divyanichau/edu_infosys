@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LibaryReportComponent } from './libary-report.component';
+import { LibaryReportComponent } from './library-report.component';
 
 describe('LibaryReportComponent', () => {
   let component: LibaryReportComponent;

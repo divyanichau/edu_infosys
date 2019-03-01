@@ -6,11 +6,11 @@ import { Observable } from 'rxjs';
 
 import { UtilsService } from '../../shared/services/utils.service';
 import { Config } from '../../shared/classes/app';
-import { LibaryReport } from '../classes/libary-report';
+import { LibraryReport } from '../classes/library-report';
 
 
 @Injectable()
-export class LibaryReportService {
+export class LibraryReportService {
   private _libaryreportUrl = `${new Config().api}/report/libary_report/`;
   
   private _headers = this._utils.makeHeaders({ withToken: true });
@@ -23,14 +23,14 @@ export class LibaryReportService {
 
  
 
-  get(libary_report:LibaryReport): Observable<LibaryReport[]> {
+  get(library_report:LibraryReport): Observable<LibraryReport[]> {
     //console.log(due_report)
 
     var url = `${this._libaryreportUrl}/?
     `
-    for(var key in libary_report){
+    for(var key in library_report){
  
-       var val = libary_report[key];
+       var val = library_report[key];
        if (typeof(val) !== 'undefined'&& val !== null){
          url = url + key + '=' + val + '&'
        }
@@ -56,7 +56,7 @@ export class LibaryReportService {
     this._utils.start_progress();
   }
 
-  afterRequest(data: LibaryReport): void {
+  afterRequest(data: LibraryReport): void {
     this._utils.stop_progress();
    
   }

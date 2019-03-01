@@ -5,21 +5,21 @@ import { Subscription } from 'rxjs';
 import { isArray } from 'lodash';
 import { ToastrService } from 'ngx-toastr';
 import { UtilsService } from '../../shared/services/utils.service';
-import {LibaryReport} from '../../core/classes/libary-report';
-import {LibaryReportService} from '../../core/services/libaryreport.service';
+import {LibraryReport} from '../../core/classes/library-report';
+import {LibraryReportService} from '../../core/services/libraryreport.service';
 import {ClassService} from '../../core/services/class.service';
 import {SectionService} from '../../core/services/section.service';
 import {Section} from '../../core/classes/section';
 import {_class} from '../../core/classes/class';
 @Component({
-  selector: 'app-libary-report',
-  templateUrl: './libary-report.component.html',
+  selector: 'app-library-report',
+  templateUrl: './library-report.component.html',
   styleUrls: ['../../../assets/css/report-table.css']
 })
-export class LibaryReportComponent implements OnInit {
+export class LibraryReportComponent implements OnInit {
   private _sub: Subscription = undefined;
   private _typeSub: Subscription = undefined;
-  libary_report: LibaryReport = new LibaryReport();
+  library_report: LibraryReport = new LibraryReport();
   
   availablebook:boolean =false;
   issuedbook:boolean =false;
@@ -36,12 +36,12 @@ export class LibaryReportComponent implements OnInit {
   section :Section[];
   rows:any[]= [];
  
- @ViewChild('libaryreport') public libaryreport:NgForm;
+ @ViewChild('libraryreport') public libraryreport:NgForm;
 
   onChange(newValue) {
     if(newValue == "availablebook"){
       this._utils.unsubscribeSub(this._sub);
-      this._sub = this._libaryreportService.get(this.libary_report)
+      this._sub = this._libraryreportService.get(this.library_report)
       .subscribe(data => {
          console.log(data);
          this.rows = data;
@@ -88,25 +88,26 @@ export class LibaryReportComponent implements OnInit {
       this.reset_issued();
       this.issuedbook =true;
       this.datewise =true;
-      this.libary_report.section =null;
-      this.libary_report.class_name =null;
+      this.library_report.section =null;
+      this.library_report.class_name =null;
       
     }
+
     else if(newValue=="classwise"){
       this.reset_issued();
       this.issuedbook =true;
       this.classwise =true;
-      this.libary_report.end_date =null;
-      this.libary_report.start_date =null;
-      this.libary_report.section=null;
+      this.library_report.end_date =null;
+      this.library_report.start_date =null;
+      this.library_report.section=null;
     }
     else if(newValue == "sectionwise"){
       this.reset_issued();
       this.issuedbook =true;
       this.classwise =true;
       this.sectionwise =true;
-      this.libary_report.end_date =null;
-      this.libary_report.start_date =null;
+      this.library_report.end_date =null;
+      this.library_report.start_date =null;
     }else{
       this.reset_issued()
       this.issuedbook =true;
@@ -123,7 +124,7 @@ export class LibaryReportComponent implements OnInit {
     private toastr: ToastrService,
     private  _classService:ClassService,
     private _sectionService:SectionService,
-    private _libaryreportService:LibaryReportService) { }
+    private _libraryreportService:LibraryReportService) { }
 
   ngOnInit() {
     this.LoadClass()
@@ -132,15 +133,33 @@ export class LibaryReportComponent implements OnInit {
   onSubmit() {
     //console.log(this.libary_report);
     this._utils.unsubscribeSub(this._sub);
-    this._sub = this._libaryreportService.get(this.libary_report)
+    this._sub = this._libraryreportService.get(this.library_report)
      .subscribe(data => {
         console.log(data);
         this.rows = data;
         this.rows = [...this.rows];
-       
+        //this.get_reporttype()
       });
-    
+     
+   }  
+  
+   row = {
+    id : 1,
+   isbn_no:123,
+   book_no:3,
+   "name":"dbms",
+   "edition":"fourth",
+   "language":"english",
+   "author":"Arjung singh saud",
+   "category":"categoryA",
+   "class":"class2",
+   "section": "B",
+   "user_type":"student",
+   "user":"ram",
+   "issued_date":"2075-7-5",
+   "return_date":"2075-7-15",
   }
+  
 
   LoadClass() {
     this._utils.unsubscribeSub(this._sub);

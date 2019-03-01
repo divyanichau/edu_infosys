@@ -12,6 +12,7 @@ import { StudentReport } from '../../core/classes/student-report';
 import { StudentReportService } from '../../core/services/studentreport.service';
 import {SectionService} from '../../core/services/section.service';
 import {Section} from '../../core/classes/section';
+import { IfStmt } from '@angular/compiler';
 
 
 @Component({
@@ -100,8 +101,10 @@ export class StudentReportComponent implements OnInit {
     }
     this.button_reset();
   this.studentReport.reset();
-   
+  
   }
+
+  
 
  button_reset(){
   this.printbutton =false;

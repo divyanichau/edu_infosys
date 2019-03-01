@@ -7,31 +7,27 @@
  #dataTable {
     margin-top: -25px;
     overflow-x:auto;
-    overflow-y:auto;
-
-
   }
-   .btn-group {
+
+ /* .btn-group {
      margin:2px;
-   }
-   
+   } */
 
   h4 { 
   
     text-align: center;
-  }
+   }
+
   table ,td ,th{
-    overflow: hidden;
+    /* overflow: hidden; */
     border: 1px solid black ;
     border-collapse: collapse;
   
    
   }
+ 
 
   td,th {
-    padding-top: 12px;
-    padding-bottom: 12px;
     text-align: center;
-   
     padding: 8px;
   }
