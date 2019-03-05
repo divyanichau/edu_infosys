@@ -28,18 +28,10 @@ export class StudentReportService {
      //this.beforeRequest();
 
      var url = `${this._studentreportUrl}/?`
-    //  if(student_report.reportby =="allclass"){
-    //    url = `${this._studentreportUrl}/?`+'bloodgroup'+'='+student_report.bloodgroup+
-       
-    //  }
     console.log(student_report)
    
      for(var key in student_report){
       var val = student_report[key];
-
-      // if(val == 'allclass'){
-        
-      // }
 
         if (typeof(val) !== 'undefined' && val!== null){
           

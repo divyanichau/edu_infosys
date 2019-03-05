@@ -3,13 +3,11 @@
   <div class="content-wrapper">
     <div class="content">
       <div class="page-header">
-        <div class ="col-sm-12 bg-info">
         <ul class="page-breadcrumb breadcrumb">
           <li><a routerLink="/"><i class="material-icons">home</i> Home</a></li>
           <li><a routerLink="/report/">Report</a></li>
           <li><a> Library Report</a></li>
         </ul>
-      </div>
         <div class="row ">
           <form ngNativeValidate (ngSubmit) ="onSubmit()" #libraryreport ="ngForm">
             <div class="col-sm-12">
@@ -118,9 +116,9 @@
      </table>
    </div>   
   
-   <div class = " table-reponsive " id ="dataTable"  *ngIf="libaryReport">
+   <div class = "table-reponsive " id ="dataTable"  *ngIf="libaryReport">
     <h4 class="text-center panel-heading bg-info">Issued Report</h4> 
-     <table class="center col-sm-12 table-bordered table-striped  footable ">
+     <table class="center col-sm-12 table-bordered table-striped  footable table-hover">
        <tr>
          <th>ID</th>
          <th>ISBN No</th>

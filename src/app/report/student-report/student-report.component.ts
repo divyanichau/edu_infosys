@@ -12,7 +12,7 @@ import { StudentReport } from '../../core/classes/student-report';
 import { StudentReportService } from '../../core/services/studentreport.service';
 import {SectionService} from '../../core/services/section.service';
 import {Section} from '../../core/classes/section';
-import { IfStmt } from '@angular/compiler';
+
 
 
 @Component({
@@ -59,6 +59,11 @@ export class StudentReportComponent implements OnInit {
 
   @ViewChild('studentReport1') public studentReport: NgForm;
   report_for: any;
+  Bloodgroup:any;
+  Province:any;
+  Religion:any;
+  Gender:any;
+  Reportby:any;
  
   onChange1(newValue) {
     this.report_for = newValue
@@ -104,8 +109,6 @@ export class StudentReportComponent implements OnInit {
   
   }
 
-  
-
  button_reset(){
   this.printbutton =false;
   this.csvbutton=false;
@@ -113,21 +116,17 @@ export class StudentReportComponent implements OnInit {
  }
  
   onChange2(value) {
-    console.log(value);
     if (value =="classwise") {
       this.classwise = true;
       this.sectionwise =false;
      // this.student_report.class;
       //this.onSubmit()
-      
-      
     } else if(value == "sectionwise"){
       this.classwise = true;
       this.sectionwise =true;
       //this.student_report.class;
       //this.student_report.section;
       //this.onSubmit()
-    
     }
     else if(value == "allclass"){
       this.classwise = false;
@@ -135,7 +134,6 @@ export class StudentReportComponent implements OnInit {
       this.student_report.class = null;
       this.student_report.section = null;
       //this.onSubmit()
-   
     }
     else  {
       this.reset_report2()
@@ -170,7 +168,9 @@ export class StudentReportComponent implements OnInit {
     private toastr: ToastrService) {
     }
 
+   
   ngOnInit() {
+    
     this.LoadClass()
   }
 
@@ -215,8 +215,34 @@ export class StudentReportComponent implements OnInit {
   }
  
 
-   get_report() {
+  table_headername(){
+    this.Bloodgroup =this.student_report.blood_group;
+    this.Province =  this.student_report.province;
+    this.Religion = this.student_report.religion;
+    this.Gender = this.student_report.gender;
+  }
 
+
+  get_report() {
+   // console.log(this.student_report.class);
+     this.Reportby= this.student_report.reportby;
+    if(this.report_for!== undefined && this.report_for!="option" && this.Reportby !==undefined&&this.Reportby!="option" ){
+      if(this.student_report.class!==undefined&& this.student_report.class!==null && this.Reportby=="classwise"){
+       //console.log(this.student_report.class);
+       //console.log(this.Bloodgroup);
+       this.show_reporttable();
+      }else if(this.Reportby =="sectionwise"&&this.student_report.class!==undefined && this.student_report.section!==undefined && this.student_report.section!==null && this.student_report.class!==null){
+        this.show_reporttable();
+      }else if(this.Reportby=="allclass"){
+        this.show_reporttable();
+      }
+
+    }
+       
+ }
+  
+ show_reporttable(){
+    this. table_headername()
     this.studentreport = true;
     if (this.rows.length>0){
       this.printbutton = true;
@@ -224,8 +250,10 @@ export class StudentReportComponent implements OnInit {
     }else{
       this.printbutton = false;
       this.csvbutton = false;
-    }  
+    }
+
  }
+
 
   get_email() {
     this.email = !this.email;
