@@ -14,7 +14,7 @@ import { StudentReport } from '../classes/student-report';
 
 @Injectable()
 export class StudentReportService {
-  private _studentreportUrl = `${new Config().api}/report`;
+  private _studentreportUrl = `${new Config().api}/report/student`;
   
   private _headers = this._utils.makeHeaders({ withToken: true });
 

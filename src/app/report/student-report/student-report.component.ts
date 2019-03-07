@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild,OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AngularCsv } from 'angular7-csv';
@@ -47,7 +47,6 @@ export class StudentReportComponent implements OnInit {
   
   bloodgroup: boolean = false;
   category: boolean = false;
-  state: boolean = false;
   religion: boolean = false;
   gender: boolean = false;
   studentby: boolean = false;
@@ -64,6 +63,11 @@ export class StudentReportComponent implements OnInit {
   Religion:any;
   Gender:any;
   Reportby:any;
+
+  father_name:any;
+  father_mobile:any;
+  mother_name:any;
+  mother_mobile:any;
  
   onChange1(newValue) {
     this.report_for = newValue
@@ -73,12 +77,7 @@ export class StudentReportComponent implements OnInit {
       this.reportby =true;
      // this.student_report.blood_group ;
      // this.onSubmit()
-    } else if (newValue == "state") {
-      this.reset_report1()
-      this.state = true;
-      this.reportby =true;
-      //this.student_report.province;
-      //this.onSubmit()
+   
     } else if (newValue == "religion") {
       this.reset_report1() 
       this.religion = true;
@@ -150,10 +149,9 @@ export class StudentReportComponent implements OnInit {
 
 
  reset_report1() {
-    this.bloodgroup = false;
+    this.bloodgroup =false;
     this.category = false;
     this.gender = false;
-    this.state = false;
     this.religion = false;
     this.transport = false;
   
@@ -174,6 +172,10 @@ export class StudentReportComponent implements OnInit {
     this.LoadClass()
   }
 
+  ngOnDestroy() {
+    this._utils.unsubscribeSub(this._sub);
+  }
+
   onSubmit(){
     this._utils.unsubscribeSub(this._sub);
     this._sub = this._studentreportService.get(this.student_report)
@@ -184,8 +186,23 @@ export class StudentReportComponent implements OnInit {
           this.get_report();
        
       });
-     // console.log(this.rows);
+      console.log(this.rows);
+      for(var row of this.rows){
+          if(row.guardian_detail.type ="father"){
+            this.father_name= row.guardian_detail.name;
+            this.father_mobile =row.guardian_detail.mobile;
+            
+          }else if(row.guardian_detail.type ="mother"){
+
+            this.mother_name= row.guardian_detail.name;
+            this.mother_mobile =row.guardian_detail.mobile
+            
+          }
+      }
+   
+
   }
+
 
   LoadClass() {
     this._utils.unsubscribeSub(this._sub);
@@ -216,10 +233,40 @@ export class StudentReportComponent implements OnInit {
  
 
   table_headername(){
-    this.Bloodgroup =this.student_report.blood_group;
-    this.Province =  this.student_report.province;
-    this.Religion = this.student_report.religion;
-    this.Gender = this.student_report.gender;
+
+    if(this.student_report.blood_group == "1"){
+      this.Bloodgroup = "A+";
+    }else if(this.student_report.blood_group == "2"){
+      this.Bloodgroup ="A-"
+    }else if(this.student_report.blood_group == "3"){
+      this.Bloodgroup ="B+" 
+    }else if(this.student_report.blood_group == "4"){
+      this.Bloodgroup ="B-"
+    }else if(this.student_report.blood_group == "5"){
+      this.Bloodgroup ="O+"
+    }else if(this.student_report.blood_group == "6"){
+      this.Bloodgroup ="O-"
+    }else if(this.student_report.blood_group == "7"){
+      this.Bloodgroup ="AB+"
+    }else if(this.student_report.blood_group == "8"){
+      this.Bloodgroup ="AB-"
+    }
+
+
+    if(this.student_report.religion=="1"){
+      this.Religion = "hindu";
+    }else if(this.student_report.religion=="2"){
+      this.Religion = "muslim";
+    }else if(this.student_report.religion=="3"){
+      this.Religion ="christian"
+    }
+
+    if(this.student_report.gender =="1"){
+      this.Gender="male";
+    }else if(this.student_report.gender=="2"){
+      this.Gender="female";
+    }
+   
   }
 
 
@@ -287,8 +334,10 @@ export class StudentReportComponent implements OnInit {
         // console.log(row);
          var tmp = {
            'Id':row.id,
-           'Admission No':row.admission_no,
-           'Name':row.name,
+           'Admission No':row.student_detail.student.registration_no,
+           'Name':row.student_detail.student.user.first_name +" "+row.student_detail.student.user.middle_name +" "+row.student_detail.student.user.last_name,
+           'Class Name':row.student_detail.class_name,
+           'Section Name':row.student_detail.section,
            'Guardain Name': row.guardian_details.name,
            'Guardian Contact':row.guardian_details.contact.number,
            'Guardian Address':row.guardian_details.address.address,

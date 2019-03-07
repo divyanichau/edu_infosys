@@ -3,7 +3,7 @@
   <div class="content-wrapper">
     <div class="content">
       <div class="page-header">
-        <div class ="col-sm-12 bg-info">
+        <div class ="col-sm-12">
         <ul class="page-breadcrumb breadcrumb">
           <li><a routerLink="/"><i class="material-icons">home</i> Home</a></li>
           <li><a routerLink="/report/">Report</a></li>
@@ -19,33 +19,33 @@
                    <br>
                 <div class="panel-body">
                   <div class="row clearfix">
-                    <div class="col-sm-4">
-                      <label for="reportfor" class="req"> Category </label>
-                      <select class="form-control" (change)="onChange($event.target.value)" name="feecategory" required >
+                    <div class="col-sm-3">
+                      <label for="reportfor" class="req"> Report For </label>
+                      <select class="form-control" (change)="onChange($event.target.value)" name="report_for" required >
                         <option value ="option">Select option</option>
                         <option value ="datewise">Date Wise</option>
                         <option value = "feecategorywise">fee category wise</option>
-                        <option value = "classwise">class wise</option>
-                        <option value = "batchwise">batch wise</option>                      
+                        <option value = "classwise">class wise</option>                      
                       </select>
                     </div>
 
-                    <div class="col-sm-4" *ngIf ="datewise">
+                    <div class="col-sm-3" *ngIf ="datewise">
                         <label for="date"> date</label>
                         <input type="date" class="form-control" [(ngModel)]="due_report.date" name="date" placeholder=""
                           required>
                       </div>
 
-                     <div class="col-sm-4" *ngIf ="batchwise">
-                      <label for="batch" class="req">Batch</label>
-                      <select class="form-control" [(ngModel)]="due_report.batch" name="batch" required  >
-                        <option *ngFor="let b of batch" [ngValue]="b.id">{{b.name}}</option> 
-                        <option value="1">2073</option>
-                      </select>
-                    </div>
-                 
+                      <div class="col-sm-3" *ngIf ="reportby">
+                          <label for="report by" class="req"> Report by</label>
+                          <select class="form-control" [(ngModel)]="due_report.reportby" (change)="onChange2($event.target.value)" name="reportby" required>
+                            <option value ="option">Select option</option> 
+                            <option value ="class">class</option>
+                            <option value ="section">section</option>
+                            <option value ="allclass">all class</option>
+                          </select>
+                        </div>
                 
-                  <div class="col-sm-4" *ngIf ="classwise">
+                  <div class="col-sm-3" *ngIf ="classwise">
                     <label for="selectclass" class="req">  Class</label>
                     <select class="form-control"[(ngModel)]="due_report.class_name"  name="selectclass" required >
                        <option *ngFor="let c of classes" [ngValue]="c.id">{{c.name}}</option> 
@@ -53,19 +53,23 @@
                     </select>
                   </div>
 
-                   <div class="col-sm-4" *ngIf ="feecategorywise">
+                   <div class="col-sm-3" *ngIf ="feecategorywise">
                     <label for="feescategory" class="req">Fees Category Wise</label>
                     <select class="form-control" [(ngModel)]="due_report.fee_category" name="feescategory" required  >
-                      <!-- <option *ngFor="let f of fee" [ngValue]="f.id">{{f.name}}</option> -->
-                      <option>Hostel Fee</option>
-                      <option>Libary Fee</option>
-                      <option>Admission Fee</option>
-                      <option>Transport Fee</option>
-                      <option>uniform Fee</option>
-                      <option>Monthly  Fee</option>
+                      <option vlaue ="libraryfee">Library Fee</option>
+                      <option value ="admissionfee">Admission Fee</option>
+                      <option value ="transportfee">Transport Fee</option>
+                      <option value ="uniformfee">Uniform Fee</option>
+                      <option value ="monthlyfee">Monthly  Fee</option>
                     </select>
                   </div>
+
+                 
+
                 </div>
+
+                   
+
                  <br>
                   <div class ="row">
                 <div class="form-group cols-sm-2">
@@ -84,7 +88,7 @@
    </div>
 
  <!--table start-->
-  <div class="table-responsive" *ngIf="report">
+  <!-- <div class="table-responsive" >
       <table class = "table table-bordered ">
           <h3 class ="text-center panel-heading bg-primary">Due Report</h3>
          <br>
@@ -125,24 +129,24 @@
           </ngx-datatable-column>
         </ngx-datatable> 
       </table>
-    </div>
+    </div> -->
 
 <!--end of table-->
 </div>
 
 
-<div class = " table-reponsive" id ="dataTable"  *ngIf="duereport">
-  <h4 class="text-center panel-heading bg-info">Due Report</h4> 
+<div class = "table-reponsive" id ="dataTable" *ngIf="duereport">
+  <h4 class="text-center panel-heading bg-info">Due Report by-{{duereport_by}}</h4> 
    <table class="center col-sm-12 table-bordered table-striped  footable table-hover">
      <tr>
-       <td><b>ID</b></td>
-       <td><b>Admission No</b></td>
-       <td><b>Name </b></td>
-       <td><b>Gurdian Name</b></td>
-       <td><b> Gurdian Contact No</b></td>
-       <td><b>Total Due</b></td>
-       <td><b>Fine</b></td>
-       
+       <th>ID</th>
+       <th>Admission No</th>
+       <th>Name</th>
+       <th>Gurdian Name</th>
+       <th>Gurdian Contact No</th>
+       <th>Due Amount</th>
+       <th>Fine Amount</th> 
+       <th>Total Due Amount</th>       
      </tr>
      <tr *ngFor ="let row ofrows">
        <td>{{row.id}}</td>
@@ -150,8 +154,9 @@
         <td>{{row.name}}</td>
         <td>{{row.gurdian_name}}</td>
         <td>{{row.gurdian_contact}}</td>
-        <td>{{row.total_due}}</td>
-        <td>manish</td>
+        <td>{{row.due_amount}}</td>
+        <td>{{row.fine}}</td>
+        <td>{{row.total_due_amount}}</td>
       </tr>
    </table>
  </div>   

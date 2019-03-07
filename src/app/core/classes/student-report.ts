@@ -1,6 +1,4 @@
-import {Address } from './address'
-import { Phone } from './phone';
-import { Gurdain } from './gurdain';
+
 
 export class StudentReport {
   name:string;
@@ -10,7 +8,7 @@ export class StudentReport {
   batch: string;
   category:string;
 
-  religion: number;
+  religion: string;
   route_code:string;
   fees:number;
   blood_group:string;

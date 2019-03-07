@@ -97,9 +97,9 @@
          <th>ISBN No</th>
          <th>Book No.</th>
          <th>Name</th>
+         <th>Quantity</th>
          <th>Author</th>
          <th>Edition</th>
-         <th>Category</th>
          <th>Language</th>
          
        </tr>
@@ -125,7 +125,7 @@
          <th>Book No. </th>
          <th>Title</th>
          <th>User Type</th>
-         <th>User</th>
+         <th>User Name</th>
          <th>Class</th>
          <th *ngIf = "sectionwise">Section</th>
          <th>Issue Date</th>
@@ -138,7 +138,7 @@
           <td>{{row.book_no}}</td>
           <td>{{row.name}}</td>
           <td>{{row.user_type}}</td>
-          <td>{{row.user}}</td>
+          <td>{{row.user_name}}</td>
           <td>{{row.class}}</td>
           <td *ngIf ="sectionwise">{{row.section}}</td>
           <td>{{row.issued_date}}</td>

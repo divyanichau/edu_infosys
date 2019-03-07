@@ -155,7 +155,7 @@ export class LibraryReportComponent implements OnInit {
    "class":"class2",
    "section": "B",
    "user_type":"student",
-   "user":"ram",
+   "user_name":"ram",
    "issued_date":"2075-7-5",
    "return_date":"2075-7-15",
   }
@@ -190,6 +190,7 @@ export class LibraryReportComponent implements OnInit {
 
  
   get_reporttype(){
+
     this.libaryReport =true;
     this.printbutton =true;
 

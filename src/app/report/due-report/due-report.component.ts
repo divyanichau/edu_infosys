@@ -36,30 +36,48 @@ export class DueReportComponent implements OnInit {
   feecategorywise:boolean =false;
   rows: any[] = [];
   classes: _class[];
-
+  duereport_for:any;
+  reportby:boolean =false;
   
 
   @ViewChild('dueReport') public dueReport:NgForm;
 
   onChange(newValue) {
+   this.duereport_for= newValue;
     if(newValue == "datewise"){
      this.reset_report()
+     this.reportby =true;
      this.datewise =true;
     }else if(newValue =="classwise"){
       this.reset_report()
+      this.reportby =false;
       this.classwise =true;
-    }else if(newValue == "batchwise"){
-      this.reset_report()
-      this.batchwise = true;
     }else if(newValue =="feecategorywise"){
       this.reset_report()
+      this.reportby =true;
+      this.datewise =true;
       this.feecategorywise =true;
     }else{
       this.reset_report()
+      this.reportby =false;
       this.duereport = false;
     }
 
     this.dueReport.reset();
+  }
+
+
+  onChange2(value) {
+    if (value =="class") {
+      this.classwise=true;
+    }
+    else if(value == "allclass"){
+      this.classwise = false;
+      this.due_report.class_name =null;
+      
+    }
+   
+   
   }
   
   reset_report(){
@@ -83,9 +101,6 @@ export class DueReportComponent implements OnInit {
     this.LoadBatch();
   }
 
-  ngOnDestroy() {
-    this._utils.unsubscribeSub(this._sub);
-  }
 
   onSubmit() {
     console.log(this.due_report)
@@ -130,9 +145,10 @@ export class DueReportComponent implements OnInit {
   }
 
   get_report(){
-    this.duereport = true;
-    this.printbutton =true;
-
+  if(this.duereport_for== "datewise"&& this.duereport_for =="classwise"){
+      this.duereport = true;
+      this.printbutton =true;
+    }
   }
 
   exportAsCSV() {
