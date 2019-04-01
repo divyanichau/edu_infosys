@@ -58,9 +58,8 @@ export class DashboardComponent implements OnInit {
         this.rows = this._events;
         this.temp = [...this._events];
       }
-      
     );
-    this._event= new Event();
+    // this._event= new Event();
 
   }
 
