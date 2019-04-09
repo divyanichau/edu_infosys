@@ -1,0 +1,36 @@
+/*.table-bordered tbody tr td, .table-bordered tbody tr th {
+    padding: 10px;
+    border: 1px solid #eee;
+}
+
+body {
+   
+    font-size: 10px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+}*/
+
+table {
+    margin-top: -2px;
+    empty-cells: show;
+    border: 0.5px solid #000;
+    padding-right:20px; 
+}
+
+table td,
+table th {
+    height: 10px;
+    min-width: 5em;
+    min-height: 2em;
+    text-align: center;
+    border: 1px solid #000;
+
+}
+
+body {
+
+    font-size: 8.5px;
+    line-height: 2;
+    color: #333;
+}
