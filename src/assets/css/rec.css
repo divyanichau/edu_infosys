@@ -12,25 +12,46 @@ body {
 }*/
 
 table {
-    margin-top: -2px;
+    margin-top: -4px;
     empty-cells: show;
-    border: 0.5px solid #000;
-    padding-right:20px; 
+    border: 1px solid #000;
+    /*padding-right:20px; */
 }
 
 table td,
 table th {
-    height: 10px;
-    min-width: 5em;
+    height: 40px;
+    min-width: 2em;
     min-height: 2em;
     text-align: center;
     border: 1px solid #000;
 
 }
+.panel-title{
+	text-align: center;
+}
 
-body {
+.pa{
+	right:3%;
+}
+.right-top-mrgn {
+    text-align:center;
+    padding: 1%;
+     margin: -16px;
+     margin-top: 15px;
+}
 
-    font-size: 8.5px;
-    line-height: 2;
-    color: #333;
+
+.prgh{
+	left:70%;
+  
+}
+ .p {
+    margin: 2px;
+    right:3%;
+    left:30%;
+}
+
+ .panel-body {
+    padding: 1px;
 }
