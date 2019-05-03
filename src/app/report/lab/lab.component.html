@@ -1,0 +1,135 @@
+<div class="body">
+  <div class="content-wrapper">
+    <div class="content">
+      <div class="page-header">
+        <ol class="breadcrumb breadcrumb">
+          <li><a href="javascript:void(0);"><i class="material-icons">home</i> Home</a></li>
+          <li><a href="javascript:void(0);">Lab</a></li>
+          <li><a href="javascrpit:void(0);">Report</a></li>
+        </ol>
+
+        <div class="row">
+          <form ngNativeValidate (ngSubmit)="onSubmit()" #labForm="ngForm">
+            <div class="col-sm-12">
+              <div class="card">
+                <div class="header">
+                  <h2>
+                    <b style="color: black;">Lab Report Submission</b>
+                  </h2>
+                </div>
+                <br>
+
+                <div class="panel-body">
+                  <div class="card">
+                    <div class="header">
+                      <h2><label class="label label-info">LAB / PRATICAL</label></h2> 
+                    </div>
+                    
+                    <div class="body">
+                      <div class="row clearfix">
+                         <div class="col-sm-3">
+                          <label for="reg_no">Attendence</label>
+                          <input type="number" class="form-control" [(ngModel)]="lab.attendance" name="reg_no"  placeholder="" required>
+                        </div>
+                      
+                        <div class="col-sm-3">
+                          <label for="reg_no">No. of lab Sheet Submitted</label>
+                         <input type="number" class="form-control" [(ngModel)]="lab.lab_sheet" name="reg_no"  placeholder="" required>
+                        </div>
+                       
+                        <div class="col-sm-3">
+                          <label for="reg_no">Marks for Lab Report/Sheet</label>
+                          <input type="number" class="form-control" [(ngModel)]="lab.marks" name="reg_no"  placeholder="" required>
+                        </div>
+
+                        <div class="col-sm-3">
+                          <label for="reg_no">Lab Performance</label>
+                           <input type="number" class="form-control" [(ngModel)]="lab.performance" name="reg_no"  placeholder="" required>
+                        </div>
+
+                        <div class="col-sm-3">
+                          <label for="reg_no">Discipline</label>
+                          <input type="number" class="form-control" [(ngModel)]="lab.discipline" name="reg_no" placeholder="" required>
+                        </div>
+                  
+                        <div class="col-sm-3">
+                          <label for="reg_no">Viva</label>
+                          <input type="number" class="form-control" [(ngModel)]="lab.viva" name="reg_no" placeholder="" required>
+                        </div>
+
+                        <div class="col-sm-3">
+                          <label for="reg_no">Total</label>
+                          <input type="number" class="form-control" [(ngModel)]="lab.total" name="reg_no" placeholder="" required>
+                        </div>
+                       </div>
+                      </div>
+                      
+
+                      <div class="card">
+                        <div class="header">
+                          <h2><label class="label label-info">THEORY</label></h2> 
+                        </div>
+                        <div class="body">
+                          <div class="row clearfix">
+                              <div class="col-sm-3">
+                                <label for="first-term">First Term</label>
+                                <input type="number" class="form-control" [(ngModel)]="lab.first_term" name="first-term" placeholder="" required>
+                              </div>
+
+                              <div class="col-sm-3">
+                                <label for="final-term">Final Term</label>
+                                <input type="number" class="form-control" [(ngModel)]="lab.final_term" name="final-term" placeholder="" required>
+                              </div>
+
+                              <div class="col-sm-3">
+                                <label for="attendance">Attendance</label>
+                                <input type="number" class="form-control" [(ngModel)]="lab.attendance" name="attendance" placeholder="" required>
+                              </div>
+
+                              <div class="col-sm-3">
+                                <label for="reg_no">AST/TUT</label>
+                                <input type="number" class="form-control" [(ngModel)]="lab.ast_tut" name="reg_no" placeholder="">
+                              </div>
+                             </div>
+                          
+                          <div class="row clearfix">
+                            <div class="col-sm-3">
+                              <label for="reg_no">ASGT/TUT</label>
+                              <input type="number" class="form-control" [(ngModel)]="lab.asgt_tut" name="date" placeholder="" required>
+                            </div>
+
+                          <div class="col-sm-3">
+                              <label for="reg_no">Dress/ Discipline</label>
+                              <input type="number" class="form-control" [(ngModel)]="lab.dress" name="reg_no" placeholder="" required>
+                            </div>
+
+                            <div class="col-sm-3">
+                              <label for="total">Total</label>
+                             <input type="number" class="form-control" [(ngModel)]="lab.dress" name="total" placeholder="" required>
+                            </div>
+                           </div> 
+                      </div>
+
+                     <div class="card">
+                        <div class="header">
+                          <h2><label class="label label-info">THEORY + PRACTICAL</label></h2>
+                        </div>
+                       <div class="body">
+                          <div class="row clearfix">
+                            <div class="col-sm-3">
+                              <label for="reg_no">Total</label>
+                                <input type="number" class="form-control" [(ngModel)]="lab.th_pr" name="reg_no" placeholder="" required>
+                              </div>
+                            </div>
+                          </div>
+                       
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-lg" type="Submit"><b>sAVE</b></button>
+                      </div>
+                    </div>
+                  </div>
+          </div>
+   
+      
+ 
+ 

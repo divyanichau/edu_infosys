@@ -9,6 +9,13 @@ import { ToastrModule } from 'ngx-toastr';
 import { ReportRoutingModule } from './report-routing.module';
 import { StudentReportComponent} from './student-report/student-report.component';
 import { ReportComponent } from './report.component';
+import { SssComponent } from './sss/sss.component';
+import { LabReportComponent } from './lab-report/lab-report.component';
+
+
+import { LabComponent } from './lab/lab.component';
+import { UtilsService } from '../shared/services/utils.service';
+import { LabService } from '../core/services/lab.service';
 
 
 
@@ -18,7 +25,7 @@ import { ReportComponent } from './report.component';
     FormsModule,
     HttpModule,
     NgxDatatableModule,
-    ToastrModule.forRoot(), // ToastrModule added
+    ToastrModule.forRoot(), 
     NgProgressModule.withConfig({
       spinnerPosition: 'left',
       color: 'red'
@@ -26,9 +33,9 @@ import { ReportComponent } from './report.component';
 
   ReportRoutingModule
   ],
-  providers: [],
+  providers: [LabService],
 
-  declarations: [ ReportComponent , StudentReportComponent]
+  declarations: [ ReportComponent , StudentReportComponent, LabReportComponent, LabComponent, SssComponent]
 
 
 })

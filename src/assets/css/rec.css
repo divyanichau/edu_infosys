@@ -1,34 +1,41 @@
-/*.table-bordered tbody tr td, .table-bordered tbody tr th {
-    padding: 10px;
-    border: 1px solid #eee;
+
+.img  {
+    width: 1%;
+    min-width: 100px;
+   /* margin-top:2%;*/
 }
 
-body {
-   
-    font-size: 10px;
-    line-height: 1.42857143;
-    color: #333;
-    background-color: #fff;
-}*/
-
 table {
-    margin-top: -4px;
+    margin-top: 1%;
     empty-cells: show;
     border: 1px solid #000;
-    /*padding-right:20px; */
+    margin-bottom: 5%;
+    margin-left: 2%;
+
 }
 
 table td,
 table th {
     height: 40px;
-    min-width: 2em;
+    min-width: 3em;
     min-height: 2em;
     text-align: center;
     border: 1px solid #000;
-
+   
 }
+
+.td{
+        line-height: 2.42857143;
+}
+
+
 .panel-title{
-	text-align: center;
+	/*text-align: center;*/
+     position: relative;
+    min-height: 120px;
+   padding-right: 1px;
+   padding-left: 1px; 
+
 }
 
 .pa{
